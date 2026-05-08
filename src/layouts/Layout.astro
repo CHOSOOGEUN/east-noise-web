@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import { strings, type Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = strings[locale];
+const otherLocale = locale === 'ko' ? 'en' : 'ko';
+const otherUrl = otherLocale === 'ko' ? '/' : '/en/';
+---
+
+<!doctype html>
+<html lang={locale}>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{t.siteTitle} — {t.siteDescription}</title>
+  <meta name="description" content={t.siteDescription} />
+  <meta property="og:title" content={t.siteTitle} />
+  <meta property="og:description" content={t.siteDescription} />
+  <meta property="og:type" content="website" />
+  <link rel="alternate" hreflang="ko" href="/" />
+  <link rel="alternate" hreflang="en" href="/en/" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="px-6 py-5 flex items-center justify-between max-w-5xl mx-auto w-full">
+    <a href={locale === 'ko' ? '/' : '/en/'} class="text-sm font-semibold tracking-tight">
+      East Noise
+    </a>
+    <a href={otherUrl} class="text-xs font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors uppercase tracking-wider">
+      {t.nav.langSwitch}
+    </a>
+  </header>
+  <main class="flex-1">
+    <slot />
+  </main>
+  <footer class="border-t border-[--color-border] mt-24">
+    <div class="max-w-5xl mx-auto w-full px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-[--color-muted]">
+      <span>{t.contact.copyright}</span>
+      <a href={`mailto:${t.contact.email}`} class="hover:text-[--color-fg] transition-colors">
+        {t.contact.email}
+      </a>
+    </div>
+  </footer>
+</body>
+</html>

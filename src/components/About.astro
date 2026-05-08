@@ -1,0 +1,35 @@
+---
+import { strings, type Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = strings[locale];
+---
+
+<section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+  <div class="grid md:grid-cols-2 gap-12">
+    <div>
+      <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
+        {t.about.heading}
+      </h2>
+      <p class="text-base md:text-lg leading-relaxed">
+        {t.about.body}
+      </p>
+    </div>
+    <dl class="grid grid-cols-3 gap-4 self-end">
+      {t.about.stats.map((stat) => (
+        <div class="border-t border-[--color-border] pt-4">
+          <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium mb-2">
+            {stat.label}
+          </dt>
+          <dd class="text-xl font-semibold tracking-tight">
+            {stat.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
