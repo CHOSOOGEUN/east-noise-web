@@ -23,7 +23,7 @@ export const strings = {
     },
     contact: {
       heading: '연락',
-      email: 'contact@eastnoise.com',
+      email: 'eastnoise26@gmail.com',
       copyright: '© 2026 East Noise',
     },
   },
@@ -51,7 +51,7 @@ export const strings = {
     },
     contact: {
       heading: 'Contact',
-      email: 'contact@eastnoise.com',
+      email: 'eastnoise26@gmail.com',
       copyright: '© 2026 East Noise',
     },
   },
