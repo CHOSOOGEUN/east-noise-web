@@ -1,7 +1,7 @@
 export const strings = {
   ko: {
     siteTitle: 'East Noise',
-    siteDescription: '서울에서 출발한 인디 앱 스튜디오',
+    siteDescription: '경기 수원에서 출발한 인디 앱 스튜디오',
     nav: { langSwitch: 'EN' },
     hero: {
       eyebrow: 'Indie App Studio',
@@ -17,8 +17,16 @@ export const strings = {
       body: 'East Noise (동방의 소음) 은 한 명의 창업자 + 친구로 시작한 1인 스튜디오입니다. 출시한 앱은 작지만 매일 사용되는 것을 목표로 합니다.',
       stats: [
         { label: '설립', value: '2026' },
-        { label: '본사', value: '서울' },
+        { label: '본사', value: '경기 수원' },
         { label: '출시 앱', value: '3+' },
+      ],
+    },
+    legal: {
+      heading: '법인 정보',
+      rows: [
+        { label: 'Legal Entity', value: 'East Noise' },
+        { label: 'D-U-N-S Number', value: '696554188' },
+        { label: '본사', value: '경기도 수원시 장안구' },
       ],
     },
     contact: {
@@ -29,7 +37,7 @@ export const strings = {
   },
   en: {
     siteTitle: 'East Noise',
-    siteDescription: 'An indie app studio out of Seoul',
+    siteDescription: 'An indie app studio out of Suwon, Korea',
     nav: { langSwitch: 'KO' },
     hero: {
       eyebrow: 'Indie App Studio',
@@ -42,11 +50,19 @@ export const strings = {
     },
     about: {
       heading: 'Company',
-      body: 'East Noise is a one-founder studio that started in Seoul. Our apps are small but aim to be used daily.',
+      body: 'East Noise is a one-founder studio based in Suwon, Korea. Our apps are small but aim to be used daily.',
       stats: [
         { label: 'Founded', value: '2026' },
-        { label: 'HQ', value: 'Seoul' },
+        { label: 'HQ', value: 'Suwon, KR' },
         { label: 'Apps', value: '3+' },
+      ],
+    },
+    legal: {
+      heading: 'Legal',
+      rows: [
+        { label: 'Legal Entity', value: 'East Noise' },
+        { label: 'D-U-N-S Number', value: '696554188' },
+        { label: 'HQ', value: 'Jangan-gu, Suwon-si, Gyeonggi-do, KR' },
       ],
     },
     contact: {

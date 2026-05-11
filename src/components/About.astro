@@ -10,7 +10,7 @@ const t = strings[locale];
 ---
 
 <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
-  <div class="grid md:grid-cols-2 gap-12">
+  <div class="grid md:grid-cols-2 gap-12 mb-16">
     <div>
       <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
         {t.about.heading}
@@ -27,6 +27,24 @@ const t = strings[locale];
           </dt>
           <dd class="text-xl font-semibold tracking-tight">
             {stat.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+
+  <div class="border-t border-[--color-border] pt-8">
+    <h3 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
+      {t.legal.heading}
+    </h3>
+    <dl class="grid sm:grid-cols-3 gap-x-8 gap-y-3 text-sm">
+      {t.legal.rows.map((row) => (
+        <div class="flex flex-col gap-1">
+          <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium">
+            {row.label}
+          </dt>
+          <dd class="font-medium tabular-nums">
+            {row.value}
           </dd>
         </div>
       ))}
