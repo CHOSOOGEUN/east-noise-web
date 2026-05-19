@@ -1,0 +1,50 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+
+const sections = [
+  {
+    heading: '1. Who can use Pickie',
+    body: 'You must be at least 18 years old. One person per account. By creating an account you confirm that your birthday is accurate.',
+  },
+  {
+    heading: '2. How the app works',
+    body: "Pickie lets you join a small group (a 'crew') of people you know. Every day the crew gets a single question, and each member picks someone in the crew. Votes are anonymous — nobody, including you, can see the raw list of who voted for whom from inside the app. Aggregate counts are shown once the round is finalised.",
+  },
+  {
+    heading: '3. Your content',
+    body: 'Your display name, handle, and any profile photo are visible to other members of your crews. Pick choices and vote timing are handled by our systems and only exposed to others in aggregated, anonymised form.',
+  },
+  {
+    heading: '4. Rules of conduct',
+    body: 'No harassment, hate speech, impersonation, or attempts to de-anonymise other users. Reports are reviewed within 24 hours; violating accounts may be suspended or deleted without notice. Use the report feature inside the app, or email us.',
+  },
+  {
+    heading: '5. Reveal purchases',
+    body: 'In some rounds you may choose to unlock the identities of people who picked you. This is a consumable, non-refundable in-app purchase. You will always be shown the price and a confirmation before a purchase goes through. Dev builds may surface the reveal feature for free.',
+  },
+  {
+    heading: '6. Deleting your account',
+    body: 'You can leave any crew at any time. To delete your account and all associated data, email us from the address linked to the account. We process deletion requests within 30 days.',
+  },
+  {
+    heading: '7. Disclaimer',
+    body: 'Pickie is provided as-is without warranties. We are not liable for how other crew members interpret the results of a daily question. Use good judgement and remember these results reflect opinions of a few friends.',
+  },
+  {
+    heading: '8. Changes',
+    body: 'We may update these terms from time to time. Significant changes will be announced in-app. Continued use after changes means you accept the new terms.',
+  },
+];
+---
+
+<Layout locale="en">
+  <LegalDoc
+    kicker="PICKIE · LEGAL"
+    title="Terms of Service"
+    lastUpdated="Last updated April 24, 2026"
+    contactEmail="eastnoise26@gmail.com"
+    contactLabel="Questions?"
+    sections={sections}
+  />
+</Layout>

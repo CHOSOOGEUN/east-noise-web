@@ -1,0 +1,54 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+
+const sections = [
+  {
+    heading: '1. What we collect',
+    body: 'Email (for sign-in), handle, display name, optional profile photo or emoji avatar, date of birth (for age verification — we only store year/month/day). For each daily round we store: the question, who voted, who got picked, and a server-side record used to show aggregate counts.',
+  },
+  {
+    heading: '2. Raw vote privacy',
+    body: 'Your specific vote is never exposed through the app to other users. Only aggregate counts per person are readable by crew members. Votes are stored server-side so we can calculate results and, if you purchase a reveal, surface the voter IDs for your own picks only.',
+  },
+  {
+    heading: '3. Push notifications',
+    body: 'If you grant permission, we store an Expo Push token on your user profile to send you daily question alerts and result notifications. You can turn these off in your device settings.',
+  },
+  {
+    heading: '4. Third-party services',
+    body: 'We use Google Firebase (Authentication, Firestore database, Cloud Functions, Cloud Messaging) and Expo (application infrastructure, Expo Push Service) to run the app. Both companies are contractually required to handle your data in line with their own privacy policies.',
+  },
+  {
+    heading: '5. Sign-in with Google / Apple',
+    body: 'When you sign in with Google or Apple we receive a short-lived identity token to create your account. We do not receive your password. Apple users may choose to hide their email — we support that.',
+  },
+  {
+    heading: '6. Data retention',
+    body: "Active accounts: we retain your data for as long as your account exists. When you delete your account, all profile data and your raw votes are removed within 30 days. Anonymised, aggregate statistics (e.g. counts that don't identify any one person) may be retained for analytics.",
+  },
+  {
+    heading: '7. Reports',
+    body: "When you report someone, we store the reporter's ID, the reported user, crew/round context, and the reason you gave. This record is only visible to our moderation team.",
+  },
+  {
+    heading: '8. Children',
+    body: 'Pickie is not available to users under 18. If we learn that an underage user has created an account, we will delete it.',
+  },
+  {
+    heading: '9. Your rights',
+    body: 'You have the right to access, correct, or delete the data we hold about you. Email us from the address linked to your account to submit a request.',
+  },
+];
+---
+
+<Layout locale="en">
+  <LegalDoc
+    kicker="PICKIE · LEGAL"
+    title="Privacy Policy"
+    lastUpdated="Last updated April 24, 2026"
+    contactEmail="eastnoise26@gmail.com"
+    contactLabel="Questions?"
+    sections={sections}
+  />
+</Layout>

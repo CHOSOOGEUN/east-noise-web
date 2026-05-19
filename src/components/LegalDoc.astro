@@ -1,0 +1,41 @@
+---
+interface Section {
+  heading: string;
+  body: string;
+}
+
+interface Props {
+  kicker: string;
+  title: string;
+  lastUpdated: string;
+  contactEmail: string;
+  contactLabel: string;
+  sections: Section[];
+}
+
+const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Astro.props;
+---
+
+<article class="max-w-2xl mx-auto px-6 py-12 flex flex-col gap-8">
+  <header class="flex flex-col gap-2">
+    <p class="text-xs uppercase tracking-widest text-[--color-muted]">{kicker}</p>
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight">{title}</h1>
+    <p class="text-sm text-[--color-muted]">{lastUpdated}</p>
+  </header>
+
+  {
+    sections.map((s) => (
+      <section class="flex flex-col gap-2">
+        <h2 class="text-lg font-semibold tracking-tight">{s.heading}</h2>
+        <p class="text-sm leading-7 text-[--color-fg]/85 whitespace-pre-line">{s.body}</p>
+      </section>
+    ))
+  }
+
+  <aside class="mt-4 p-4 rounded-lg border border-[--color-border] bg-[--color-surface] flex flex-col gap-1">
+    <p class="text-xs uppercase tracking-widest text-[--color-muted]">{contactLabel}</p>
+    <a href={`mailto:${contactEmail}`} class="text-sm font-medium hover:underline">
+      {contactEmail}
+    </a>
+  </aside>
+</article>
