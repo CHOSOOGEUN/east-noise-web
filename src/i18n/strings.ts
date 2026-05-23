@@ -14,7 +14,7 @@ export const strings = {
     },
     about: {
       heading: '회사',
-      body: 'East Noise (동방의 소음) 은 한 명의 창업자 + 친구로 시작한 1인 스튜디오입니다. 출시한 앱은 작지만 매일 사용되는 것을 목표로 합니다.',
+      body: 'East Noise (동방의 소음) 는 조수근과 이유석 두 명이 만든 인디 앱 스튜디오입니다. 출시한 앱은 작지만 매일 사용되는 것을 목표로 합니다.',
       stats: [
         { label: '설립', value: '2026' },
         { label: '본사', value: '경기 수원' },
@@ -50,7 +50,7 @@ export const strings = {
     },
     about: {
       heading: 'Company',
-      body: 'East Noise is a one-founder studio based in Suwon, Korea. Our apps are small but aim to be used daily.',
+      body: 'East Noise is a two-person indie app studio based in Suwon, Korea, founded by Soogeun Cho and Yuseok Lee. Our apps are small but aim to be used daily.',
       stats: [
         { label: 'Founded', value: '2026' },
         { label: 'HQ', value: 'Suwon, KR' },
