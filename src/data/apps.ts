@@ -34,7 +34,7 @@ export const apps: App[] = [
   },
   {
     slug: 'pickie',
-    status: { ko: 'MVP', en: 'MVP' },
+    status: { ko: 'TestFlight', en: 'TestFlight' },
     accent: '#a855f7',
     copy: {
       ko: {
@@ -62,7 +62,7 @@ export const apps: App[] = [
       en: {
         name: 'heum',
         tagline: 'Self-deprecating quizzes',
-        description: 'How dumb am I today? A platform of short, funny self-diagnostic quizzes — Korean humor at its finest.',
+        description: 'How dumb am I today? A platform of short, funny self-diagnostic quizzes. Korean-language only.',
       },
     },
   },

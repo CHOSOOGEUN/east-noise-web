@@ -18,7 +18,7 @@ export const strings = {
       stats: [
         { label: '설립', value: '2026' },
         { label: '본사', value: '경기 수원' },
-        { label: '출시 앱', value: '3+' },
+        { label: '출시 앱', value: '3' },
       ],
     },
     legal: {
@@ -54,7 +54,7 @@ export const strings = {
       stats: [
         { label: 'Founded', value: '2026' },
         { label: 'HQ', value: 'Suwon, KR' },
-        { label: 'Apps', value: '3+' },
+        { label: 'Apps', value: '3' },
       ],
     },
     legal: {
