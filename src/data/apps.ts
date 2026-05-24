@@ -34,7 +34,7 @@ export const apps: App[] = [
   },
   {
     slug: 'pickie',
-    status: { ko: 'TestFlight', en: 'TestFlight' },
+    status: { ko: 'App Store 출시 임박', en: 'App Store soon' },
     accent: '#a855f7',
     copy: {
       ko: {

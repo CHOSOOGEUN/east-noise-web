@@ -24,8 +24,17 @@ const otherUrl = otherLocale === 'ko' ? '/' : '/en/';
   <meta property="og:title" content={t.siteTitle} />
   <meta property="og:description" content={t.siteDescription} />
   <meta property="og:type" content="website" />
-  <link rel="alternate" hreflang="ko" href="/" />
-  <link rel="alternate" hreflang="en" href="/en/" />
+  <meta property="og:url" content={`https://east-noise-web.vercel.app${locale === 'ko' ? '/' : '/en/'}`} />
+  <meta property="og:image" content="https://east-noise-web.vercel.app/og.svg" />
+  <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={t.siteTitle} />
+  <meta name="twitter:description" content={t.siteDescription} />
+  <meta name="twitter:image" content="https://east-noise-web.vercel.app/og.svg" />
+  <link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/" />
+  <link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://east-noise-web.vercel.app/" />
+  <link rel="canonical" href={`https://east-noise-web.vercel.app${locale === 'ko' ? '/' : '/en/'}`} />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
@@ -43,7 +52,11 @@ const otherUrl = otherLocale === 'ko' ? '/' : '/en/';
   </main>
   <footer class="border-t border-[--color-border] mt-24">
     <div class="max-w-5xl mx-auto w-full px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-[--color-muted]">
-      <span>{t.contact.copyright}</span>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+        <span>{t.contact.copyright}</span>
+        <span class="hidden sm:inline opacity-40">·</span>
+        <span class="tabular-nums">{t.contact.bizNo}</span>
+      </div>
       <a href={`mailto:${t.contact.email}`} class="hover:text-[--color-fg] transition-colors">
         {t.contact.email}
       </a>

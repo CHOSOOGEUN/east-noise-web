@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://east-noise-web.vercel.app/sitemap.xml

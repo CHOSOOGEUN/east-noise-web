@@ -1,7 +1,7 @@
 export const strings = {
   ko: {
     siteTitle: 'East Noise',
-    siteDescription: '경기 수원에서 출발한 인디 앱 스튜디오',
+    siteDescription: '경기 수원의 인디 앱 스튜디오 — 커플, 친구, 자기 자신을 위한 작은 앱',
     nav: { langSwitch: 'EN' },
     hero: {
       eyebrow: 'Indie App Studio',
@@ -14,30 +14,35 @@ export const strings = {
     },
     about: {
       heading: '회사',
-      body: 'East Noise (동방의 소음) 는 조수근과 이유석 두 명이 만든 인디 앱 스튜디오입니다. 출시한 앱은 작지만 매일 사용되는 것을 목표로 합니다.',
+      body: 'East Noise (동방의 소음) 는 조수근과 이유석 두 명이 만든 인디 앱 스튜디오입니다. 매일 누군가의 작은 루틴이 되는 앱을 목표로 합니다.',
       stats: [
         { label: '설립', value: '2026' },
         { label: '본사', value: '경기 수원' },
-        { label: '출시 앱', value: '3' },
+        { label: '개발 중', value: '4' },
       ],
     },
     legal: {
       heading: '법인 정보',
       rows: [
-        { label: 'Legal Entity', value: 'East Noise' },
+        { label: '상호', value: '동방의 소음 (East Noise)' },
+        { label: '사업자등록번호', value: '541-14-03034' },
+        { label: '대표', value: '조수근 · 이유석' },
+        { label: '업태', value: '정보통신업' },
+        { label: '종목', value: '응용 소프트웨어 개발 및 공급업' },
+        { label: '본사', value: '경기도 수원시 장안구 창훈로52번길 5-6, 104호 (연무동)' },
         { label: 'D-U-N-S Number', value: '696554188' },
-        { label: '본사', value: '경기도 수원시 장안구' },
       ],
     },
     contact: {
       heading: '연락',
       email: 'eastnoise26@gmail.com',
       copyright: '© 2026 East Noise',
+      bizNo: '사업자등록번호 541-14-03034',
     },
   },
   en: {
     siteTitle: 'East Noise',
-    siteDescription: 'An indie app studio out of Suwon, Korea',
+    siteDescription: 'An indie app studio out of Suwon, Korea — small apps for couples, friends, and yourself',
     nav: { langSwitch: 'KO' },
     hero: {
       eyebrow: 'Indie App Studio',
@@ -50,25 +55,30 @@ export const strings = {
     },
     about: {
       heading: 'Company',
-      body: 'East Noise is a two-person indie app studio based in Suwon, Korea, founded by Soogeun Cho and Yuseok Lee. Our apps are small but aim to be used daily.',
+      body: 'East Noise is a two-person indie app studio based in Suwon, Korea, founded by Soogeun Cho and Yuseok Lee. We aim to make apps that become a small daily routine for someone.',
       stats: [
         { label: 'Founded', value: '2026' },
         { label: 'HQ', value: 'Suwon, KR' },
-        { label: 'Apps', value: '3' },
+        { label: 'In progress', value: '4' },
       ],
     },
     legal: {
       heading: 'Legal',
       rows: [
-        { label: 'Legal Entity', value: 'East Noise' },
+        { label: 'Legal Name', value: 'East Noise (동방의 소음)' },
+        { label: 'Business Reg. No.', value: '541-14-03034' },
+        { label: 'Founders', value: 'Soogeun Cho · Yuseok Lee' },
+        { label: 'Industry', value: 'Information & Communication' },
+        { label: 'Business Type', value: 'Application Software Publishing' },
+        { label: 'HQ', value: 'Yeonmu-dong, Jangan-gu, Suwon-si, Gyeonggi-do, KR' },
         { label: 'D-U-N-S Number', value: '696554188' },
-        { label: 'HQ', value: 'Jangan-gu, Suwon-si, Gyeonggi-do, KR' },
       ],
     },
     contact: {
       heading: 'Contact',
       email: 'eastnoise26@gmail.com',
       copyright: '© 2026 East Noise',
+      bizNo: 'Business Reg. 541-14-03034',
     },
   },
 } as const;
