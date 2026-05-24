@@ -50,6 +50,23 @@ export const apps: App[] = [
     },
   },
   {
+    slug: 'seed',
+    status: { ko: '개발 중', en: 'In development' },
+    accent: '#22A06B',
+    copy: {
+      ko: {
+        name: 'Seed.',
+        tagline: '매일 인증, 식물이 자라요',
+        description: '짧은 영상으로 하루의 루틴을 인증하면 가상 식물이 단계별로 자라고 코인이 쌓여요. 솔로 자기관리 앱.',
+      },
+      en: {
+        name: 'Seed.',
+        tagline: 'Log your day, grow your plant',
+        description: 'Log each daily routine with a short clip — a tiny plant grows through stages and coins build up. A solo self-care app.',
+      },
+    },
+  },
+  {
     slug: 'heum',
     status: { ko: '베타', en: 'Beta' },
     accent: '#3b82f6',

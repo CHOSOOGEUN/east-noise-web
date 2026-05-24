@@ -1,0 +1,50 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+
+const sections = [
+  {
+    heading: '1. What we collect',
+    body: 'We collect your email (for sign-in), nickname, the routines you create (name, time, repeat weekdays, icon), the short check-in clips you upload, and your plant state (current species, stage, streak, coins). We do not collect a separate date of birth or legal name.',
+  },
+  {
+    heading: '2. How we handle videos',
+    body: "Check-in videos are uploaded only under your account's private storage, and are never visible to other users. Videos play back as a 'daily clip' montage, and clips older than a certain period are automatically deleted. We never access your videos unless you explicitly request it or we are legally required to.",
+  },
+  {
+    heading: '3. Push notifications',
+    body: 'If you grant permission, we store an FCM push token on your profile so we can send routine reminders at the times you set. You can disable notifications at any time from your device or app settings.',
+  },
+  {
+    heading: '4. Third parties',
+    body: 'We use Google Firebase (Authentication, Firestore, Cloud Storage, Cloud Messaging) and Expo (application infrastructure) to operate the app. Each provider is contractually required to handle your data according to its own privacy policy.',
+  },
+  {
+    heading: '5. Google / Apple Sign-in',
+    body: 'When you sign in with Google or Apple, we receive only a short-lived ID token to create your account — we never receive your password. Apple users may choose to hide their email, which we support.',
+  },
+  {
+    heading: '6. Retention',
+    body: 'We keep your data while your account is active. If you delete your account, your profile, routines, check-in videos, and plant state are erased within 30 days. Aggregated, anonymised statistics that cannot identify you may be retained for analytics.',
+  },
+  {
+    heading: '7. Minors',
+    body: 'Seed is not offered to users under 14 years old. If we learn that an underage user has created an account, we delete it immediately.',
+  },
+  {
+    heading: '8. Your rights',
+    body: 'You can request access, correction, or deletion of your data. Most of this is available directly inside the app settings. For other requests, email us from the address linked to your account.',
+  },
+];
+---
+
+<Layout locale="en">
+  <LegalDoc
+    kicker="SEED · LEGAL"
+    title="Privacy Policy"
+    lastUpdated="Last updated May 24, 2026"
+    contactEmail="eastnoise26@gmail.com"
+    contactLabel="Questions?"
+    sections={sections}
+  />
+</Layout>
