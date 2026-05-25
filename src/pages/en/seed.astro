@@ -2,68 +2,68 @@
 import Layout from '../../layouts/Layout.astro';
 
 const accent = '#22A06B';
-const heroSubtitle = 'A plant tamagotchi\nthat grows with you.';
+const heroSubtitle = 'Today,\nyou grew.';
 
 const steps = [
   {
-    title: 'Name your plant',
-    body: 'Pick one of 8 species. The plant\'s name is your name in the app.',
+    title: 'Name the plant',
+    body: 'The plant\'s name is your name in Seed. Pick one of 8 species — your daily companion.',
     image: '/screenshots/seed/01-profile.png',
   },
   {
-    title: 'Get your seed',
-    body: 'Short video check-in → plant grows → coins unlock species → daily reel. Four things in one app.',
+    title: 'One seed, four things',
+    body: 'Short video check-ins · the plant grows · coins unlock species · a daily reel. All in one app.',
     image: '/screenshots/seed/02-onboarding.png',
   },
   {
-    title: 'Today\'s check-in',
-    body: 'Tap "Record" on each routine. A 2-4s clip verifies you. More real than a photo.',
+    title: 'Check in, one clip',
+    body: 'Tap "Record" on a routine. 2-4 seconds is enough. Sweat after a workout, a hand on a page, eyes after meditation.',
     image: '/screenshots/seed/03-today.png',
   },
   {
-    title: 'Watch it grow',
-    body: 'Check-ins level up your plant: seed · sprout · leaf · bud · flower · tree. Earn coins to unlock more species.',
+    title: 'See your discipline grow',
+    body: 'Every streak day levels up the plant. Your daily wins, visualized. Even if you break the streak, the highest stage stays.',
     image: '/screenshots/seed/04-plant.png',
   },
   {
-    title: 'Daily reel as history',
-    body: 'Videos save to your Photos "Seed" album every morning. The History tab lays them out as a calendar archive — like Stories.',
+    title: 'Saved to your Photos',
+    body: 'Next morning, yesterday\'s clips merge into one reel — auto-saved to the "Seed" album. The History tab shows them like a Stories archive.',
     image: '/screenshots/seed/05-history.png',
   },
 ];
 
 const features = [
   {
-    title: '2-4 second video check-in',
-    body: 'Verify each routine with a short clip. More real than a photo, less work than a journal.',
+    title: 'One clip is enough',
+    body: 'No production. Sweat after a workout, a hand on a page, eyes after meditation — 2-4 seconds does it.',
   },
   {
-    title: 'Plant grows in 7 stages',
-    body: 'From a single seed. Streak days unlock sprout, leaves, bud, flower, tree. Choose from 8 species.',
+    title: 'Discipline you can see',
+    body: 'Each check-in grows the plant. Your daily wins show up on screen. Once a stage is reached, it stays — forever.',
   },
   {
-    title: 'Daily reel auto-saved',
-    body: 'Next morning, yesterday\'s clips merge into one reel and save into the Photos "Seed" album. Ready for Stories.',
+    title: 'Stories-ready, automatic',
+    body: 'Next morning, yesterday\'s clips merge into one reel and save to your Photos album. Post to Stories or Reels as-is.',
   },
 ];
 
 const faq = [
   {
-    q: 'Where is my data stored?',
-    a: 'Videos stay only on your phone — sandbox + Photos album. We never upload your videos to our servers.',
+    q: 'Where do my videos go?',
+    a: 'Only your phone. Nothing uploads to our servers. Want to show off? Share to Stories yourself.',
   },
   {
-    q: 'Does my plant die if I skip?',
-    a: 'No. The highest stage you reached is preserved forever. You resume from there when you come back.',
+    q: 'Does the plant die if I skip?',
+    a: 'Never. The highest stage you reached is preserved forever. Discipline allows rest days too.',
   },
   {
-    q: 'How much does it cost?',
-    a: 'Free at launch. 6 of 8 plant species are unlocked with in-app coins — earned by checking in and keeping streaks.',
+    q: 'How much?',
+    a: 'Free. 6 of 8 species unlock with in-app coins — earned just by checking in and keeping streaks.',
   },
 ];
 ---
 
-<Layout locale="en" title="Seed. — A plant tamagotchi that grows with daily check-ins" description="Verify your routine with short videos and your virtual plant grows, stage by stage. By East Noise." path="/en/seed">
+<Layout locale="en" title="Seed. — Discipline, as a plant." description="Verify your daily routines with one short clip. The plant grows. Next morning, yesterday's clips merge into one reel — ready for Stories." path="/en/seed">
   <!-- Hero -->
   <section class="max-w-5xl mx-auto w-full px-6 pt-16 md:pt-32 pb-20">
     <div class="flex items-center gap-2 mb-6">
@@ -79,14 +79,14 @@ const faq = [
       {heroSubtitle}
     </p>
     <p class="text-base md:text-lg text-[--color-muted] max-w-2xl leading-relaxed mb-10">
-      Check in your daily routine with short videos. Your virtual plant grows, stage by stage. The next morning, yesterday's clips auto-merge into one reel — ready for Stories.
+      Workouts, reading, meditation — verify your routine with one short video. The plant grows daily. Next morning, yesterday's clips auto-merge into your Photos album. Stories or Reels, drop them in as-is.
     </p>
     <div class="flex flex-wrap items-center gap-3">
       <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white" style={`background-color: ${accent}`}>
-        Coming soon to the App Store
+        Coming soon
       </span>
       <a href="mailto:eastnoise26@gmail.com?subject=Notify%20me%20when%20Seed%20launches" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[--color-border] text-sm font-medium hover:border-[--color-fg] transition-colors min-h-[44px]">
-        Notify me on launch →
+        Tell me when it launches →
       </a>
     </div>
   </section>
@@ -94,7 +94,7 @@ const faq = [
   <!-- Features -->
   <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
     <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
-      How it grows
+      One clip a day. Plant grows. Reel saved.
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
       {features.map((f, i) => (
@@ -116,7 +116,7 @@ const faq = [
   <!-- How to use -->
   <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
     <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
-      How to use
+      From first open, this is the flow
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-[--color-border]">
       {steps.map((s, i) => (
@@ -143,7 +143,7 @@ const faq = [
   <!-- Plant stages mini visual -->
   <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
     <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
-      7 stages
+      From a seed to a tree, in 7 stages
     </h2>
     <p class="text-lg md:text-xl font-medium leading-relaxed">
       <span class="text-[--color-muted]">Seed</span>
@@ -168,7 +168,7 @@ const faq = [
   <!-- FAQ -->
   <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
     <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
-      FAQ
+      What you might wonder
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
       {faq.map((item) => (
