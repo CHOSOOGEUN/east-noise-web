@@ -1,35 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PhoneMock from '../components/PhoneMock.astro';
 
 const accent = '#22A06B';
 const heroSubtitle = '매일 인증으로\n내 식물이 자라요.';
 
 const steps = [
   {
-    title: '로그인',
-    body: 'Apple 또는 Google로 1초 로그인. 닉네임·이메일 따로 안 만들어요.',
-    image: '/screenshots/seed/01-login.png',
-  },
-  {
     title: '식물 이름 + 종 선택',
     body: '8가지 식물 중 하나 골라요. 식물 이름 = 내 닉네임. 매일 그 이름으로 자라요.',
-    image: '/screenshots/seed/02-profile.png',
+    image: '/screenshots/seed/01-profile.png',
   },
   {
-    title: '루틴 추가',
-    body: '운동, 독서, 명상, 글쓰기 — 본인의 루틴을 카테고리로 만들어요. 시간·요일 알람까지.',
-    image: '/screenshots/seed/03-routine.png',
+    title: '씨앗 한 톨 받아요',
+    body: '짧은 영상으로 인증 → 식물이 자라고 → 코인으로 다른 식물 → 하루 합본 영상까지. 4가지가 한 번에.',
+    image: '/screenshots/seed/02-onboarding.png',
   },
   {
-    title: '짧은 영상으로 인증',
-    body: '카테고리 누르고 2-4초 영상 한 컷. 인증할 때마다 코인 +10. 연속일에 보너스.',
-    image: '/screenshots/seed/04-record.png',
+    title: '오늘의 인증',
+    body: '루틴마다 "인증 찍기" 한번. 2-4초 영상으로 본인을 인증해요. 사진보다 진짜 같은 한 컷.',
+    image: '/screenshots/seed/03-today.png',
   },
   {
     title: '식물이 자라요',
-    body: '1·3·7·14·21·30일 연속에 식물 단계 ↑. 다음날 아침엔 어제 영상이 자동 합본되어 사진 앨범에.',
-    image: '/screenshots/seed/05-plant.png',
+    body: '인증할수록 단계 ↑. 씨앗·새싹·어린잎·자란잎·꽃봉오리·꽃·나무 — 7단계. 코인으로 다른 식물도.',
+    image: '/screenshots/seed/04-plant.png',
+  },
+  {
+    title: '하루 영상이 기록으로',
+    body: '인증 영상은 사진 앨범 "Seed"에 매일 자동 저장. 기록 탭에서 캘린더로 다시 봐요. 스토리·릴스 그대로.',
+    image: '/screenshots/seed/05-history.png',
   },
 ];
 
@@ -123,7 +122,9 @@ const faq = [
       {steps.map((s, i) => (
         <article class="bg-[--color-bg] p-5 flex flex-col">
           <div class="mb-4 relative">
-            <PhoneMock step={(i + 1) as 1 | 2 | 3 | 4 | 5} locale="ko" />
+            <div class="aspect-[9/19.5] rounded-[24px] overflow-hidden border border-neutral-200 bg-[#FAFAF9] shadow-sm">
+              <img src={s.image} alt={s.title} class="w-full h-full object-cover" loading="lazy" />
+            </div>
             <span class="absolute -top-1 -left-1 text-xl font-black tracking-tight" style={`color: ${accent}`}>
               {String(i + 1).padStart(2, '0')}
             </span>
