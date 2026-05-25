@@ -17,8 +17,11 @@ const t = strings[locale];
   <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
     {apps.map((app) => {
       const copy = app.copy[locale];
-      return (
-        <article class="bg-[--color-bg] p-8 group hover:bg-white transition-colors">
+      const webHref = app.links?.web
+        ? (locale === 'en' && app.links.web.startsWith('/') ? '/en' + app.links.web : app.links.web)
+        : null;
+      const inner = (
+        <>
           <div class="flex items-baseline justify-between mb-6">
             <h3 class="text-2xl font-bold tracking-tight" style={`color: ${app.accent}`}>
               {copy.name}
@@ -30,9 +33,23 @@ const t = strings[locale];
           <p class="text-sm font-medium mb-3">
             {copy.tagline}
           </p>
-          <p class="text-sm text-[--color-muted] leading-relaxed">
+          <p class="text-sm text-[--color-muted] leading-relaxed mb-4">
             {copy.description}
           </p>
+          {webHref && (
+            <span class="text-xs font-semibold tracking-tight inline-flex items-center gap-1" style={`color: ${app.accent}`}>
+              {t.apps.cta} →
+            </span>
+          )}
+        </>
+      );
+      return webHref ? (
+        <a href={webHref} class="bg-[--color-bg] p-8 group hover:bg-white transition-colors block">
+          {inner}
+        </a>
+      ) : (
+        <article class="bg-[--color-bg] p-8 group hover:bg-white transition-colors">
+          {inner}
         </article>
       );
     })}

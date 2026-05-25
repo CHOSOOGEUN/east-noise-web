@@ -51,8 +51,9 @@ export const apps: App[] = [
   },
   {
     slug: 'seed',
-    status: { ko: '개발 중', en: 'In development' },
+    status: { ko: 'TestFlight', en: 'TestFlight' },
     accent: '#22A06B',
+    links: { web: '/seed' },
     copy: {
       ko: {
         name: 'Seed.',
