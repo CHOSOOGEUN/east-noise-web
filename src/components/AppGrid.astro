@@ -15,7 +15,7 @@ const t = strings[locale];
     {t.apps.heading}
   </h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[--color-border] border border-[--color-border] reveal-on-scroll">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[--color-border] border border-[--color-border]">
     {apps.map((app, idx) => {
       const copy = app.copy[locale];
       const webHref = app.links?.web
@@ -49,8 +49,8 @@ const t = strings[locale];
         </>
       );
 
-      const baseClass = `app-card relative bg-[--color-bg] p-8 md:p-10 overflow-hidden group tilt-card`;
-      const style = `--accent: ${app.accent};`;
+      const baseClass = `app-card card-stagger relative bg-[--color-bg] p-8 md:p-10 overflow-hidden group tilt-card`;
+      const style = `--accent: ${app.accent}; --i: ${idx};`;
 
       return webHref ? (
         <a href={webHref} class={`${baseClass} block`} style={style} data-index={idx}>
@@ -84,7 +84,9 @@ const t = strings[locale];
     transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 0;
   }
-  .app-card:hover .card-bg { transform: scaleY(1); }
+  .app-card:hover .card-bg,
+  .app-card.is-touched .card-bg { transform: scaleY(1); }
+  .app-card:active .card-bg { transform: scaleY(0.5); transition-duration: 240ms; }
 
   .card-name,
   .card-tagline,
@@ -100,12 +102,15 @@ const t = strings[locale];
   .app-card:hover .card-name,
   .app-card:hover .card-tagline,
   .app-card:hover .card-cta,
-  .app-card:hover .card-status,
-  .app-card:hover .card-desc {
+  .app-card.is-touched .card-name,
+  .app-card.is-touched .card-tagline,
+  .app-card.is-touched .card-cta {
     color: #ffffff;
   }
   .app-card:hover .card-status,
-  .app-card:hover .card-desc {
+  .app-card:hover .card-desc,
+  .app-card.is-touched .card-status,
+  .app-card.is-touched .card-desc {
     color: rgba(255, 255, 255, 0.82);
   }
 
@@ -113,12 +118,14 @@ const t = strings[locale];
     display: inline-block;
     transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .app-card:hover .card-cta-arrow { transform: translateX(8px); }
+  .app-card:hover .card-cta-arrow,
+  .app-card.is-touched .card-cta-arrow { transform: translateX(8px); }
 
   /* Reveal on scroll */
-  .reveal-on-scroll {
+  .reveal-on-scroll,
+  .card-stagger {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(32px);
   }
   @supports (animation-timeline: view()) {
     .reveal-on-scroll {
@@ -126,59 +133,102 @@ const t = strings[locale];
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
     }
+    .card-stagger {
+      animation: card-rise both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
   }
   @keyframes reveal {
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes card-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal-on-scroll { opacity: 1; transform: none; animation: none; }
+    .reveal-on-scroll,
+    .card-stagger { opacity: 1; transform: none; animation: none; }
     .card-bg { transition: none; }
   }
 </style>
 
 <script is:inline>
   (function () {
-    // Reveal fallback
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+    // Reveal fallback (no scroll-driven animations)
     if (!CSS.supports('animation-timeline: view()')) {
-      const els = document.querySelectorAll('.reveal-on-scroll');
-      const io = new IntersectionObserver((entries) => {
+      const heading = document.querySelectorAll('.reveal-on-scroll');
+      const headIo = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
             entry.target.style.transition = 'opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)';
-            io.unobserve(entry.target);
+            headIo.unobserve(entry.target);
           }
         });
       }, { threshold: 0.15 });
-      els.forEach((el) => io.observe(el));
+      heading.forEach((el) => headIo.observe(el));
+
+      const cards = document.querySelectorAll('.card-stagger');
+      const cardIo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const i = parseInt(entry.target.style.getPropertyValue('--i') || '0', 10);
+            entry.target.style.transitionDelay = (i * 90) + 'ms';
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = `opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1)`;
+            cardIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.18 });
+      cards.forEach((el) => cardIo.observe(el));
     }
 
-    // 3D tilt on mousemove (desktop only, respects reduced motion)
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    if (reduce) return;
 
     const cards = document.querySelectorAll('.tilt-card');
-    cards.forEach((card) => {
-      const inner = card.querySelector('.card-inner');
-      if (!inner) return;
-      let raf = 0;
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          card.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
-          inner.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 30px)`;
+
+    // Desktop: 3D mouse tilt
+    if (!isTouch) {
+      cards.forEach((card) => {
+        const inner = card.querySelector('.card-inner');
+        if (!inner) return;
+        let raf = 0;
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => {
+            card.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
+            inner.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 30px)`;
+          });
+        });
+        card.addEventListener('mouseleave', () => {
+          cancelAnimationFrame(raf);
+          card.style.transform = '';
+          inner.style.transform = '';
         });
       });
-      card.addEventListener('mouseleave', () => {
-        cancelAnimationFrame(raf);
-        card.style.transform = '';
-        inner.style.transform = '';
+    } else {
+      // Mobile: touch-active invert + light haptic
+      cards.forEach((card) => {
+        card.addEventListener('touchstart', () => {
+          card.classList.add('is-touched');
+          if (navigator.vibrate) navigator.vibrate(6);
+        }, { passive: true });
+        card.addEventListener('touchend', () => {
+          setTimeout(() => card.classList.remove('is-touched'), 220);
+        }, { passive: true });
+        card.addEventListener('touchcancel', () => {
+          card.classList.remove('is-touched');
+        }, { passive: true });
       });
-    });
+    }
   })();
 </script>
