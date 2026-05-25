@@ -107,9 +107,20 @@ const pageDesc = description ?? t.siteDescription;
       background-size: 100% 1px;
     }
 
+    .footer-arrow {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .footer-email:hover .footer-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .magnet, .magnet-inner { transform: none !important; }
-      .logo-dot, .logo-text { transition: none !important; }
+      .logo-dot, .logo-text, .footer-arrow { transition: none !important; }
     }
   </style>
   <script is:inline>
@@ -162,8 +173,11 @@ const pageDesc = description ?? t.siteDescription;
         <span class="hidden sm:inline opacity-40">·</span>
         <span class="tabular-nums">{t.contact.bizNo}</span>
       </div>
-      <a href={`mailto:${t.contact.email}`} class="hover:text-[--color-fg] transition-colors">
-        {t.contact.email}
+      <a href={`mailto:${t.contact.email}`} class="magnet footer-email hover:text-[--color-fg] transition-colors">
+        <span class="magnet-inner inline-flex items-center gap-1.5">
+          {t.contact.email}
+          <span class="footer-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
     </div>
   </footer>
