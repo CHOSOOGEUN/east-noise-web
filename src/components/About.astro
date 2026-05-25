@@ -21,7 +21,9 @@ const t = strings[locale];
     </div>
     <dl class="grid grid-cols-3 gap-4 self-end">
       {t.about.stats.map((stat) => {
-        const numeric = /^\d+$/.test(stat.value);
+        const num = /^\d+$/.test(stat.value) ? parseInt(stat.value, 10) : NaN;
+        // Only count up meaningful small numbers — skip years like "2026"
+        const animate = !Number.isNaN(num) && num <= 50;
         return (
           <div class="border-t border-[--color-fg] pt-4 stat-cell">
             <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium mb-2">
@@ -29,9 +31,9 @@ const t = strings[locale];
             </dt>
             <dd
               class="text-3xl md:text-4xl font-bold tracking-tight tabular-nums stat-value"
-              data-target={numeric ? stat.value : ''}
+              data-target={animate ? stat.value : ''}
             >
-              {numeric ? '0' : stat.value}
+              {animate ? '0' : stat.value}
             </dd>
           </div>
         );

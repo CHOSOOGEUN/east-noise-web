@@ -88,16 +88,16 @@ const pageDesc = description ?? t.siteDescription;
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: #18181b;
+      background: var(--color-fg);
       transform: scale(0.8);
       transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1), background-color 380ms;
     }
     .logo-link:hover .logo-dot {
       transform: scale(1.4);
-      background: #ef4444;
+      background: var(--color-accent);
     }
     .logo-text {
-      background-image: linear-gradient(to right, #18181b, #18181b);
+      background-image: linear-gradient(to right, var(--color-fg), var(--color-fg));
       background-size: 0% 1px;
       background-position: 0 100%;
       background-repeat: no-repeat;
