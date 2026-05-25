@@ -20,3 +20,77 @@ body {
   font-feature-settings: 'ss01', 'ss02';
   -webkit-font-smoothing: antialiased;
 }
+
+/* Reveal on scroll — IntersectionObserver toggles .is-in */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Stagger delays */
+.reveal[data-delay="100"] { transition-delay: 100ms; }
+.reveal[data-delay="200"] { transition-delay: 200ms; }
+.reveal[data-delay="300"] { transition-delay: 300ms; }
+.reveal[data-delay="400"] { transition-delay: 400ms; }
+
+/* Plant sway — leaves gently breathe */
+@keyframes sway-left {
+  0%, 100% { transform: rotate(-25deg); }
+  50%      { transform: rotate(-30deg); }
+}
+@keyframes sway-right {
+  0%, 100% { transform: rotate(25deg); }
+  50%      { transform: rotate(30deg); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.85); }
+}
+.plant-leaf-l  { transform-origin: 38px 65px; animation: sway-left  3.6s ease-in-out infinite; }
+.plant-leaf-r  { transform-origin: 62px 65px; animation: sway-right 3.6s ease-in-out infinite; }
+.plant-leaf-l2 { transform-origin: 42px 50px; animation: sway-left  4.2s ease-in-out infinite; }
+.plant-leaf-r2 { transform-origin: 58px 50px; animation: sway-right 4.2s ease-in-out infinite; }
+.pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+
+/* Marquee — infinite horizontal scroll */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Hover lift */
+.lift {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px rgba(34, 160, 107, 0.18);
+}
+
+/* Soft green ambient gradient (for hero) */
+.bg-seed-ambient {
+  background:
+    radial-gradient(60% 50% at 15% 0%, rgba(34, 160, 107, 0.08), transparent 70%),
+    radial-gradient(50% 40% at 100% 100%, rgba(34, 160, 107, 0.05), transparent 70%);
+}
