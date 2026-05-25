@@ -157,11 +157,66 @@ body {
 }
 .cta-glow { animation: glow 2.4s ease-in-out infinite; }
 
+/* Cherry blossom — petals falling */
+@keyframes petal-fall-1 {
+  0%   { transform: translate(0, -10vh) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { transform: translate(60px, 110vh) rotate(540deg); opacity: 0; }
+}
+@keyframes petal-fall-2 {
+  0%   { transform: translate(0, -10vh) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.85; }
+  90%  { opacity: 0.85; }
+  100% { transform: translate(-50px, 110vh) rotate(-480deg); opacity: 0; }
+}
+@keyframes petal-fall-3 {
+  0%   { transform: translate(0, -10vh) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.8; }
+  100% { transform: translate(30px, 110vh) rotate(720deg); opacity: 0; }
+}
+.petal-fall-1 { animation: petal-fall-1 16s linear infinite; }
+.petal-fall-2 { animation: petal-fall-2 19s linear infinite; }
+.petal-fall-3 { animation: petal-fall-3 22s linear infinite; }
+
+/* Bloom subtle breathing */
+@keyframes bloom-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+.bloom-breathe { animation: bloom-breathe 4.5s ease-in-out infinite; transform-origin: center; }
+
+/* Mouse-tilt container */
+.tilt-3d {
+  transform-style: preserve-3d;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Magnetic CTA */
+.magnet-cta {
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Sticky storytelling — each stage fades based on scroll progress */
+.story-stage {
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.story-stage.story-hidden { opacity: 0; transform: scale(0.92); }
+.story-stage.story-active { opacity: 1; transform: scale(1); }
+
+/* Progress bar inside sticky */
+.story-progress-fill {
+  transition: height 200ms linear;
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .spin-slow, .float-1, .float-2, .float-3, .cta-glow,
   .plant-leaf-l, .plant-leaf-r, .plant-leaf-l2, .plant-leaf-r2,
-  .pulse-dot, .marquee-track {
+  .pulse-dot, .marquee-track,
+  .petal-fall-1, .petal-fall-2, .petal-fall-3, .bloom-breathe {
     animation: none !important;
   }
 }

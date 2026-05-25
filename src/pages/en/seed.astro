@@ -73,8 +73,32 @@ const stages = ['Seed', 'Sprout', 'Young leaf', 'Grown leaf', 'Bud', 'Flower', '
   <div id="scroll-progress" class="scroll-progress" style={`background-color: ${accent}`}></div>
 
   <!-- Hero -->
-  <section class="bg-seed-ambient">
-    <div class="max-w-5xl mx-auto w-full px-6 pt-16 md:pt-28 pb-20 grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-center">
+  <section class="bg-seed-ambient relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-0">
+      <span class="petal-fall-1 absolute" style="left: 5%; top: 0; animation-delay: 0s;">
+        <svg width="14" height="14" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFC0CB" opacity="0.9"/></svg>
+      </span>
+      <span class="petal-fall-2 absolute" style="left: 22%; top: 0; animation-delay: 3s;">
+        <svg width="12" height="12" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFB6C1" opacity="0.85"/></svg>
+      </span>
+      <span class="petal-fall-3 absolute" style="left: 38%; top: 0; animation-delay: 1.4s;">
+        <svg width="10" height="10" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFC8DD" opacity="0.85"/></svg>
+      </span>
+      <span class="petal-fall-1 absolute" style="left: 55%; top: 0; animation-delay: 7s;">
+        <svg width="14" height="14" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFC0CB" opacity="0.9"/></svg>
+      </span>
+      <span class="petal-fall-2 absolute" style="left: 70%; top: 0; animation-delay: 2.2s;">
+        <svg width="11" height="11" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFC8DD" opacity="0.8"/></svg>
+      </span>
+      <span class="petal-fall-3 absolute" style="left: 85%; top: 0; animation-delay: 5s;">
+        <svg width="13" height="13" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFB6C1" opacity="0.9"/></svg>
+      </span>
+      <span class="petal-fall-1 absolute" style="left: 92%; top: 0; animation-delay: 11s;">
+        <svg width="10" height="10" viewBox="0 0 20 20"><path d="M10 2 C13 5, 13 8, 10 10 C7 8, 7 5, 10 2 Z" fill="#FFC8DD" opacity="0.85"/></svg>
+      </span>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto w-full px-6 pt-16 md:pt-28 pb-20 grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-center">
       <div>
         <div class="flex items-center gap-2 mb-6 reveal">
           <span class="inline-block w-2 h-2 rounded-full pulse-dot" style={`background-color: ${accent}`}></span>
@@ -95,40 +119,58 @@ const stages = ['Seed', 'Sprout', 'Young leaf', 'Grown leaf', 'Bud', 'Flower', '
           <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white" style={`background-color: ${accent}`}>
             Coming soon
           </span>
-          <a href="mailto:eastnoise26@gmail.com?subject=Notify%20me%20when%20Seed%20launches" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[--color-border] bg-white text-sm font-semibold hover:border-[--color-fg] transition-colors min-h-[44px]">
+          <a href="mailto:eastnoise26@gmail.com?subject=Notify%20me%20when%20Seed%20launches" class="magnet-cta inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[--color-border] bg-white text-sm font-semibold hover:border-[--color-fg] transition-colors min-h-[44px]">
             Tell me when it launches →
           </a>
         </div>
       </div>
 
       <div class="reveal flex justify-center md:justify-end" data-delay="200">
-        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center" style={`background: radial-gradient(circle, rgba(34,160,107,0.12), transparent 70%)`}>
-          <span class="absolute float-1 w-1.5 h-1.5 rounded-full" style={`background-color: ${accent}; top: 12%; left: 18%;`}></span>
+        <div id="hero-tilt" class="tilt-3d relative w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center" style={`background: radial-gradient(circle, rgba(255,192,203,0.22), transparent 70%)`}>
+          <span class="absolute float-1 w-1.5 h-1.5 rounded-full" style={`background-color: #FFC0CB; top: 12%; left: 18%;`}></span>
           <span class="absolute float-2 w-2 h-2 rounded-full" style={`background-color: ${accent}; top: 70%; left: 8%;`}></span>
-          <span class="absolute float-3 w-1 h-1 rounded-full" style={`background-color: ${accent}; top: 28%; right: 6%;`}></span>
-          <span class="absolute float-1 w-1.5 h-1.5 rounded-full" style={`background-color: #F5C04A; top: 78%; right: 12%; animation-delay: 1.5s;`}></span>
+          <span class="absolute float-3 w-1 h-1 rounded-full" style={`background-color: #FFB6C1; top: 28%; right: 6%;`}></span>
+          <span class="absolute float-1 w-1.5 h-1.5 rounded-full" style={`background-color: #FFC8DD; top: 78%; right: 12%; animation-delay: 1.5s;`}></span>
           <svg viewBox="0 0 100 130" class="w-3/4 h-3/4">
             <path d="M28 110 L72 110 L68 125 L32 125 Z" fill="#9ca3af" opacity="0.25"/>
-            <path d="M50 110 L50 50" stroke={accent} stroke-width="3.5" stroke-linecap="round"/>
-            <ellipse class="plant-leaf-l" cx="36" cy="78" rx="14" ry="6.5" fill={accent} opacity="0.9"/>
-            <ellipse class="plant-leaf-r" cx="64" cy="78" rx="14" ry="6.5" fill={accent} opacity="0.9"/>
-            <g transform="translate(50, 38)">
-              <g class="spin-slow">
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(30)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(60)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(90)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(120)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(150)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(180)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(210)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(240)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(270)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(300)"/>
-                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(330)"/>
+            <path d="M50 110 L50 55" stroke="#6B4423" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+            <path d="M50 80 L34 65" stroke="#6B4423" stroke-width="2.4" stroke-linecap="round" opacity="0.65"/>
+            <path d="M50 72 L66 58" stroke="#6B4423" stroke-width="2.4" stroke-linecap="round" opacity="0.65"/>
+            <g transform="translate(30, 62)">
+              <g class="bloom-breathe">
+                <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="#FFC0CB"/>
+                <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(72)"/>
+                <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(144)"/>
+                <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(216)"/>
+                <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(288)"/>
+                <circle cx="0" cy="0" r="2.4" fill="#F4D03F"/>
               </g>
-              <circle cx="0" cy="0" r="11.5" fill="#6B4423"/>
-              <circle cx="0" cy="0" r="11.5" fill={accent} opacity="0.25"/>
+            </g>
+            <g transform="translate(70, 55)">
+              <g class="bloom-breathe" style="animation-delay: 0.8s;">
+                <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="#FFB6C1"/>
+                <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(72)"/>
+                <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(144)"/>
+                <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(216)"/>
+                <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(288)"/>
+                <circle cx="0" cy="0" r="2.1" fill="#F4D03F"/>
+              </g>
+            </g>
+            <g transform="translate(50, 36)">
+              <g class="bloom-breathe">
+                <ellipse cx="0" cy="-14" rx="9" ry="12" fill="#FFC0CB"/>
+                <ellipse cx="0" cy="-14" rx="9" ry="12" fill="#FFC0CB" transform="rotate(72)"/>
+                <ellipse cx="0" cy="-14" rx="9" ry="12" fill="#FFC0CB" transform="rotate(144)"/>
+                <ellipse cx="0" cy="-14" rx="9" ry="12" fill="#FFC0CB" transform="rotate(216)"/>
+                <ellipse cx="0" cy="-14" rx="9" ry="12" fill="#FFC0CB" transform="rotate(288)"/>
+                <ellipse cx="0" cy="-12" rx="4.5" ry="7" fill="#FFFFFF" opacity="0.6"/>
+                <ellipse cx="0" cy="-12" rx="4.5" ry="7" fill="#FFFFFF" opacity="0.6" transform="rotate(72)"/>
+                <ellipse cx="0" cy="-12" rx="4.5" ry="7" fill="#FFFFFF" opacity="0.6" transform="rotate(144)"/>
+                <ellipse cx="0" cy="-12" rx="4.5" ry="7" fill="#FFFFFF" opacity="0.6" transform="rotate(216)"/>
+                <ellipse cx="0" cy="-12" rx="4.5" ry="7" fill="#FFFFFF" opacity="0.6" transform="rotate(288)"/>
+                <circle cx="0" cy="0" r="5" fill="#F4D03F"/>
+                <circle cx="0" cy="0" r="2.5" fill="#fff" opacity="0.7"/>
+              </g>
             </g>
           </svg>
         </div>
@@ -157,6 +199,153 @@ const stages = ['Seed', 'Sprout', 'Young leaf', 'Grown leaf', 'Bud', 'Flower', '
           </p>
         </article>
       ))}
+    </div>
+  </section>
+
+  <!-- Sticky scroll storytelling — Day 0 to Bloom -->
+  <section class="border-t border-[--color-border] bg-gradient-to-b from-[--color-bg] to-white">
+    <div id="story" class="relative" style="height: 400vh;">
+      <div class="sticky top-0 h-screen flex items-center overflow-hidden">
+        <div class="max-w-5xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div class="relative aspect-square w-full max-w-md mx-auto md:mx-0">
+            <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle, rgba(255,192,203,0.18), transparent 70%);"></div>
+
+            <div class="story-stage story-active absolute inset-0 flex items-center justify-center" data-stage="0">
+              <svg viewBox="0 0 100 100" class="w-1/3 h-1/3">
+                <ellipse cx="50" cy="55" rx="14" ry="20" fill="#6B4423"/>
+                <ellipse cx="46" cy="48" rx="4" ry="6" fill="#fff" opacity="0.35"/>
+              </svg>
+            </div>
+
+            <div class="story-stage story-hidden absolute inset-0 flex items-center justify-center" data-stage="1">
+              <svg viewBox="0 0 100 100" class="w-1/2 h-1/2">
+                <path d="M50 85 L50 55" stroke={accent} stroke-width="3.5" stroke-linecap="round"/>
+                <ellipse cx="38" cy="58" rx="11" ry="5" fill={accent} transform="rotate(-30 38 58)"/>
+                <ellipse cx="62" cy="58" rx="11" ry="5" fill={accent} transform="rotate(30 62 58)"/>
+              </svg>
+            </div>
+
+            <div class="story-stage story-hidden absolute inset-0 flex items-center justify-center" data-stage="2">
+              <svg viewBox="0 0 100 100" class="w-3/5 h-3/5">
+                <path d="M50 90 L50 35" stroke="#6B4423" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                <ellipse cx="36" cy="62" rx="14" ry="6" fill={accent}/>
+                <ellipse cx="64" cy="62" rx="14" ry="6" fill={accent}/>
+                <ellipse cx="40" cy="46" rx="11" ry="5" fill={accent} opacity="0.9"/>
+                <ellipse cx="60" cy="46" rx="11" ry="5" fill={accent} opacity="0.9"/>
+              </svg>
+            </div>
+
+            <div class="story-stage story-hidden absolute inset-0 flex items-center justify-center" data-stage="3">
+              <svg viewBox="0 0 100 100" class="w-3/5 h-3/5">
+                <path d="M50 90 L50 35" stroke="#6B4423" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+                <ellipse cx="36" cy="62" rx="14" ry="6" fill={accent}/>
+                <ellipse cx="64" cy="62" rx="14" ry="6" fill={accent}/>
+                <ellipse cx="50" cy="30" rx="9" ry="14" fill="#FFB6C1"/>
+                <ellipse cx="47" cy="25" rx="3.5" ry="5" fill="#fff" opacity="0.5"/>
+              </svg>
+            </div>
+
+            <div class="story-stage story-hidden absolute inset-0 flex items-center justify-center" data-stage="4">
+              <svg viewBox="0 0 100 100" class="w-3/4 h-3/4">
+                <path d="M50 90 L50 40" stroke="#6B4423" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+                <path d="M50 65 L34 50" stroke="#6B4423" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                <path d="M50 58 L66 45" stroke="#6B4423" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                <g transform="translate(30, 48)">
+                  <g class="bloom-breathe">
+                    <ellipse cx="0" cy="-6" rx="4" ry="5.5" fill="#FFC0CB"/>
+                    <ellipse cx="0" cy="-6" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(72)"/>
+                    <ellipse cx="0" cy="-6" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(144)"/>
+                    <ellipse cx="0" cy="-6" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(216)"/>
+                    <ellipse cx="0" cy="-6" rx="4" ry="5.5" fill="#FFC0CB" transform="rotate(288)"/>
+                    <circle cx="0" cy="0" r="2.4" fill="#F4D03F"/>
+                  </g>
+                </g>
+                <g transform="translate(70, 43)">
+                  <g class="bloom-breathe" style="animation-delay: 0.6s;">
+                    <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FFB6C1"/>
+                    <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(72)"/>
+                    <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(144)"/>
+                    <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(216)"/>
+                    <ellipse cx="0" cy="-5" rx="3.5" ry="5" fill="#FFB6C1" transform="rotate(288)"/>
+                    <circle cx="0" cy="0" r="2.1" fill="#F4D03F"/>
+                  </g>
+                </g>
+                <g transform="translate(50, 28)">
+                  <g class="bloom-breathe" style="animation-delay: 1.2s;">
+                    <ellipse cx="0" cy="-10" rx="7" ry="9" fill="#FFC0CB"/>
+                    <ellipse cx="0" cy="-10" rx="7" ry="9" fill="#FFC0CB" transform="rotate(72)"/>
+                    <ellipse cx="0" cy="-10" rx="7" ry="9" fill="#FFC0CB" transform="rotate(144)"/>
+                    <ellipse cx="0" cy="-10" rx="7" ry="9" fill="#FFC0CB" transform="rotate(216)"/>
+                    <ellipse cx="0" cy="-10" rx="7" ry="9" fill="#FFC0CB" transform="rotate(288)"/>
+                    <ellipse cx="0" cy="-9" rx="3.5" ry="5" fill="#fff" opacity="0.55"/>
+                    <ellipse cx="0" cy="-9" rx="3.5" ry="5" fill="#fff" opacity="0.55" transform="rotate(72)"/>
+                    <ellipse cx="0" cy="-9" rx="3.5" ry="5" fill="#fff" opacity="0.55" transform="rotate(144)"/>
+                    <ellipse cx="0" cy="-9" rx="3.5" ry="5" fill="#fff" opacity="0.55" transform="rotate(216)"/>
+                    <ellipse cx="0" cy="-9" rx="3.5" ry="5" fill="#fff" opacity="0.55" transform="rotate(288)"/>
+                    <circle cx="0" cy="0" r="3.5" fill="#F4D03F"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 flex justify-center gap-2">
+              <span class="story-dot w-2 h-2 rounded-full" data-stage-dot="0" style={`background-color: ${accent}`}></span>
+              <span class="story-dot w-2 h-2 rounded-full bg-neutral-300" data-stage-dot="1"></span>
+              <span class="story-dot w-2 h-2 rounded-full bg-neutral-300" data-stage-dot="2"></span>
+              <span class="story-dot w-2 h-2 rounded-full bg-neutral-300" data-stage-dot="3"></span>
+              <span class="story-dot w-2 h-2 rounded-full bg-neutral-300" data-stage-dot="4"></span>
+            </div>
+          </div>
+
+          <div class="relative min-h-[200px]">
+            <div class="story-stage story-active absolute inset-0" data-stage="0">
+              <p class="text-xs uppercase tracking-[0.18em] font-medium mb-3" style={`color: ${accent}`}>Day 0</p>
+              <h3 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                A seed,<br/>that's all you need.
+              </h3>
+              <p class="text-base text-[--color-muted] leading-relaxed">
+                Discipline doesn't have to be grand. Pick one thing today.
+              </p>
+            </div>
+            <div class="story-stage story-hidden absolute inset-0" data-stage="1">
+              <p class="text-xs uppercase tracking-[0.18em] font-medium mb-3" style={`color: ${accent}`}>Day 1</p>
+              <h3 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                First check-in,<br/><span style={`color: ${accent}`}>sprout</span>.
+              </h3>
+              <p class="text-base text-[--color-muted] leading-relaxed">
+                One short clip. That's the whole ritual.
+              </p>
+            </div>
+            <div class="story-stage story-hidden absolute inset-0" data-stage="2">
+              <p class="text-xs uppercase tracking-[0.18em] font-medium mb-3" style={`color: ${accent}`}>Day 3</p>
+              <h3 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                Three days,<br/>leaves multiply.
+              </h3>
+              <p class="text-base text-[--color-muted] leading-relaxed">
+                Your discipline, visualized — daily.
+              </p>
+            </div>
+            <div class="story-stage story-hidden absolute inset-0" data-stage="3">
+              <p class="text-xs uppercase tracking-[0.18em] font-medium mb-3" style={`color: ${accent}`}>Day 14</p>
+              <h3 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                Bud forming,<br/>almost there.
+              </h3>
+              <p class="text-base text-[--color-muted] leading-relaxed">
+                Two streak weeks unlock the next stage. Bonus coins included.
+              </p>
+            </div>
+            <div class="story-stage story-hidden absolute inset-0" data-stage="4">
+              <p class="text-xs uppercase tracking-[0.18em] font-medium mb-3" style={`color: #FFB6C1`}>Day 30+</p>
+              <h3 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                Bloom.<br/>Time to share.
+              </h3>
+              <p class="text-base text-[--color-muted] leading-relaxed">
+                A month of clips, merged into one. Stories ready, automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -290,7 +479,7 @@ const stages = ['Seed', 'Sprout', 'Young leaf', 'Grown leaf', 'Bud', 'Flower', '
       <p class="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
         One clip a day is enough. We'll let you know the moment it launches.
       </p>
-      <a href="mailto:eastnoise26@gmail.com?subject=Notify%20me%20when%20Seed%20launches" class="cta-glow inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-sm font-bold hover:scale-105 transition-transform min-h-[48px]" style={`color: ${accent}`}>
+      <a href="mailto:eastnoise26@gmail.com?subject=Notify%20me%20when%20Seed%20launches" class="magnet-cta cta-glow inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-sm font-bold hover:scale-105 transition-transform min-h-[48px]" style={`color: ${accent}`}>
         Notify me on launch →
       </a>
     </div>
@@ -380,6 +569,72 @@ const stages = ['Seed', 'Sprout', 'Young leaf', 'Grown leaf', 'Bud', 'Flower', '
         }, { threshold: 0.4 });
         sio.observe(stageStrip);
       }
+
+      const story = document.getElementById('story');
+      if (story) {
+        const stages = story.querySelectorAll('.story-stage');
+        const dots = story.querySelectorAll('.story-dot');
+        const stageCount = 5;
+        const updateStory = () => {
+          const rect = story.getBoundingClientRect();
+          const totalScroll = story.offsetHeight - window.innerHeight;
+          const scrolled = Math.min(Math.max(-rect.top, 0), totalScroll);
+          const progress = totalScroll > 0 ? scrolled / totalScroll : 0;
+          const activeIdx = Math.min(Math.floor(progress * stageCount), stageCount - 1);
+          stages.forEach((el) => {
+            const idx = parseInt(el.getAttribute('data-stage') || '0', 10);
+            if (idx === activeIdx) {
+              el.classList.add('story-active');
+              el.classList.remove('story-hidden');
+            } else {
+              el.classList.remove('story-active');
+              el.classList.add('story-hidden');
+            }
+          });
+          dots.forEach((dot, i) => {
+            if (i <= activeIdx) {
+              dot.style.backgroundColor = '#22A06B';
+              dot.classList.remove('bg-neutral-300');
+            } else {
+              dot.style.backgroundColor = '';
+              dot.classList.add('bg-neutral-300');
+            }
+          });
+        };
+        let raf = 0;
+        const onScroll = () => {
+          if (raf) return;
+          raf = requestAnimationFrame(() => { raf = 0; updateStory(); });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        updateStory();
+      }
+
+      const tiltEl = document.getElementById('hero-tilt');
+      if (tiltEl && window.matchMedia('(pointer: fine)').matches) {
+        const parent = tiltEl.parentElement;
+        parent.addEventListener('mousemove', (e) => {
+          const rect = tiltEl.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = (e.clientX - cx) / rect.width;
+          const dy = (e.clientY - cy) / rect.height;
+          tiltEl.style.transform = `perspective(800px) rotateX(${-dy * 18}deg) rotateY(${dx * 18}deg)`;
+        });
+        parent.addEventListener('mouseleave', () => { tiltEl.style.transform = ''; });
+      }
+
+      document.querySelectorAll('.magnet-cta').forEach((btn) => {
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - (rect.left + rect.width / 2);
+          const y = e.clientY - (rect.top + rect.height / 2);
+          btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      });
     })();
   </script>
 </Layout>
