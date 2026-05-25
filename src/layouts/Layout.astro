@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import { strings, type Locale } from '../i18n/strings';
-import CursorBlob from '../components/CursorBlob.astro';
 
 interface Props {
   locale: Locale;
@@ -49,14 +48,85 @@ const pageDesc = description ?? t.siteDescription;
     <a href={locale === 'ko' ? '/' : '/en/'} class="text-sm font-semibold tracking-tight inline-flex items-center min-h-[44px] py-2 -my-2">
       East Noise
     </a>
-    <a href={otherUrl} class="text-xs font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors uppercase tracking-wider inline-flex items-center justify-center min-h-[44px] min-w-[44px] py-2 px-3 -my-2 -mr-3">
-      {t.nav.langSwitch}
+    <a href={otherUrl} id="lang-switch" class="magnet text-xs font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors uppercase tracking-wider inline-flex items-center justify-center min-h-[44px] min-w-[44px] py-2 px-3 -my-2 -mr-3">
+      <span class="magnet-inner">{t.nav.langSwitch}</span>
     </a>
   </header>
   <main class="flex-1">
     <slot />
   </main>
-  <CursorBlob />
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <style>
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      transform-origin: left;
+      transform: scaleX(0);
+      background: #18181b;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    @supports (animation-timeline: scroll()) {
+      #scroll-progress {
+        animation: progress linear both;
+        animation-timeline: scroll(root);
+      }
+      @keyframes progress {
+        to { transform: scaleX(1); }
+      }
+    }
+    .magnet { will-change: transform; }
+    .magnet-inner { display: inline-block; will-change: transform; }
+    @media (prefers-reduced-motion: reduce) {
+      .magnet, .magnet-inner { transform: none !important; }
+    }
+  </style>
+  <script is:inline>
+    (function () {
+      // Scroll progress fallback for browsers without scroll-timeline
+      if (!CSS.supports('animation-timeline: scroll()')) {
+        const bar = document.getElementById('scroll-progress');
+        if (bar) {
+          window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const max = h.scrollHeight - h.clientHeight;
+            const p = max > 0 ? h.scrollTop / max : 0;
+            bar.style.transform = `scaleX(${p})`;
+          }, { passive: true });
+        }
+      }
+
+      // Magnetic interactive elements
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const noHover = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+      if (reduce || noHover) return;
+
+      const magnets = document.querySelectorAll('.magnet');
+      magnets.forEach((m) => {
+        const inner = m.querySelector('.magnet-inner') || m;
+        const radius = 60;
+        m.addEventListener('mousemove', (e) => {
+          const rect = m.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = e.clientX - cx;
+          const dy = e.clientY - cy;
+          const dist = Math.hypot(dx, dy);
+          if (dist > radius * 2) return;
+          const k = 0.35;
+          m.style.transform = `translate(${dx * k}px, ${dy * k}px)`;
+          inner.style.transform = `translate(${dx * 0.15}px, ${dy * 0.15}px)`;
+        });
+        m.addEventListener('mouseleave', () => {
+          m.style.transform = '';
+          inner.style.transform = '';
+        });
+      });
+    })();
+  </script>
   <footer class="border-t border-[--color-border] mt-24">
     <div class="max-w-6xl mx-auto w-full px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-[--color-muted]">
       <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">

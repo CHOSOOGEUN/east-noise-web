@@ -22,43 +22,34 @@ const t = strings[locale];
         ? (locale === 'en' && app.links.web.startsWith('/') ? '/en' + app.links.web : app.links.web)
         : null;
 
-      const sigArt = (() => {
-        if (app.slug === 'luvit')  return <span class="sig-art sig-heart"  aria-hidden="true">♥</span>;
-        if (app.slug === 'pickie') return <div class="sig-art sig-shuffle" aria-hidden="true"><span></span><span></span><span></span></div>;
-        if (app.slug === 'seed')   return <div class="sig-art sig-grow"    aria-hidden="true"><span class="grow-stem"></span><span class="grow-leaf"></span></div>;
-        if (app.slug === 'heum')   return <span class="sig-art sig-shake"  aria-hidden="true">흠</span>;
-        return null;
-      })();
-
       const inner = (
         <>
-          <div class="card-tint" aria-hidden="true"></div>
-          {sigArt}
-          <div class="relative z-10 flex flex-col h-full min-h-[200px]">
+          <div class="card-inner relative z-10 flex flex-col h-full min-h-[220px]">
             <div class="flex items-baseline justify-between mb-6 gap-4">
               <h3 class="card-name text-3xl md:text-4xl font-bold tracking-tight">
                 {copy.name}
               </h3>
-              <span class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium tabular-nums shrink-0">
+              <span class="card-status text-[10px] uppercase tracking-wider font-medium tabular-nums shrink-0">
                 {String(idx + 1).padStart(2, '0')} · {app.status[locale]}
               </span>
             </div>
-            <p class="text-base md:text-lg font-medium mb-3">
+            <p class="card-tagline text-base md:text-lg font-medium mb-3">
               {copy.tagline}
             </p>
-            <p class="text-sm text-[--color-muted] leading-relaxed">
+            <p class="card-desc text-sm leading-relaxed">
               {copy.description}
             </p>
             {webHref && (
-              <span class="card-cta mt-6 text-xs font-semibold tracking-tight inline-flex items-center gap-2" style={`color: ${app.accent}`}>
+              <span class="card-cta mt-6 text-xs font-semibold tracking-tight inline-flex items-center gap-2">
                 {t.apps.cta} <span class="card-cta-arrow">→</span>
               </span>
             )}
           </div>
+          <div class="card-bg" aria-hidden="true"></div>
         </>
       );
 
-      const baseClass = `app-card sig-${app.slug} relative bg-[--color-bg] p-8 md:p-10 overflow-hidden group`;
+      const baseClass = `app-card relative bg-[--color-bg] p-8 md:p-10 overflow-hidden group tilt-card`;
       const style = `--accent: ${app.accent};`;
 
       return webHref ? (
@@ -77,139 +68,54 @@ const t = strings[locale];
 <style>
   .app-card {
     transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
-    min-height: 280px;
+    min-height: 300px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
-  .app-card:hover { transform: translateY(-2px); }
-
-  .app-card .card-name {
-    color: #18181b;
-    transition: color 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  .card-inner {
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .app-card:hover .card-name { color: var(--accent); }
-
-  .card-tint {
+  .card-bg {
     position: absolute;
     inset: 0;
     background: var(--accent);
-    opacity: 0;
-    transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 0;
-    pointer-events: none;
   }
-  .app-card:hover .card-tint { opacity: 0.05; }
+  .app-card:hover .card-bg { transform: scaleY(1); }
+
+  .card-name,
+  .card-tagline,
+  .card-cta {
+    color: #18181b;
+    transition: color 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-status,
+  .card-desc {
+    color: var(--color-muted, #71717a);
+    transition: color 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .app-card:hover .card-name,
+  .app-card:hover .card-tagline,
+  .app-card:hover .card-cta,
+  .app-card:hover .card-status,
+  .app-card:hover .card-desc {
+    color: #ffffff;
+  }
+  .app-card:hover .card-status,
+  .app-card:hover .card-desc {
+    color: rgba(255, 255, 255, 0.82);
+  }
 
   .card-cta-arrow {
     display: inline-block;
     transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .app-card:hover .card-cta-arrow { transform: translateX(4px); }
+  .app-card:hover .card-cta-arrow { transform: translateX(8px); }
 
-  /* Signature art common */
-  .sig-art {
-    position: absolute;
-    right: -10px;
-    bottom: -10px;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.08;
-    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
-    color: var(--accent);
-  }
-  .app-card:hover .sig-art { opacity: 0.4; }
-
-  /* Luvit — giant heart pulse */
-  .sig-heart {
-    font-size: 240px;
-    line-height: 1;
-    font-family: -apple-system, 'Apple Color Emoji', sans-serif;
-    right: -30px;
-    bottom: -60px;
-    transform-origin: center;
-  }
-  .app-card:hover .sig-heart { animation: heart-pulse 1.2s ease-in-out infinite; }
-  @keyframes heart-pulse {
-    0%, 100% { transform: scale(1); }
-    20%      { transform: scale(1.1); }
-    40%      { transform: scale(0.95); }
-    60%      { transform: scale(1.06); }
-  }
-
-  /* Pickie — three card shuffle */
-  .sig-shuffle {
-    right: 28px;
-    bottom: 28px;
-    width: 110px;
-    height: 80px;
-    opacity: 0.18;
-  }
-  .app-card:hover .sig-shuffle { opacity: 0.55; }
-  .sig-shuffle span {
-    position: absolute;
-    width: 52px;
-    height: 72px;
-    border-radius: 8px;
-    background: var(--accent);
-    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .sig-shuffle span:nth-child(1) { left: 0;    top: 0; transform: rotate(-8deg); }
-  .sig-shuffle span:nth-child(2) { left: 28px; top: 4px; transform: rotate(0deg); opacity: 0.7; }
-  .sig-shuffle span:nth-child(3) { left: 56px; top: 0; transform: rotate(8deg); opacity: 0.5; }
-  .app-card:hover .sig-shuffle span:nth-child(1) { transform: rotate(-18deg) translateX(-6px); }
-  .app-card:hover .sig-shuffle span:nth-child(3) { transform: rotate(18deg)  translateX(6px); }
-
-  /* Seed — sprout growing */
-  .sig-grow {
-    right: 36px;
-    bottom: 24px;
-    width: 80px;
-    height: 110px;
-    opacity: 0.22;
-  }
-  .app-card:hover .sig-grow { opacity: 0.55; }
-  .grow-stem {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 4px;
-    height: 30%;
-    background: var(--accent);
-    transform: translateX(-50%);
-    transition: height 800ms cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 2px;
-  }
-  .grow-leaf {
-    position: absolute;
-    left: 50%;
-    bottom: 28%;
-    width: 22px;
-    height: 22px;
-    background: var(--accent);
-    border-radius: 0 100% 0 100%;
-    transform: translateX(-50%) rotate(-35deg) scale(0);
-    transform-origin: bottom left;
-    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
-  }
-  .app-card:hover .grow-stem { height: 75%; }
-  .app-card:hover .grow-leaf { transform: translateX(-50%) rotate(-35deg) scale(1); }
-
-  /* heum — glitch shake */
-  .sig-shake {
-    font-size: 220px;
-    line-height: 1;
-    right: -20px;
-    bottom: -40px;
-    font-weight: 900;
-  }
-  .app-card:hover .sig-shake { animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite; }
-  @keyframes shake {
-    0%, 100% { transform: translate(0, 0); }
-    20%      { transform: translate(-3px, 2px); }
-    40%      { transform: translate(3px, -1px); }
-    60%      { transform: translate(-2px, -2px); }
-    80%      { transform: translate(2px, 1px); }
-  }
-
-  /* Reveal on scroll — view-timeline (Safari 18+ / Chromium 115+) */
+  /* Reveal on scroll */
   .reveal-on-scroll {
     opacity: 0;
     transform: translateY(28px);
@@ -227,26 +133,52 @@ const t = strings[locale];
 
   @media (prefers-reduced-motion: reduce) {
     .reveal-on-scroll { opacity: 1; transform: none; animation: none; }
-    .sig-heart, .sig-shake { animation: none !important; }
-    .sig-art { opacity: 0.15; }
+    .card-bg { transition: none; }
   }
 </style>
 
 <script is:inline>
   (function () {
-    if (CSS.supports('animation-timeline: view()')) return;
-    const els = document.querySelectorAll('.reveal-on-scroll');
-    if (!els.length) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          entry.target.style.transition = 'opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)';
-          io.unobserve(entry.target);
-        }
+    // Reveal fallback
+    if (!CSS.supports('animation-timeline: view()')) {
+      const els = document.querySelectorAll('.reveal-on-scroll');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)';
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach((el) => io.observe(el));
+    }
+
+    // 3D tilt on mousemove (desktop only, respects reduced motion)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach((card) => {
+      const inner = card.querySelector('.card-inner');
+      if (!inner) return;
+      let raf = 0;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          card.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
+          inner.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 30px)`;
+        });
       });
-    }, { threshold: 0.15 });
-    els.forEach((el) => io.observe(el));
+      card.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(raf);
+        card.style.transform = '';
+        inner.style.transform = '';
+      });
+    });
   })();
 </script>

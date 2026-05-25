@@ -1,0 +1,71 @@
+---
+import type { Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const items = locale === 'ko'
+  ? ['East Noise', '인디 앱 스튜디오', 'Since 2026', 'Suwon · KR', 'Luvit', 'Pickie', 'Seed.', '흠', '동방의 소음']
+  : ['East Noise', 'Indie App Studio', 'Since 2026', 'Suwon · KR', 'Luvit', 'Pickie', 'Seed.', 'heum', '동방의 소음'];
+
+// Duplicate so seamless loop (translateX -50%)
+const loop = [...items, ...items];
+---
+
+<section class="marquee-band border-y border-[--color-border] overflow-hidden">
+  <div class="marquee-track">
+    {loop.map((item) => (
+      <span class="marquee-item">
+        <span class="marquee-text">{item}</span>
+        <span class="marquee-dot" aria-hidden="true">✦</span>
+      </span>
+    ))}
+  </div>
+</section>
+
+<style>
+  .marquee-band {
+    background: #18181b;
+    color: #fafaf8;
+    padding: 22px 0;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+    will-change: transform;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 38px;
+    padding: 0 38px;
+    font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .marquee-text {
+    transition: -webkit-text-stroke 280ms ease, color 280ms ease;
+  }
+  .marquee-item:hover .marquee-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #fafaf8;
+  }
+  .marquee-dot {
+    color: rgba(250, 250, 248, 0.4);
+    font-size: 0.7em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+</style>
