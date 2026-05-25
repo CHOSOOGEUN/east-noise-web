@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const accent = '#22A06B';
+const heroSubtitle = 'A plant tamagotchi\nthat grows with you.';
+
+const features = [
+  {
+    title: '2-4 second video check-in',
+    body: 'Verify each routine with a short clip. More real than a photo, less work than a journal.',
+  },
+  {
+    title: 'Plant grows in 7 stages',
+    body: 'From a single seed. Streak days unlock sprout, leaves, bud, flower, tree. Choose from 8 species.',
+  },
+  {
+    title: 'Daily reel auto-saved',
+    body: 'Next morning, yesterday\'s clips merge into one reel and save into the Photos "Seed" album. Ready for Stories.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Where is my data stored?',
+    a: 'Videos stay only on your phone — sandbox + Photos album. We never upload your videos to our servers.',
+  },
+  {
+    q: 'Does my plant die if I skip?',
+    a: 'No. The highest stage you reached is preserved forever. You resume from there when you come back.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'Free at launch. 6 of 8 plant species are unlocked with in-app coins — earned by checking in and keeping streaks.',
+  },
+];
+---
+
+<Layout locale="en" title="Seed. — A plant tamagotchi that grows with daily check-ins" description="Verify your routine with short videos and your virtual plant grows, stage by stage. By East Noise." path="/en/seed">
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto w-full px-6 pt-16 md:pt-32 pb-20">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="inline-block w-2 h-2 rounded-full" style={`background-color: ${accent}`}></span>
+      <p class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium">
+        Indie App · East Noise
+      </p>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] mb-6">
+      Seed<span style={`color: ${accent}`}>.</span>
+    </h1>
+    <p class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.25] mb-8 whitespace-pre-line">
+      {heroSubtitle}
+    </p>
+    <p class="text-base md:text-lg text-[--color-muted] max-w-2xl leading-relaxed mb-10">
+      Check in your daily routine with short videos. Your virtual plant grows, stage by stage. The next morning, yesterday's clips auto-merge into one reel — ready for Stories.
+    </p>
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white" style={`background-color: ${accent}`}>
+        Coming soon to the App Store
+      </span>
+      <a href="mailto:eastnoise26@gmail.com?subject=Notify%20me%20when%20Seed%20launches" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[--color-border] text-sm font-medium hover:border-[--color-fg] transition-colors min-h-[44px]">
+        Notify me on launch →
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
+      How it grows
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
+      {features.map((f, i) => (
+        <article class="bg-[--color-bg] p-8 group hover:bg-white transition-colors">
+          <div class="text-3xl font-black tracking-tight mb-4" style={`color: ${accent}`}>
+            {String(i + 1).padStart(2, '0')}
+          </div>
+          <h3 class="text-lg font-bold tracking-tight mb-3">
+            {f.title}
+          </h3>
+          <p class="text-sm text-[--color-muted] leading-relaxed">
+            {f.body}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Plant stages mini visual -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
+      7 stages
+    </h2>
+    <p class="text-lg md:text-xl font-medium leading-relaxed">
+      <span class="text-[--color-muted]">Seed</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">Sprout</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">Young leaf</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">Grown leaf</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">Bud</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">Flower</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="font-bold" style={`color: ${accent}`}>Tree</span>
+    </p>
+    <p class="text-sm text-[--color-muted] mt-4 leading-relaxed">
+      Levels unlock at 1·3·7·14·21·30 day streaks. Bonus coins at 7·14·30·100 days.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
+      FAQ
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
+      {faq.map((item) => (
+        <article class="bg-[--color-bg] p-8">
+          <h3 class="text-base font-bold tracking-tight mb-3">
+            {item.q}
+          </h3>
+          <p class="text-sm text-[--color-muted] leading-relaxed">
+            {item.a}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Legal links -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
+      Legal
+    </h2>
+    <div class="flex flex-wrap gap-6">
+      <a href="/en/legal/seed/terms" class="text-sm font-medium hover:opacity-60 transition-opacity inline-flex items-center min-h-[44px]">
+        Terms of Service →
+      </a>
+      <a href="/en/legal/seed/privacy" class="text-sm font-medium hover:opacity-60 transition-opacity inline-flex items-center min-h-[44px]">
+        Privacy Policy →
+      </a>
+      <a href="/en/" class="text-sm font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors inline-flex items-center min-h-[44px]">
+        ← East Noise home
+      </a>
+    </div>
+  </section>
+</Layout>

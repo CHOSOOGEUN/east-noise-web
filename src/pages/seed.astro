@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const accent = '#22A06B';
+const heroSubtitle = '매일 인증으로\n내 식물이 자라요.';
+
+const features = [
+  {
+    title: '2-4초 영상 인증',
+    body: '루틴마다 짧은 영상으로 본인을 인증해요. 사진보다 진짜 같은 한 컷.',
+  },
+  {
+    title: '식물 7단계 진화',
+    body: '씨앗 한 톨부터. 인증 일수가 쌓이면 새싹·어린잎·꽃봉오리·꽃·나무로 자라요. 8가지 식물 중 골라 키우세요.',
+  },
+  {
+    title: '하루 합본 자동 저장',
+    body: '다음날 아침, 어제 찍은 영상들이 자동으로 한 편의 클립으로 합쳐져서 사진 앨범 "Seed" 앨범에 저장돼요. 스토리·릴스 그대로.',
+  },
+];
+
+const faq = [
+  {
+    q: '데이터는 어디 저장돼요?',
+    a: '영상은 모두 본인 폰 안에만 저장돼요. 합본도 사진 앨범으로. 우리 서버에 영상이 올라가지 않아요.',
+  },
+  {
+    q: '연속 끊기면 식물이 죽나요?',
+    a: '아니에요. 최고로 키운 단계는 영원히 보존돼요. 다시 시작할 때 거기서부터 자라요.',
+  },
+  {
+    q: '얼마예요?',
+    a: '출시 시점에 무료. 식물 종 8가지 중 6가지는 코인으로 잠금 해제 — 인증·연속 기록으로 모을 수 있어요.',
+  },
+];
+---
+
+<Layout locale="ko" title="Seed. — 매일 인증으로 자라는 식물 다마고치" description="짧은 영상으로 본인 루틴을 인증하면 식물이 자라요. 씨앗 한 톨부터 나무까지. 동방의 소음의 솔로 자기관리 앱." path="/seed">
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto w-full px-6 pt-16 md:pt-32 pb-20">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="inline-block w-2 h-2 rounded-full" style={`background-color: ${accent}`}></span>
+      <p class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium">
+        Indie App · East Noise
+      </p>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] mb-6">
+      Seed<span style={`color: ${accent}`}>.</span>
+    </h1>
+    <p class="text-2xl md:text-3xl font-bold tracking-tight leading-[1.25] mb-8 whitespace-pre-line">
+      {heroSubtitle}
+    </p>
+    <p class="text-base md:text-lg text-[--color-muted] max-w-2xl leading-relaxed mb-10">
+      짧은 영상으로 하루 루틴을 인증하면, 가상의 식물이 단계별로 자라요. 다음날 영상이 자동으로 합본돼서 스토리에 그대로 쓸 수 있어요.
+    </p>
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white" style={`background-color: ${accent}`}>
+        곧 App Store 출시
+      </span>
+      <a href="mailto:eastnoise26@gmail.com?subject=Seed%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[--color-border] text-sm font-medium hover:border-[--color-fg] transition-colors min-h-[44px]">
+        출시 알림 받기 →
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
+      어떻게 자라요
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
+      {features.map((f, i) => (
+        <article class="bg-[--color-bg] p-8 group hover:bg-white transition-colors">
+          <div class="text-3xl font-black tracking-tight mb-4" style={`color: ${accent}`}>
+            {String(i + 1).padStart(2, '0')}
+          </div>
+          <h3 class="text-lg font-bold tracking-tight mb-3">
+            {f.title}
+          </h3>
+          <p class="text-sm text-[--color-muted] leading-relaxed">
+            {f.body}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Plant stages mini visual -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
+      7단계
+    </h2>
+    <p class="text-lg md:text-xl font-medium leading-relaxed">
+      <span class="text-[--color-muted]">씨앗</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">새싹</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">어린잎</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">자란잎</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">꽃봉오리</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="text-[--color-muted]">꽃</span>
+      <span class="mx-2" style={`color: ${accent}`}>→</span>
+      <span class="font-bold" style={`color: ${accent}`}>나무</span>
+    </p>
+    <p class="text-sm text-[--color-muted] mt-4 leading-relaxed">
+      1·3·7·14·21·30일 연속 인증 시 다음 단계로. 7·14·30·100일에는 보너스 코인까지.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-10">
+      자주 묻는 것
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[--color-border]">
+      {faq.map((item) => (
+        <article class="bg-[--color-bg] p-8">
+          <h3 class="text-base font-bold tracking-tight mb-3">
+            {item.q}
+          </h3>
+          <p class="text-sm text-[--color-muted] leading-relaxed">
+            {item.a}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Legal links -->
+  <section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
+      약관 · 처리방침
+    </h2>
+    <div class="flex flex-wrap gap-6">
+      <a href="/legal/seed/terms" class="text-sm font-medium hover:opacity-60 transition-opacity inline-flex items-center min-h-[44px]">
+        이용약관 →
+      </a>
+      <a href="/legal/seed/privacy" class="text-sm font-medium hover:opacity-60 transition-opacity inline-flex items-center min-h-[44px]">
+        개인정보 처리방침 →
+      </a>
+      <a href="/" class="text-sm font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors inline-flex items-center min-h-[44px]">
+        ← East Noise 메인
+      </a>
+    </div>
+  </section>
+</Layout>
