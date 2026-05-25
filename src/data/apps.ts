@@ -34,18 +34,19 @@ export const apps: App[] = [
   },
   {
     slug: 'pickie',
-    status: { ko: 'App Store 출시 임박', en: 'App Store soon' },
-    accent: '#a855f7',
+    status: { ko: 'App Store 심사 중', en: 'In App Store review' },
+    accent: '#7B5BFF',
+    links: { web: '/pickie' },
     copy: {
       ko: {
         name: 'Pickie',
-        tagline: '친구들과 함께 고르는 것들',
-        description: '뭐 먹지? 어디 가지? 친구들이랑 같이 후보를 모아 한 번에 정하는 결정 앱. 영어권 사용자 대상.',
+        tagline: '익명 친구 픽, 매일 9시',
+        description: '친구 크루에서 한 명을 익명으로 픽. 다음 날 저녁 8시에 결과 공개. 누가 1등인지는 보여요. 누가 표를 줬는지는 비밀.',
       },
       en: {
         name: 'Pickie',
-        tagline: 'Decisions, with your people',
-        description: 'What to eat? Where to go? Pool options with friends and pick together — built for English-speaking users.',
+        tagline: 'Anonymous crew picks, every 9 PM',
+        description: 'Pick one in your crew, anonymously. Counts go public the next day at 8 PM — votes stay private. Crew of 7-50 close friends only.',
       },
     },
   },

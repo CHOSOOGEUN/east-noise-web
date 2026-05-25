@@ -96,6 +96,41 @@ body {
   position: relative;
 }
 
+/* Pickie hover lift — purple shadow */
+.lift-pickie {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms;
+}
+.lift-pickie:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px rgba(123, 91, 255, 0.22);
+}
+
+/* Pickie ambient — lime + pink + purple wash */
+.bg-pickie-ambient {
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgba(123, 91, 255, 0.10), transparent 70%),
+    radial-gradient(50% 40% at 90% 30%, rgba(255, 79, 163, 0.07), transparent 70%),
+    radial-gradient(40% 30% at 100% 100%, rgba(118, 199, 42, 0.06), transparent 70%);
+  position: relative;
+}
+
+/* Pickie step tilt — purple shadow instead of green */
+.step-tilt-pickie {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms;
+  transform-origin: center bottom;
+}
+.step-tilt-pickie:hover {
+  transform: translateY(-8px) rotate(-1.2deg) scale(1.03);
+  box-shadow: 0 20px 40px -12px rgba(123, 91, 255, 0.28);
+}
+
+/* Pickie CTA glow */
+@keyframes glow-pickie {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.45); }
+  50%      { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); }
+}
+.cta-glow-pickie { animation: glow-pickie 2.4s ease-in-out infinite; }
+
 /* Sunflower slow spin */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
