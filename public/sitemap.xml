@@ -18,6 +18,34 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://east-noise-web.vercel.app/pickie</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/pickie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/pickie"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/pickie</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/pickie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/pickie"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/seed</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/seed"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/seed"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/seed</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/seed"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/seed"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://east-noise-web.vercel.app/legal/pickie/privacy</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/legal/pickie/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/legal/pickie/privacy"/>

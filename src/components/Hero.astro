@@ -1,5 +1,6 @@
 ---
 import { strings, type Locale } from '../i18n/strings';
+import NoiseField from './NoiseField.astro';
 
 interface Props {
   locale: Locale;
@@ -7,16 +8,126 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = strings[locale];
+const titleLines = t.hero.title.split('\n');
 ---
 
-<section class="max-w-5xl mx-auto w-full px-6 pt-16 md:pt-32 pb-20">
-  <p class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
-    {t.hero.eyebrow}
-  </p>
-  <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] whitespace-pre-line mb-8">
-    {t.hero.title}
-  </h1>
-  <p class="text-base md:text-lg text-[--color-muted] max-w-2xl leading-relaxed">
-    {t.hero.lead}
-  </p>
+<section class="relative overflow-hidden hero-section">
+  <NoiseField />
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="heroDistort">
+      <feTurbulence id="heroTurb" type="fractalNoise" baseFrequency="0.012 0.022" numOctaves="2" seed="4" />
+      <feDisplacementMap id="heroDisp" in="SourceGraphic" scale="0" />
+    </filter>
+  </svg>
+
+  <div class="relative z-10 max-w-6xl mx-auto w-full px-6 pt-20 md:pt-36 pb-24 md:pb-40">
+    <p class="text-xs uppercase tracking-[0.22em] text-[--color-muted] font-medium mb-8 hero-eyebrow">
+      <span class="inline-block w-2 h-2 rounded-full bg-current align-middle mr-2 pulse-eyebrow"></span>
+      {t.hero.eyebrow}
+    </p>
+
+    <h1
+      class="hero-title font-bold tracking-[-0.04em] leading-[0.92] whitespace-pre-line"
+      data-distort
+    >
+      {titleLines.map((line, i) => (
+        <span class="block hero-line" data-line={i}>{line}</span>
+      ))}
+    </h1>
+
+    <p class="mt-12 text-base md:text-lg text-[--color-muted] max-w-2xl leading-relaxed hero-lead">
+      {t.hero.lead}
+    </p>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span></span>
+  </div>
 </section>
+
+<script is:inline>
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const title = document.querySelector('[data-distort]');
+    const disp = document.getElementById('heroDisp');
+    if (!title || !disp) return;
+
+    let targetScale = 0;
+    let scale = 0;
+
+    title.addEventListener('mouseenter', () => { targetScale = 14; });
+    title.addEventListener('mouseleave', () => { targetScale = 0; });
+    title.addEventListener('mousemove', (e) => {
+      const rect = title.getBoundingClientRect();
+      const dy = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      targetScale = 8 + Math.abs(dy) * 18;
+    });
+
+    function loop() {
+      scale += (targetScale - scale) * 0.12;
+      if (scale > 0.05 || targetScale > 0) {
+        disp.setAttribute('scale', scale.toFixed(2));
+        title.style.filter = 'url(#heroDistort)';
+      } else {
+        title.style.filter = '';
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+</script>
+
+<style>
+  .hero-section {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(3.5rem, 13vw, 11rem);
+    will-change: filter;
+  }
+  .hero-line {
+    cursor: default;
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes pulse-eyebrow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+  .pulse-eyebrow { animation: pulse-eyebrow 2.4s ease-in-out infinite; }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 56px;
+    background: rgba(24, 24, 27, 0.12);
+    overflow: hidden;
+    z-index: 5;
+  }
+  .hero-scroll-hint span {
+    display: block;
+    width: 100%;
+    height: 50%;
+    background: #18181b;
+    animation: scroll-hint 2.4s ease-in-out infinite;
+  }
+  @keyframes scroll-hint {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-eyebrow,
+    .hero-scroll-hint span {
+      animation: none !important;
+    }
+    .hero-scroll-hint span { transform: translateY(50%); }
+  }
+</style>

@@ -9,23 +9,23 @@ const { locale } = Astro.props;
 const t = strings[locale];
 ---
 
-<section class="max-w-5xl mx-auto w-full px-6 py-16 border-t border-[--color-border]">
-  <div class="grid md:grid-cols-2 gap-12 mb-16">
+<section class="max-w-6xl mx-auto w-full px-6 py-24 md:py-32 border-t border-[--color-border]">
+  <div class="grid md:grid-cols-2 gap-12 mb-20 about-reveal">
     <div>
-      <h2 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
+      <h2 class="text-xs uppercase tracking-[0.22em] text-[--color-muted] font-medium mb-8">
         {t.about.heading}
       </h2>
-      <p class="text-base md:text-lg leading-relaxed">
+      <p class="text-lg md:text-2xl leading-relaxed tracking-tight">
         {t.about.body}
       </p>
     </div>
     <dl class="grid grid-cols-3 gap-4 self-end">
       {t.about.stats.map((stat) => (
-        <div class="border-t border-[--color-border] pt-4">
+        <div class="border-t border-[--color-fg] pt-4 stat-cell">
           <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium mb-2">
             {stat.label}
           </dt>
-          <dd class="text-xl font-semibold tracking-tight">
+          <dd class="text-3xl md:text-4xl font-bold tracking-tight tabular-nums">
             {stat.value}
           </dd>
         </div>
@@ -33,13 +33,13 @@ const t = strings[locale];
     </dl>
   </div>
 
-  <div class="border-t border-[--color-border] pt-8">
-    <h3 class="text-xs uppercase tracking-[0.18em] text-[--color-muted] font-medium mb-6">
+  <div class="border-t border-[--color-border] pt-10 about-reveal">
+    <h3 class="text-xs uppercase tracking-[0.22em] text-[--color-muted] font-medium mb-8">
       {t.legal.heading}
     </h3>
-    <dl class="grid sm:grid-cols-3 gap-x-8 gap-y-3 text-sm">
+    <dl class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-5 text-sm">
       {t.legal.rows.map((row) => (
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-1.5 legal-row">
           <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium">
             {row.label}
           </dt>
@@ -51,3 +51,57 @@ const t = strings[locale];
     </dl>
   </div>
 </section>
+
+<style>
+  .about-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  @supports (animation-timeline: view()) {
+    .about-reveal {
+      animation: about-in both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+  @keyframes about-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-cell {
+    transition: border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stat-cell:hover {
+    border-color: var(--color-accent, #ef4444);
+  }
+
+  .legal-row dd {
+    transition: color 200ms ease;
+  }
+  .legal-row:hover dd {
+    color: #18181b;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-reveal { opacity: 1; transform: none; animation: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    if (CSS.supports('animation-timeline: view()')) return;
+    const els = document.querySelectorAll('.about-reveal');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)';
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach((el) => io.observe(el));
+  })();
+</script>
