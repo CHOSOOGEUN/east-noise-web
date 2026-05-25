@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PhoneMock from '../components/PhoneMock.astro';
 
 const accent = '#22A06B';
 const heroSubtitle = '매일 인증으로\n내 식물이 자라요.';
@@ -120,10 +121,10 @@ const faq = [
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-[--color-border]">
       {steps.map((s, i) => (
-        <article class="bg-[--color-bg] p-6 flex flex-col">
-          <div class="aspect-[9/19] mb-5 rounded-xl overflow-hidden border border-[--color-border] bg-[#FAFAF9] flex items-center justify-center relative">
-            <img src={s.image} alt={s.title} class="w-full h-full object-cover" onerror="this.style.display='none'" />
-            <span class="absolute top-3 left-3 text-2xl font-black tracking-tight" style={`color: ${accent}`}>
+        <article class="bg-[--color-bg] p-5 flex flex-col">
+          <div class="mb-4 relative">
+            <PhoneMock step={(i + 1) as 1 | 2 | 3 | 4 | 5} locale="ko" />
+            <span class="absolute -top-1 -left-1 text-xl font-black tracking-tight" style={`color: ${accent}`}>
               {String(i + 1).padStart(2, '0')}
             </span>
           </div>
