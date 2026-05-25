@@ -45,8 +45,9 @@ const pageDesc = description ?? t.siteDescription;
 </head>
 <body class="min-h-screen flex flex-col">
   <header class="px-6 py-3 flex items-center justify-between max-w-6xl mx-auto w-full">
-    <a href={locale === 'ko' ? '/' : '/en/'} class="text-sm font-semibold tracking-tight inline-flex items-center min-h-[44px] py-2 -my-2">
-      East Noise
+    <a href={locale === 'ko' ? '/' : '/en/'} class="logo-link text-sm font-semibold tracking-tight inline-flex items-center min-h-[44px] py-2 -my-2 group">
+      <span class="logo-dot" aria-hidden="true"></span>
+      <span class="logo-text">East Noise</span>
     </a>
     <a href={otherUrl} id="lang-switch" class="magnet text-xs font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors uppercase tracking-wider inline-flex items-center justify-center min-h-[44px] min-w-[44px] py-2 px-3 -my-2 -mr-3">
       <span class="magnet-inner">{t.nav.langSwitch}</span>
@@ -80,8 +81,35 @@ const pageDesc = description ?? t.siteDescription;
     }
     .magnet { will-change: transform; }
     .magnet-inner { display: inline-block; will-change: transform; }
+
+    .logo-link { gap: 8px; }
+    .logo-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #18181b;
+      transform: scale(0.8);
+      transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1), background-color 380ms;
+    }
+    .logo-link:hover .logo-dot {
+      transform: scale(1.4);
+      background: #ef4444;
+    }
+    .logo-text {
+      background-image: linear-gradient(to right, #18181b, #18181b);
+      background-size: 0% 1px;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      transition: background-size 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-link:hover .logo-text {
+      background-size: 100% 1px;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .magnet, .magnet-inner { transform: none !important; }
+      .logo-dot, .logo-text { transition: none !important; }
     }
   </style>
   <script is:inline>

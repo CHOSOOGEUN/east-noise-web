@@ -70,8 +70,6 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
 ---
 
 <Layout locale="ko" title="Seed. — 갓생도, 식물도, 매일 한 컷." description="본인 루틴을 짧은 영상으로 인증하면 식물이 자라요. 다음 날 어제 영상은 자동 합본되어 사진 앨범에. 스토리·릴스 그대로." path="/seed">
-  <!-- Scroll progress bar -->
-  <div id="scroll-progress" class="scroll-progress" style={`background-color: ${accent}`}></div>
 
   <!-- Hero -->
   <section class="bg-seed-ambient relative overflow-hidden">
@@ -537,18 +535,6 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
         targets.forEach((el) => io.observe(el));
       } else {
         targets.forEach((el) => el.classList.add('is-in'));
-      }
-
-      // 2. Scroll progress bar
-      const bar = document.getElementById('scroll-progress');
-      if (bar) {
-        const update = () => {
-          const h = document.documentElement;
-          const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
-          bar.style.width = (Math.min(Math.max(scrolled, 0), 1) * 100) + '%';
-        };
-        window.addEventListener('scroll', update, { passive: true });
-        update();
       }
 
       // 3. Count-up numbers (when visible)

@@ -77,8 +77,6 @@ const sampleQuestions = [
 ---
 
 <Layout locale="en" title="Pickie — Anonymous crew picks, every night at 9." description="One question a night. Pick one in your crew, anonymously. Reveal at 8 PM the next day. Counts go public — votes stay private." path="/en/pickie">
-  <!-- Scroll progress bar -->
-  <div id="scroll-progress" class="scroll-progress" style={`background-color: ${accent}`}></div>
 
   <!-- Hero -->
   <section class="bg-pickie-ambient relative overflow-hidden">
@@ -440,18 +438,6 @@ const sampleQuestions = [
         targets.forEach((el) => io.observe(el));
       } else {
         targets.forEach((el) => el.classList.add('is-in'));
-      }
-
-      // 2. Scroll progress bar
-      const bar = document.getElementById('scroll-progress');
-      if (bar) {
-        const update = () => {
-          const h = document.documentElement;
-          const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
-          bar.style.width = (Math.min(Math.max(scrolled, 0), 1) * 100) + '%';
-        };
-        window.addEventListener('scroll', update, { passive: true });
-        update();
       }
 
       // 3. Sticky scroll storytelling — 5 stages
