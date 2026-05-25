@@ -70,6 +70,9 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
 ---
 
 <Layout locale="ko" title="Seed. — 갓생도, 식물도, 매일 한 컷." description="본인 루틴을 짧은 영상으로 인증하면 식물이 자라요. 다음 날 어제 영상은 자동 합본되어 사진 앨범에. 스토리·릴스 그대로." path="/seed">
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress" class="scroll-progress" style={`background-color: ${accent}`}></div>
+
   <!-- Hero -->
   <section class="bg-seed-ambient">
     <div class="max-w-5xl mx-auto w-full px-6 pt-16 md:pt-28 pb-20 grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-center">
@@ -102,20 +105,37 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
       <!-- Big plant SVG -->
       <div class="reveal flex justify-center md:justify-end" data-delay="200">
         <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center" style={`background: radial-gradient(circle, rgba(34,160,107,0.12), transparent 70%)`}>
+          <span class="absolute float-1 w-1.5 h-1.5 rounded-full" style={`background-color: ${accent}; top: 12%; left: 18%;`}></span>
+          <span class="absolute float-2 w-2 h-2 rounded-full" style={`background-color: ${accent}; top: 70%; left: 8%;`}></span>
+          <span class="absolute float-3 w-1 h-1 rounded-full" style={`background-color: ${accent}; top: 28%; right: 6%;`}></span>
+          <span class="absolute float-1 w-1.5 h-1.5 rounded-full" style={`background-color: #F5C04A; top: 78%; right: 12%; animation-delay: 1.5s;`}></span>
           <svg viewBox="0 0 100 130" class="w-3/4 h-3/4">
             <!-- Pot -->
             <path d="M28 110 L72 110 L68 125 L32 125 Z" fill="#9ca3af" opacity="0.25"/>
             <!-- Stem -->
-            <path d="M50 110 L50 55" stroke={accent} stroke-width="3.5" stroke-linecap="round"/>
-            <!-- Lower leaves -->
-            <ellipse class="plant-leaf-l" cx="38" cy="65" rx="14" ry="6" fill={accent} opacity="0.9"/>
-            <ellipse class="plant-leaf-r" cx="62" cy="65" rx="14" ry="6" fill={accent} opacity="0.9"/>
-            <!-- Upper leaves -->
-            <ellipse class="plant-leaf-l2" cx="42" cy="50" rx="11" ry="5" fill={accent} opacity="0.85"/>
-            <ellipse class="plant-leaf-r2" cx="58" cy="50" rx="11" ry="5" fill={accent} opacity="0.85"/>
-            <!-- Bud -->
-            <ellipse cx="50" cy="32" rx="10" ry="14" fill={accent} opacity="0.95"/>
-            <ellipse cx="46" cy="28" rx="4" ry="6" fill="#fff" opacity="0.5"/>
+            <path d="M50 110 L50 50" stroke={accent} stroke-width="3.5" stroke-linecap="round"/>
+            <!-- Side leaves -->
+            <ellipse class="plant-leaf-l" cx="36" cy="78" rx="14" ry="6.5" fill={accent} opacity="0.9"/>
+            <ellipse class="plant-leaf-r" cx="64" cy="78" rx="14" ry="6.5" fill={accent} opacity="0.9"/>
+            <!-- Sunflower head — 12 petals, slow spin -->
+            <g transform="translate(50, 38)">
+              <g class="spin-slow">
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(30)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(60)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(90)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(120)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(150)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(180)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(210)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(240)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(270)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(300)"/>
+                <ellipse cx="0" cy="-18" rx="5.5" ry="10" fill="#F5C04A" transform="rotate(330)"/>
+              </g>
+              <circle cx="0" cy="0" r="11.5" fill="#6B4423"/>
+              <circle cx="0" cy="0" r="11.5" fill={accent} opacity="0.25"/>
+            </g>
           </svg>
         </div>
       </div>
@@ -158,10 +178,10 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
       {steps.map((s, i) => (
         <article class="lift reveal flex flex-col" data-delay={String((i + 1) * 80)}>
           <div class="mb-4 relative">
-            <div class="aspect-[9/19.5] rounded-[28px] overflow-hidden border border-neutral-200 bg-white shadow-sm">
+            <div class="step-tilt aspect-[9/19.5] rounded-[28px] overflow-hidden border border-neutral-200 bg-white shadow-sm">
               <img src={s.image} alt={s.title} class="w-full h-full object-cover" loading="lazy" />
             </div>
-            <span class="absolute -top-2 -left-2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black text-white shadow-md" style={`background-color: ${accent}`}>
+            <span class="absolute -top-2 -left-2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black text-white shadow-md z-10" style={`background-color: ${accent}`}>
               {i + 1}
             </span>
           </div>
@@ -186,16 +206,16 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
       7단계로 자라요.
     </h2>
 
-    <div class="relative">
+    <div class="relative" id="stage-strip">
       <!-- Connector line -->
       <div class="absolute left-0 right-0 top-5 h-px hidden sm:block" style={`background-color: ${accent}; opacity: 0.2`}></div>
       <div class="grid grid-cols-7 gap-2 relative">
         {stages.map((label, i) => (
           <div class="flex flex-col items-center reveal" data-delay={String((i + 1) * 60)}>
-            <span class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-black mb-3 transition-transform hover:scale-110" style={`background-color: ${i === stages.length - 1 ? accent : '#E8F5EE'}; color: ${i === stages.length - 1 ? '#fff' : accent}`}>
+            <span class="stage-dot w-10 h-10 rounded-full flex items-center justify-center text-xs font-black mb-3 cursor-pointer" data-stage-index={i} style={`background-color: #E8F5EE; color: ${accent}`}>
               {i + 1}
             </span>
-            <span class="text-[10px] md:text-xs font-bold tracking-tight text-center" style={i === stages.length - 1 ? `color: ${accent}` : ''}>
+            <span class="text-[10px] md:text-xs font-bold tracking-tight text-center">
               {label}
             </span>
           </div>
@@ -205,13 +225,15 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
 
     <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
       {[
-        { d: '1일', t: '새싹' },
-        { d: '3일', t: '어린잎' },
-        { d: '7일', t: '자란잎 + 보너스' },
-        { d: '14일', t: '꽃봉오리 + 보너스' },
+        { d: 1, suffix: '일', t: '새싹' },
+        { d: 3, suffix: '일', t: '어린잎' },
+        { d: 7, suffix: '일', t: '자란잎 + 보너스' },
+        { d: 14, suffix: '일', t: '꽃봉오리 + 보너스' },
       ].map((m, i) => (
         <div class="lift reveal bg-white rounded-2xl p-4 border border-[--color-border]" data-delay={String((i + 1) * 80)}>
-          <div class="text-2xl font-black tracking-tight" style={`color: ${accent}`}>{m.d}</div>
+          <div class="text-2xl font-black tracking-tight" style={`color: ${accent}`}>
+            <span class="count-up" data-target={m.d}>0</span>{m.suffix}
+          </div>
           <div class="text-xs text-[--color-muted] font-medium mt-1">{m.t}</div>
         </div>
       ))}
@@ -275,7 +297,7 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
       <p class="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
         매일 한 컷이면 충분해요. 출시되면 가장 먼저 알려드릴게요.
       </p>
-      <a href="mailto:eastnoise26@gmail.com?subject=Seed%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-sm font-bold hover:scale-105 transition-transform min-h-[48px]" style={`color: ${accent}`}>
+      <a href="mailto:eastnoise26@gmail.com?subject=Seed%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC" class="cta-glow inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-sm font-bold hover:scale-105 transition-transform min-h-[48px]" style={`color: ${accent}`}>
         출시 알림 받기 →
       </a>
     </div>
@@ -299,20 +321,77 @@ const stages = ['씨앗', '새싹', '어린잎', '자란잎', '꽃봉오리', '�
   <script is:inline>
     (() => {
       if (typeof window === 'undefined') return;
+
+      // 1. Reveal on scroll
       const targets = document.querySelectorAll('.reveal');
-      if (!('IntersectionObserver' in window)) {
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+        targets.forEach((el) => io.observe(el));
+      } else {
         targets.forEach((el) => el.classList.add('is-in'));
-        return;
       }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-in');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-      targets.forEach((el) => io.observe(el));
+
+      // 2. Scroll progress bar
+      const bar = document.getElementById('scroll-progress');
+      if (bar) {
+        const update = () => {
+          const h = document.documentElement;
+          const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+          bar.style.width = (Math.min(Math.max(scrolled, 0), 1) * 100) + '%';
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      }
+
+      // 3. Count-up numbers (when visible)
+      const counters = document.querySelectorAll('.count-up');
+      if ('IntersectionObserver' in window) {
+        const cio = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.getAttribute('data-target') || '0', 10);
+            const duration = 1100;
+            const start = performance.now();
+            const tick = (now) => {
+              const p = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = String(Math.round(target * eased));
+              if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+            cio.unobserve(el);
+          });
+        }, { threshold: 0.5 });
+        counters.forEach((el) => cio.observe(el));
+      }
+
+      // 4. Stage strip sequential highlight
+      const stageStrip = document.getElementById('stage-strip');
+      if (stageStrip && 'IntersectionObserver' in window) {
+        const dots = stageStrip.querySelectorAll('.stage-dot');
+        const sio = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            dots.forEach((dot, i) => {
+              setTimeout(() => {
+                dot.setAttribute('data-active', 'true');
+                dot.style.backgroundColor = '#22A06B';
+                dot.style.color = '#ffffff';
+              }, i * 220);
+            });
+            sio.disconnect();
+          });
+        }, { threshold: 0.4 });
+        sio.observe(stageStrip);
+      }
     })();
   </script>
 </Layout>
