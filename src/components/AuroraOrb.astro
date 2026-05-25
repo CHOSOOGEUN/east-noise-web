@@ -90,6 +90,16 @@
     if (!wraps.length) return;
 
     let tx = 0, ty = 0, targetX = 0, targetY = 0;
+    let gyroActive = false;
+
+    // Always-on touch fallback so mobile parallax works even without gyro permission
+    window.addEventListener('touchmove', (e) => {
+      if (gyroActive) return;
+      const t = e.touches[0];
+      if (!t) return;
+      targetX = (t.clientX / window.innerWidth - 0.5) * 30;
+      targetY = (t.clientY / window.innerHeight - 0.5) * 30;
+    }, { passive: true });
 
     // Desktop: subtle mouse parallax
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -100,6 +110,7 @@
     } else {
       // Mobile: device-orientation gyro parallax (with iOS permission gate)
       function attach() {
+        gyroActive = true;
         window.addEventListener('deviceorientation', (e) => {
           if (e.gamma == null || e.beta == null) return;
           targetX = Math.max(-30, Math.min(30, e.gamma * 0.8));
@@ -109,7 +120,7 @@
 
       const DOE = typeof DeviceOrientationEvent !== 'undefined' ? DeviceOrientationEvent : null;
       if (DOE && typeof DOE.requestPermission === 'function') {
-        // iOS 13+ requires explicit user gesture for permission
+        // iOS 13+ — silent attempt on first gesture, falls back to touchmove if denied
         const ask = () => {
           DOE.requestPermission().then((state) => {
             if (state === 'granted') attach();
