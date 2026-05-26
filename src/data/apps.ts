@@ -17,18 +17,19 @@ export interface App {
 export const apps: App[] = [
   {
     slug: 'luvit',
-    status: { ko: 'iOS 출시 준비 중', en: 'Coming soon to iOS' },
-    accent: '#ec4899',
+    status: { ko: 'App Store 출시', en: 'On the App Store' },
+    accent: '#FF6B9D',
+    links: { web: '/luvit', ios: 'https://apps.apple.com/kr/app/%EB%9F%AC%EB%B9%97-luvit/id6762438141' },
     copy: {
       ko: {
-        name: 'Luvit',
-        tagline: '커플을 위한 데일리 미션',
-        description: '하루에 한 개의 미션을 받고, 파트너의 미션을 추측하며 가까워지는 작은 게임. 커플의 작은 일상에 끼어드는 우주선 룸.',
+        name: '러빗 (Luvit)',
+        tagline: '둘만의 우주, 매일 하나의 미션',
+        description: '매일 9시, 커플에게 미션 한 개. 비밀스럽게 수행하고, 상대 미션은 추측. 자정에 결과 공개. 토끼 두 마리가 사는 우주선이 우리 둘만의 작은 공간이에요.',
       },
       en: {
         name: 'Luvit',
-        tagline: 'Daily missions for couples',
-        description: 'Get one mission a day, guess your partner\'s, and grow closer through small playful interactions. A tiny spaceship room for couples.',
+        tagline: 'A tiny universe, one mission a day',
+        description: 'Every 9 PM, one mission lands in your couple\'s spaceship. Carry it out in secret while guessing your partner\'s. Midnight reveals everything. Two rabbits live in a room that belongs only to the two of you.',
       },
     },
   },
