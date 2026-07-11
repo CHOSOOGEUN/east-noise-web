@@ -1,0 +1,167 @@
+---
+import { strings, type Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = strings[locale];
+---
+
+<section id="principles" class="principles-section" aria-labelledby="principles-heading">
+  <div class="max-w-6xl mx-auto w-full px-6">
+    <div class="principles-head">
+      <h2 id="principles-heading">{t.principles.heading}</h2>
+      <p>{t.principles.intro}</p>
+    </div>
+
+    <div class="principles-list">
+      {t.principles.items.map((item, idx) => (
+        <article class="principle-item">
+          <span>{String(idx + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .principles-section {
+    padding: 8rem 0;
+    border-top: 1px solid rgba(255, 137, 38, 0.18);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255, 106, 0, 0.28), transparent 28rem),
+      linear-gradient(180deg, #211006 0%, #100b07 100%);
+  }
+
+  .principles-head {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.6fr);
+    gap: 36px;
+    align-items: end;
+    margin-bottom: 52px;
+  }
+
+  .principles-head h2 {
+    margin: 0;
+    color: #fff7ec;
+    font-size: 5.4rem;
+    font-weight: 820;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .principles-head p {
+    max-width: 460px;
+    margin: 0 0 10px auto;
+    color: rgba(255, 239, 220, 0.72);
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0;
+  }
+
+  .principles-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(255, 239, 220, 0.18);
+    border-top: 1px solid rgba(255, 239, 220, 0.22);
+    border-bottom: 1px solid rgba(255, 239, 220, 0.22);
+  }
+
+  .principle-item {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+      #160d07;
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+
+  .principle-item:hover {
+    background-color: #211006;
+    transform: translateY(-2px);
+  }
+
+  .principle-item span {
+    color: rgba(255, 195, 109, 0.74);
+    font-size: 12px;
+    font-weight: 780;
+    letter-spacing: 0.04em;
+  }
+
+  .principle-item h3 {
+    max-width: 260px;
+    margin: auto 0 18px;
+    color: #fff7ec;
+    font-size: 2.6rem;
+    font-weight: 820;
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+
+  .principle-item p {
+    margin: 0;
+    color: rgba(255, 239, 220, 0.68);
+    font-size: 15px;
+    line-height: 1.7;
+    letter-spacing: 0;
+  }
+
+  @media (max-width: 820px) {
+    .principles-head,
+    .principles-list {
+      grid-template-columns: 1fr;
+    }
+
+    .principles-head {
+      margin-bottom: 36px;
+    }
+
+    .principles-section {
+      padding: 6rem 0;
+    }
+
+    .principles-head h2 {
+      font-size: 3.6rem;
+    }
+
+    .principle-item h3 {
+      font-size: 2.25rem;
+    }
+
+    .principles-head p {
+      margin: 0;
+    }
+
+    .principle-item {
+      min-height: 220px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .principles-head h2 {
+      font-size: 3rem;
+    }
+
+    .principle-item {
+      padding: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .principle-item {
+      transition: none;
+    }
+
+    .principle-item:hover {
+      transform: none;
+    }
+  }
+</style>

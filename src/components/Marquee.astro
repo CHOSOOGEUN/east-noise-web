@@ -8,8 +8,8 @@ interface Props {
 const { locale } = Astro.props;
 
 const items = locale === 'ko'
-  ? ['East Noise', '인디 앱 스튜디오', 'Since 2026', 'Suwon · KR', 'Luvit', 'Pickie', 'Seed.', '흠', '동방의 소음']
-  : ['East Noise', 'Indie App Studio', 'Since 2026', 'Suwon · KR', 'Luvit', 'Pickie', 'Seed.', 'heum', '동방의 소음'];
+  ? ['East Noise', '인디 앱 스튜디오', 'Since 2026', 'Suwon · KR', 'Luvit', 'Seed.', '흠', '동방의 소음']
+  : ['East Noise', 'Indie App Studio', 'Since 2026', 'Suwon · KR', 'Luvit', 'Seed.', 'heum', '동방의 소음'];
 
 // Duplicate so seamless loop (translateX -50%)
 const loop = [...items, ...items];

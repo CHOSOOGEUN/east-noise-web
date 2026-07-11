@@ -9,138 +9,228 @@ const { locale } = Astro.props;
 const t = strings[locale];
 ---
 
-<section class="max-w-6xl mx-auto w-full px-6 py-24 md:py-32 border-t border-[--color-border]">
-  <div class="grid md:grid-cols-2 gap-12 mb-20 about-reveal">
-    <div>
-      <h2 class="text-xs uppercase tracking-[0.22em] text-[--color-muted] font-medium mb-8">
-        {t.about.heading}
-      </h2>
-      <p class="text-lg md:text-2xl leading-relaxed tracking-tight">
-        {t.about.body}
-      </p>
-    </div>
-    <dl class="grid grid-cols-3 gap-4 self-end">
-      {t.about.stats.map((stat) => {
-        // Only count up meaningful small numbers — skip years like "2026"
-        const animate = /^\d{1,2}$/.test(stat.value);
-        return (
-          <div class="border-t border-[--color-fg] pt-4 stat-cell">
-            <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium mb-2">
-              {stat.label}
-            </dt>
-            <dd
-              class="text-3xl md:text-4xl font-bold tracking-tight tabular-nums stat-value"
-              data-target={animate ? stat.value : ''}
-            >
-              {animate ? '0' : stat.value}
-            </dd>
-          </div>
-        );
-      })}
-    </dl>
-  </div>
+<section id="company" class="about-section" aria-labelledby="company-heading">
+  <div class="max-w-6xl mx-auto w-full px-6">
+    <div class="about-main">
+      <div>
+        <h2 id="company-heading">{t.about.heading}</h2>
+        <p class="about-body">{t.about.body}</p>
+      </div>
 
-  <div class="border-t border-[--color-border] pt-10 about-reveal">
-    <h3 class="text-xs uppercase tracking-[0.22em] text-[--color-muted] font-medium mb-8">
-      {t.legal.heading}
-    </h3>
-    <dl class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-5 text-sm">
-      {t.legal.rows.map((row) => (
-        <div class="flex flex-col gap-1.5 legal-row">
-          <dt class="text-[10px] uppercase tracking-wider text-[--color-muted] font-medium">
-            {row.label}
-          </dt>
-          <dd class="font-medium tabular-nums">
-            {row.value}
-          </dd>
+      <dl class="about-stats" aria-label={t.about.heading}>
+        {t.about.stats.map((stat) => (
+          <div>
+            <dt>{stat.label}</dt>
+            <dd>{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="team-strip" aria-label={locale === 'ko' ? '동방의 소음 팀' : 'East Noise team'}>
+      {t.about.people.map((person) => (
+        <div>
+          <span>{person.role}</span>
+          <strong>{person.name}</strong>
         </div>
       ))}
-    </dl>
+    </div>
+
+    <div class="legal-block" aria-labelledby="legal-heading">
+      <h3 id="legal-heading">{t.legal.heading}</h3>
+      <dl class="legal-list">
+        {t.legal.rows.map((row) => (
+          <div>
+            <dt>{row.label}</dt>
+            <dd>{row.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   </div>
 </section>
 
 <style>
-  .about-reveal {
-    opacity: 0;
-    transform: translateY(28px);
+  .about-section {
+    padding: 8rem 0 7rem;
+    border-top: 1px solid var(--color-border);
+    background:
+      linear-gradient(180deg, #fff8ec 0%, #ffffff 54%);
   }
-  @supports (animation-timeline: view()) {
-    .about-reveal {
-      animation: about-in both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 55%;
+
+  .about-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.62fr);
+    gap: 60px;
+    align-items: end;
+  }
+
+  .about-main h2 {
+    margin: 0;
+    color: #130d08;
+    font-size: 5.2rem;
+    font-weight: 820;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .about-body {
+    max-width: 720px;
+    margin: 30px 0 0;
+    color: #4f3b2b;
+    font-size: 2rem;
+    font-weight: 650;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid #130d08;
+  }
+
+  .about-stats div {
+    display: grid;
+    grid-template-columns: 0.52fr 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(70, 38, 16, 0.18);
+  }
+
+  .about-stats dt,
+  .legal-list dt {
+    color: #7a5a40;
+    font-size: 12px;
+    font-weight: 720;
+    letter-spacing: 0;
+  }
+
+  .about-stats dd {
+    margin: 0;
+    color: #130d08;
+    font-size: 2.1rem;
+    font-weight: 780;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .team-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 4.5rem;
+    border-top: 1px solid #130d08;
+    border-bottom: 1px solid rgba(70, 38, 16, 0.18);
+    background: rgba(70, 38, 16, 0.16);
+  }
+
+  .team-strip div {
+    min-height: 138px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .team-strip span {
+    color: #7a5a40;
+    font-size: 12px;
+    font-weight: 720;
+  }
+
+  .team-strip strong {
+    color: #130d08;
+    font-size: 2.05rem;
+    font-weight: 820;
+    line-height: 1;
+  }
+
+  .legal-block {
+    margin-top: 88px;
+    border-top: 1px solid #130d08;
+  }
+
+  .legal-block h3 {
+    margin: 0;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(70, 38, 16, 0.18);
+    color: #130d08;
+    font-size: 16px;
+    font-weight: 780;
+    letter-spacing: 0;
+  }
+
+  .legal-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 60px;
+  }
+
+  .legal-list div {
+    display: grid;
+    grid-template-columns: minmax(130px, 0.4fr) minmax(0, 1fr);
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(70, 38, 16, 0.12);
+  }
+
+  .legal-list dd {
+    margin: 0;
+    color: #130d08;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.55;
+    letter-spacing: 0;
+  }
+
+  @media (max-width: 860px) {
+    .about-main,
+    .legal-list {
+      grid-template-columns: 1fr;
+    }
+
+    .about-main {
+      gap: 42px;
+    }
+
+    .about-section {
+      padding: 6rem 0 5.5rem;
+    }
+
+    .about-main h2 {
+      font-size: 3.7rem;
+    }
+
+    .about-body {
+      font-size: 1.55rem;
+    }
+
+    .team-strip {
+      grid-template-columns: 1fr;
+      margin-top: 3.5rem;
+    }
+
+    .legal-block {
+      margin-top: 64px;
     }
   }
-  @keyframes about-in {
-    to { opacity: 1; transform: translateY(0); }
-  }
 
-  .stat-cell {
-    transition: border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .stat-cell:hover {
-    border-color: var(--color-accent, #ef4444);
-  }
+  @media (max-width: 560px) {
+    .about-stats div,
+    .legal-list div {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
 
-  .legal-row dd {
-    transition: color 200ms ease;
-  }
-  .legal-row:hover dd {
-    color: #18181b;
-  }
+    .about-main h2 {
+      font-size: 3rem;
+    }
 
-  @media (prefers-reduced-motion: reduce) {
-    .about-reveal { opacity: 1; transform: none; animation: none; }
+    .about-body {
+      font-size: 1.32rem;
+    }
   }
 </style>
-
-<script is:inline>
-  (function () {
-    // Reveal fallback
-    if (!CSS.supports('animation-timeline: view()')) {
-      const els = document.querySelectorAll('.about-reveal');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)';
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      els.forEach((el) => io.observe(el));
-    }
-
-    // Number ticker — count up when visible
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targets = document.querySelectorAll('.stat-value[data-target]');
-    targets.forEach((el) => {
-      const targetAttr = el.getAttribute('data-target');
-      if (!targetAttr) return;
-      const target = parseInt(targetAttr, 10);
-      if (Number.isNaN(target)) return;
-      if (reduce) { el.textContent = String(target); return; }
-
-      const tick = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          tick.unobserve(entry.target);
-          // Small delay so the section settles into place before the count starts
-          setTimeout(() => {
-            const start = performance.now();
-            const dur = 1100;
-            function step(now) {
-              const t = Math.min(1, (now - start) / dur);
-              const eased = 1 - Math.pow(1 - t, 3);
-              entry.target.textContent = String(Math.round(eased * target));
-              if (t < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-          }, 220);
-        });
-      }, { threshold: 0.5 });
-      tick.observe(el);
-    });
-  })();
-</script>

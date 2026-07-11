@@ -1,6 +1,6 @@
 ---
 import { strings, type Locale } from '../i18n/strings';
-import { apps } from '../data/apps';
+import { apps, type AppGroup } from '../data/apps';
 
 interface Props {
   locale: Locale;
@@ -8,227 +8,437 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = strings[locale];
+
+const groupLabels: Record<AppGroup, string> = {
+  live: t.apps.live,
+  review: t.apps.review,
+  lab: t.apps.lab,
+  ops: t.apps.ops,
+};
+
+const groupOrder: AppGroup[] = ['live', 'review', 'lab', 'ops'];
+const groupedApps = groupOrder
+  .map((group) => ({
+    group,
+    label: groupLabels[group],
+    apps: apps.filter((app) => app.group === group),
+  }))
+  .filter((group) => group.apps.length > 0);
+
+const localizedHref = (href?: string) => {
+  if (!href) return null;
+  if (href.startsWith('/')) return locale === 'en' ? `/en${href}` : href;
+  if (href.startsWith('http')) return href;
+  return null;
+};
 ---
 
-<section class="relative max-w-6xl mx-auto w-full px-6 py-24 md:py-32 border-t border-[--color-border]">
-  <h2 class="text-xs uppercase tracking-[0.22em] text-[--color-muted] font-medium mb-12 reveal-on-scroll">
-    {t.apps.heading}
-  </h2>
+<section id="products" class="ops-board" aria-labelledby="products-heading" data-ops-board>
+  <div class="max-w-6xl mx-auto w-full px-6">
+    <div class="ops-board__head">
+      <h2 id="products-heading">{t.apps.heading}</h2>
+      <p>{t.apps.intro}</p>
+    </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[--color-border] border border-[--color-border]">
-    {apps.map((app, idx) => {
-      const copy = app.copy[locale];
-      const webHref = app.links?.web
-        ? (locale === 'en' && app.links.web.startsWith('/') ? '/en' + app.links.web : app.links.web)
-        : null;
-
-      const inner = (
-        <>
-          <div class="card-inner relative z-10 flex flex-col h-full min-h-[220px]">
-            <div class="flex items-baseline justify-between mb-6 gap-4">
-              <h3 class="card-name text-3xl md:text-4xl font-bold tracking-tight">
-                {copy.name}
-              </h3>
-              <span class="card-status text-[10px] uppercase tracking-wider font-medium tabular-nums shrink-0">
-                {String(idx + 1).padStart(2, '0')} · {app.status[locale]}
-              </span>
-            </div>
-            <p class="card-tagline text-base md:text-lg font-medium mb-3">
-              {copy.tagline}
-            </p>
-            <p class="card-desc text-sm leading-relaxed">
-              {copy.description}
-            </p>
-            {webHref && (
-              <span class="card-cta mt-6 text-xs font-semibold tracking-tight inline-flex items-center gap-2">
-                {t.apps.cta} <span class="card-cta-arrow">→</span>
-              </span>
-            )}
+    <div class="ops-board__layout">
+      <aside class="ops-board__panel" aria-live="polite">
+        <span class="panel-label">{t.apps.deckLabel}</span>
+        <strong data-board-name>{apps[0].copy[locale].shortName}</strong>
+        <p data-board-description>{apps[0].copy[locale].description}</p>
+        <dl>
+          <div>
+            <dt>{locale === 'ko' ? '상태' : 'State'}</dt>
+            <dd data-board-status>{apps[0].status[locale]}</dd>
           </div>
-          <div class="card-bg" aria-hidden="true"></div>
-        </>
-      );
+          <div>
+            <dt>{locale === 'ko' ? '근거' : 'Evidence'}</dt>
+            <dd data-board-proof>{apps[0].copy[locale].proof}</dd>
+          </div>
+        </dl>
+      </aside>
 
-      const baseClass = `app-card card-stagger relative bg-[--color-bg] p-8 md:p-10 overflow-hidden group tilt-card`;
-      const style = `--accent: ${app.accent}; --i: ${idx};`;
+      <div class="ops-board__groups">
+        {groupedApps.map((group) => (
+          <div class="ops-group">
+            <div class="ops-group__label">{group.label}</div>
+            <div class="ops-group__rows">
+              {group.apps.map((app, idx) => {
+                const copy = app.copy[locale];
+                const href = localizedHref(app.links?.web);
+                const content = (
+                  <>
+                    <span class="product-index">{String(idx + 1).padStart(2, '0')}</span>
+                    <div class="product-main">
+                      <div class="product-title">
+                        <h3>{copy.name}</h3>
+                        <span>{app.kind[locale]}</span>
+                      </div>
+                      <p>{copy.tagline}</p>
+                    </div>
+                    <div class="product-status">
+                      <span>{app.status[locale]}</span>
+                    </div>
+                    <svg viewBox="0 0 18 18" aria-hidden="true">
+                      <path d="M3.5 9h10M9.8 4.8 14 9l-4.2 4.2" />
+                    </svg>
+                  </>
+                );
 
-      return webHref ? (
-        <a href={webHref} class={`${baseClass} block`} style={style} data-index={idx}>
-          {inner}
-        </a>
-      ) : (
-        <article class={baseClass} style={style} data-index={idx}>
-          {inner}
-        </article>
-      );
-    })}
+                return href ? (
+                  <a
+                    href={href}
+                    class="product-row"
+                    style={`--accent: ${app.accent};`}
+                    data-board-row
+                    data-accent={app.accent}
+                    data-name={copy.shortName}
+                    data-description={copy.description}
+                    data-status={app.status[locale]}
+                    data-proof={copy.proof}
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel={href.startsWith('http') ? 'noopener' : undefined}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <article
+                    class="product-row"
+                    style={`--accent: ${app.accent};`}
+                    data-board-row
+                    data-accent={app.accent}
+                    data-name={copy.shortName}
+                    data-description={copy.description}
+                    data-status={app.status[locale]}
+                    data-proof={copy.proof}
+                  >
+                    {content}
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
 
+<script>
+  const board = document.querySelector<HTMLElement>('[data-ops-board]');
+  if (board) {
+    const rows = board.querySelectorAll<HTMLElement>('[data-board-row]');
+    const name = board.querySelector<HTMLElement>('[data-board-name]');
+    const description = board.querySelector<HTMLElement>('[data-board-description]');
+    const status = board.querySelector<HTMLElement>('[data-board-status]');
+    const proof = board.querySelector<HTMLElement>('[data-board-proof]');
+
+    const update = (row: HTMLElement, notifyScene = true) => {
+      const accent = row.dataset.accent ?? '#ff6a00';
+      board.style.setProperty('--board-accent', accent);
+      if (name) name.textContent = row.dataset.name ?? '';
+      if (description) description.textContent = row.dataset.description ?? '';
+      if (status) status.textContent = row.dataset.status ?? '';
+      if (proof) proof.textContent = row.dataset.proof ?? '';
+      if (notifyScene) {
+        window.dispatchEvent(new CustomEvent('east-noise:accent', { detail: { accent } }));
+      }
+    };
+
+    rows.forEach((row) => {
+      row.addEventListener('pointerenter', () => update(row));
+      row.addEventListener('focus', () => update(row));
+    });
+
+    if (rows[0]) {
+      update(rows[0], false);
+    }
+  }
+</script>
+
 <style>
-  .app-card {
-    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
-    min-height: 300px;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-  .card-inner {
-    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .card-bg {
-    position: absolute;
-    inset: 0;
-    background: var(--accent);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 0;
-  }
-  .app-card:hover .card-bg,
-  .app-card.is-touched .card-bg { transform: scaleY(1); }
-  .app-card:active .card-bg { transform: scaleY(0.5); transition-duration: 240ms; }
-
-  .card-name,
-  .card-tagline,
-  .card-cta {
-    color: #18181b;
-    transition: color 380ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .card-status,
-  .card-desc {
-    color: var(--color-muted, #71717a);
-    transition: color 380ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .app-card:hover .card-name,
-  .app-card:hover .card-tagline,
-  .app-card:hover .card-cta,
-  .app-card.is-touched .card-name,
-  .app-card.is-touched .card-tagline,
-  .app-card.is-touched .card-cta {
-    color: #ffffff;
-  }
-  .app-card:hover .card-status,
-  .app-card:hover .card-desc,
-  .app-card.is-touched .card-status,
-  .app-card.is-touched .card-desc {
-    color: rgba(255, 255, 255, 0.82);
+  .ops-board {
+    --board-accent: #ff6a00;
+    padding: 8rem 0;
+    border-top: 1px solid rgba(70, 38, 16, 0.14);
+    background:
+      linear-gradient(180deg, #ffffff 0%, #fff8ec 100%);
   }
 
-  .card-cta-arrow {
-    display: inline-block;
-    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  .ops-board__head {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(280px, 0.58fr);
+    gap: 36px;
+    align-items: end;
+    margin-bottom: 54px;
   }
-  .app-card:hover .card-cta-arrow,
-  .app-card.is-touched .card-cta-arrow { transform: translateX(8px); }
 
-  /* Reveal on scroll */
-  .reveal-on-scroll,
-  .card-stagger {
-    opacity: 0;
-    transform: translateY(32px);
+  .ops-board__head h2 {
+    margin: 0;
+    color: #130d08;
+    font-size: 5.6rem;
+    font-weight: 860;
+    line-height: 0.96;
+    letter-spacing: 0;
   }
-  @supports (animation-timeline: view()) {
-    .reveal-on-scroll {
-      animation: reveal both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+
+  .ops-board__head p {
+    max-width: 470px;
+    margin: 0 0 8px auto;
+    color: #6a4e37;
+    font-size: 15.5px;
+    line-height: 1.78;
+  }
+
+  .ops-board__layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.38fr) minmax(0, 1fr);
+    gap: 2.9rem;
+    align-items: start;
+  }
+
+  .ops-board__panel {
+    position: sticky;
+    top: 24px;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(70, 38, 16, 0.16);
+    border-radius: 8px;
+    padding: 24px;
+    background:
+      radial-gradient(circle at 24% 18%, color-mix(in srgb, var(--board-accent) 14%, transparent), transparent 44%),
+      rgba(255, 255, 255, 0.66);
+    box-shadow: 0 28px 80px rgba(103, 53, 10, 0.1);
+  }
+
+  .panel-label,
+  .ops-group__label,
+  .product-index,
+  .product-title span,
+  .product-status span,
+  .ops-board__panel dt {
+    color: #7a5a40;
+    font-size: 11px;
+    font-weight: 780;
+    line-height: 1.35;
+  }
+
+  .panel-label,
+  .ops-group__label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .ops-board__panel strong {
+    display: block;
+    margin-top: auto;
+    color: #130d08;
+    font-size: 3.55rem;
+    font-weight: 860;
+    line-height: 0.96;
+    letter-spacing: 0;
+  }
+
+  .ops-board__panel > p {
+    margin: 22px 0 30px;
+    color: #4f3b2b;
+    font-size: 16px;
+    line-height: 1.68;
+  }
+
+  .ops-board__panel dl {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    border-top: 1px solid rgba(70, 38, 16, 0.2);
+  }
+
+  .ops-board__panel dl div {
+    display: grid;
+    gap: 8px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(70, 38, 16, 0.12);
+  }
+
+  .ops-board__panel dd {
+    margin: 0;
+    color: #130d08;
+    font-size: 13px;
+    font-weight: 690;
+    line-height: 1.58;
+  }
+
+  .ops-board__groups {
+    display: grid;
+    gap: 34px;
+  }
+
+  .ops-group {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .ops-group__label {
+    position: sticky;
+    top: 28px;
+    padding-top: 23px;
+  }
+
+  .ops-group__rows {
+    border-top: 1px solid #130d08;
+  }
+
+  .product-row {
+    min-height: 132px;
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) minmax(150px, 0.28fr) 24px;
+    gap: 22px;
+    align-items: center;
+    border-bottom: 1px solid rgba(70, 38, 16, 0.16);
+    color: #130d08;
+    background: transparent;
+    transition: background-color 180ms ease, padding-left 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .product-row:hover,
+  .product-row:focus-visible {
+    padding-left: 12px;
+    background: color-mix(in srgb, var(--accent) 8%, #ffffff);
+    outline: none;
+  }
+
+  .product-main {
+    min-width: 0;
+  }
+
+  .product-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 14px;
+  }
+
+  .product-title h3 {
+    margin: 0;
+    color: #130d08;
+    font-size: 3.15rem;
+    font-weight: 860;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  .product-main p {
+    max-width: 640px;
+    margin: 14px 0 0;
+    color: #5d4532;
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.55;
+  }
+
+  .product-status {
+    min-width: 0;
+  }
+
+  .product-status span {
+    display: inline-flex;
+    padding: 8px 10px;
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, rgba(70, 38, 16, 0.18));
+    border-radius: 999px;
+    color: #130d08;
+    background: color-mix(in srgb, var(--accent) 8%, #ffffff);
+  }
+
+  .product-row svg {
+    width: 21px;
+    height: 21px;
+    stroke: currentColor;
+    stroke-width: 1.85;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: transform 180ms ease;
+  }
+
+  .product-row:hover svg,
+  .product-row:focus-visible svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 940px) {
+    .ops-board__head,
+    .ops-board__layout,
+    .ops-group {
+      grid-template-columns: 1fr;
     }
-    .card-stagger {
-      animation: card-rise both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 80%;
+
+    .ops-board__head p {
+      margin: 0;
+    }
+
+    .ops-board {
+      padding: 6rem 0;
+    }
+
+    .ops-board__head h2 {
+      font-size: 4rem;
+    }
+
+    .ops-board__panel strong {
+      font-size: 3rem;
+    }
+
+    .product-title h3 {
+      font-size: 2.5rem;
+    }
+
+    .ops-board__panel,
+    .ops-group__label {
+      position: static;
+    }
+
+    .ops-board__panel {
+      min-height: 0;
     }
   }
-  @keyframes reveal {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes card-rise {
-    to { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 680px) {
+    .ops-board__head h2 {
+      font-size: 3rem;
+    }
+
+    .ops-board__panel strong {
+      font-size: 2.45rem;
+    }
+
+    .product-row {
+      min-height: 0;
+      grid-template-columns: 34px minmax(0, 1fr) 20px;
+      gap: 14px;
+      padding: 22px 0;
+    }
+
+    .product-title h3 {
+      font-size: 2rem;
+    }
+
+    .product-status {
+      grid-column: 2 / -1;
+    }
+
+    .product-row:hover,
+    .product-row:focus-visible {
+      padding-left: 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal-on-scroll,
-    .card-stagger { opacity: 1; transform: none; animation: none; }
-    .card-bg { transition: none; }
+    .product-row,
+    .product-row svg {
+      transition: none;
+    }
   }
 </style>
-
-<script is:inline>
-  (function () {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-
-    // Reveal fallback (no scroll-driven animations)
-    if (!CSS.supports('animation-timeline: view()')) {
-      const heading = document.querySelectorAll('.reveal-on-scroll');
-      const headIo = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)';
-            headIo.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      heading.forEach((el) => headIo.observe(el));
-
-      const cards = document.querySelectorAll('.card-stagger');
-      const cardIo = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const i = parseInt(entry.target.style.getPropertyValue('--i') || '0', 10);
-            entry.target.style.transitionDelay = (i * 70) + 'ms';
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = `opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1)`;
-            cardIo.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.18 });
-      cards.forEach((el) => cardIo.observe(el));
-    }
-
-    if (reduce) return;
-
-    const cards = document.querySelectorAll('.tilt-card');
-
-    // Desktop: 3D mouse tilt
-    if (!isTouch) {
-      cards.forEach((card) => {
-        const inner = card.querySelector('.card-inner');
-        if (!inner) return;
-        let raf = 0;
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          cancelAnimationFrame(raf);
-          raf = requestAnimationFrame(() => {
-            card.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
-            inner.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 30px)`;
-          });
-        });
-        card.addEventListener('mouseleave', () => {
-          cancelAnimationFrame(raf);
-          card.style.transform = '';
-          inner.style.transform = '';
-        });
-      });
-    } else {
-      // Mobile: touch-active invert + light haptic
-      cards.forEach((card) => {
-        card.addEventListener('touchstart', () => {
-          card.classList.add('is-touched');
-          if (navigator.vibrate) navigator.vibrate(6);
-        }, { passive: true });
-        card.addEventListener('touchend', () => {
-          setTimeout(() => card.classList.remove('is-touched'), 220);
-        }, { passive: true });
-        card.addEventListener('touchcancel', () => {
-          card.classList.remove('is-touched');
-        }, { passive: true });
-      });
-    }
-  })();
-</script>

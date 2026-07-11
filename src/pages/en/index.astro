@@ -1,14 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro';
-import Marquee from '../../components/Marquee.astro';
-import AppGrid from '../../components/AppGrid.astro';
-import About from '../../components/About.astro';
+import EastMinimalHome from '../../components/EastMinimalHome.astro';
 ---
 
-<Layout locale="en">
-  <Hero locale="en" />
-  <Marquee locale="en" />
-  <AppGrid locale="en" />
-  <About locale="en" />
+<Layout
+  locale="en"
+  chrome="none"
+  path="/en/"
+  title="East Noise — We make and operate products"
+  description="East Noise builds and operates consumer apps and web services for everyday use."
+>
+  <EastMinimalHome locale="en" />
 </Layout>

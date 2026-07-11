@@ -1,0 +1,254 @@
+---
+interface Props {
+  label: string;
+  accent?: string;
+  compact?: boolean;
+}
+
+const { label, accent = '#ff5a18', compact = false } = Astro.props;
+---
+
+<div
+  class:list={['sun-scene', { 'sun-scene--compact': compact }]}
+  data-sun-scene
+  data-accent={accent}
+>
+  <canvas aria-label={label}></canvas>
+  <p class="sr-only">{label}</p>
+</div>
+
+<style>
+  .sun-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    isolation: isolate;
+  }
+
+  .sun-scene canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: pan-y;
+  }
+
+  .sun-scene--compact {
+    min-height: 220px;
+  }
+
+  @media (max-width: 720px) {
+    .sun-scene {
+      min-height: 200px;
+    }
+
+    .sun-scene--compact {
+      min-height: 170px;
+    }
+  }
+</style>
+
+<script>
+  import * as THREE from 'three';
+  import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+  const shells = document.querySelectorAll<HTMLElement>('[data-sun-scene]');
+
+  shells.forEach((shell) => {
+    if (shell.dataset.initialized === 'true') return;
+    shell.dataset.initialized = 'true';
+
+    const canvas = shell.querySelector<HTMLCanvasElement>('canvas');
+    if (!canvas) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance',
+    });
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.14;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
+    camera.position.set(0, 0.05, 4.8);
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const environment = pmrem.fromScene(new RoomEnvironment(), 0.03);
+    scene.environment = environment.texture;
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const accent = new THREE.Color(shell.dataset.accent || '#ff5a18');
+    const topColor = accent.clone().lerp(new THREE.Color('#fff4ee'), 0.38);
+    const bottomColor = accent.clone().offsetHSL(-0.01, 0, -0.1);
+    const glowColor = accent.clone().lerp(new THREE.Color('#ffd260'), 0.5);
+
+    const innerMaterial = new THREE.ShaderMaterial({
+      transparent: false,
+      depthWrite: true,
+      uniforms: {
+        uTop: { value: topColor },
+        uBottom: { value: bottomColor },
+        uGlow: { value: glowColor },
+        uTime: { value: 0 },
+      },
+      vertexShader: `
+        varying vec3 vLocal;
+        varying vec3 vNormal;
+        void main() {
+          vLocal = position;
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uTop;
+        uniform vec3 uBottom;
+        uniform vec3 uGlow;
+        uniform float uTime;
+        varying vec3 vLocal;
+        varying vec3 vNormal;
+
+        void main() {
+          float split = smoothstep(-0.2, 0.17, vLocal.y);
+          vec3 color = mix(uBottom, uTop, split);
+          float horizon = exp(-pow((vLocal.y + 0.12) * 9.0, 2.0));
+          float shimmer = sin(vLocal.x * 12.0 + uTime * 0.45) * 0.025;
+          color += uGlow * (horizon * (0.62 + shimmer));
+          float sunDisc = 1.0 - smoothstep(0.13, 0.2, length(vec2(vLocal.x, vLocal.y + 0.13)));
+          color = mix(color, uGlow, sunDisc * 0.92);
+          float fresnel = pow(1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0), 2.6);
+          color += uGlow * fresnel * 0.2;
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `,
+    });
+
+    const inner = new THREE.Mesh(new THREE.SphereGeometry(1.08, 96, 96), innerMaterial);
+    group.add(inner);
+
+    const glassMaterial = new THREE.MeshPhysicalMaterial({
+      color: '#fff5ee',
+      metalness: 0.02,
+      roughness: 0.045,
+      transmission: 0,
+      thickness: 1.9,
+      ior: 1.38,
+      transparent: true,
+      opacity: 0.34,
+      clearcoat: 1,
+      clearcoatRoughness: 0.03,
+      reflectivity: 1,
+      envMapIntensity: 1.4,
+      attenuationColor: accent,
+      attenuationDistance: 2.6,
+    });
+    const glass = new THREE.Mesh(new THREE.SphereGeometry(1.28, 128, 128), glassMaterial);
+    glass.renderOrder = 2;
+    glassMaterial.depthWrite = false;
+    group.add(glass);
+
+    const key = new THREE.DirectionalLight('#fff7e9', 3.4);
+    key.position.set(-3.8, 4.6, 6);
+    const rim = new THREE.PointLight(accent, 18, 16);
+    rim.position.set(3.6, -1.7, 3.4);
+    const fill = new THREE.AmbientLight('#fff3e7', 1.25);
+    scene.add(key, rim, fill);
+
+    let targetX = 0;
+    let targetY = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    let frame = 0;
+    let visible = true;
+
+    const resize = () => {
+      const rect = shell.getBoundingClientRect();
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.65));
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = shell.getBoundingClientRect();
+      targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    };
+
+    const onPointerLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    const setAccent = (next: string) => {
+      const color = new THREE.Color(next);
+      const top = color.clone().lerp(new THREE.Color('#fff4ee'), 0.38);
+      const bottom = color.clone().offsetHSL(-0.01, 0, -0.1);
+      const glow = color.clone().lerp(new THREE.Color('#ffd260'), 0.5);
+      innerMaterial.uniforms.uTop.value.copy(top);
+      innerMaterial.uniforms.uBottom.value.copy(bottom);
+      innerMaterial.uniforms.uGlow.value.copy(glow);
+      glassMaterial.attenuationColor.copy(color);
+      rim.color.copy(color);
+    };
+
+    const animate = (time: number) => {
+      if (visible) {
+        pointerX += (targetX - pointerX) * 0.055;
+        pointerY += (targetY - pointerY) * 0.055;
+        group.rotation.y = pointerX * 0.19 + (reducedMotion ? 0 : Math.sin(time * 0.00022) * 0.035);
+        group.rotation.x = -pointerY * 0.12;
+        group.position.x = pointerX * 0.08;
+        group.position.y = -pointerY * 0.05;
+        inner.rotation.y = time * (reducedMotion ? 0.000015 : 0.000055);
+        innerMaterial.uniforms.uTime.value = time * 0.001;
+        renderer.render(scene, camera);
+      }
+      frame = window.requestAnimationFrame(animate);
+    };
+
+    const accentListener = (event: Event) => {
+      const next = (event as CustomEvent<{ accent?: string }>).detail?.accent;
+      if (next) setAccent(next);
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(shell);
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visible = entry?.isIntersecting ?? true;
+    }, { rootMargin: '120px' });
+    visibilityObserver.observe(shell);
+
+    shell.addEventListener('pointermove', onPointerMove);
+    shell.addEventListener('pointerleave', onPointerLeave);
+    window.addEventListener('east-noise:sun-accent', accentListener);
+
+    resize();
+    animate(0);
+
+    document.addEventListener('astro:before-swap', () => {
+      resizeObserver.disconnect();
+      visibilityObserver.disconnect();
+      shell.removeEventListener('pointermove', onPointerMove);
+      shell.removeEventListener('pointerleave', onPointerLeave);
+      window.removeEventListener('east-noise:sun-accent', accentListener);
+      window.cancelAnimationFrame(frame);
+      environment.dispose();
+      pmrem.dispose();
+      inner.geometry.dispose();
+      innerMaterial.dispose();
+      glass.geometry.dispose();
+      glassMaterial.dispose();
+      renderer.dispose();
+    }, { once: true });
+  });
+</script>
