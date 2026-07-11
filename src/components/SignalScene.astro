@@ -1,0 +1,301 @@
+---
+interface Props {
+  locale: 'ko' | 'en';
+}
+
+const { locale } = Astro.props;
+const label = locale === 'ko' ? '동방의 소음 신호 오브젝트' : 'East Noise signal object';
+---
+
+<div class="signal-scene" data-signal-scene>
+  <canvas id="signal-canvas" aria-label={label}></canvas>
+  <div class="signal-scene__rings" aria-hidden="true">
+    <span></span>
+    <span></span>
+  </div>
+  <p class="sr-only">
+    {locale === 'ko'
+      ? '커서와 제품 선택에 반응하는 추상 3D 신호 오브젝트입니다.'
+      : 'An abstract 3D signal object that reacts to cursor movement and product selection.'}
+  </p>
+</div>
+
+<script>
+  import * as THREE from 'three';
+
+  const canvas = document.querySelector<HTMLCanvasElement>('#signal-canvas');
+  const shell = canvas?.closest<HTMLElement>('[data-signal-scene]');
+
+  if (canvas && shell) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    });
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    camera.position.set(0, 0.1, 9.25);
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const baseColor = new THREE.Color('#ff6a00');
+    const inkColor = new THREE.Color('#7a2c0d');
+    const softColor = new THREE.Color('#fff3dc');
+
+    const ambient = new THREE.AmbientLight('#fff4dc', 1.7);
+    const key = new THREE.DirectionalLight('#fff7e8', 2.5);
+    key.position.set(4, 4, 7);
+    const rim = new THREE.PointLight('#ff7b22', 20, 15);
+    rim.position.set(-3, -2, 4);
+    scene.add(ambient, key, rim);
+
+    const coreMaterial = new THREE.MeshPhysicalMaterial({
+      color: '#ffe2b6',
+      metalness: 0.08,
+      roughness: 0.24,
+      transmission: 0.36,
+      thickness: 0.8,
+      transparent: true,
+      opacity: 0.72,
+      clearcoat: 0.7,
+      clearcoatRoughness: 0.18,
+    });
+    const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1.74, 8), coreMaterial);
+    group.add(core);
+
+    const torusMaterials = [
+      new THREE.MeshBasicMaterial({ color: '#7a2c0d', transparent: true, opacity: 0.62 }),
+      new THREE.MeshBasicMaterial({ color: '#ff7b22', transparent: true, opacity: 0.88 }),
+      new THREE.MeshBasicMaterial({ color: '#ffc36d', transparent: true, opacity: 0.7 }),
+    ];
+
+    const orbitConfigs = [
+      { scale: [3.35, 1.12, 3.35], rotation: [0.88, 0.1, -0.22], material: torusMaterials[0] },
+      { scale: [2.62, 0.94, 2.62], rotation: [1.34, 0.62, 0.72], material: torusMaterials[1] },
+      { scale: [3.74, 1.08, 3.74], rotation: [1.66, -0.42, -0.48], material: torusMaterials[2] },
+    ];
+
+    const orbits = orbitConfigs.map((config) => {
+      const orbit = new THREE.Mesh(new THREE.TorusGeometry(1, 0.012, 10, 180), config.material);
+      orbit.scale.set(config.scale[0], config.scale[1], config.scale[2]);
+      orbit.rotation.set(config.rotation[0], config.rotation[1], config.rotation[2]);
+      group.add(orbit);
+      return orbit;
+    });
+
+    const wavePoints = [];
+    for (let i = 0; i < 82; i += 1) {
+      const x = -2.1 + (i / 81) * 4.2;
+      const y = Math.sin(i * 0.34) * 0.3 + Math.sin(i * 0.12) * 0.12;
+      wavePoints.push(new THREE.Vector3(x, y, Math.cos(i * 0.16) * 0.24));
+    }
+    const waveCurve = new THREE.CatmullRomCurve3(wavePoints);
+    const waveMaterial = new THREE.MeshBasicMaterial({ color: '#9f3e13', transparent: true, opacity: 0.72 });
+    const wave = new THREE.Mesh(new THREE.TubeGeometry(waveCurve, 160, 0.018, 8, false), waveMaterial);
+    group.add(wave);
+
+    const particleCount = 560;
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const color = new THREE.Color();
+    for (let i = 0; i < particleCount; i += 1) {
+      const radius = 0.45 + Math.random() * 1.42;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(Math.random() * 2 - 1);
+      positions[i * 3] = Math.sin(phi) * Math.cos(theta) * radius;
+      positions[i * 3 + 1] = Math.sin(phi) * Math.sin(theta) * radius;
+      positions[i * 3 + 2] = Math.cos(phi) * radius;
+      color.copy(Math.random() > 0.88 ? baseColor : softColor).lerp(inkColor, Math.random() * 0.08);
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+    }
+    const particleGeometry = new THREE.BufferGeometry();
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    const particles = new THREE.Points(
+      particleGeometry,
+      new THREE.PointsMaterial({
+        size: 0.028,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.92,
+        depthWrite: false,
+      }),
+    );
+    group.add(particles);
+
+    const beadMaterial = new THREE.MeshStandardMaterial({ color: '#fff0d6', roughness: 0.28, metalness: 0.05 });
+    const accentBeadMaterial = new THREE.MeshStandardMaterial({ color: baseColor, roughness: 0.22, metalness: 0.08 });
+    const darkBeadMaterial = new THREE.MeshStandardMaterial({ color: '#7a2c0d', roughness: 0.42, metalness: 0.14 });
+    const beads = [
+      { mesh: new THREE.Mesh(new THREE.SphereGeometry(0.13, 24, 24), accentBeadMaterial), phase: 0 },
+      { mesh: new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 24), beadMaterial), phase: 1.75 },
+      { mesh: new THREE.Mesh(new THREE.SphereGeometry(0.095, 24, 24), darkBeadMaterial), phase: 3.5 },
+      { mesh: new THREE.Mesh(new THREE.SphereGeometry(0.12, 24, 24), beadMaterial), phase: 5.1 },
+    ];
+    beads.forEach(({ mesh }) => group.add(mesh));
+
+    let pointerX = 0;
+    let pointerY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let frameId = 0;
+
+    const setAccent = (next: string) => {
+      const nextColor = new THREE.Color(next);
+      baseColor.copy(nextColor);
+      torusMaterials[1].color.copy(nextColor);
+      accentBeadMaterial.color.copy(nextColor);
+      rim.color.copy(nextColor);
+      rim.intensity = 18;
+    };
+
+    const resize = () => {
+      const rect = shell.getBoundingClientRect();
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.8);
+      renderer.setPixelRatio(dpr);
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+
+    const updatePointer = (event: PointerEvent) => {
+      const rect = shell.getBoundingClientRect();
+      targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    };
+
+    const animate = (time: number) => {
+      const t = time * 0.001;
+      pointerX += (targetX - pointerX) * 0.055;
+      pointerY += (targetY - pointerY) * 0.055;
+
+      group.rotation.y = pointerX * 0.24 + t * (prefersReducedMotion ? 0.02 : 0.09);
+      group.rotation.x = -pointerY * 0.15 + Math.sin(t * 0.42) * 0.045;
+      core.rotation.y = -t * 0.18;
+      core.rotation.z = Math.sin(t * 0.35) * 0.08;
+      particles.rotation.y = t * 0.07;
+      wave.rotation.y = Math.sin(t * 0.45) * 0.18;
+
+      orbits.forEach((orbit, index) => {
+        orbit.rotation.z += (prefersReducedMotion ? 0.0005 : 0.0018) * (index + 1);
+      });
+
+      beads.forEach(({ mesh, phase }, index) => {
+        const speed = 0.28 + index * 0.045;
+        const angle = t * speed + phase;
+        mesh.position.set(Math.cos(angle) * 2.78, Math.sin(angle * 1.08) * 1.04, Math.sin(angle) * 1.38);
+      });
+
+      renderer.render(scene, camera);
+      frameId = window.requestAnimationFrame(animate);
+    };
+
+    const observer = new ResizeObserver(resize);
+    observer.observe(shell);
+    shell.addEventListener('pointermove', updatePointer);
+    window.addEventListener('east-noise:accent', (event) => {
+      const accent = (event as CustomEvent<{ accent?: string }>).detail?.accent;
+      if (accent) setAccent(accent);
+    });
+
+    resize();
+    animate(0);
+
+    document.addEventListener('astro:before-swap', () => {
+      observer.disconnect();
+      shell.removeEventListener('pointermove', updatePointer);
+      cancelAnimationFrame(frameId);
+      renderer.dispose();
+      particleGeometry.dispose();
+    }, { once: true });
+  }
+</script>
+
+<style>
+  .signal-scene {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+  }
+
+  .signal-scene::before {
+    content: '';
+    position: absolute;
+    inset: 11% 4% 7%;
+    z-index: -1;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 56% 54%, color-mix(in srgb, var(--active-accent, #ff6a00) 22%, transparent), transparent 34%),
+      radial-gradient(circle at 50% 78%, rgba(255, 106, 0, 0.18), transparent 40%),
+      radial-gradient(circle at 50% 68%, rgba(122, 44, 13, 0.12), transparent 44%);
+    filter: blur(16px);
+    opacity: 0.86;
+  }
+
+  .signal-scene__rings {
+    position: absolute;
+    inset: 14% 3% 12%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .signal-scene__rings span {
+    position: absolute;
+    inset: 10% 3%;
+    border: 1px dashed rgba(122, 44, 13, 0.18);
+    border-radius: 50%;
+    transform: rotate(-12deg);
+  }
+
+  .signal-scene__rings span + span {
+    inset: 4% 15%;
+    border-color: color-mix(in srgb, var(--active-accent, #ff6a00) 38%, transparent);
+    transform: rotate(36deg);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 820px) {
+    .signal-scene {
+      min-height: 360px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .signal-scene {
+      min-height: 300px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    canvas {
+      cursor: default;
+    }
+  }
+</style>

@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
-import AppGrid from '../components/AppGrid.astro';
-import About from '../components/About.astro';
+import EastMinimalHome from '../components/EastMinimalHome.astro';
 ---
 
-<Layout locale="ko">
-  <Hero locale="ko" />
-  <Marquee locale="ko" />
-  <AppGrid locale="ko" />
-  <About locale="ko" />
+<Layout
+  locale="ko"
+  chrome="none"
+  title="동방의 소음 — 제품을 만들고 직접 운영합니다"
+  description="동방의 소음은 일상에서 쓰는 소비자 앱과 웹 서비스를 만들고 운영하는 제품 팀입니다."
+>
+  <EastMinimalHome locale="ko" />
 </Layout>

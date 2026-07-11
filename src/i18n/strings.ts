@@ -1,24 +1,63 @@
 export const strings = {
   ko: {
-    siteTitle: 'East Noise',
-    siteDescription: '경기 수원의 인디 앱 스튜디오 — 커플, 친구, 자기 자신을 위한 작은 앱',
-    nav: { langSwitch: 'EN' },
+    siteTitle: '동방의 소음',
+    siteDescription: '동방의 소음은 일상에서 쓰는 소비자 앱과 웹 서비스를 만들고 운영하는 제품 팀입니다.',
+    nav: {
+      products: '운영 보드',
+      principles: '방식',
+      company: '회사',
+      contact: '연락',
+      langSwitch: 'EN',
+    },
     hero: {
-      eyebrow: 'Indie App Studio',
-      title: '작지만\n계속 만드는 사람들',
-      lead: 'East Noise 는 사람들의 일상에 살짝 끼어드는 작은 앱들을 만듭니다. 커플, 친구, 그리고 자기 자신을 위한 도구.',
+      title: '작은 제품을 만들고\n꾸준히 운영합니다',
+      lead: '일상에서 쓰는 앱과 웹 서비스를 만들고 운영합니다. 지금은 Luvit, Seed, heum, 남보나, ALPHA, Buying OS를 다룹니다.',
+      cta: '운영 보드 보기',
+      secondaryCta: '협업 문의',
+      channelLabel: '동방의 소음 운영 제품',
+      stageLabel: 'Product status',
+      stageHint: 'Suwon · Korea · Since 2026',
     },
     apps: {
-      heading: '지금 만드는 것',
+      heading: '운영 보드',
+      deckLabel: 'Company release board',
       cta: '자세히',
+      intro: '출시된 앱, 운영 중인 웹, 심사 중인 앱, 개발 중인 실험과 내부 시스템을 현재 상태 그대로 정리했습니다.',
+      live: '출시·운영 중',
+      review: '심사 중',
+      lab: '실험실',
+      ops: '운영 시스템',
+    },
+    principles: {
+      heading: '우리 방식',
+      intro: '큰 설명보다 작은 제품, 현재 상태, 다음 개선을 더 중요하게 봅니다.',
+      items: [
+        {
+          title: '먼저 띄웁니다',
+          body: '앱, 웹, 실험을 너무 오래 숨겨두지 않고 사용자가 만질 수 있는 상태로 올립니다.',
+        },
+        {
+          title: '상태를 숨기지 않습니다',
+          body: '출시, 심사 대기, 운영 중, 프로토타입을 섞어 말하지 않고 현재 상태를 그대로 둡니다.',
+        },
+        {
+          title: '작은 루프를 운영합니다',
+          body: '매일 다시 열 이유가 있는 루틴, 친구 관계, 자조 유머, 수익 검증 루프를 반복해서 봅니다.',
+        },
+      ],
     },
     about: {
       heading: '회사',
-      body: 'East Noise (동방의 소음) 는 조수근과 이유석 두 명이 만든 인디 앱 스튜디오입니다. 매일 누군가의 작은 루틴이 되는 앱을 목표로 합니다.',
+      body: '동방의 소음은 조수근과 이유석이 함께 만들고 김윤서가 마케팅을 맡는 제품 팀입니다. 수원에서 시작했고, 작은 소비자 앱과 웹 서비스를 만들며 출시 이후의 운영까지 함께 봅니다.',
       stats: [
-        { label: '설립', value: '2026' },
-        { label: '본사', value: '경기 수원' },
-        { label: '개발 중', value: '4' },
+        { label: '공개 앱', value: '2' },
+        { label: '운영 웹', value: '2' },
+        { label: '심사/개발 중', value: '3' },
+      ],
+      people: [
+        { role: '공동창업자', name: '조수근' },
+        { role: '공동창업자', name: '이유석' },
+        { role: '마케팅', name: '김윤서' },
       ],
     },
     legal: {
@@ -42,24 +81,63 @@ export const strings = {
   },
   en: {
     siteTitle: 'East Noise',
-    siteDescription: 'An indie app studio out of Suwon, Korea — small apps for couples, friends, and yourself',
-    nav: { langSwitch: 'KO' },
+    siteDescription: 'East Noise builds and operates consumer apps and web services for everyday use.',
+    nav: {
+      products: 'Board',
+      principles: 'Method',
+      company: 'Company',
+      contact: 'Contact',
+      langSwitch: 'KO',
+    },
     hero: {
-      eyebrow: 'Indie App Studio',
-      title: 'Small things,\nshipped often',
-      lead: 'East Noise builds small apps that quietly insert themselves into people\'s daily lives. Tools for couples, friends, and yourself.',
+      title: 'We make small products\nand keep working on them',
+      lead: 'East Noise builds and operates apps and web services for everyday use. Current work includes Luvit, Seed, heum, Nambona, ALPHA, and Buying OS.',
+      cta: 'View operating board',
+      secondaryCta: 'Contact us',
+      channelLabel: 'East Noise operating products',
+      stageLabel: 'Product status',
+      stageHint: 'Suwon · Korea · Since 2026',
     },
     apps: {
-      heading: 'Currently shipping',
+      heading: 'Operating Board',
+      deckLabel: 'Company release board',
       cta: 'Learn more',
+      intro: 'Released apps, live web services, an app in review, and active internal development are shown by their current state.',
+      live: 'Live',
+      review: 'In review',
+      lab: 'Lab',
+      ops: 'Operating system',
+    },
+    principles: {
+      heading: 'How We Work',
+      intro: 'East Noise cares more about small products, current state, and the next improvement than oversized vision copy.',
+      items: [
+        {
+          title: 'Ship first',
+          body: 'We push apps, web services, and experiments into a state people can touch instead of hiding them too long.',
+        },
+        {
+          title: 'Show the state',
+          body: 'Live, waiting for review, operating, and prototype are different states. We keep them separate.',
+        },
+        {
+          title: 'Operate small loops',
+          body: 'Daily reopen reasons, close relationships, self-aware humor, and revenue validation loops are the material we keep testing.',
+        },
+      ],
     },
     about: {
       heading: 'Company',
-      body: 'East Noise is a two-person indie app studio based in Suwon, Korea, founded by Soogeun Cho and Yuseok Lee. We aim to make apps that become a small daily routine for someone.',
+      body: 'East Noise is a product team built by Soogeun Cho and Yuseok Lee, with marketing led by Yunseo Kim. Started in Suwon, Korea, we build consumer apps and web services while keeping release and operation close together.',
       stats: [
-        { label: 'Founded', value: '2026' },
-        { label: 'HQ', value: 'Suwon, KR' },
-        { label: 'In progress', value: '4' },
+        { label: 'Public apps', value: '2' },
+        { label: 'Live web', value: '2' },
+        { label: 'Review / development', value: '3' },
+      ],
+      people: [
+        { role: 'Co-founder', name: 'Soogeun Cho' },
+        { role: 'Co-founder', name: 'Yuseok Lee' },
+        { role: 'Marketing', name: 'Yunseo Kim' },
       ],
     },
     legal: {

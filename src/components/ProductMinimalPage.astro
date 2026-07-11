@@ -1,0 +1,649 @@
+---
+import SunGlassScene from './SunGlassScene.astro';
+import { apps } from '../data/apps';
+import { strings, type Locale } from '../i18n/strings';
+
+type ProductSlug = 'luvit' | 'seed';
+
+interface Props {
+  locale: Locale;
+  slug: ProductSlug;
+}
+
+const { locale, slug } = Astro.props;
+const t = strings[locale];
+const product = apps.find((app) => app.slug === slug);
+
+if (!product) throw new Error(`Unknown product slug: ${slug}`);
+
+const homeUrl = locale === 'ko' ? '/' : '/en/';
+const otherUrl = locale === 'ko' ? `/en/${slug}` : `/${slug}`;
+const otherLabel = locale === 'ko' ? 'EN' : 'KO';
+const localizeHref = (href?: string) => {
+  if (!href) return '#contact';
+  if (href.startsWith('/')) return locale === 'en' ? `/en${href}` : href;
+  return href;
+};
+
+const glowColors: Record<string, string> = {
+  luvit: '#ff5a18',
+  seed: '#ff7418',
+  heum: '#f04a14',
+};
+const glow = glowColors[slug] ?? '#ff5a18';
+const current = product.copy[locale];
+const actionHref = product.links?.ios ?? `mailto:${t.contact.email}?subject=${encodeURIComponent(`${current.shortName} launch`)}`;
+const actionExternal = actionHref.startsWith('http') || actionHref.startsWith('mailto:');
+
+const primaryProducts = apps
+  .filter((app) => ['luvit', 'seed', 'heum'].includes(app.slug))
+  .map((app, index) => ({
+    index,
+    slug: app.slug,
+    name: app.copy[locale].shortName,
+    tagline: app.copy[locale].tagline,
+    href: localizeHref(app.links?.web),
+    external: Boolean(app.links?.web?.startsWith('http')),
+  }));
+
+const copy = {
+  ko: {
+    product: 'Product',
+    back: '전체 제품',
+    open: product.links?.ios ? 'App Store에서 보기' : '출시 소식 받기',
+    overview: 'Overview',
+    state: 'Current state',
+    facts: {
+      luvit: [
+        ['매일 9시', '둘에게 서로 다른 미션이 도착합니다.'],
+        ['자정 공개', '상대의 미션을 추측하고 결과를 확인합니다.'],
+        ['커플 루틴', '하루 한 번 서로를 떠올리는 짧은 흐름을 만듭니다.'],
+      ],
+      seed: [
+        ['짧은 인증', '2-4초 영상으로 오늘의 루틴을 남깁니다.'],
+        ['식물 성장', '인증이 쌓일수록 식물과 기록이 함께 자랍니다.'],
+        ['개인 기록', '매일의 영상을 한곳에서 다시 볼 수 있습니다.'],
+      ],
+    },
+    related: 'Other products',
+    contact: 'Contact',
+  },
+  en: {
+    product: 'Product',
+    back: 'All products',
+    open: product.links?.ios ? 'View on App Store' : 'Get launch updates',
+    overview: 'Overview',
+    state: 'Current state',
+    facts: {
+      luvit: [
+        ['Every 9 PM', 'A different mission lands for each person.'],
+        ['Midnight reveal', 'Guess the other mission and check the result.'],
+        ['Couple routine', 'A short daily flow to think of each other.'],
+      ],
+      seed: [
+        ['Short proof', 'Record today with a 2-4 second video.'],
+        ['Plant growth', 'The plant and archive grow with each check-in.'],
+        ['Private archive', 'Revisit daily clips in one place.'],
+      ],
+    },
+    related: 'Other products',
+    contact: 'Contact',
+  },
+}[locale];
+
+const facts = copy.facts[slug];
+---
+
+<div class="detail-site" style={`--product-orange: ${glow}`} data-product-detail>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-nav" aria-label="East Noise">
+    <a href={homeUrl} class="brand" aria-label={locale === 'ko' ? '동방의 소음 홈' : 'East Noise home'}>동방의 소음</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href={`${homeUrl}#products`}>{copy.back}</a>
+      <a href="#overview">{copy.overview}</a>
+      <a href="#contact">{copy.contact}</a>
+      <a href={otherUrl}>{otherLabel}</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="detail-hero" aria-labelledby="product-title">
+      <div class="detail-hero__white">
+        <div class="detail-copy reveal" data-reveal>
+          <p class="eyebrow">{copy.product} / {String(primaryProducts.findIndex((item) => item.slug === slug) + 1).padStart(2, '0')}</p>
+          <h1 id="product-title">{current.shortName}</h1>
+          <p class="tagline">{current.tagline}</p>
+          <p class="status">{product.status[locale]}</p>
+          <a href={actionHref} target={actionExternal ? '_blank' : undefined} rel={actionHref.startsWith('http') ? 'noopener' : undefined}>
+            {copy.open}
+          </a>
+        </div>
+      </div>
+
+      <div class="sun-wrap">
+        <SunGlassScene
+          label={locale === 'ko' ? `${current.shortName} 유리 노을 오브젝트` : `${current.shortName} glass sunset object`}
+          accent={glow}
+          compact
+        />
+      </div>
+
+      <div class="detail-hero__orange" aria-hidden="true">
+        <strong>{current.shortName}</strong>
+        <span>{product.kind[locale]}</span>
+      </div>
+    </section>
+
+    <section class="overview" id="overview" aria-labelledby="overview-title">
+      <div class="overview-intro reveal" data-reveal>
+        <p class="eyebrow">01 / 02</p>
+        <h2 id="overview-title">{copy.overview}</h2>
+        <p>{current.description}</p>
+      </div>
+
+      <div class="fact-list">
+        {facts.map(([title, body], index) => (
+          <article class="fact-row reveal" data-reveal>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="state-section" aria-labelledby="state-title">
+      <div class="state-heading reveal" data-reveal>
+        <p class="eyebrow">02 / 02</p>
+        <h2 id="state-title">{copy.state}</h2>
+      </div>
+      <div class="state-body reveal" data-reveal>
+        <strong>{product.status[locale]}</strong>
+        <p>{current.proof}</p>
+      </div>
+    </section>
+
+    <section class="related" aria-labelledby="related-title">
+      <div class="related-heading">
+        <p class="eyebrow">{copy.related}</p>
+        <h2 id="related-title">{copy.related}</h2>
+      </div>
+      <div class="related-list">
+        {primaryProducts.map((item) => (
+          <a
+            href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener' : undefined}
+            data-active={item.slug === slug ? 'true' : 'false'}
+          >
+            <span>{String(item.index + 1).padStart(2, '0')}</span>
+            <strong>{item.name}</strong>
+            <em>{item.tagline}</em>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <span>{t.contact.copyright}</span>
+    <a href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
+  </footer>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-product-detail]');
+  if (root) {
+    const progress = root.querySelector<HTMLElement>('.scroll-progress');
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (progress) progress.style.transform = `scaleX(${ratio})`;
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.14 });
+    root.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element));
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+</script>
+
+<style>
+  .detail-site {
+    --ink: #111111;
+    --paper: #ffffff;
+    --muted: #707070;
+    --line: #d7d7d7;
+    min-height: 100vh;
+    overflow: clip;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .scroll-progress {
+    position: fixed;
+    inset: 0 auto auto 0;
+    z-index: 100;
+    width: 100%;
+    height: 2px;
+    background: var(--product-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .site-nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding: 0 3rem;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+  }
+
+  .brand,
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+  }
+
+  .detail-hero {
+    position: relative;
+    min-height: 100svh;
+    padding-top: 72px;
+  }
+
+  .detail-hero__white {
+    min-height: calc(51svh - 72px);
+    padding: 7rem 6.7vw 3rem;
+  }
+
+  .detail-copy {
+    width: min(48rem, 62%);
+  }
+
+  .eyebrow {
+    margin: 0 0 1.5rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .detail-copy h1 {
+    margin: 0;
+    font-size: 5.2rem;
+    font-weight: 650;
+    line-height: 1;
+  }
+
+  .tagline {
+    max-width: 37rem;
+    margin: 2rem 0 0;
+    font-size: 1.35rem;
+    font-weight: 550;
+    line-height: 1.45;
+  }
+
+  .status {
+    margin: 1rem 0 2.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .detail-copy > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    border-bottom: 1px solid currentColor;
+    font-size: 0.9rem;
+    font-weight: 650;
+  }
+
+  .sun-wrap {
+    position: absolute;
+    z-index: 5;
+    top: calc(51svh - 15rem);
+    right: 7vw;
+    width: 22rem;
+    height: 22rem;
+  }
+
+  .detail-hero__orange {
+    position: relative;
+    min-height: 49svh;
+    padding: 2.5rem 6.7vw 3rem;
+    overflow: hidden;
+    border-bottom: 8px solid var(--ink);
+    background: var(--product-orange);
+  }
+
+  .detail-hero__orange strong {
+    display: block;
+    max-width: 90%;
+    overflow: hidden;
+    color: transparent;
+    font-size: 18rem;
+    font-weight: 560;
+    line-height: 0.82;
+    white-space: nowrap;
+    -webkit-text-stroke: 1.25px var(--ink);
+    transform: scaleX(1.2);
+    transform-origin: left center;
+  }
+
+  .detail-hero__orange span {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .overview {
+    padding: 8rem 6.7vw 9rem;
+  }
+
+  .overview-intro {
+    display: grid;
+    grid-template-columns: 12rem minmax(12rem, 0.8fr) minmax(20rem, 1.2fr);
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 5rem;
+  }
+
+  .overview-intro h2,
+  .state-heading h2,
+  .related-heading h2 {
+    margin: 0;
+    font-size: 3.4rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .overview-intro > p:last-child {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .fact-list {
+    border-top: 1px solid var(--ink);
+  }
+
+  .fact-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(12rem, 0.7fr) minmax(20rem, 1.3fr);
+    align-items: center;
+    min-height: 9rem;
+    gap: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fact-row > span {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .fact-row h3 {
+    margin: 0;
+    font-size: 1.55rem;
+    font-weight: 600;
+  }
+
+  .fact-row p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .state-section {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.8fr) minmax(26rem, 1.2fr);
+    gap: 5rem;
+    padding: 8rem 6.7vw;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .state-heading .eyebrow,
+  .state-body p {
+    color: #a8a8a8;
+  }
+
+  .state-body strong {
+    display: block;
+    font-size: 2.7rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .state-body p {
+    max-width: 38rem;
+    margin: 2rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .related {
+    padding: 8rem 6.7vw 9rem;
+    background: var(--product-orange);
+  }
+
+  .related-heading {
+    margin-bottom: 4rem;
+  }
+
+  .related-list {
+    border-top: 1px solid var(--ink);
+  }
+
+  .related-list a {
+    display: grid;
+    grid-template-columns: 5rem minmax(12rem, 0.7fr) minmax(18rem, 1.3fr);
+    align-items: center;
+    min-height: 7rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.4);
+    transition: padding 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms ease;
+  }
+
+  .related-list a:hover,
+  .related-list a:focus-visible {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .related-list a[data-active='true'] {
+    opacity: 0.48;
+    pointer-events: none;
+  }
+
+  .related-list span,
+  .related-list em {
+    font-size: 0.8rem;
+    font-style: normal;
+  }
+
+  .related-list strong {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5.5rem;
+    padding: 0 6.7vw;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.75rem;
+  }
+
+  .site-footer a {
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid currentColor;
+  }
+
+  @media (max-width: 900px) {
+    .detail-copy h1 {
+      font-size: 4rem;
+    }
+
+    .sun-wrap {
+      right: 2vw;
+      width: 19rem;
+      height: 19rem;
+    }
+
+    .detail-hero__orange strong {
+      font-size: 7rem;
+    }
+
+    .overview-intro,
+    .state-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .fact-row {
+      grid-template-columns: 5rem minmax(10rem, 0.7fr) minmax(16rem, 1.3fr);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .site-nav {
+      min-height: 64px;
+      padding: 0 1.25rem;
+    }
+
+    .nav-links a:not(:last-child) {
+      display: none;
+    }
+
+    .detail-hero {
+      padding-top: 64px;
+    }
+
+    .detail-hero__white {
+      min-height: 32rem;
+      padding: 5rem 1.25rem 7rem;
+    }
+
+    .detail-copy {
+      width: 100%;
+    }
+
+    .detail-copy h1 {
+      font-size: 3.3rem;
+    }
+
+    .tagline {
+      max-width: 18rem;
+      font-size: 1.08rem;
+    }
+
+    .sun-wrap {
+      top: 24.25rem;
+      right: -0.25rem;
+      width: 13.5rem;
+      height: 13.5rem;
+      pointer-events: none;
+    }
+
+    .detail-hero__orange {
+      min-height: 22rem;
+      padding: 5.5rem 1.25rem 2rem;
+    }
+
+    .detail-hero__orange strong {
+      max-width: 100%;
+      font-size: 4.8rem;
+      transform: none;
+    }
+
+    .overview,
+    .state-section,
+    .related {
+      padding: 4.5rem 1.25rem;
+    }
+
+    .overview-intro {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .overview-intro h2,
+    .state-heading h2,
+    .related-heading h2 {
+      font-size: 2.4rem;
+    }
+
+    .fact-row {
+      grid-template-columns: 2.5rem 1fr;
+      min-height: 8rem;
+      gap: 1rem;
+      padding: 1.3rem 0;
+    }
+
+    .fact-row h3 {
+      font-size: 1.25rem;
+    }
+
+    .fact-row p {
+      grid-column: 2;
+    }
+
+    .state-body strong {
+      font-size: 2rem;
+    }
+
+    .related-list a {
+      grid-template-columns: 2.5rem 1fr;
+      min-height: 6.5rem;
+      gap: 0.75rem;
+    }
+
+    .related-list em {
+      grid-column: 2;
+      padding-bottom: 0.75rem;
+    }
+
+    .site-footer {
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 6.5rem;
+      padding: 0 1.25rem;
+    }
+  }
+</style>

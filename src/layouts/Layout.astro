@@ -7,179 +7,70 @@ interface Props {
   title?: string;
   description?: string;
   path?: string;
+  chrome?: 'default' | 'none';
 }
 
-const { locale, title, description, path = locale === 'ko' ? '/' : '/en/' } = Astro.props;
+const { locale, title, description, path = locale === 'ko' ? '/' : '/en/', chrome = 'default' } = Astro.props;
 const t = strings[locale];
-const otherLocale = locale === 'ko' ? 'en' : 'ko';
-const otherUrl = otherLocale === 'ko' ? '/' : '/en/';
+const homeUrl = locale === 'ko' ? '/' : '/en/';
+const otherUrl = locale === 'ko'
+  ? `/en${path === '/' ? '/' : path}`
+  : (path.replace(/^\/en/, '') || '/');
+const otherLabel = locale === 'ko' ? 'EN' : 'KO';
 const pageTitle = title ?? `${t.siteTitle} — ${t.siteDescription}`;
 const pageDesc = description ?? t.siteDescription;
+const canonicalPath = path || '/';
 ---
 
 <!doctype html>
 <html lang={locale}>
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="generator" content={Astro.generator} />
-  <title>{pageTitle}</title>
-  <meta name="description" content={pageDesc} />
-  <meta property="og:title" content={pageTitle} />
-  <meta property="og:description" content={pageDesc} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`https://east-noise-web.vercel.app${path}`} />
-  <meta property="og:image" content="https://east-noise-web.vercel.app/og.svg" />
-  <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={pageTitle} />
-  <meta name="twitter:description" content={pageDesc} />
-  <meta name="twitter:image" content="https://east-noise-web.vercel.app/og.svg" />
-  <link rel="alternate" hreflang="ko" href={`https://east-noise-web.vercel.app${(path.replace(/^\/en/, '') || '/')}`} />
-  <link rel="alternate" hreflang="en" href={`https://east-noise-web.vercel.app${path.startsWith('/en') ? path : '/en' + (path === '/' ? '/' : path)}`} />
-  <link rel="alternate" hreflang="x-default" href={`https://east-noise-web.vercel.app${(path.replace(/^\/en/, '') || '/')}`} />
-  <link rel="canonical" href={`https://east-noise-web.vercel.app${path}`} />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-</head>
-<body class="min-h-screen flex flex-col">
-  <header class="px-6 py-3 flex items-center justify-between max-w-6xl mx-auto w-full">
-    <a href={locale === 'ko' ? '/' : '/en/'} class="logo-link text-sm font-semibold tracking-tight inline-flex items-center min-h-[44px] py-2 -my-2 group">
-      <span class="logo-dot" aria-hidden="true"></span>
-      <span class="logo-text">East Noise</span>
-    </a>
-    <a href={otherUrl} id="lang-switch" class="magnet text-xs font-medium text-[--color-muted] hover:text-[--color-fg] transition-colors uppercase tracking-wider inline-flex items-center justify-center min-h-[44px] min-w-[44px] py-2 px-3 -my-2 -mr-3">
-      <span class="magnet-inner">{t.nav.langSwitch}</span>
-    </a>
-  </header>
-  <main class="flex-1">
-    <slot />
-  </main>
-  <div id="scroll-progress" aria-hidden="true"></div>
-  <style>
-    #scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      width: 100%;
-      transform-origin: left;
-      transform: scaleX(0);
-      background: #18181b;
-      z-index: 9999;
-      pointer-events: none;
-    }
-    @supports (animation-timeline: scroll()) {
-      #scroll-progress {
-        animation: progress linear both;
-        animation-timeline: scroll(root);
-      }
-      @keyframes progress {
-        to { transform: scaleX(1); }
-      }
-    }
-    .magnet { will-change: transform; }
-    .magnet-inner { display: inline-block; will-change: transform; }
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://east-noise-web.vercel.app${canonicalPath}`} />
+    <meta property="og:image" content="https://east-noise-web.vercel.app/og.svg" />
+    <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDesc} />
+    <meta name="twitter:image" content="https://east-noise-web.vercel.app/og.svg" />
+    <link rel="alternate" hreflang="ko" href={`https://east-noise-web.vercel.app${(canonicalPath.replace(/^\/en/, '') || '/')}`} />
+    <link rel="alternate" hreflang="en" href={`https://east-noise-web.vercel.app${canonicalPath.startsWith('/en') ? canonicalPath : '/en' + (canonicalPath === '/' ? '/' : canonicalPath)}`} />
+    <link rel="alternate" hreflang="x-default" href={`https://east-noise-web.vercel.app${(canonicalPath.replace(/^\/en/, '') || '/')}`} />
+    <link rel="canonical" href={`https://east-noise-web.vercel.app${canonicalPath}`} />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  </head>
+  <body class:list={[{ 'chromeless-page': chrome === 'none', 'standard-page': chrome !== 'none' }]}>
+    {chrome !== 'none' && (
+      <header class="layout-nav" aria-label="East Noise">
+        <a href={homeUrl} class="layout-brand">동방의 소음</a>
+        <nav aria-label="Primary">
+          <a href={`${homeUrl}#products`}>Products</a>
+          <a href={`${homeUrl}#contact`}>Contact</a>
+          <a href={otherUrl}>{otherLabel}</a>
+        </nav>
+      </header>
+    )}
 
-    .logo-link { gap: 8px; }
-    .logo-dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--color-fg);
-      transform: scale(0.8);
-      transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1), background-color 380ms;
-    }
-    .logo-link:hover .logo-dot {
-      transform: scale(1.4);
-      background: var(--color-accent);
-    }
-    .logo-text {
-      background-image: linear-gradient(to right, var(--color-fg), var(--color-fg));
-      background-size: 0% 1px;
-      background-position: 0 100%;
-      background-repeat: no-repeat;
-      transition: background-size 420ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .logo-link:hover .logo-text {
-      background-size: 100% 1px;
-    }
+    <main>
+      <slot />
+    </main>
 
-    .footer-arrow {
-      display: inline-block;
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .footer-email:hover .footer-arrow {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .magnet, .magnet-inner { transform: none !important; }
-      .logo-dot, .logo-text, .footer-arrow { transition: none !important; }
-    }
-  </style>
-  <script is:inline>
-    (function () {
-      // Scroll progress fallback for browsers without scroll-timeline
-      if (!CSS.supports('animation-timeline: scroll()')) {
-        const bar = document.getElementById('scroll-progress');
-        if (bar) {
-          window.addEventListener('scroll', () => {
-            const h = document.documentElement;
-            const max = h.scrollHeight - h.clientHeight;
-            const p = max > 0 ? h.scrollTop / max : 0;
-            bar.style.transform = `scaleX(${p})`;
-          }, { passive: true });
-        }
-      }
-
-      // Magnetic interactive elements
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const noHover = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-      if (reduce || noHover) return;
-
-      const magnets = document.querySelectorAll('.magnet');
-      magnets.forEach((m) => {
-        const inner = m.querySelector('.magnet-inner') || m;
-        const radius = 60;
-        m.addEventListener('mousemove', (e) => {
-          const rect = m.getBoundingClientRect();
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const dx = e.clientX - cx;
-          const dy = e.clientY - cy;
-          const dist = Math.hypot(dx, dy);
-          if (dist > radius * 2) return;
-          const k = 0.35;
-          m.style.transform = `translate(${dx * k}px, ${dy * k}px)`;
-          inner.style.transform = `translate(${dx * 0.15}px, ${dy * 0.15}px)`;
-        });
-        m.addEventListener('mouseleave', () => {
-          m.style.transform = '';
-          inner.style.transform = '';
-        });
-      });
-    })();
-  </script>
-  <footer class="border-t border-[--color-border] mt-24">
-    <div class="max-w-6xl mx-auto w-full px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-[--color-muted]">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+    {chrome !== 'none' && (
+      <footer class="layout-footer" id="contact">
         <span>{t.contact.copyright}</span>
-        <span class="hidden sm:inline opacity-40">·</span>
-        <span class="tabular-nums">{t.contact.bizNo}</span>
-      </div>
-      <a href={`mailto:${t.contact.email}`} class="magnet footer-email hover:text-[--color-fg] transition-colors">
-        <span class="magnet-inner inline-flex items-center gap-1.5">
-          {t.contact.email}
-          <span class="footer-arrow" aria-hidden="true">→</span>
-        </span>
-      </a>
-    </div>
-  </footer>
-</body>
+        <a href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
+        <span>{t.contact.bizNo}</span>
+      </footer>
+    )}
+  </body>
 </html>
