@@ -33,9 +33,6 @@ const copy = {
     courseKicker: '03 · 과정',
     courseTitle: '끝낸 날만 다음 단계로 이어집니다.',
     courseBody: 'BASIC, STANDARD, HARD. 각 30일 과정은 단계별 루틴과 오늘의 문장을 바꾸며 이어집니다.',
-    privacyKicker: '기록은 기기에 남습니다',
-    privacyTitle: '계정도, 서버도 없습니다.',
-    privacyBody: '루틴, 진행률, 회고와 선택한 카드 이미지는 사용자의 기기에 저장됩니다. 외부 서버로 전송하지 않습니다.',
     closing: '흔들려도, 이어가라.',
     closingBody: 'ALPHA는 완벽한 하루보다 다시 이어가는 하루를 기록합니다.',
     support: '지원',
@@ -66,9 +63,6 @@ const copy = {
     courseKicker: '03 · Course',
     courseTitle: 'Only a closed day moves the course forward.',
     courseBody: 'BASIC, STANDARD, HARD. Each 30-day course changes its routines and daily message as you advance.',
-    privacyKicker: 'Your record stays on your device',
-    privacyTitle: 'No account. No server.',
-    privacyBody: 'Routines, progress, reflections, and selected card images are stored on your device and are not sent to an external server.',
     closing: 'Even when you waver, keep going.',
     closingBody: 'ALPHA records the day you returned, not the illusion of a perfect one.',
     support: 'Support',
@@ -150,15 +144,6 @@ const copy = {
           <p>{copy.courseBody}</p>
         </div>
       </article>
-    </section>
-
-    <section class="privacy-section" aria-labelledby="privacy-title">
-      <div class="privacy-copy reveal" data-reveal>
-        <p class="eyebrow">{copy.privacyKicker}</p>
-        <h2 id="privacy-title">{copy.privacyTitle}</h2>
-        <p>{copy.privacyBody}</p>
-      </div>
-      <img src="/screenshots/alpha/icon.png" alt="ALPHA" width="1024" height="1024" loading="lazy" />
     </section>
 
     <section class="closing" aria-labelledby="closing-title">
@@ -348,7 +333,6 @@ const copy = {
   }
 
   .overview-heading h2,
-  .privacy-copy h2,
   .closing h2 {
     margin: 0;
     font-size: clamp(2.8rem, 5vw, 5.2rem);
@@ -357,7 +341,6 @@ const copy = {
   }
 
   .overview-heading > p:last-child,
-  .privacy-copy > p:last-child,
   .closing > p {
     margin: 0;
     color: var(--muted);
@@ -437,27 +420,6 @@ const copy = {
     line-height: 1.8;
   }
 
-  .privacy-section {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
-    gap: 6rem;
-    align-items: center;
-    padding: 9rem 7vw;
-    background: #111111;
-  }
-
-  .privacy-copy > p:last-child {
-    max-width: 42rem;
-    margin-top: 2.5rem;
-  }
-
-  .privacy-section img {
-    width: min(100%, 25rem);
-    aspect-ratio: 1;
-    justify-self: end;
-    object-fit: cover;
-  }
-
   .closing {
     min-height: 70svh;
     padding: 10rem 7vw 8rem;
@@ -497,8 +459,7 @@ const copy = {
   }
 
   @media (max-width: 800px) {
-    .overview-heading,
-    .privacy-section {
+    .overview-heading {
       grid-template-columns: 1fr;
     }
 
@@ -506,10 +467,6 @@ const copy = {
       gap: 1.5rem;
     }
 
-    .privacy-section img {
-      justify-self: start;
-      width: min(60vw, 20rem);
-    }
   }
 
   @media (max-width: 650px) {
@@ -550,7 +507,6 @@ const copy = {
     }
 
     .overview,
-    .privacy-section,
     .closing {
       padding: 5rem 1.25rem;
     }
@@ -578,10 +534,6 @@ const copy = {
 
     .method-copy h2 {
       font-size: 2.7rem;
-    }
-
-    .privacy-section {
-      gap: 3rem;
     }
 
     .site-footer {
