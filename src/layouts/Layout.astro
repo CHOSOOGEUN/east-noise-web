@@ -8,9 +8,21 @@ interface Props {
   description?: string;
   path?: string;
   chrome?: 'default' | 'none';
+  themeColor?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
-const { locale, title, description, path = locale === 'ko' ? '/' : '/en/', chrome = 'default' } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  path = locale === 'ko' ? '/' : '/en/',
+  chrome = 'default',
+  themeColor = '#ffffff',
+  ogImage = '/images/east-apartment/og-apartment.png',
+  ogImageAlt: customOgImageAlt,
+} = Astro.props;
 const t = strings[locale];
 const homeUrl = locale === 'ko' ? '/' : '/en/';
 const otherUrl = locale === 'ko'
@@ -20,6 +32,20 @@ const otherLabel = locale === 'ko' ? 'EN' : 'KO';
 const pageTitle = title ?? `${t.siteTitle} — ${t.siteDescription}`;
 const pageDesc = description ?? t.siteDescription;
 const canonicalPath = path || '/';
+const siteRoot = Astro.site ?? new URL('https://east-noise-web.vercel.app');
+const canonicalUrl = new URL(canonicalPath, siteRoot);
+const koreanPath = canonicalPath.replace(/^\/en/, '') || '/';
+const englishPath = canonicalPath.startsWith('/en') ? canonicalPath : `/en${canonicalPath === '/' ? '/' : canonicalPath}`;
+const ogImageUrl = new URL(ogImage, siteRoot);
+const ogImageAlt = customOgImageAlt ?? (locale === 'ko' ? '비 오는 밤, 불이 켜진 동방의 소음 아파트' : 'The East Noise apartment with lit windows on a rainy night');
+const organizationData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: locale === 'ko' ? '동방의 소음' : 'East Noise',
+  alternateName: locale === 'ko' ? 'East Noise' : '동방의 소음',
+  url: siteRoot.toString(),
+  email: t.contact.email,
+};
 ---
 
 <!doctype html>
@@ -31,39 +57,42 @@ const canonicalPath = path || '/';
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content={themeColor} />
+    <meta name="robots" content="index, follow" />
+    <meta name="format-detection" content="telephone=no" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDesc} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://east-noise-web.vercel.app${canonicalPath}`} />
-    <meta property="og:image" content="https://east-noise-web.vercel.app/og.svg" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
-    <meta name="twitter:image" content="https://east-noise-web.vercel.app/og.svg" />
-    <link rel="alternate" hreflang="ko" href={`https://east-noise-web.vercel.app${(canonicalPath.replace(/^\/en/, '') || '/')}`} />
-    <link rel="alternate" hreflang="en" href={`https://east-noise-web.vercel.app${canonicalPath.startsWith('/en') ? canonicalPath : '/en' + (canonicalPath === '/' ? '/' : canonicalPath)}`} />
-    <link rel="alternate" hreflang="x-default" href={`https://east-noise-web.vercel.app${(canonicalPath.replace(/^\/en/, '') || '/')}`} />
-    <link rel="canonical" href={`https://east-noise-web.vercel.app${canonicalPath}`} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <link rel="alternate" hreflang="ko" href={new URL(koreanPath, siteRoot)} />
+    <link rel="alternate" hreflang="en" href={new URL(englishPath, siteRoot)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(koreanPath, siteRoot)} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationData)}></script>
   </head>
   <body class:list={[{ 'chromeless-page': chrome === 'none', 'standard-page': chrome !== 'none' }]}>
     {chrome !== 'none' && (
       <header class="layout-nav" aria-label="East Noise">
         <a href={homeUrl} class="layout-brand">동방의 소음</a>
         <nav aria-label="Primary">
-          <a href={`${homeUrl}#products`}>Products</a>
+          <a href={`${homeUrl}#luvit-room`}>Products</a>
           <a href={`${homeUrl}#contact`}>Contact</a>
           <a href={otherUrl}>{otherLabel}</a>
         </nav>
       </header>
     )}
 
-    <main>
-      <slot />
-    </main>
+    {chrome === 'none' ? <slot /> : <main><slot /></main>}
 
     {chrome !== 'none' && (
       <footer class="layout-footer" id="contact">

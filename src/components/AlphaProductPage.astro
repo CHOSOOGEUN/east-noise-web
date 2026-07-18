@@ -1,0 +1,598 @@
+---
+import { strings, type Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = strings[locale];
+const homeUrl = locale === 'ko' ? '/' : '/en/';
+const otherUrl = locale === 'ko' ? '/en/alpha' : '/alpha';
+const otherLabel = locale === 'ko' ? 'EN' : 'KO';
+
+const copy = {
+  ko: {
+    room: '04 / 04 · 30일 루틴·기록 앱',
+    lead: ['오늘의 루틴을 끝내고', '기록으로 자신을 다시 세웁니다.'],
+    status: 'App Store 출시 준비 중 · iOS',
+    detail: 'ALPHA 자세히 보기',
+    overview: '30일 동안, 기준을 다시 세운다.',
+    overviewBody: 'ALPHA는 의지를 측정하지 않습니다. 오늘 할 일을 선택하고, 끝내고, 하루를 닫은 기록을 쌓습니다.',
+    courses: [
+      ['BASIC', '작은 루틴을 매일 끝내는 법부터 시작합니다.'],
+      ['STANDARD', '익숙한 기준에 머물지 않고 강도를 높입니다.'],
+      ['HARD', '변명할 틈 없이 스스로 정한 기준을 수행합니다.'],
+    ],
+    todayKicker: '01 · 오늘',
+    todayTitle: '오늘 해야 할 일만 남깁니다.',
+    todayBody: '루틴을 체크하고 완료를 누르면 하루의 결과가 확정됩니다. 마감 전에는 언제든 다시 고칠 수 있습니다.',
+    recordKicker: '02 · 기록',
+    recordTitle: '쌓인 기록이 너를 만든다.',
+    recordBody: '완료와 미완성, 연속 일수, 직접 남긴 회고가 날짜별로 쌓입니다. 기억이 아니라 기록으로 자신을 봅니다.',
+    courseKicker: '03 · 과정',
+    courseTitle: '끝낸 날만 다음 단계로 이어집니다.',
+    courseBody: 'BASIC, STANDARD, HARD. 각 30일 과정은 단계별 루틴과 오늘의 문장을 바꾸며 이어집니다.',
+    privacyKicker: '기록은 기기에 남습니다',
+    privacyTitle: '계정도, 서버도 없습니다.',
+    privacyBody: '루틴, 진행률, 회고와 선택한 카드 이미지는 사용자의 기기에 저장됩니다. 외부 서버로 전송하지 않습니다.',
+    closing: '흔들려도, 이어가라.',
+    closingBody: 'ALPHA는 완벽한 하루보다 다시 이어가는 하루를 기록합니다.',
+    support: '지원',
+    privacy: '개인정보 처리방침',
+    terms: '이용약관',
+    contact: '출시 소식 문의',
+    navOverview: '소개',
+    navMethod: '방식',
+  },
+  en: {
+    room: '04 / 04 · 30-day routine and reflection app',
+    lead: ['Finish what matters today.', 'Rebuild your standards through the record.'],
+    status: 'Preparing for App Store release · iOS',
+    detail: 'Explore ALPHA',
+    overview: 'Thirty days to rebuild your standards.',
+    overviewBody: 'ALPHA does not measure motivation. Choose what must be done today, finish it, close the day, and keep the record.',
+    courses: [
+      ['BASIC', 'Begin by finishing a small set of routines every day.'],
+      ['STANDARD', 'Raise the standard instead of settling into comfort.'],
+      ['HARD', 'Execute the standard you set without room for excuses.'],
+    ],
+    todayKicker: '01 · Today',
+    todayTitle: 'Only today\'s work remains.',
+    todayBody: 'Check each routine and complete the day when the work is done. Until then, every choice remains editable.',
+    recordKicker: '02 · Record',
+    recordTitle: 'The record is what rebuilds you.',
+    recordBody: 'Completed and missed days, streaks, and your own reflections build into a dated record. See yourself through evidence, not memory.',
+    courseKicker: '03 · Course',
+    courseTitle: 'Only a closed day moves the course forward.',
+    courseBody: 'BASIC, STANDARD, HARD. Each 30-day course changes its routines and daily message as you advance.',
+    privacyKicker: 'Your record stays on your device',
+    privacyTitle: 'No account. No server.',
+    privacyBody: 'Routines, progress, reflections, and selected card images are stored on your device and are not sent to an external server.',
+    closing: 'Even when you waver, keep going.',
+    closingBody: 'ALPHA records the day you returned, not the illusion of a perfect one.',
+    support: 'Support',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use',
+    contact: 'Release inquiries',
+    navOverview: 'Overview',
+    navMethod: 'Method',
+  },
+}[locale];
+---
+
+<div class="alpha-site" data-alpha-detail>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-nav" aria-label="East Noise">
+    <a href={homeUrl} class="brand" aria-label={locale === 'ko' ? '동방의 소음 홈' : 'East Noise home'}>{locale === 'ko' ? '동방의 소음' : 'East Noise'}</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#overview">{copy.navOverview}</a>
+      <a href="#method">{copy.navMethod}</a>
+      <a href="#contact">{copy.contact}</a>
+      <a href={otherUrl}>{otherLabel}</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="alpha-hero" aria-labelledby="alpha-title">
+      <div class="alpha-hero__copy reveal" data-reveal>
+        <p class="eyebrow">{copy.room}</p>
+        <h1 id="alpha-title">ALPHA</h1>
+        <p class="hero-lead">
+          <span>{copy.lead[0]}</span>
+          <span>{copy.lead[1]}</span>
+        </p>
+        <p class="status">{copy.status}</p>
+        <a class="text-link" href="#overview">{copy.detail}</a>
+      </div>
+      <span class="hero-index" aria-hidden="true">α</span>
+    </section>
+
+    <section class="overview" id="overview" aria-labelledby="overview-title">
+      <div class="overview-heading reveal" data-reveal>
+        <p class="eyebrow">ALPHA: REFORGE</p>
+        <h2 id="overview-title">{copy.overview}</h2>
+        <p>{copy.overviewBody}</p>
+      </div>
+      <div class="course-list">
+        {copy.courses.map(([title, body], index) => (
+          <article class="course-row reveal" data-reveal>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="method" id="method" aria-label={copy.navMethod}>
+      <article class="method-band method-band--today">
+        <div class="method-copy reveal" data-reveal>
+          <p class="eyebrow">{copy.todayKicker}</p>
+          <h2>{copy.todayTitle}</h2>
+          <p>{copy.todayBody}</p>
+        </div>
+      </article>
+
+      <article class="method-band method-band--records">
+        <div class="method-copy reveal" data-reveal>
+          <p class="eyebrow">{copy.recordKicker}</p>
+          <h2>{copy.recordTitle}</h2>
+          <p>{copy.recordBody}</p>
+        </div>
+      </article>
+
+      <article class="method-band method-band--course">
+        <div class="method-copy reveal" data-reveal>
+          <p class="eyebrow">{copy.courseKicker}</p>
+          <h2>{copy.courseTitle}</h2>
+          <p>{copy.courseBody}</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="privacy-section" aria-labelledby="privacy-title">
+      <div class="privacy-copy reveal" data-reveal>
+        <p class="eyebrow">{copy.privacyKicker}</p>
+        <h2 id="privacy-title">{copy.privacyTitle}</h2>
+        <p>{copy.privacyBody}</p>
+      </div>
+      <img src="/screenshots/alpha/icon.png" alt="ALPHA" width="1024" height="1024" loading="lazy" />
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <p class="eyebrow">ALPHA: REFORGE</p>
+      <h2 id="closing-title">{copy.closing}</h2>
+      <p>{copy.closingBody}</p>
+      <a class="text-link" href={`mailto:${t.contact.email}?subject=${encodeURIComponent('ALPHA release')}`}>{copy.contact}</a>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <span>{t.contact.copyright}</span>
+    <nav aria-label={locale === 'ko' ? 'ALPHA 문서' : 'ALPHA documents'}>
+      <a href={locale === 'ko' ? '/alpha/support' : '/en/alpha/support'}>{copy.support}</a>
+      <a href={locale === 'ko' ? '/legal/alpha/privacy' : '/en/legal/alpha/privacy'}>{copy.privacy}</a>
+      <a href={locale === 'ko' ? '/legal/alpha/terms' : '/en/legal/alpha/terms'}>{copy.terms}</a>
+    </nav>
+  </footer>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-alpha-detail]');
+  if (root) {
+    const progress = root.querySelector<HTMLElement>('.scroll-progress');
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (progress) progress.style.transform = `scaleX(${ratio})`;
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+
+    root.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element));
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+</script>
+
+<style>
+  .alpha-site {
+    --red: #ff1b1f;
+    --ink: #050505;
+    --paper: #f3f3f3;
+    --muted: #9a9a9a;
+    min-height: 100vh;
+    overflow: clip;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .scroll-progress {
+    position: fixed;
+    inset: 0 auto auto 0;
+    z-index: 100;
+    width: 100%;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .site-nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding: 0 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.84);
+    backdrop-filter: blur(16px);
+  }
+
+  .brand,
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+  }
+
+  .alpha-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding: 9rem 7vw 5rem;
+    isolation: isolate;
+    background-image: url('/visuals/alpha/today-fire.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .alpha-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.66);
+  }
+
+  .alpha-hero__copy {
+    width: min(48rem, 72%);
+  }
+
+  .eyebrow {
+    margin: 0 0 1.5rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 650;
+    text-transform: uppercase;
+  }
+
+  .alpha-hero h1 {
+    margin: 0;
+    font-size: clamp(5.5rem, 10vw, 10rem);
+    font-weight: 620;
+    line-height: 0.9;
+  }
+
+  .hero-lead {
+    display: grid;
+    gap: 0.35rem;
+    margin: 3rem 0 0;
+    font-size: clamp(1.35rem, 2.3vw, 2.35rem);
+    font-weight: 520;
+    line-height: 1.45;
+  }
+
+  .status {
+    margin: 2rem 0 2.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid currentColor;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .hero-index {
+    position: absolute;
+    right: 5vw;
+    bottom: 2vw;
+    color: rgba(255, 27, 31, 0.26);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(14rem, 31vw, 34rem);
+    font-style: italic;
+    line-height: 0.8;
+    pointer-events: none;
+  }
+
+  .overview {
+    padding: 9rem 7vw 10rem;
+  }
+
+  .overview-heading {
+    display: grid;
+    grid-template-columns: 11rem minmax(18rem, 0.8fr) minmax(20rem, 1.2fr);
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 6rem;
+  }
+
+  .overview-heading h2,
+  .privacy-copy h2,
+  .closing h2 {
+    margin: 0;
+    font-size: clamp(2.8rem, 5vw, 5.2rem);
+    font-weight: 560;
+    line-height: 1.08;
+  }
+
+  .overview-heading > p:last-child,
+  .privacy-copy > p:last-child,
+  .closing > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .course-list {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .course-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(15rem, 0.7fr) minmax(20rem, 1.3fr);
+    gap: 2rem;
+    align-items: center;
+    min-height: 9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .course-row > span,
+  .course-row p {
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
+
+  .course-row h3 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .course-row p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .method-band {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 82svh;
+    padding: 7rem 7vw;
+    isolation: isolate;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .method-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.58);
+  }
+
+  .method-band--today { background-image: url('/visuals/alpha/today-fire.jpg'); }
+  .method-band--records { background-image: url('/visuals/alpha/records-header.jpg'); }
+  .method-band--course { background-image: url('/visuals/alpha/course-stage.jpg'); }
+
+  .method-copy {
+    width: min(45rem, 70%);
+  }
+
+  .method-copy h2 {
+    margin: 0;
+    font-size: clamp(2.8rem, 5.5vw, 5.6rem);
+    font-weight: 560;
+    line-height: 1.08;
+  }
+
+  .method-copy > p:last-child {
+    max-width: 37rem;
+    margin: 2rem 0 0;
+    color: #c4c4c4;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .privacy-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+    gap: 6rem;
+    align-items: center;
+    padding: 9rem 7vw;
+    background: #111111;
+  }
+
+  .privacy-copy > p:last-child {
+    max-width: 42rem;
+    margin-top: 2.5rem;
+  }
+
+  .privacy-section img {
+    width: min(100%, 25rem);
+    aspect-ratio: 1;
+    justify-self: end;
+    object-fit: cover;
+  }
+
+  .closing {
+    min-height: 70svh;
+    padding: 10rem 7vw 8rem;
+    background: var(--red);
+    color: #090909;
+  }
+
+  .closing .eyebrow,
+  .closing > p {
+    color: rgba(9, 9, 9, 0.68);
+  }
+
+  .closing > p {
+    max-width: 39rem;
+    margin: 2.5rem 0;
+  }
+
+  .site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 6rem;
+    padding: 0 7vw;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .site-footer nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .site-footer a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @media (max-width: 800px) {
+    .overview-heading,
+    .privacy-section {
+      grid-template-columns: 1fr;
+    }
+
+    .overview-heading {
+      gap: 1.5rem;
+    }
+
+    .privacy-section img {
+      justify-self: start;
+      width: min(60vw, 20rem);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .site-nav {
+      min-height: 64px;
+      padding: 0 1.25rem;
+    }
+
+    .nav-links a:not(:last-child) {
+      display: none;
+    }
+
+    .alpha-hero {
+      align-items: flex-end;
+      min-height: 92svh;
+      padding: 8rem 1.25rem 5rem;
+      background-position: 62% center;
+    }
+
+    .alpha-hero__copy,
+    .method-copy {
+      width: 100%;
+    }
+
+    .alpha-hero h1 {
+      font-size: clamp(4.5rem, 25vw, 7rem);
+    }
+
+    .hero-lead {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+    }
+
+    .hero-index {
+      right: -1rem;
+      bottom: 2rem;
+      font-size: 15rem;
+    }
+
+    .overview,
+    .privacy-section,
+    .closing {
+      padding: 5rem 1.25rem;
+    }
+
+    .overview-heading {
+      margin-bottom: 3.5rem;
+    }
+
+    .course-row {
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      min-height: 8rem;
+      padding: 1.4rem 0;
+    }
+
+    .course-row p {
+      grid-column: 2;
+    }
+
+    .method-band {
+      min-height: 75svh;
+      padding: 5rem 1.25rem;
+      background-position: 62% center;
+    }
+
+    .method-copy h2 {
+      font-size: 2.7rem;
+    }
+
+    .privacy-section {
+      gap: 3rem;
+    }
+
+    .site-footer {
+      display: grid;
+      gap: 1rem;
+      padding: 2rem 1.25rem;
+    }
+
+    .site-footer nav {
+      flex-wrap: wrap;
+      gap: 0 1.25rem;
+    }
+  }
+</style>

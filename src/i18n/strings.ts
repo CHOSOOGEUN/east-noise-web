@@ -11,7 +11,7 @@ export const strings = {
     },
     hero: {
       title: '작은 제품을 만들고\n꾸준히 운영합니다',
-      lead: '일상에서 쓰는 앱과 웹 서비스를 만들고 운영합니다. 지금은 Luvit, Seed, heum, 남보나, ALPHA, Buying OS를 다룹니다.',
+      lead: 'Luvit, Seed, heum을 운영하고 ALPHA, 오늘치, 웹 미스터리와 내부 운영 도구를 만듭니다.',
       cta: '운영 보드 보기',
       secondaryCta: '협업 문의',
       channelLabel: '동방의 소음 운영 제품',
@@ -51,8 +51,8 @@ export const strings = {
       body: '동방의 소음은 조수근과 이유석이 함께 만들고 김윤서가 마케팅을 맡는 제품 팀입니다. 수원에서 시작했고, 작은 소비자 앱과 웹 서비스를 만들며 출시 이후의 운영까지 함께 봅니다.',
       stats: [
         { label: '공개 앱', value: '2' },
-        { label: '운영 웹', value: '2' },
-        { label: '심사/개발 중', value: '3' },
+        { label: '운영 웹·콘텐츠', value: '2' },
+        { label: '개발 중', value: '4' },
       ],
       people: [
         { role: '공동창업자', name: '조수근' },
@@ -75,7 +75,7 @@ export const strings = {
     contact: {
       heading: '연락',
       email: 'eastnoise26@gmail.com',
-      copyright: '© 2026 East Noise',
+      copyright: '© 2026 East Noise. All rights reserved.',
       bizNo: '사업자등록번호 541-14-03034',
     },
   },
@@ -91,7 +91,7 @@ export const strings = {
     },
     hero: {
       title: 'We make small products\nand keep working on them',
-      lead: 'East Noise builds and operates apps and web services for everyday use. Current work includes Luvit, Seed, heum, Nambona, ALPHA, and Buying OS.',
+      lead: 'East Noise operates Luvit, Seed, and heum while building ALPHA, Oneulchi, web mysteries, and internal operating tools.',
       cta: 'View operating board',
       secondaryCta: 'Contact us',
       channelLabel: 'East Noise operating products',
@@ -131,8 +131,8 @@ export const strings = {
       body: 'East Noise is a product team built by Soogeun Cho and Yuseok Lee, with marketing led by Yunseo Kim. Started in Suwon, Korea, we build consumer apps and web services while keeping release and operation close together.',
       stats: [
         { label: 'Public apps', value: '2' },
-        { label: 'Live web', value: '2' },
-        { label: 'Review / development', value: '3' },
+        { label: 'Live web / content', value: '2' },
+        { label: 'In development', value: '4' },
       ],
       people: [
         { role: 'Co-founder', name: 'Soogeun Cho' },
@@ -155,7 +155,7 @@ export const strings = {
     contact: {
       heading: 'Contact',
       email: 'eastnoise26@gmail.com',
-      copyright: '© 2026 East Noise',
+      copyright: '© 2026 East Noise. All rights reserved.',
       bizNo: 'Business Reg. 541-14-03034',
     },
   },
