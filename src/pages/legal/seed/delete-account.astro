@@ -1,0 +1,38 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LegalDoc from '../../../components/LegalDoc.astro';
+
+const sections = [
+  {
+    heading: '1. 앱에서 바로 삭제하기',
+    body: 'Seed 앱을 열고 [설정 > 계정 > 회원 탈퇴]를 선택한 뒤 안내에 따라 확인하세요. 삭제 요청이 접수되면 해당 Seed 계정은 로그아웃되고 계정 및 연결 데이터의 삭제 절차가 즉시 시작됩니다.',
+  },
+  {
+    heading: '2. 앱에 접속할 수 없는 경우',
+    body: 'Seed 계정에 연결된 이메일 주소에서 eastnoise26@gmail.com으로 제목을 “Seed 계정 삭제 요청”이라고 적어 보내주세요. 계정 소유 확인에 필요한 최소 정보만 요청할 수 있으며 비밀번호, 결제 카드번호, 인증 코드는 보내지 마세요.',
+  },
+  {
+    heading: '3. 삭제되는 데이터',
+    body: 'Seed 인증 계정, 프로필, 식물 이름, 루틴 설정, 인증 메타데이터, 식물 성장 상태, 푸시 토큰, 피드백과 계정에 연결된 비공개 Daily Story 영상이 삭제 대상입니다. 삭제 절차는 요청 즉시 시작되며 최대 30일 안에 완료됩니다.',
+  },
+  {
+    heading: '4. 별도로 보관될 수 있는 정보',
+    body: 'Google Play, Apple App Store 또는 RevenueCat이 법령과 각 서비스 정책에 따라 보관해야 하는 결제 거래 기록은 Seed 계정 삭제와 별도로 유지될 수 있습니다. Seed는 카드번호나 은행 계좌 정보를 보관하지 않습니다.',
+  },
+  {
+    heading: '5. 구독은 별도로 해지하기',
+    body: 'Seed 계정 삭제는 Google Play 또는 Apple App Store의 자동 갱신 구독을 취소하지 않습니다. 계정을 삭제하기 전에 사용 중인 스토어의 구독 관리에서 Seed Plus 자동 갱신도 별도로 해지하세요.',
+  },
+];
+---
+
+<Layout locale="ko">
+  <LegalDoc
+    kicker="SEED · 계정 관리"
+    title="계정 및 데이터 삭제"
+    lastUpdated="최종 업데이트 2026년 7월 20일"
+    contactEmail="eastnoise26@gmail.com"
+    contactLabel="앱에 접속할 수 없나요? 계정에 연결된 이메일로 요청하세요."
+    sections={sections}
+  />
+</Layout>

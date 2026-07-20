@@ -5,11 +5,11 @@ import LegalDoc from '../../../../components/LegalDoc.astro';
 const sections = [
   {
     heading: '1. What we collect',
-    body: 'We collect your email (for sign-in), nickname, the routines you create (name, time, repeat weekdays, icon), the short check-in clips you upload, and your plant state (current species, stage, streak, coins). We do not collect a separate date of birth or legal name.',
+    body: 'We collect your account identifier and email for sign-in, plant name, routine settings (name, time, repeat days, and icon), check-in records, and plant growth state. If you create or check in to an exercise routine, its name and completion record may include fitness information that you chose to enter. When you use Seed Plus, we process the product identifier and entitlement status, Daily Story videos stored in the cloud, and their archive status. If you send feedback, we store its text, category, and app version. We do not separately collect your date of birth, legal name, address, contacts, or location.',
   },
   {
-    heading: '2. How we handle videos',
-    body: "Check-in videos are uploaded only under your account's private storage, and are never visible to other users. Videos play back as a 'daily clip' montage, and clips older than a certain period are automatically deleted. We never access your videos unless you explicitly request it or we are legally required to.",
+    heading: '2. Videos and Daily Story',
+    body: "Individual check-in source clips stay on your device by default. Only the combined Daily Story created with Seed Plus is uploaded to your private Supabase Storage path so it can be recovered after reinstalling. A Daily Story may include audio recorded with the video. Nothing is automatically published to other users. A video is passed to another app only when you explicitly use the share action. We access video only when you request support, when the minimum access is necessary to resolve a service failure, or when required by law.",
   },
   {
     heading: '3. Push notifications',
@@ -17,7 +17,7 @@ const sections = [
   },
   {
     heading: '4. Third parties',
-    body: 'We use Google Firebase (Authentication, Firestore, Cloud Storage, Cloud Messaging) and Expo (application infrastructure) to operate the app. Each provider is contractually required to handle your data according to its own privacy policy.',
+    body: 'We use Supabase for authentication, database, private video storage, and server functions; Google Firebase Cloud Messaging for notifications; RevenueCat for purchase entitlement and restoration; and Expo for app build and delivery infrastructure. Apple App Store or Google Play processes the payment itself, and Seed never receives your card or bank account details. Each provider processes data only as needed to provide its service and under its own privacy policy.',
   },
   {
     heading: '5. Google / Apple Sign-in',
@@ -25,7 +25,7 @@ const sections = [
   },
   {
     heading: '6. Retention',
-    body: 'We keep your data while your account is active. If you delete your account, your profile, routines, check-in videos, and plant state are erased within 30 days. Aggregated, anonymised statistics that cannot identify you may be retained for analytics.',
+    body: 'We keep account, routine, check-in metadata, and plant records while your account remains active. After Seed Plus expires, existing cloud Daily Stories may be deleted after a 30-day recovery grace period. If you delete your account in Settings, the linked profile, routines, records, plant state, push tokens, cloud video, and other user data enter deletion immediately and are erased within 30 days. Payment transaction records may be retained separately by Apple, Google, or RevenueCat as required by law and their policies.',
   },
   {
     heading: '7. Minors',
@@ -35,6 +35,14 @@ const sections = [
     heading: '8. Your rights',
     body: 'You can request access, correction, or deletion of your data. Most of this is available directly inside the app settings. For other requests, email us from the address linked to your account.',
   },
+  {
+    heading: '9. Product analytics and tracking',
+    body: 'Seed does not show ads or use third-party advertising tracking. Product interactions such as opening the paywall, selecting a plan, and purchase or restore outcomes may be linked to your account for payment support and product improvement. We do not use them for advertising targeting or sell them.',
+  },
+  {
+    heading: '10. Security and changes',
+    body: 'Data in transit is protected with HTTPS, and account-level access controls and private storage policies are applied. If service changes affect the data we process or how long we keep it, we will update this policy and notify users of material changes through the app or website.',
+  },
 ];
 ---
 
@@ -42,7 +50,7 @@ const sections = [
   <LegalDoc
     kicker="SEED · LEGAL"
     title="Privacy Policy"
-    lastUpdated="Last updated May 24, 2026"
+    lastUpdated="Last updated July 20, 2026"
     contactEmail="eastnoise26@gmail.com"
     contactLabel="Questions?"
     sections={sections}

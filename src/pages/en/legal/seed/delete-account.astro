@@ -1,0 +1,38 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+
+const sections = [
+  {
+    heading: '1. Delete your account in the app',
+    body: 'Open Seed and choose Settings > Account > Delete account, then follow the confirmation steps. Once accepted, you are signed out and deletion of the Seed account and its linked data begins immediately.',
+  },
+  {
+    heading: '2. If you cannot access the app',
+    body: 'Email eastnoise26@gmail.com from the address linked to your Seed account with the subject “Seed account deletion request.” We may ask for the minimum information needed to verify ownership. Never send a password, payment card number, or authentication code.',
+  },
+  {
+    heading: '3. Data that is deleted',
+    body: 'Deletion covers your Seed authentication account, profile, plant name, routine settings, check-in metadata, plant growth state, push tokens, feedback, and private Daily Story videos linked to the account. The process starts when you request it and is completed within 30 days.',
+  },
+  {
+    heading: '4. Information that may be retained separately',
+    body: 'Payment transaction records that Google Play, Apple App Store, or RevenueCat must retain under applicable law or their own policies may remain separately from your Seed account. Seed does not store card or bank account details.',
+  },
+  {
+    heading: '5. Cancel subscriptions separately',
+    body: 'Deleting your Seed account does not cancel an auto-renewing subscription in Google Play or Apple App Store. Before deletion, also cancel Seed Plus from the subscription management page of the store you use.',
+  },
+];
+---
+
+<Layout locale="en">
+  <LegalDoc
+    kicker="SEED · ACCOUNT"
+    title="Account and data deletion"
+    lastUpdated="Last updated July 20, 2026"
+    contactEmail="eastnoise26@gmail.com"
+    contactLabel="Cannot access the app? Request deletion from your account email."
+    sections={sections}
+  />
+</Layout>

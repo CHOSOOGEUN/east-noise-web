@@ -60,12 +60,24 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://east-noise-web.vercel.app/legal/seed/delete-account</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/legal/seed/delete-account"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/legal/seed/delete-account"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://east-noise-web.vercel.app/en/legal/seed/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://east-noise-web.vercel.app/en/legal/seed/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/legal/seed/delete-account</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
