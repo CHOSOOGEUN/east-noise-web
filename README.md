@@ -9,6 +9,8 @@ Astro-based company website for East Noise / 동방의 소음.
 - `/luvit`, `/en/luvit` Luvit landing pages
 - `/pickie`, `/en/pickie` Pickie landing pages
 - `/seed`, `/en/seed` Seed landing pages
+- `/alpha`, `/en/alpha` ALPHA product pages
+- `/alpha/support`, `/en/alpha/support` ALPHA support pages
 - `/legal/...` product legal pages
 
 ## Commands
