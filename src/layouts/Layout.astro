@@ -8,9 +8,21 @@ interface Props {
   description?: string;
   path?: string;
   chrome?: 'default' | 'none';
+  themeColor?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
-const { locale, title, description, path = locale === 'ko' ? '/' : '/en/', chrome = 'default' } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  path = locale === 'ko' ? '/' : '/en/',
+  chrome = 'default',
+  themeColor = '#ffffff',
+  ogImage = '/og.svg',
+  ogImageAlt,
+} = Astro.props;
 const t = strings[locale];
 const homeUrl = locale === 'ko' ? '/' : '/en/';
 const otherUrl = locale === 'ko'
@@ -20,6 +32,8 @@ const otherLabel = locale === 'ko' ? 'EN' : 'KO';
 const pageTitle = title ?? `${t.siteTitle} — ${t.siteDescription}`;
 const pageDesc = description ?? t.siteDescription;
 const canonicalPath = path || '/';
+const siteRoot = 'https://east-noise-web.vercel.app';
+const ogImageUrl = new URL(ogImage, siteRoot).toString();
 ---
 
 <!doctype html>
@@ -31,17 +45,19 @@ const canonicalPath = path || '/';
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content={themeColor} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDesc} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`https://east-noise-web.vercel.app${canonicalPath}`} />
-    <meta property="og:image" content="https://east-noise-web.vercel.app/og.svg" />
+    <meta property="og:image" content={ogImageUrl} />
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
     <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDesc} />
-    <meta name="twitter:image" content="https://east-noise-web.vercel.app/og.svg" />
+    <meta name="twitter:image" content={ogImageUrl} />
+    {ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
     <link rel="alternate" hreflang="ko" href={`https://east-noise-web.vercel.app${(canonicalPath.replace(/^\/en/, '') || '/')}`} />
     <link rel="alternate" hreflang="en" href={`https://east-noise-web.vercel.app${canonicalPath.startsWith('/en') ? canonicalPath : '/en' + (canonicalPath === '/' ? '/' : canonicalPath)}`} />
     <link rel="alternate" hreflang="x-default" href={`https://east-noise-web.vercel.app${(canonicalPath.replace(/^\/en/, '') || '/')}`} />

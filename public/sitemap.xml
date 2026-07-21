@@ -81,4 +81,54 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/alpha</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/alpha"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/alpha"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/alpha</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/alpha"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/alpha"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/alpha/support</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/alpha/support"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/alpha/support"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/alpha/support</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/legal/alpha/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/legal/alpha/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/legal/alpha/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/legal/alpha/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/legal/alpha/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://east-noise-web.vercel.app/legal/alpha/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://east-noise-web.vercel.app/en/legal/alpha/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://east-noise-web.vercel.app/en/legal/alpha/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
