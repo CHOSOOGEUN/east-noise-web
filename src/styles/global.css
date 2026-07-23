@@ -6,7 +6,7 @@
   --color-fg: #111111;
   --color-muted: #6d6d6d;
   --color-border: #d8d8d8;
-  --color-accent: #ff5a18;
+  --color-accent: #92d7d2;
 }
 
 :root {
@@ -57,12 +57,12 @@ html[lang='ko'] body {
 }
 
 ::selection {
-  background: #ff5a18;
-  color: #111111;
+  background: #eaa9c0;
+  color: #061426;
 }
 
 :focus-visible {
-  outline: 2px solid #111111;
+  outline: 2px solid #9de5df;
   outline-offset: 4px;
 }
 
@@ -109,10 +109,6 @@ html[lang='ko'] body {
     opacity: 1;
     transform: none;
   }
-}
-
-body.chromeless-page > main {
-  min-height: 100vh;
 }
 
 body.standard-page > main {

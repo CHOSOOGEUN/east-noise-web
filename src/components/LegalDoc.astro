@@ -62,16 +62,19 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
 
 <style>
   .legal-page {
-    --ink: #111111;
-    --orange: #ff5a18;
-    --line: #d7d7d7;
+    --ink: #07111f;
+    --night: #061426;
+    --paper: #efede7;
+    --line: rgba(7, 17, 31, 0.17);
     color: var(--ink);
+    background: var(--paper);
   }
 
   .legal-hero {
     min-height: 26rem;
     padding: 6rem 6.7vw 4rem;
-    background: var(--orange);
+    background: var(--night);
+    color: #f4f2ec;
   }
 
   .legal-hero p,
@@ -80,6 +83,7 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
+    color: rgba(226, 234, 242, 0.62);
   }
 
   .legal-hero h1 {
@@ -147,7 +151,7 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
 
   .legal-contact {
     padding: 6rem 6.7vw;
-    background: var(--ink);
+    background: var(--night);
     color: #ffffff;
   }
 

@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://eastnoise.com',
+  site: 'https://east-noise-web.vercel.app',
   i18n: {
     locales: ['ko', 'en'],
     defaultLocale: 'ko',
