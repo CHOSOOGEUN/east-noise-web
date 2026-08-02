@@ -5,11 +5,11 @@ import LegalDoc from '../../../../components/LegalDoc.astro';
 const sections = [
   {
     heading: '1. What we collect',
-    body: 'We collect your account identifier and email for sign-in, plant name, routine settings (name, time, repeat days, and icon), check-in records, and plant growth state. If you create or check in to an exercise routine, its name and completion record may include fitness information that you chose to enter. When you use Seed Plus, we process the product identifier and entitlement status, Daily Story videos stored in the cloud, and their archive status. If you send feedback, we store its text, category, and app version. We do not separately collect your date of birth, legal name, address, contacts, or location.',
+    body: 'We collect your account identifier and email for sign-in, plant name, routine settings (name, time, repeat days, and icon), check-in records, and plant growth state. If you create or check in to an exercise routine, its name and completion record may include fitness information that you chose to enter. When you use Seed Plus, we process the product identifier and entitlement status, check-in source clips temporarily protected before a Daily Story is complete, Daily Story videos stored in the cloud, and their archive status. If you send feedback, we store its text, category, and app version. We do not separately collect your date of birth, legal name, address, contacts, or location.',
   },
   {
     heading: '2. Videos and Daily Story',
-    body: "Individual check-in source clips stay on your device by default. Only the combined Daily Story created with Seed Plus is uploaded to your private Supabase Storage path so it can be recovered after reinstalling. A Daily Story may include audio recorded with the video. Nothing is automatically published to other users. A video is passed to another app only when you explicitly use the share action. We access video only when you request support, when the minimum access is necessary to resolve a service failure, or when required by law.",
+    body: "Free users' individual check-in source clips stay only on their device. With Seed Plus, source clips are temporarily uploaded to your private Supabase Storage path for up to 30 days so a Daily Story can still be completed after reinstalling. Temporary source clips are deleted once the final Daily Story is safely stored in Seed Vault. Completed Daily Stories remain privately stored while Plus is active. Temporary clips and Daily Stories may include audio recorded with the video. Nothing is automatically published to other users. A video is passed to another app only when you explicitly use the share action. We access video only when you request support, when the minimum access is necessary to resolve a service failure, or when required by law.",
   },
   {
     heading: '3. Push notifications',
@@ -25,7 +25,7 @@ const sections = [
   },
   {
     heading: '6. Retention',
-    body: 'We keep account, routine, check-in metadata, and plant records while your account remains active. After Seed Plus expires, existing cloud Daily Stories may be deleted after a 30-day recovery grace period. If you delete your account in Settings, the linked profile, routines, records, plant state, push tokens, cloud video, and other user data enter deletion immediately and are erased within 30 days. Payment transaction records may be retained separately by Apple, Google, or RevenueCat as required by law and their policies.',
+    body: 'We keep account, routine, check-in metadata, and plant records while your account remains active. Seed Plus source clips are retained for no more than 30 days and are deleted sooner once the final Daily Story is stored in Vault. Completed Daily Stories remain stored while Plus is active and may be deleted after a 30-day recovery grace period following actual Plus expiration. If you delete your account in Settings, the linked profile, routines, records, plant state, push tokens, temporary source clips, Daily Stories, and other user data enter deletion immediately and are erased within 30 days. Payment transaction records may be retained separately by Apple, Google, or RevenueCat as required by law and their policies.',
   },
   {
     heading: '7. Minors',
@@ -50,7 +50,7 @@ const sections = [
   <LegalDoc
     kicker="SEED · LEGAL"
     title="Privacy Policy"
-    lastUpdated="Last updated July 20, 2026"
+    lastUpdated="Last updated August 2, 2026"
     contactEmail="eastnoise26@gmail.com"
     contactLabel="Questions?"
     sections={sections}
