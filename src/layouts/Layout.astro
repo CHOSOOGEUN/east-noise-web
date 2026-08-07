@@ -20,7 +20,7 @@ const {
   path = locale === 'ko' ? '/' : '/en/',
   chrome = 'default',
   themeColor = '#ffffff',
-  ogImage = '/images/east-apartment/og-apartment.png',
+  ogImage = '/visuals/company/og-home.jpg',
   ogImageAlt: providedOgImageAlt,
 } = Astro.props;
 const t = strings[locale];
@@ -38,8 +38,8 @@ const koreanPath = canonicalPath.replace(/^\/en/, '') || '/';
 const englishPath = canonicalPath.startsWith('/en') ? canonicalPath : `/en${canonicalPath === '/' ? '/' : canonicalPath}`;
 const ogImageUrl = new URL(ogImage, siteRoot);
 const defaultOgImageAlt = locale === 'ko'
-  ? '비 오는 밤, 불이 켜진 동방의 소음 아파트'
-  : 'The East Noise apartment with lit windows on a rainy night';
+  ? 'Luvit, Seed, ALPHA, HEUM을 만드는 동방의 소음'
+  : 'East Noise, makers of Luvit, Seed, ALPHA, and HEUM';
 const ogImageAlt = providedOgImageAlt ?? defaultOgImageAlt;
 const organizationData = {
   '@context': 'https://schema.org',

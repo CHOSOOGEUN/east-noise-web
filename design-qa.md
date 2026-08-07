@@ -1,105 +1,90 @@
-# Design QA
+# Design QA — Approved East Noise homepage
 
-- Source visual truth: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/source-east-apartment-selected.png`
-- Final implementation screenshot: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/home-desktop-full-polish.png`
-- Desktop viewport: `1440x1024`
-- Mobile viewport: `390x844`
-- State: Korean homepage, English homepage, six-window focus/click interaction, Luvit detail, Seed detail.
+## Comparison target
 
-## Full-view comparison evidence
+- Source visual truth: `/Users/josugeun/.codex/generated_images/019f68bf-36e4-7bd1-9705-ba5302e4c96b/exec-6c08b936-cba4-401d-a0cb-87c614912797.png`
+- Source pixels and state: 1488 × 1058, Korean desktop homepage hero.
+- Final implementation screenshot: `artifacts/design-qa/product-home-original-diorama-pass3.png`, captured after restoring the original product world.
+- Layout baseline: `artifacts/design-qa/product-home-approved-current-1488x1058-pass2-normalized.png`, captured at the source's exact 1488 × 1058 viewport before the isolated image-source swap.
+- Mobile evidence: `artifacts/design-qa/product-home-approved-current-mobile-390x844-pass2.png`, 390 × 844 CSS pixels at DPR 2, saved as 780 × 1688.
+- Full-view side-by-side comparison: `artifacts/design-qa/product-home-approved-source-vs-current-pass2.png`.
 
-- Final side-by-side: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/source-vs-implementation-polish.png`
-- The implementation preserves the selected source's rainy midnight apartment, left-side brand message, six lit windows, pink Luvit room, mint Seed room, blue-black heum desk, short cinematic scene rhythm, and quiet footer tone.
-- The implementation intentionally continues below the source composition with the remaining three products, studio information, and contact section so existing company-site content and destinations remain available.
+## Approved original product world restored
 
-## Focused-region comparison evidence
-
-- Hero and product-room comparison: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/source-vs-implementation-focused-pass3.png`
-- Focused comparison confirms the facade occupies the same right-side proportion, the Korean display title follows the same scale and placement, scene heights track the source bands, and Luvit/Seed screens sit in the same visual zone as the source devices.
-- Focus state evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/home-desktop-window-focus-pass4.png`
-
-## Required fidelity surfaces
-
-- Fonts and typography: Pretendard Variable provides the neutral Korean grotesk direction in the source. Display sizes, medium optical weight, tight tracking, line height, and wrapping were checked at both viewports. Long English copy remains inside its columns.
-- Spacing and layout rhythm: The hero uses the source's left-third copy/right-two-thirds facade composition. Desktop product scenes were reduced from near-full-screen panels to source-matched cinematic bands. Mobile sections remain tall enough for copy and real screenshots without overlap.
-- Colors and visual tokens: Midnight navy, moonlight white, dusty pink, muted mint, and cool blue replace the previous orange system across home, product, metadata, selection, focus, and legal surfaces.
-- Image quality and asset fidelity: Four project-local raster assets are optimized by Astro into responsive WebP variants. Luvit and Seed use real app screenshots instead of generated interfaces. No placeholder imagery, handcrafted SVG, CSS illustration, or generated fake product UI remains.
-- Copy and content: The selected source's short room-based language is preserved while current product status, product links, team names, contact details, Korean/English routes, and remaining products stay factual.
-- Accessibility and interactions: Six window targets are semantic links with labels. Keyboard focus reveals the room name, clicking reaches `#luvit-room`, mobile shortcuts remain horizontally scrollable without page overflow, controls meet the 44px target, and reduced motion is supported.
+- Luvit uses the original two plush rabbits, heart letter, and miniature house.
+- Seed uses the original growing sprout in its moss planter.
+- ALPHA uses the original black-and-red 90-day staircase.
+- HEUM uses the original ivory H monument and delivery-tracking evidence.
+- The exact current App Store/local source screenshots remain in the four detailed product sections below the hero.
 
 ## Comparison history
 
-### Pass 1
+1. Pass 1 — P1: the approved continuous four-product diorama had been replaced by four independent rounded screenshot cards. This changed the primary composition, hierarchy, material language, and first impression.
+   - Fix: removed the card grid and restored one uninterrupted, edge-to-edge handcrafted product world in the original four-zone order.
+2. Pass 1 — P1: the first current-product diorama was too tall and collided with the body copy and CTA. The display heading was also larger and lower than the source.
+   - Fix: regenerated the product world with the approved lower, wider silhouette; calibrated the desktop heading, body, CTA, negative margin, and baseline to the source viewport.
+3. Pass 2 — the source and implementation now align on header height, centered hero hierarchy, headline wrapping, body and CTA placement, full-width diorama baseline, four-zone order, warm-white palette, and overlaid product rail. No actionable P0, P1, or P2 mismatch remains.
+   - Evidence: `artifacts/design-qa/product-home-approved-source-vs-current-pass2.png`.
+4. Pass 3 — at the user's direction, the regenerated current-product diorama was removed and the exact original approved product-world asset was restored. No approximate regeneration is used.
+   - Evidence: `artifacts/design-qa/product-home-original-diorama-pass3.png`, 1234 × 768 browser viewport.
+   - The only rendering change from the exact-viewport Pass 2 baseline is the hero `<img>` source and its intrinsic dimensions; layout CSS and interaction markup are unchanged.
 
-- [P1] Luvit, Seed, and heum sections were roughly 1.4–1.6 times taller than the source, weakening the source's short cinematic cut rhythm.
-  - Fix: Replaced near-full-viewport desktop rooms with source-ratio heights: approximately `43vw`, `39vw`, and `42vw`.
-- [P2] The three additional product cards used decorative colored rectangles that read like placeholder graphics.
-  - Fix: Removed the decorative rectangles and tightened the cards into a typography-led archive.
-- [P2] Product body copy and detail links were visibly smaller than the source at normalized scale.
-  - Fix: Increased room body and link type while retaining mobile-safe sizes.
+## Required fidelity surfaces
 
-### Pass 2
+- Typography: the Korean headline now matches the source's two-line scale, weight, tracking, and vertical position; secondary copy and CTA hierarchy are aligned.
+- Spacing and layout rhythm: header, hero copy, CTA, diorama baseline, and rail occupy the same first-viewport bands as the approved source.
+- Colors and tokens: warm white, near-black, muted gray, navy CTA, Luvit pink, Seed green, ALPHA red/black, and HEUM blue match the approved palette.
+- Image quality: the hero is one high-resolution raster asset rather than CSS art or placeholder cards. Detailed sections use exact current store/repository screenshots.
+- Copy and content: current Luvit, Seed, ALPHA, and HEUM feature definitions remain intact in Korean and English.
 
-- [P2] The apartment facade began around 42% of the frame instead of the source's roughly 36%, leaving excessive empty space on the left.
-  - Fix: Right-aligned the source image crop so the facade occupies the intended right-side proportion.
-- [P2] The Luvit and Seed screens sat too close to the right edge.
-  - Fix: Moved Luvit to `right: 28vw` and Seed to `right: 24vw`, matching the source's device zones.
-- [P2] Window hotspots no longer aligned after the facade crop changed.
-  - Fix: Shifted the hotspot grid left and rechecked the first window focus outline against the pink window.
+## Responsive and interaction checks
 
-### Pass 3 and interaction check
+- Desktop was visually compared at the source's exact 1488 × 1058 viewport.
+- The restored original diorama was visually regression-checked in the live browser at 1234 × 768; its four original objects, labels, grounding surfaces, and CTA clearance are intact.
+- Mobile was visually inspected at 390 × 844 with no horizontal page overflow; the continuous world intentionally crops to the central Seed/ALPHA area while the four-product rail remains available below it.
+- Hero CTA and product rail anchors remain authored as functional internal navigation; product, Instagram, language, and HEUM destinations were preserved.
+- The Astro development toolbar visible at the bottom of local captures is development-only and excluded from production builds.
 
-- Final full-view and focused side-by-side comparison found no remaining actionable P0, P1, or P2 difference.
-- Homepage, English homepage, Luvit, and Seed returned 200 with no browser console errors or page errors.
-- Desktop and mobile reported no horizontal page overflow.
-- Window focus result: label visible and element focused.
-- Window click result: hash changed to `#luvit-room` and the destination room was visible.
+## Product detail redesign — Luvit, Seed, ALPHA, HEUM
 
-### Copy and launch polish
+### Comparison target
 
-- Replaced generic product-team language with shorter room-based copy that expresses the team's operating point of view while keeping product claims factual.
-- Added an active section marker to desktop navigation, a structured company footer, clearly labeled Seed legal links, richer Open Graph metadata, canonical/alternate URLs, and organization structured data.
-- Rechecked Korean home at `1440x1024` and `390x844`, English home at `1440x1024`, and Luvit at `390x844`.
-- All checked pages and internal routes returned 200, no horizontal overflow was reported, and there were no browser console, page, or failed-request errors.
-- Mobile evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/home-mobile-full-polish.png`
-- Product mobile evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/luvit-mobile-full-polish.png`
+- Shared visual source: `public/visuals/company/product-world-hero.webp`, the exact warm-white handcrafted four-product diorama approved for the homepage.
+- Product-specific source assets: `public/visuals/company/{luvit,seed,alpha,heum}-world-detail-v1.webp`, generated from the approved source composition and material language.
+- Same-input comparison board: `artifacts/design-qa/detail-source-vs-four-desktop-pass1.png` places the approved source and all four implemented first screens in one 1848 × 768 image.
+- Desktop implementation captures: `artifacts/design-qa/detail-{luvit,seed,alpha,heum}-desktop-pass1.png`, captured in Chrome at 1234 × 768.
+- Mobile comparison board: `artifacts/design-qa/detail-four-mobile-390x829-pass1.png`, four 390 × 829 CSS-pixel captures at DPR 2.
 
-### Pass 4 — window hotspot alignment
+### Visual findings and resolutions
 
-- [P1] The desktop hotspot layer used one equal `2 × 3` grid even though the apartment windows have different widths and shorter glass areas. The Luvit focus border visibly extended far beyond the lit window.
-  - User evidence: `/var/folders/v4/j5512dks50b49xvjmj3y5xtc0000gn/T/codex-clipboard-lMddij.png`
-  - Fix: Replaced the equal grid with six source-image rectangles measured in the original `1586 × 992` coordinate system. The rendered image and hotspot layer now share the same cover crop, right/center positioning, scale, and pointer parallax transform.
-  - Post-fix focused comparison: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/window-map-before-after-focus.png`
-- Rechecked the focused Luvit window at `1440 × 1024`, `1280 × 800`, and `1024 × 768`.
-  - Evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/window-map-1440x1024-focus.png`
-  - Evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/window-map-1280x800-focus.png`
-  - Evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/window-map-1024x768-focus.png`
-- Across all six windows and three desktop viewports, rendered hotspot geometry matched the corresponding image geometry within `0.016px`. Focus border and label reached full visibility, click navigation resolved to the intended section, and no console or page errors were reported.
-- Mobile composition was rechecked at `390 × 844`; desktop hotspots remain hidden there and the existing product shortcut rail remains available.
-  - Evidence: `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/window-map-mobile-390x844.png`
+1. The selected homepage visual depends on one continuous warm-white miniature world, low-profile fabric and paper surfaces, near-black editorial typography, and one product accent per scene.
+   - Resolution: each detail page uses the same material palette and spatial logic while giving the product its own close-up object and accent: Luvit pink rabbits, Seed green sprout, ALPHA red-black stairs, HEUM blue delivery evidence.
+2. Product meaning needed to remain visible rather than becoming a decorative campaign page.
+   - Resolution: every page now pairs a short product thesis with a three-step real flow and exact current app or game screenshots.
+3. At 1234 × 768, all four hero objects remain clear of headings, body copy, status, CTAs, and the lower stats rail. No actionable P0, P1, or P2 overlap, crop, or hierarchy issue remains.
+4. At 390 × 829, headings keep deliberate Korean line breaks, CTAs become full-width 44px-plus targets, hero objects follow the copy, stats stack vertically, and real screenshots become a single column without horizontal overflow.
+5. The Luvit product-evidence anchor and vertical scroll were exercised in the live responsive viewport; the sticky header, black evidence section, both current screenshots, and lower flow remain readable and navigable.
 
-### Pass 5 — current product sync
+### Content and route checks
 
-- Rebuilt the operating list from the active folders and their current README, PRD, package, app, and publishing metadata rather than carrying forward the old homepage claims.
-- Corrected public product facts:
-  - Luvit delivers its daily mission at 9 AM and remains live at App Store version 1.0.2.
-  - Seed is now `Seed. 루틴으로 키우는 식물`, live at version 1.0.3, with Daily Story and longer review flows reflected in the copy.
-  - heum is a browser mystery game with `09:04` and `ROOM 404`, not a lifestyle pattern quiz.
-- Removed Nambona from the active product list because its workspace now lives under `실패/`.
-- Added the active ALPHA Magazine, ALPHA app, Mystery Platform, 오늘치, and Buying OS work with explicit public, prototype, and internal-operation statuses.
-- Expanded the lower archive from three to five cards. Desktop uses a `3 + 2` grid with no empty placeholder cell; mobile uses five full-width cards.
-- Browser verification covered all 10 generated routes at `1440 × 1024` and `390 × 844`: 20 successful responses, no horizontal overflow, and no console or page errors.
-- Current-content evidence:
-  - `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/other-rooms-desktop-latest-content.png`
-  - `/Users/josugeun/Projects/East-Noise/east-noise-web/artifacts/design-qa/other-rooms-mobile-latest-content-fixed.png`
+- Luvit reflects the current daily mission, next-day partner judgment, shared 30P, penalty, room, and memory flow; the removed guessing flow is not presented.
+- Seed reflects 2–4 second video check-ins, eight plants with seven stages, Daily Story, and long-term review.
+- ALPHA remains a paid product-first 90-day self-control app with three 30-day courses, daily close, reflection, and retry; the retired magazine language is explicitly excluded.
+- HEUM now has its own `/heum` and `/en/heum` introduction pages for Season 01 `반송 예정`, while the primary action continues to the browser-native experience on `heum.cloud`.
+- Korean and English route sets share the same component, legal links are preserved for Seed and ALPHA, and product-to-product navigation now includes the local HEUM detail route.
 
-## Findings
+### Second polish pass
 
-- No actionable P0, P1, or P2 findings remain.
-
-## Follow-up polish
-
-- [P3] The source shows hands holding the Luvit phone, while the implementation deliberately floats the real app screenshot over the room so product UI stays accurate and updateable.
-- [P3] The additional product, studio, and contact sections extend beyond the selected mock's ending but preserve required company-site information without changing the selected four-scene visual core.
+1. The mobile hero previously left too much dead space before the product object.
+   - Resolution: tightened the mobile top rhythm, copy-to-action spacing, and image handoff without changing the approved desktop composition.
+   - Evidence: `artifacts/design-qa/detail-luvit-mobile-390x829-pass2.png` and `artifacts/design-qa/detail-heum-mobile-390x829-pass2.png`, both captured in Chrome's 390 x 829 responsive viewport at DPR 2.
+2. Sticky-header section jumps could place headings under the header, and the active section was not visible in navigation.
+   - Resolution: added the shared 72px anchor offset and an `IntersectionObserver`-driven current-section state. The scroll progress update is requestAnimationFrame-throttled.
+3. The product switcher had insufficient context when scanning all four products.
+   - Resolution: each item now carries its product number, name, and category while retaining the product-specific accent and current-page state.
+4. Product screenshots did not declare intrinsic dimensions.
+   - Resolution: all hero and evidence images now include their real width and height to stabilize layout while loading.
+5. Final desktop review used `artifacts/design-qa/detail-{luvit,seed,alpha,heum}-desktop-pass2.png`; the approved composition, text hierarchy, CTA clearance, object crop, and stats rail remain intact across all four products.
+6. The sticky anchor, language and local product routes, CTA destinations, and responsive evidence flow were exercised. Chrome DevTools reported zero console messages during the responsive pass.
 
 final result: passed

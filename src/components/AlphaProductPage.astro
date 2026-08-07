@@ -13,16 +13,16 @@ const otherLabel = locale === 'ko' ? 'EN' : 'KO';
 
 const copy = {
   ko: {
-    room: '04 / 04 · 30일 루틴·기록 앱',
+    room: '04 / 04 · 90일 자기통제 루틴 앱',
     lead: ['오늘의 루틴을 끝내고', '기록으로 자신을 다시 세웁니다.'],
-    status: 'App Store 출시 준비 중 · iOS',
-    detail: 'ALPHA 자세히 보기',
-    overview: '30일 동안, 기준을 다시 세운다.',
-    overviewBody: 'ALPHA는 의지를 측정하지 않습니다. 오늘 할 일을 선택하고, 끝내고, 하루를 닫은 기록을 쌓습니다.',
+    status: 'App Store · Google Play에서 판매 중',
+    detail: '작동 방식 보기',
+    overview: '90일로 네 인생을 다시 세워라.',
+    overviewBody: 'ALPHA는 BASIC, STANDARD, HARD로 이어지는 3단계 자기통제 프로그램입니다. 각 30일 과정을 루틴과 기록으로 통과합니다.',
     courses: [
-      ['BASIC', '작은 루틴을 매일 끝내는 법부터 시작합니다.'],
-      ['STANDARD', '익숙한 기준에 머물지 않고 강도를 높입니다.'],
-      ['HARD', '변명할 틈 없이 스스로 정한 기준을 수행합니다.'],
+      ['BASIC', '첫 30일, 몸과 생활의 기본을 세웁니다.'],
+      ['STANDARD', '다음 30일, 루틴의 강도와 정확성을 높입니다.'],
+      ['HARD', '마지막 30일, 집중과 절제를 끝까지 밀어붙입니다.'],
     ],
     todayKicker: '01 · 오늘',
     todayTitle: '오늘 해야 할 일만 남깁니다.',
@@ -32,27 +32,27 @@ const copy = {
     recordBody: '완료와 미완성, 연속 일수, 직접 남긴 회고가 날짜별로 쌓입니다. 기억이 아니라 기록으로 자신을 봅니다.',
     courseKicker: '03 · 과정',
     courseTitle: '끝낸 날만 다음 단계로 이어집니다.',
-    courseBody: 'BASIC, STANDARD, HARD. 각 30일 과정은 단계별 루틴과 오늘의 문장을 바꾸며 이어집니다.',
+    courseBody: '각 30일 과정을 통과하면 다음 단계가 열립니다. 기준에 미치지 못하면 같은 과정을 다시 시작할 수 있습니다.',
     closing: '흔들려도, 이어가라.',
     closingBody: 'ALPHA는 완벽한 하루보다 다시 이어가는 하루를 기록합니다.',
     support: '지원',
     privacy: '개인정보 처리방침',
     terms: '이용약관',
-    contact: '출시 소식 문의',
+    contact: '문의',
     navOverview: '소개',
     navMethod: '방식',
   },
   en: {
-    room: '04 / 04 · 30-day routine and reflection app',
+    room: '04 / 04 · 90-day self-discipline app',
     lead: ['Finish what matters today.', 'Rebuild your standards through the record.'],
-    status: 'Preparing for App Store release · iOS',
-    detail: 'Explore ALPHA',
-    overview: 'Thirty days to rebuild your standards.',
-    overviewBody: 'ALPHA does not measure motivation. Choose what must be done today, finish it, close the day, and keep the record.',
+    status: 'Available on the App Store and Google Play',
+    detail: 'See how it works',
+    overview: 'Rebuild your life in 90 days.',
+    overviewBody: 'ALPHA is a three-stage self-discipline program spanning BASIC, STANDARD, and HARD. Pass each 30-day course through routines and records.',
     courses: [
-      ['BASIC', 'Begin by finishing a small set of routines every day.'],
-      ['STANDARD', 'Raise the standard instead of settling into comfort.'],
-      ['HARD', 'Execute the standard you set without room for excuses.'],
+      ['BASIC', 'Build the foundations of body and daily life in the first 30 days.'],
+      ['STANDARD', 'Raise intensity and precision during the next 30 days.'],
+      ['HARD', 'Carry focus and self-control through the final 30 days.'],
     ],
     todayKicker: '01 · Today',
     todayTitle: 'Only today\'s work remains.',
@@ -62,13 +62,13 @@ const copy = {
     recordBody: 'Completed and missed days, streaks, and your own reflections build into a dated record. See yourself through evidence, not memory.',
     courseKicker: '03 · Course',
     courseTitle: 'Only a closed day moves the course forward.',
-    courseBody: 'BASIC, STANDARD, HARD. Each 30-day course changes its routines and daily message as you advance.',
+    courseBody: 'Pass each 30-day course to unlock the next stage. If you fall short, you can restart the same course.',
     closing: 'Even when you waver, keep going.',
     closingBody: 'ALPHA records the day you returned, not the illusion of a perfect one.',
     support: 'Support',
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
-    contact: 'Release inquiries',
+    contact: 'Contact',
     navOverview: 'Overview',
     navMethod: 'Method',
   },
@@ -105,7 +105,7 @@ const copy = {
 
     <section class="overview" id="overview" aria-labelledby="overview-title">
       <div class="overview-heading reveal" data-reveal>
-        <p class="eyebrow">ALPHA: REFORGE</p>
+        <p class="eyebrow">ALPHA</p>
         <h2 id="overview-title">{copy.overview}</h2>
         <p>{copy.overviewBody}</p>
       </div>
@@ -147,10 +147,10 @@ const copy = {
     </section>
 
     <section class="closing" aria-labelledby="closing-title">
-      <p class="eyebrow">ALPHA: REFORGE</p>
+      <p class="eyebrow">ALPHA</p>
       <h2 id="closing-title">{copy.closing}</h2>
       <p>{copy.closingBody}</p>
-      <a class="text-link" href={`mailto:${t.contact.email}?subject=${encodeURIComponent('ALPHA release')}`}>{copy.contact}</a>
+      <a class="text-link" href={`mailto:${t.contact.email}?subject=${encodeURIComponent('ALPHA')}`}>{copy.contact}</a>
     </section>
   </main>
 

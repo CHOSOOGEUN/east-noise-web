@@ -1,0 +1,697 @@
+---
+import { strings, type Locale } from '../i18n/strings';
+
+type ProductSlug = 'luvit' | 'seed' | 'alpha' | 'heum';
+
+interface Props {
+  locale: Locale;
+  slug: ProductSlug;
+}
+
+interface ProductPageCopy {
+  number: string;
+  name: string;
+  category: string;
+  accent: string;
+  soft: string;
+  ink: string;
+  heroImage: string;
+  heroWidth: number;
+  heroHeight: number;
+  heroAlt: string;
+  heroTitle: string;
+  heroBody: string;
+  status: string;
+  ctas: Array<{ label: string; href: string; quiet?: boolean }>;
+  stats: Array<[string, string]>;
+  statement: string;
+  intro: string;
+  experienceTitle: string;
+  experienceBody: string;
+  steps: Array<[string, string]>;
+  screens: Array<{ src: string; alt: string; label: string }>;
+  closing: string;
+  closingBody: string;
+}
+
+const { locale, slug } = Astro.props;
+const isKo = locale === 'ko';
+const t = strings[locale];
+const homeUrl = isKo ? '/' : '/en/';
+const languageUrl = isKo ? `/en/${slug}` : `/${slug}`;
+const languageLabel = isKo ? 'EN' : 'KO';
+
+const links = {
+  luvitIos: 'https://apps.apple.com/kr/app/%EB%9F%AC%EB%B9%97-luvit/id6762438141',
+  luvitInstagram: 'https://www.instagram.com/luvit_486/',
+  seedIos: 'https://apps.apple.com/kr/app/seed-%EB%A3%A8%ED%8B%B4%EC%9C%BC%EB%A1%9C-%ED%82%A4%EC%9A%B0%EB%8A%94-%EC%8B%9D%EB%AC%BC/id6772765829',
+  seedAndroid: 'https://play.google.com/store/apps/details?id=com.eastnoise.seed',
+  seedInstagram: 'https://www.instagram.com/seed.fl0wer/',
+  alphaIos: 'https://apps.apple.com/kr/app/alpha-reforge/id6788264733',
+  alphaAndroid: 'https://play.google.com/store/apps/details?id=com.eastnoise.alpha',
+  heum: 'https://heum.cloud',
+};
+
+const ko: Record<ProductSlug, ProductPageCopy> = {
+  luvit: {
+    number: '01 / 04',
+    name: 'Luvit',
+    category: '커플 데일리 미션 앱',
+    accent: '#e782a3',
+    soft: '#f9e8ed',
+    ink: '#2a1d22',
+    heroImage: '/visuals/company/luvit-world-detail-v1.webp',
+    heroWidth: 1730,
+    heroHeight: 909,
+    heroAlt: '하트를 건네는 두 마리 토끼와 작은 편지 집으로 만든 Luvit 미니어처 세계',
+    heroTitle: '둘의 하루에\n작은 미션 하나.',
+    heroBody: '각자 받은 미션을 해내고, 다음 날 서로의 결과를 확인합니다. 함께 끝낸 하루는 둘의 방과 추억으로 남습니다.',
+    status: 'App Store 공개 · v1.0.4',
+    ctas: [
+      { label: 'App Store에서 보기', href: links.luvitIos },
+      { label: 'Instagram', href: links.luvitInstagram, quiet: true },
+    ],
+    stats: [['09:00', '각자의 오늘 미션'], ['30P', '둘의 판정 완료'], ['ONE ROOM', '함께 꾸미는 공간']],
+    statement: '사랑은 거창한 이벤트보다, 매일 한 번 더 생각하는 일.',
+    intro: 'Luvit은 두 사람이 하나의 관계 데이터를 함께 쓰는 커플 앱입니다. 미션, 포인트, 오브제, 방과 추억이 개인 기록이 아니라 둘의 하루로 이어집니다.',
+    experienceTitle: '두 사람이 끝내야\n다음 날이 열립니다.',
+    experienceBody: '상대를 시험하는 추측 게임은 없습니다. 내 미션을 해내고, 다음 날 상대가 실제 결과를 확인하는 단순한 흐름만 남겼습니다.',
+    steps: [
+      ['각자에게 다른 미션이 도착합니다.', '매일 오전 9시, 오늘 함께 있는지 떨어져 있는지에 맞는 미션을 고릅니다.'],
+      ['다음 날 서로의 결과를 확인합니다.', '상대가 어제 받은 미션을 보고 해냈어요 또는 못 했어요로 판정합니다.'],
+      ['판정이 끝나면 방이 함께 자랍니다.', '두 사람의 판정이 모두 끝나면 공동 30P를 받고, 실패 미션에는 다음 벌칙이 남습니다.'],
+    ],
+    screens: [
+      { src: '/visuals/company/luvit-current-mission.webp', alt: '오늘의 미션을 보여주는 Luvit 화면', label: 'MISSION / TODAY' },
+      { src: '/visuals/company/luvit-current-home.webp', alt: '두 토끼와 함께 꾸민 Luvit의 공동 방 화면', label: 'ROOM / TOGETHER' },
+    ],
+    closing: '오늘, 우리 뭐 해볼까?',
+    closingBody: '하루 하나의 작은 미션으로 서로를 다시 바라보세요.',
+  },
+  seed: {
+    number: '02 / 04',
+    name: 'Seed',
+    category: '루틴 영상 기록 앱',
+    accent: '#18a86b',
+    soft: '#e8f6ee',
+    ink: '#13251c',
+    heroImage: '/visuals/company/seed-world-detail-v1.webp',
+    heroWidth: 1828,
+    heroHeight: 860,
+    heroAlt: '하얀 화분의 이끼 위에서 두 잎을 펼친 Seed 새싹 미니어처',
+    heroTitle: '오늘의 실행을\n한 편의 영상으로.',
+    heroBody: '루틴을 2~4초 영상으로 인증하면 식물이 자랍니다. 흩어진 오늘의 장면은 하나의 Daily Story가 됩니다.',
+    status: 'App Store · Google Play 공개',
+    ctas: [
+      { label: 'App Store', href: links.seedIos },
+      { label: 'Google Play', href: links.seedAndroid, quiet: true },
+      { label: 'Instagram', href: links.seedInstagram, quiet: true },
+    ],
+    stats: [['2–4 SEC', '짧은 영상 인증'], ['8 × 7', '식물과 성장 단계'], ['9:16', 'Daily Story']],
+    statement: '체크 표시보다, 실제로 해낸 순간을 남깁니다.',
+    intro: 'Seed는 운동, 공부, 기상처럼 나에게 필요한 루틴을 짧은 영상으로 증명합니다. 실행이 쌓일수록 식물이 자라고, 한 계절의 기록이 완성됩니다.',
+    experienceTitle: '실행이 장면이 되고,\n장면이 계절이 됩니다.',
+    experienceBody: '오늘의 인증은 혼자 보는 기록으로 시작합니다. 공유는 사용자가 선택할 때만 이루어지고, Plus에서는 장기 보관과 더 깊은 회고가 열립니다.',
+    steps: [
+      ['오늘의 루틴을 짧게 촬영합니다.', '각 루틴을 끝낸 순간을 2~4초 영상으로 남기면 오늘 카드에 바로 반영됩니다.'],
+      ['인증할수록 식물이 자랍니다.', '8종 식물이 각 7단계를 지나며 자라고, 30일 시즌을 마치면 다음 식물을 고릅니다.'],
+      ['하루를 Daily Story로 돌아봅니다.', '오늘의 인증을 9:16 영상으로 만들고, 7일·30일·연간 기록과 패턴을 확인합니다.'],
+    ],
+    screens: [
+      { src: '/visuals/company/seed-current-today.webp', alt: '영상 인증과 식물 성장을 보여주는 Seed 오늘 화면', label: 'TODAY / GROW' },
+      { src: '/visuals/company/seed-current-story.webp', alt: '하루의 인증을 한 영상으로 만든 Seed Daily Story 화면', label: 'DAILY STORY / KEEP' },
+    ],
+    closing: '오늘 한 일을, 내일 보고 싶은 장면으로.',
+    closingBody: '완벽한 계획보다 실제로 움직인 몇 초를 남겨보세요.',
+  },
+  alpha: {
+    number: '03 / 04',
+    name: 'ALPHA',
+    category: '90일 자기통제 앱',
+    accent: '#ef2828',
+    soft: '#f5e7e5',
+    ink: '#171111',
+    heroImage: '/visuals/company/alpha-world-detail-v1.webp',
+    heroWidth: 1672,
+    heroHeight: 941,
+    heroAlt: '붉은 길이 이어진 검은 돌계단과 숫자 90이 새겨진 ALPHA 미니어처',
+    heroTitle: '30일씩 세 번.\n기준을 다시 세웁니다.',
+    heroBody: 'BASIC, STANDARD, HARD. 루틴을 끝내고 하루를 마감하며 90일 동안 나를 다시 기록합니다.',
+    status: 'App Store · Google Play 공개',
+    ctas: [
+      { label: 'App Store', href: links.alphaIos },
+      { label: 'Google Play', href: links.alphaAndroid, quiet: true },
+    ],
+    stats: [['30 × 3', '세 개의 과정'], ['DAILY', '루틴과 하루 마감'], ['RETRY', '무너져도 다시']],
+    statement: '자기통제는 의욕이 아니라, 오늘을 닫는 반복에서 시작됩니다.',
+    intro: 'ALPHA는 강한 문구로 사람을 몰아붙이는 매거진이 아닙니다. 매일의 루틴, 하루 마감, 회고와 재도전으로 90일의 기준을 세우는 유료 자기통제 앱입니다.',
+    experienceTitle: '끝낸 하루만\n다음 계단이 됩니다.',
+    experienceBody: '완벽한 연속 기록보다 다시 이어가는 힘을 남깁니다. 완료와 미완성, 흔들린 날의 회고까지 모두 과정의 일부입니다.',
+    steps: [
+      ['오늘 해야 할 일만 봅니다.', '현재 과정의 루틴을 확인하고 하나씩 끝냅니다. 필요한 루틴은 직접 추가할 수 있습니다.'],
+      ['하루를 스스로 마감합니다.', '완료를 눌러 오늘의 결과를 확정하고, 마감 전에는 언제든 다시 고칠 수 있습니다.'],
+      ['30일을 통과해 다음 과정으로 갑니다.', 'BASIC에서 시작해 STANDARD와 HARD로 이어가며, 기준에 미치지 못하면 같은 과정을 다시 시작합니다.'],
+    ],
+    screens: [
+      { src: '/visuals/company/alpha-current-today.webp', alt: '오늘의 루틴과 완료율을 보여주는 ALPHA 화면', label: 'TODAY / CLOSE' },
+      { src: '/visuals/company/alpha-current-90days.webp', alt: '90일 과정의 계단을 보여주는 ALPHA 화면', label: '90 DAYS / REFORGE' },
+    ],
+    closing: '흔들려도, 이어가라.',
+    closingBody: '완벽한 하루보다 다시 돌아온 하루를 기록하세요.',
+  },
+  heum: {
+    number: '04 / 04',
+    name: 'HEUM',
+    category: '브라우저 네이티브 ARG',
+    accent: '#174d80',
+    soft: '#e5edf4',
+    ink: '#101c28',
+    heroImage: '/visuals/company/heum-world-detail-v1.webp',
+    heroWidth: 1827,
+    heroHeight: 861,
+    heroAlt: '아이보리 H 구조물 사이에 배송 기록과 작은 소포가 놓인 HEUM 미니어처',
+    heroTitle: '보내지 않은 물건이\n72시간 먼저 도착했다.',
+    heroBody: '평범한 배송조회에서 시작해 서로 다른 기관의 기록을 대조하고, 도시의 다음 상태를 직접 바꾸는 연속형 브라우저 ARG입니다.',
+    status: 'Season 01 · 반송 예정',
+    ctas: [{ label: '사건 시작하기', href: links.heum }],
+    stats: [['72H', '먼저 도착한 기록'], ['6 CHAPTERS', '하나의 연속 세계'], ['BROWSER', '웹사이트 자체가 게임']],
+    statement: '게임 화면이 없습니다. 당신이 보고 있는 웹사이트가 사건입니다.',
+    intro: 'HEUM은 작품 목록이나 퀘스트 UI에서 시작하지 않습니다. 보수적인 한국 중견 택배사 새길로지스의 배송조회, 공지, 약국과 보관함의 기록이 각자의 운영 이유로 존재합니다.',
+    experienceTitle: '기록은 따로 존재하고,\n진실은 사이에서 생깁니다.',
+    experienceBody: '첫 시즌 「반송 예정」은 프롤로그부터 6장까지 하나의 물건과 세 개의 미래를 따라갑니다. 플레이어가 앞에서 살린 경로가 마지막 해결의 일부가 됩니다.',
+    steps: [
+      ['접수되지 않은 기록을 발견합니다.', '72시간 뒤의 데이터가 담긴 냉장 기록계가 정상적인 배송조회에 먼저 나타납니다.'],
+      ['서로 다른 운영 기록을 대조합니다.', '택배사, 약국, 보관함, 기사와 시청 기록의 시간·물건·인수 책임을 맞춰 봅니다.'],
+      ['제안한 해결이 다음 상태를 바꿉니다.', '제출한 판단은 단순 정답 문구가 아니라 이후 사이트와 도시의 실제 상태 변화로 이어집니다.'],
+    ],
+    screens: [
+      { src: '/visuals/company/heum-current-linework.webp', alt: '도시와 배송 트럭을 그린 HEUM 새길로지스 선화', label: 'SAEGIL LOGISTICS / ENTRY' },
+      { src: '/visuals/company/heum-current-parcel.webp', alt: '반송 예정 봉인띠와 M-04 표식이 붙은 HEUM 소포 증거', label: 'RETURN PENDING / P0' },
+    ],
+    closing: '배송조회를 시작하시겠습니까?',
+    closingBody: '별도의 설치 없이 브라우저에서 첫 기록을 확인하세요.',
+  },
+};
+
+const en: Record<ProductSlug, ProductPageCopy> = {
+  luvit: {
+    ...ko.luvit,
+    category: 'Couple daily mission app',
+    heroAlt: 'A miniature Luvit world with two plush rabbits, a heart, and a tiny letter house',
+    heroTitle: 'One small mission\ninside a day for two.',
+    heroBody: 'Complete separate missions, check each other’s result the next day, and turn the day into a shared room and memory.',
+    status: 'Live on the App Store · v1.0.4',
+    ctas: [{ label: 'View on the App Store', href: links.luvitIos }, { label: 'Instagram', href: links.luvitInstagram, quiet: true }],
+    stats: [['9 AM', 'A mission for each'], ['30P', 'Both reviews complete'], ['ONE ROOM', 'Decorated together']],
+    statement: 'Love is less about a grand event than thinking of each other once more, every day.',
+    intro: 'Luvit is a couple app where two people share one relationship space. Missions, points, objects, the room, and memories all belong to the current relationship.',
+    experienceTitle: 'The next day opens\nwhen both people finish.',
+    experienceBody: 'There is no guessing game. Do your mission, then let your partner review the real result the following day.',
+    steps: [
+      ['A different mission arrives for each person.', 'At 9 AM, choose whether the next mission should work together or apart.'],
+      ['Review each other’s result the next day.', 'See the mission your partner received and mark it done or missed.'],
+      ['The shared room grows after both reviews.', 'Completing both reviews grants 30 shared points, while a missed mission keeps one penalty.'],
+    ],
+    screens: [
+      { src: '/visuals/company/luvit-current-mission.webp', alt: 'Luvit screen showing today’s mission', label: 'MISSION / TODAY' },
+      { src: '/visuals/company/luvit-current-home.webp', alt: 'Luvit shared room with the two rabbit characters', label: 'ROOM / TOGETHER' },
+    ],
+    closing: 'What should we do today?',
+    closingBody: 'Look at each other again through one small mission a day.',
+  },
+  seed: {
+    ...ko.seed,
+    category: 'Video routine journal',
+    heroAlt: 'A miniature Seed sprout with two leaves growing from moss in a white planter',
+    heroTitle: 'Turn what you did today\ninto one story.',
+    heroBody: 'A 2–4 second check-in grows your plant. The moments scattered across the day become one Daily Story.',
+    status: 'Live on the App Store and Google Play',
+    ctas: [{ label: 'App Store', href: links.seedIos }, { label: 'Google Play', href: links.seedAndroid, quiet: true }, { label: 'Instagram', href: links.seedInstagram, quiet: true }],
+    stats: [['2–4 SEC', 'Short video proof'], ['8 × 7', 'Plants and stages'], ['9:16', 'Daily Story']],
+    statement: 'Keep the moment you actually did it, not another checkmark.',
+    intro: 'Seed turns routines such as exercise, study, and waking up into short video proof. Every check-in grows a plant until one complete season becomes a record.',
+    experienceTitle: 'Actions become scenes.\nScenes become a season.',
+    experienceBody: 'Every check-in begins as a private record. Sharing happens only when you choose, while Plus unlocks longer storage and deeper reviews.',
+    steps: [
+      ['Film a few seconds of the routine.', 'A 2–4 second video appears on today’s card as soon as you finish.'],
+      ['Grow a plant with every check-in.', 'Eight plants pass through seven stages, with a new choice after each 30-day season.'],
+      ['Revisit the day as a Daily Story.', 'Create a 9:16 video and review patterns across seven days, 30 days, and a year.'],
+    ],
+    screens: [
+      { src: '/visuals/company/seed-current-today.webp', alt: 'Seed Today screen with video check-ins and plant growth', label: 'TODAY / GROW' },
+      { src: '/visuals/company/seed-current-story.webp', alt: 'Seed Daily Story combining the day’s check-ins', label: 'DAILY STORY / KEEP' },
+    ],
+    closing: 'Turn today’s work into a scene worth seeing tomorrow.',
+    closingBody: 'Keep the seconds you moved instead of waiting for a perfect plan.',
+  },
+  alpha: {
+    ...ko.alpha,
+    category: '90-day self-discipline app',
+    heroAlt: 'An ALPHA miniature with a red path, black staircase, and a monument marked 90',
+    heroTitle: 'Three 30-day courses.\nRebuild your standard.',
+    heroBody: 'BASIC, STANDARD, HARD. Finish routines, close each day, and rebuild your record over 90 days.',
+    status: 'Live on the App Store and Google Play',
+    ctas: [{ label: 'App Store', href: links.alphaIos }, { label: 'Google Play', href: links.alphaAndroid, quiet: true }],
+    stats: [['30 × 3', 'Three courses'], ['DAILY', 'Routines and close'], ['RETRY', 'Return after a miss']],
+    statement: 'Self-discipline begins with repeatedly closing today, not waiting for motivation.',
+    intro: 'ALPHA is not the previous editorial magazine. It is a paid 90-day self-discipline app built around routines, a deliberate daily close, reflection, and retries.',
+    experienceTitle: 'Only a closed day\nbecomes the next step.',
+    experienceBody: 'The goal is not a perfect streak. Completed and missed days, plus the day you returned, all remain part of the course.',
+    steps: [
+      ['See only what must be done today.', 'Work through the routines in the current course and add a personal routine when needed.'],
+      ['Close the day yourself.', 'Complete the day to lock its result. Until then, every choice remains editable.'],
+      ['Pass 30 days to enter the next course.', 'Move from BASIC to STANDARD and HARD, or restart the current course when the standard is not met.'],
+    ],
+    screens: [
+      { src: '/visuals/company/alpha-current-today.webp', alt: 'ALPHA Today screen with routines and completion rate', label: 'TODAY / CLOSE' },
+      { src: '/visuals/company/alpha-current-90days.webp', alt: 'ALPHA screen showing the 90-day course', label: '90 DAYS / REFORGE' },
+    ],
+    closing: 'Even when you waver, keep going.',
+    closingBody: 'Record the day you returned, not the illusion of a perfect one.',
+  },
+  heum: {
+    ...ko.heum,
+    category: 'Browser-native ARG',
+    heroAlt: 'A miniature HEUM world with ivory H pillars, shipping records, and a small parcel',
+    heroTitle: 'An unsent object arrived\n72 hours early.',
+    heroBody: 'Begin with an ordinary parcel tracker, compare records across institutions, and change what the city becomes next.',
+    status: 'Season 01 · Return Pending',
+    ctas: [{ label: 'Begin the case', href: links.heum }],
+    stats: [['72H', 'A record from ahead'], ['6 CHAPTERS', 'One continuous world'], ['BROWSER', 'The website is the game']],
+    statement: 'There is no game screen. The websites in front of you are the case.',
+    intro: 'HEUM does not open on a mission list. Parcel tracking, public notices, pharmacy records, lockers, and routes all exist for their own operational reasons.',
+    experienceTitle: 'Records stand apart.\nThe truth appears between them.',
+    experienceBody: 'Season 01 follows one object and three possible futures from a prologue through six chapters. A route saved earlier becomes part of the final solution.',
+    steps: [
+      ['Find a record that has not been accepted yet.', 'A refrigerated logger containing data from 72 hours ahead appears inside normal parcel tracking.'],
+      ['Compare records kept by different operators.', 'Align time, objects, and handoff responsibility across delivery, pharmacies, lockers, drivers, and the city.'],
+      ['Watch the next state respond to your answer.', 'A submitted conclusion changes the sites and the city instead of returning a detached answer screen.'],
+    ],
+    screens: [
+      { src: '/visuals/company/heum-current-linework.webp', alt: 'Line drawing of the HEUM logistics city and truck', label: 'SAEGIL LOGISTICS / ENTRY' },
+      { src: '/visuals/company/heum-current-parcel.webp', alt: 'HEUM parcel evidence marked for return and M-04', label: 'RETURN PENDING / P0' },
+    ],
+    closing: 'Start with parcel tracking?',
+    closingBody: 'Open the first record in your browser, with nothing to install.',
+  },
+};
+
+const page = (isKo ? ko : en)[slug];
+
+const productNav = (['luvit', 'seed', 'alpha', 'heum'] as ProductSlug[]).map((item) => ({
+  slug: item,
+  number: (isKo ? ko : en)[item].number.split(' / ')[0],
+  name: (isKo ? ko : en)[item].name,
+  category: (isKo ? ko : en)[item].category,
+  href: isKo ? `/${item}` : `/en/${item}`,
+  accent: (isKo ? ko : en)[item].accent,
+}));
+
+const screenSizes: Record<string, [number, number]> = {
+  '/visuals/company/luvit-current-mission.webp': [900, 1956],
+  '/visuals/company/luvit-current-home.webp': [900, 1956],
+  '/visuals/company/seed-current-today.webp': [900, 1951],
+  '/visuals/company/seed-current-story.webp': [900, 1951],
+  '/visuals/company/alpha-current-today.webp': [900, 1956],
+  '/visuals/company/alpha-current-90days.webp': [900, 1956],
+  '/visuals/company/heum-current-linework.webp': [1683, 935],
+  '/visuals/company/heum-current-parcel.webp': [1448, 1086],
+};
+
+const labels = isKo
+  ? { overview: '소개', experience: '경험', product: '제품', contact: '문의', open: '새 창', next: '다른 제품', top: '위로', legal: '법적 고지' }
+  : { overview: 'Overview', experience: 'Experience', product: 'Product', contact: 'Contact', open: 'new tab', next: 'Other products', top: 'Back to top', legal: 'Legal' };
+---
+
+<div class:list={['product-world-page', `product-world-page--${slug}`]} style={`--accent:${page.accent};--soft:${page.soft};--product-ink:${page.ink}`} data-product-world>
+  <a class="skip-link" href="#main-content">{isKo ? '본문으로 이동' : 'Skip to content'}</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="product-header">
+    <a class="wordmark" href={homeUrl} aria-label={isKo ? '동방의 소음 홈' : 'East Noise home'}>동방의 소음</a>
+    <nav class="section-nav" aria-label={isKo ? '페이지 메뉴' : 'Page navigation'}>
+      <a href="#overview" data-section-link="overview">{labels.overview}</a>
+      <a href="#experience" data-section-link="experience">{labels.experience}</a>
+      <a href="#product" data-section-link="product">{labels.product}</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#contact">{labels.contact}</a>
+      <span aria-hidden="true"></span>
+      <a href={languageUrl} lang={isKo ? 'en' : 'ko'}>{languageLabel}</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="product-hero" aria-labelledby="product-title">
+      <div class="hero-copy reveal is-visible">
+        <p class="eyebrow"><span>{page.number}</span>{page.category}</p>
+        <h1 id="product-title">{page.name}</h1>
+        <h2>{page.heroTitle.split('\n').map((line) => <span>{line}</span>)}</h2>
+        <p class="hero-body">{page.heroBody}</p>
+        <p class="status"><span aria-hidden="true"></span>{page.status}</p>
+        <div class="hero-actions">
+          {page.ctas.map((cta) => (
+            <a class:list={['hero-cta', { 'hero-cta--quiet': cta.quiet }]} href={cta.href} target="_blank" rel="noreferrer">
+              {cta.label}<span aria-hidden="true">↗</span><span class="sr-only"> ({labels.open})</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <figure class="hero-world reveal is-visible">
+        <img src={page.heroImage} alt={page.heroAlt} width={page.heroWidth} height={page.heroHeight} loading="eager" fetchpriority="high" />
+      </figure>
+
+      <dl class="hero-stats reveal is-visible">
+        {page.stats.map(([value, label]) => (
+          <div><dt>{value}</dt><dd>{label}</dd></div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="overview" id="overview" aria-labelledby="overview-title" data-section="overview">
+      <div class="section-index reveal"><span>{page.number.split(' / ')[0]}</span><span>{page.name}</span></div>
+      <div class="overview-copy reveal">
+        <p class="eyebrow">{labels.overview}</p>
+        <h2 id="overview-title">{page.statement}</h2>
+      </div>
+      <p class="overview-body reveal">{page.intro}</p>
+    </section>
+
+    <section class="experience" id="experience" aria-labelledby="experience-title" data-section="experience">
+      <div class="experience-heading reveal">
+        <p class="eyebrow">{labels.experience}</p>
+        <h2 id="experience-title">{page.experienceTitle.split('\n').map((line) => <span>{line}</span>)}</h2>
+        <p>{page.experienceBody}</p>
+      </div>
+
+      <div class="step-list">
+        {page.steps.map(([title, body], index) => (
+          <article class="step-row reveal">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="product-evidence" id="product" aria-label={isKo ? `${page.name} 실제 제품 화면` : `${page.name} real product screens`} data-section="product">
+      <div class="evidence-heading reveal">
+        <p class="eyebrow">{labels.product}</p>
+        <h2>{isKo ? '설명보다, 실제 화면으로.' : 'The product, not a promise.'}</h2>
+      </div>
+      <div class="screen-pair">
+        {page.screens.map((screen, index) => (
+          <figure class:list={['screen-shot', `screen-shot--${index + 1}`, 'reveal']}>
+            <figcaption><span>{screen.label}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption>
+            <img src={screen.src} alt={screen.alt} width={screenSizes[screen.src][0]} height={screenSizes[screen.src][1]} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="product-closing" id="contact" aria-labelledby="closing-title">
+      <p class="eyebrow reveal">{page.name} / EAST NOISE</p>
+      <h2 id="closing-title" class="reveal">{page.closing}</h2>
+      <p class="reveal">{page.closingBody}</p>
+      <div class="closing-actions reveal">
+        <a href={page.ctas[0].href} target="_blank" rel="noreferrer">{page.ctas[0].label}<span aria-hidden="true">↗</span></a>
+        <a href={`mailto:${t.contact.email}?subject=${encodeURIComponent(page.name)}`}>{labels.contact}<span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="other-products" aria-labelledby="other-products-title">
+      <p class="eyebrow" id="other-products-title">{labels.next}</p>
+      <nav aria-label={labels.next}>
+        {productNav.map((product) => (
+          <a href={product.href} aria-current={product.slug === slug ? 'page' : undefined} style={`--item-accent:${product.accent}`}>
+            <span class="other-index">{product.number}</span>
+            <span class="other-copy"><strong>{product.name}</strong><small>{product.category}</small></span>
+            <span aria-hidden="true">↘</span>
+          </a>
+        ))}
+      </nav>
+    </section>
+  </main>
+
+  <footer class="product-footer">
+    <a class="wordmark" href={homeUrl}>동방의 소음</a>
+    <div>
+      <span>{t.contact.copyright}</span>
+      <span>{t.contact.bizNo}</span>
+    </div>
+    <nav aria-label={labels.legal}>
+      {slug === 'seed' && <a href={isKo ? '/legal/seed/privacy' : '/en/legal/seed/privacy'}>{isKo ? '개인정보처리방침' : 'Privacy'}</a>}
+      {slug === 'seed' && <a href={isKo ? '/legal/seed/terms' : '/en/legal/seed/terms'}>{isKo ? '이용약관' : 'Terms'}</a>}
+      {slug === 'alpha' && <a href={isKo ? '/alpha/support' : '/en/alpha/support'}>{isKo ? '지원' : 'Support'}</a>}
+      {slug === 'alpha' && <a href={isKo ? '/legal/alpha/privacy' : '/en/legal/alpha/privacy'}>{isKo ? '개인정보처리방침' : 'Privacy'}</a>}
+      {slug === 'alpha' && <a href={isKo ? '/legal/alpha/terms' : '/en/legal/alpha/terms'}>{isKo ? '이용약관' : 'Terms'}</a>}
+      <a href="#main-content">{labels.top} ↑</a>
+    </nav>
+  </footer>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-product-world]');
+  if (root) {
+    const items = [...root.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)')];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduced) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+      items.forEach((item) => observer.observe(item));
+    } else {
+      items.forEach((item) => item.classList.add('is-visible'));
+    }
+
+    const progress = root.querySelector<HTMLElement>('.scroll-progress span');
+    const sectionLinks = [...root.querySelectorAll<HTMLAnchorElement>('[data-section-link]')];
+    const sections = [...root.querySelectorAll<HTMLElement>('[data-section]')];
+    const setCurrentSection = (sectionId: string) => {
+      sectionLinks.forEach((link) => {
+        if (link.dataset.sectionLink === sectionId) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+
+    if ('IntersectionObserver' in window && sectionLinks.length) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setCurrentSection(visible.target.id);
+      }, { threshold: [0.18, 0.35, 0.6], rootMargin: '-20% 0px -55% 0px' });
+      sections.forEach((section) => sectionObserver.observe(section));
+    }
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (progress) progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    addEventListener('scroll', requestUpdate, { passive: true });
+    update();
+  }
+</script>
+
+<style>
+  .product-world-page {
+    --paper: #fbfaf8;
+    --ink: #111111;
+    --muted: #707177;
+    --line: rgba(17, 17, 17, 0.13);
+    min-height: 100vh;
+    overflow: clip;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 200;
+    padding: 0.75rem 1rem;
+    background: var(--ink);
+    color: #fff;
+    transform: translateY(-160%);
+  }
+  .skip-link:focus { transform: translateY(0); }
+
+  .scroll-progress { position: fixed; inset: 0 0 auto; z-index: 180; height: 2px; }
+  .scroll-progress span { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+
+  .product-header {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 72px;
+    padding: 0 clamp(1.5rem, 3.25vw, 3.2rem);
+    border-bottom: 1px solid var(--line);
+    background: rgba(251, 250, 248, 0.92);
+    backdrop-filter: blur(16px);
+  }
+  .wordmark { font-size: 0.92rem; font-weight: 720; letter-spacing: -0.035em; }
+  .section-nav, .header-actions { display: flex; align-items: center; gap: clamp(1.5rem, 3.2vw, 3.25rem); }
+  .section-nav a, .header-actions a { display: inline-flex; min-height: 44px; align-items: center; color: #36363a; font-size: 0.78rem; font-weight: 560; }
+  .section-nav a { border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+  .section-nav a:hover, .section-nav a:focus-visible, .section-nav a[aria-current='location'] { border-bottom-color: var(--accent); color: var(--accent); }
+  .header-actions { justify-self: end; }
+  .header-actions > span { width: 4px; height: 4px; border-radius: 50%; background: #c3c4c8; }
+
+  .product-hero {
+    position: relative;
+    min-height: calc(100svh - 72px);
+    padding: clamp(5.5rem, 10vh, 8.5rem) clamp(1.5rem, 6vw, 6.5rem) 0;
+    border-bottom: 1px solid var(--line);
+    isolation: isolate;
+  }
+  section[id] { scroll-margin-top: 72px; }
+  .hero-copy { position: relative; z-index: 2; width: min(35rem, 41vw); padding-bottom: 11rem; }
+  .eyebrow { margin: 0; color: var(--muted); font-size: 0.68rem; font-weight: 650; letter-spacing: 0.12em; text-transform: uppercase; }
+  .eyebrow > span { margin-right: 0.8rem; color: var(--accent); }
+  .hero-copy h1 { margin: 1.35rem 0 0; color: var(--accent); font-size: clamp(1rem, 1.25vw, 1.25rem); font-weight: 720; letter-spacing: 0.04em; }
+  .hero-copy h2 { margin: 1.55rem 0 0; font-size: clamp(3.2rem, 5.5vw, 6.2rem); font-weight: 720; letter-spacing: -0.075em; line-height: 0.98; }
+  .hero-copy h2 span { display: block; }
+  .hero-body { max-width: 31rem; margin: 2rem 0 0; color: #5f6065; font-size: clamp(0.98rem, 1.15vw, 1.12rem); line-height: 1.8; }
+  .status { display: flex; align-items: center; gap: 0.55rem; margin: 1.6rem 0 0; color: #77787d; font-size: 0.73rem; }
+  .status span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.55rem 1.25rem; margin-top: 2rem; }
+  .hero-cta { display: inline-flex; min-height: 50px; align-items: center; justify-content: space-between; gap: 2rem; padding: 0 1.15rem; border: 1px solid var(--product-ink); background: var(--product-ink); color: #fff; font-size: 0.78rem; font-weight: 650; transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease; }
+  .hero-cta--quiet { border-color: var(--line); background: transparent; color: var(--ink); }
+  .hero-cta:hover, .hero-cta:focus-visible { border-color: var(--accent); background: var(--accent); color: #fff; transform: translateY(-2px); }
+
+  .hero-world { position: absolute; right: -2.5%; bottom: 7.5rem; z-index: 1; width: min(68vw, 1120px); margin: 0; pointer-events: none; }
+  .hero-world img { display: block; width: 100%; height: auto; }
+  .hero-stats { position: absolute; inset: auto 0 0; z-index: 3; display: grid; grid-template-columns: repeat(3, 1fr); min-height: 7.5rem; margin: 0; border-top: 1px solid var(--line); background: rgba(251, 250, 248, 0.88); backdrop-filter: blur(12px); }
+  .hero-stats div { display: flex; flex-direction: column; justify-content: center; padding: 1rem clamp(1.5rem, 4vw, 4.8rem); border-right: 1px solid var(--line); }
+  .hero-stats div:last-child { border-right: 0; }
+  .hero-stats dt { color: var(--accent); font-size: clamp(1.1rem, 1.7vw, 1.7rem); font-weight: 730; letter-spacing: -0.035em; }
+  .hero-stats dd { margin: 0.42rem 0 0; color: var(--muted); font-size: 0.72rem; }
+
+  .overview { display: grid; grid-template-columns: 0.34fr 1.18fr 0.72fr; gap: clamp(2rem, 6vw, 7rem); padding: clamp(7rem, 11vw, 12rem) clamp(1.5rem, 6vw, 6.5rem); }
+  .section-index { display: flex; flex-direction: column; gap: 0.45rem; color: var(--muted); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .section-index span:first-child { color: var(--accent); font-size: 1.5rem; font-weight: 720; letter-spacing: -0.04em; }
+  .overview-copy h2 { max-width: 52rem; margin: 1.4rem 0 0; font-size: clamp(2.7rem, 4.7vw, 5.2rem); font-weight: 690; letter-spacing: -0.07em; line-height: 1.08; }
+  .overview-body { align-self: end; margin: 0; color: #68696e; font-size: 0.95rem; line-height: 1.9; }
+
+  .experience { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: clamp(4rem, 10vw, 11rem); padding: clamp(7rem, 10vw, 11rem) clamp(1.5rem, 6vw, 6.5rem); background: var(--soft); color: var(--product-ink); }
+  .experience-heading { position: sticky; top: 8.5rem; align-self: start; }
+  .experience-heading h2 { margin: 1.5rem 0 0; font-size: clamp(2.7rem, 4.6vw, 5rem); font-weight: 700; letter-spacing: -0.07em; line-height: 1.05; }
+  .experience-heading h2 span { display: block; }
+  .experience-heading > p:last-child { max-width: 31rem; margin: 2rem 0 0; color: color-mix(in srgb, var(--product-ink) 66%, transparent); line-height: 1.85; }
+  .step-list { border-top: 1px solid color-mix(in srgb, var(--product-ink) 18%, transparent); }
+  .step-row { display: grid; grid-template-columns: 3.5rem 0.84fr 1.16fr; gap: 1.25rem; padding: 2.3rem 0; border-bottom: 1px solid color-mix(in srgb, var(--product-ink) 18%, transparent); }
+  .step-row > span { color: var(--accent); font-size: 0.72rem; font-weight: 650; }
+  .step-row h3, .step-row p { margin: 0; }
+  .step-row h3 { font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 700; line-height: 1.5; }
+  .step-row p { color: color-mix(in srgb, var(--product-ink) 62%, transparent); font-size: 0.86rem; line-height: 1.8; }
+
+  .product-evidence { padding: clamp(7rem, 11vw, 12rem) clamp(1.5rem, 6vw, 6.5rem); background: #111; color: #fff; }
+  .evidence-heading { display: flex; align-items: end; justify-content: space-between; gap: 3rem; }
+  .evidence-heading .eyebrow { color: rgba(255,255,255,.5); }
+  .evidence-heading h2 { margin: 0; font-size: clamp(2.7rem, 5vw, 5.4rem); font-weight: 690; letter-spacing: -0.07em; }
+  .screen-pair { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(1.25rem, 4vw, 4.5rem); align-items: start; max-width: 78rem; margin: 6rem auto 0; }
+  .screen-shot { margin: 0; }
+  .screen-shot--2 { margin-top: 11rem; }
+  .screen-shot figcaption { display: flex; justify-content: space-between; padding: 0 0 0.9rem; border-bottom: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.55); font-size: 0.66rem; letter-spacing: 0.1em; }
+  .screen-shot img { display: block; width: 100%; max-height: 920px; object-fit: contain; object-position: top center; margin-top: 1.25rem; background: #171717; }
+  .product-world-page--heum .screen-pair { grid-template-columns: 1.2fr 0.8fr; max-width: 86rem; }
+  .product-world-page--heum .screen-shot img { max-height: 760px; }
+
+  .product-closing { padding: clamp(8rem, 13vw, 14rem) clamp(1.5rem, 6vw, 6.5rem); text-align: center; }
+  .product-closing h2 { max-width: 66rem; margin: 1.6rem auto 0; font-size: clamp(3.1rem, 7vw, 8rem); font-weight: 720; letter-spacing: -0.085em; line-height: 0.98; }
+  .product-closing > p:not(.eyebrow) { margin: 2rem auto 0; color: var(--muted); }
+  .closing-actions { display: flex; justify-content: center; gap: 0.8rem; margin-top: 2.5rem; }
+  .closing-actions a { display: inline-flex; min-height: 52px; align-items: center; justify-content: space-between; gap: 2.4rem; padding: 0 1.2rem; border: 1px solid var(--line); font-size: 0.78rem; font-weight: 650; }
+  .closing-actions a:first-child { border-color: var(--product-ink); background: var(--product-ink); color: #fff; }
+  .closing-actions a:hover, .closing-actions a:focus-visible { border-color: var(--accent); background: var(--accent); color: #fff; }
+
+  .other-products { padding: 0 clamp(1.5rem, 6vw, 6.5rem) clamp(7rem, 10vw, 10rem); }
+  .other-products > .eyebrow { padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+  .other-products nav { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .other-products a { display: grid; grid-template-columns: auto 1fr auto; gap: 0.9rem; min-height: 6.6rem; align-items: center; padding: 0 1.2rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 180ms ease, color 180ms ease; }
+  .other-products a:first-child { border-left: 1px solid var(--line); }
+  .other-products a[aria-current='page'] { background: var(--item-accent); color: #fff; }
+  .other-products a:hover, .other-products a:focus-visible { background: color-mix(in srgb, var(--item-accent) 12%, transparent); }
+  .other-products a[aria-current='page']:hover, .other-products a[aria-current='page']:focus-visible { background: var(--item-accent); }
+  .other-index { color: var(--item-accent); font-size: 0.65rem; font-weight: 720; letter-spacing: 0.08em; }
+  .other-copy { display: flex; min-width: 0; flex-direction: column; gap: 0.35rem; }
+  .other-copy strong { font-size: 0.94rem; font-weight: 690; }
+  .other-copy small { overflow: hidden; color: var(--muted); font-size: 0.64rem; font-weight: 520; text-overflow: ellipsis; white-space: nowrap; }
+  .other-products a[aria-current='page'] .other-index,
+  .other-products a[aria-current='page'] .other-copy small { color: rgba(255,255,255,.72); }
+
+  .product-footer { display: grid; grid-template-columns: 1fr 1.4fr auto; gap: 2rem; align-items: center; min-height: 7rem; padding: 1.5rem clamp(1.5rem, 3.25vw, 3.2rem); border-top: 1px solid var(--line); font-size: 0.68rem; }
+  .product-footer > div { display: flex; flex-wrap: wrap; gap: 0.7rem 1.4rem; color: var(--muted); }
+  .product-footer nav { display: flex; flex-wrap: wrap; justify-content: end; gap: 0.7rem 1.3rem; }
+  .product-footer nav a { padding-bottom: 0.2rem; border-bottom: 1px solid currentColor; }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 780ms cubic-bezier(.16,1,.3,1), transform 780ms cubic-bezier(.16,1,.3,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 920px) {
+    .product-header { grid-template-columns: 1fr auto; min-height: 64px; padding: 0 1.25rem; }
+    .section-nav { display: none; }
+    .header-actions { grid-column: 2; }
+    .header-actions > a:first-child, .header-actions > span { display: none; }
+    .product-hero { min-height: 0; padding: 4.4rem 1.25rem 0; }
+    .hero-copy { width: 100%; padding-bottom: 0; }
+    .hero-copy h2 { font-size: clamp(3.35rem, 13.5vw, 5.8rem); }
+    .hero-body { max-width: 38rem; margin-top: 1.65rem; }
+    .status { margin-top: 1.35rem; }
+    .hero-actions { margin-top: 1.65rem; }
+    .hero-world { position: relative; right: auto; bottom: auto; width: calc(100% + 2.5rem); margin: 2rem -1.25rem 0; }
+    .hero-world img { min-height: 370px; object-fit: cover; object-position: 68% center; }
+    .hero-stats { position: relative; grid-template-columns: 1fr; min-height: 0; }
+    .hero-stats div { min-height: 5.5rem; padding: 1rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line); }
+    .hero-stats div:last-child { border-bottom: 0; }
+    .overview { grid-template-columns: 1fr; gap: 2.8rem; padding: 6rem 1.25rem; }
+    .section-index { flex-direction: row; align-items: baseline; }
+    .overview-copy h2 { font-size: clamp(2.65rem, 10vw, 4.5rem); }
+    .overview-body { max-width: 38rem; }
+    .experience { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 1.25rem; }
+    .experience-heading { position: static; }
+    .experience-heading h2 { font-size: clamp(2.65rem, 10vw, 4.5rem); }
+    .product-evidence { padding: 6rem 1.25rem; }
+    .evidence-heading { display: block; }
+    .evidence-heading h2 { margin-top: 1.3rem; }
+    .screen-pair, .product-world-page--heum .screen-pair { grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 4rem; }
+    .screen-shot--2 { margin-top: 5rem; }
+    .product-closing { padding: 7rem 1.25rem; }
+    .other-products { padding: 0 1.25rem 6rem; }
+    .other-products nav { grid-template-columns: 1fr 1fr; }
+    .other-products a:nth-child(3) { border-left: 1px solid var(--line); }
+    .product-footer { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
+    .product-footer nav { justify-content: start; }
+  }
+
+  @media (max-width: 620px) {
+    .product-world-page--heum .hero-copy h2 { font-size: clamp(2.9rem, 12.2vw, 3.7rem); }
+    .hero-actions { display: grid; grid-template-columns: 1fr; }
+    .hero-cta { width: 100%; }
+    .hero-world img { min-height: 315px; object-position: 66% center; }
+    .step-row { grid-template-columns: 2.5rem 1fr; padding: 1.8rem 0; }
+    .step-row p { grid-column: 2; }
+    .screen-pair, .product-world-page--heum .screen-pair { grid-template-columns: 1fr; }
+    .screen-shot--2 { margin-top: 3rem; }
+    .screen-shot img, .product-world-page--heum .screen-shot img { max-height: 720px; }
+    .closing-actions { display: grid; grid-template-columns: 1fr; }
+    .closing-actions a { width: 100%; }
+    .other-products nav { grid-template-columns: 1fr; }
+    .other-products a, .other-products a:nth-child(3) { border-left: 1px solid var(--line); }
+  }
+</style>
