@@ -5,7 +5,7 @@ import LegalDoc from '../../../../components/LegalDoc.astro';
 const sections = [
   {
     heading: '1. What we collect',
-    body: 'We collect your account identifier and email for sign-in, plant name, routine settings (name, time, repeat days, and icon), check-in records, and plant growth state. If you create or check in to an exercise routine, its name and completion record may include fitness information that you chose to enter. When you use Seed Plus, we process the product identifier and entitlement status, check-in source clips temporarily protected before a Daily Story is complete, Daily Story videos stored in the cloud, and their archive status. If you send feedback, we store its text, category, and app version. We do not separately collect your date of birth, legal name, address, contacts, or location.',
+    body: 'We collect your account identifier and email for sign-in, plant name, routine settings (name, time, repeat days, and icon), check-in records, and plant growth state. If you create or check in to an exercise routine, its name and completion record may include fitness information that you chose to enter. When you use Seed Plus, we process the product identifier and entitlement status, check-in source clips temporarily protected before a Daily Story is complete, Daily Story videos stored in the cloud, and their archive status. For product improvement, we record completion states for sign-in, routine creation, check-ins, Daily Story creation or failure, and purchase flows. For troubleshooting, we may process crash logs, app, OS, and device state, and an installation identifier. If you send feedback, we store its text, category, and app version. We do not separately collect your date of birth, legal name, address, contacts, or location.',
   },
   {
     heading: '2. Videos and Daily Story',
@@ -17,7 +17,7 @@ const sections = [
   },
   {
     heading: '4. Third parties',
-    body: 'We use Supabase for authentication, database, private video storage, and server functions; Google Firebase Cloud Messaging for notifications; RevenueCat for purchase entitlement and restoration; and Expo for app build and delivery infrastructure. Apple App Store or Google Play processes the payment itself, and Seed never receives your card or bank account details. Each provider processes data only as needed to provide its service and under its own privacy policy.',
+    body: 'We use Supabase for authentication, database, private video storage, and server functions; Google Firebase Cloud Messaging for notifications; Google Firebase Crashlytics for crash and error diagnostics; RevenueCat for purchase entitlement and restoration; and Expo for app build and delivery infrastructure. We do not set a Seed user ID, email address, or nickname in Crashlytics. Apple App Store or Google Play processes the payment itself, and Seed never receives your card or bank account details. Each provider processes data only as needed to provide its service and under its own privacy policy.',
   },
   {
     heading: '5. Google / Apple Sign-in',
@@ -25,7 +25,7 @@ const sections = [
   },
   {
     heading: '6. Retention',
-    body: 'We keep account, routine, check-in metadata, and plant records while your account remains active. Seed Plus source clips are retained for no more than 30 days and are deleted sooner once the final Daily Story is stored in Vault. Completed Daily Stories remain stored while Plus is active and may be deleted after a 30-day recovery grace period following actual Plus expiration. If you delete your account in Settings, the linked profile, routines, records, plant state, push tokens, temporary source clips, Daily Stories, and other user data enter deletion immediately and are erased within 30 days. Payment transaction records may be retained separately by Apple, Google, or RevenueCat as required by law and their policies.',
+    body: 'We keep account, routine, check-in metadata, and plant records while your account remains active. Product improvement events are retained for up to 400 days and are deleted sooner when the account is deleted. Crashlytics diagnostics follow Firebase retention and deletion policies. Seed Plus source clips are retained for no more than 30 days and are deleted sooner once the final Daily Story is stored in Vault. Completed Daily Stories remain stored while Plus is active and may be deleted after a 30-day recovery grace period following actual Plus expiration. If you delete your account in Settings, the linked profile, routines, records, plant state, push tokens, temporary source clips, Daily Stories, and other user data enter deletion immediately and are erased within 30 days. Payment transaction records may be retained separately by Apple, Google, or RevenueCat as required by law and their policies.',
   },
   {
     heading: '7. Minors',
@@ -37,7 +37,7 @@ const sections = [
   },
   {
     heading: '9. Product analytics and tracking',
-    body: 'Seed does not show ads or use third-party advertising tracking. Product interactions such as opening the paywall, selecting a plan, and purchase or restore outcomes may be linked to your account for payment support and product improvement. We do not use them for advertising targeting or sell them.',
+    body: 'Seed does not show ads or use third-party advertising tracking. Product states such as completed sign-in, routine creation, completed check-ins, Daily Story completion or failure, opening the paywall, selecting a plan, and purchase or restore outcomes may be linked to your account for troubleshooting and product improvement. We do not put screen views, user videos, or routine names in analytics events, and we do not use the collected information for advertising targeting or sell it.',
   },
   {
     heading: '10. Security and changes',
@@ -50,7 +50,7 @@ const sections = [
   <LegalDoc
     kicker="SEED · LEGAL"
     title="Privacy Policy"
-    lastUpdated="Last updated August 2, 2026"
+    lastUpdated="Last updated August 10, 2026"
     contactEmail="eastnoise26@gmail.com"
     contactLabel="Questions?"
     sections={sections}
