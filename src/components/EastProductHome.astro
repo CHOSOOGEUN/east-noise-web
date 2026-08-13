@@ -12,22 +12,25 @@ const home = isKo ? '/' : '/en/';
 
 const copy = isKo
   ? {
-      nav: { products: '제품', story: '이야기', team: '팀', contact: '문의' },
-      heroTitle: '마음을 움직이는\n제품을 만듭니다.',
-      heroBody: '사랑, 습관, 절제, 미스터리.\n일상의 감정을 오래 남는 경험으로 바꿉니다.',
-      heroCta: '제품 둘러보기',
+      nav: { products: '제품', story: '만드는 방식', team: '팀', contact: '문의' },
+      heroEyebrow: 'EAST NOISE · INDEPENDENT PRODUCT STUDIO',
+      heroTitle: '작은 문제를\n실제 제품으로 만듭니다.',
+      heroBody: '커플의 하루, 루틴의 기록, 90일의 기준, 작은 가게의 첫 웹사이트.\n직접 만들고, 출시하고, 오래 운영합니다.',
+      heroCta: '지금 만든 것들',
+      liveLabel: 'NOW OPERATING',
+      liveSummary: '모바일 앱 3개 · 웹 스튜디오 1개',
       collectionEyebrow: 'EAST NOISE / FOUR PRODUCTS',
-      collectionTitle: '서로 다른 감정, 하나의 방향',
-      collectionBody: '사람의 마음이 움직이는 순간을 발견하고, 매일 다시 찾게 되는 제품으로 만듭니다.',
-      storyEyebrow: 'OUR STORY',
-      storyTitle: '소리는 사라져도,\n경험은 남습니다.',
+      collectionTitle: '지금 운영하는 네 가지',
+      collectionBody: '앱 3개와 웹 스튜디오 1개. 기능과 분위기는 달라도, 오늘 더 쉽게 행동하게 한다는 기준은 같습니다.',
+      storyEyebrow: 'HOW WE WORK',
+      storyTitle: '출시에서 끝내지 않고,\n운영까지 붙잡습니다.',
       storyBody:
-        '동방의 소음은 사랑하는 사람과의 하루, 작은 습관이 자라는 시간, 스스로와의 약속, 화면 너머의 미스터리를 만듭니다. 서로 다른 네 제품은 모두 오래 기억되는 감정에서 출발합니다.',
+        '동방의 소음은 앱과 웹을 직접 만들고 공개한 뒤, 실제 사용과 문의를 보며 계속 바꿉니다. 러빗의 관계 루틴, Seed의 영상 기록, ALPHA의 자기통제 과정, HEUM의 로컬 웹 제작을 한 팀이 운영합니다.',
       methodLabel: '우리가 만드는 방식',
       methods: [
-        ['01', '작은 감정에서 시작합니다', '기능보다 먼저, 사용자가 어떤 순간을 기억하게 될지 묻습니다.'],
-        ['02', '매일 돌아올 이유를 만듭니다', '거창한 변화보다 오늘 한 번 더 움직이게 하는 경험을 설계합니다.'],
-        ['03', '제품마다 다른 세계를 지킵니다', '하나의 유행을 반복하지 않고, 각 제품에 맞는 말투와 질감을 만듭니다.'],
+        ['01', '작게 시작해도 공개합니다', '완벽해질 때까지 숨기기보다, 실제로 쓸 수 있는 첫 버전을 내고 배웁니다.'],
+        ['02', '설명보다 실제 화면을 만듭니다', '기획, 디자인, 개발을 한 흐름으로 묶어 아이디어를 손에 잡히는 제품으로 바꿉니다.'],
+        ['03', '출시 뒤의 운영으로 고칩니다', '스토어 반응, 사용 흐름, 문의를 보며 제품과 카피를 함께 다듬습니다.'],
       ],
       teamEyebrow: 'TEAM EAST NOISE',
       teamTitle: '작지만, 끝까지 만드는 팀',
@@ -38,31 +41,35 @@ const copy = isKo
         ['김윤서', 'Marketing'],
       ],
       contactEyebrow: 'CONTACT',
-      contactTitle: '함께 만들 이야기가 있나요?',
-      contactBody: '제품, 협업, 제휴에 관한 이야기를 들려주세요.',
+      contactTitle: '제품과 웹, 함께 만들까요?',
+      contactBody: '앱 협업, 제품 제휴, 로컬 비즈니스 웹 제작에 관한 이야기를 들려주세요.',
       mailCta: '메일 보내기',
       viewProduct: '제품 보기',
+      viewStudio: '스튜디오 보기',
       visitInstagram: '인스타그램',
-      openRecord: '조사 시작',
+      visitWebsite: 'heum.cloud',
       language: 'EN',
     }
   : {
-      nav: { products: 'Products', story: 'Story', team: 'Team', contact: 'Contact' },
-      heroTitle: 'We make products\nthat move people.',
-      heroBody: 'Love, habit, discipline, mystery.\nWe turn everyday emotions into experiences that last.',
-      heroCta: 'Explore products',
+      nav: { products: 'Products', story: 'How we work', team: 'Team', contact: 'Contact' },
+      heroEyebrow: 'EAST NOISE · INDEPENDENT PRODUCT STUDIO',
+      heroTitle: 'Small problems,\nmade into real products.',
+      heroBody: 'A couple’s day, a video routine, a 90-day standard, and a local shop’s first website.\nWe build, launch, and stay for the operation.',
+      heroCta: 'See what is live',
+      liveLabel: 'NOW OPERATING',
+      liveSummary: 'Three mobile apps · one web studio',
       collectionEyebrow: 'EAST NOISE / FOUR PRODUCTS',
-      collectionTitle: 'Different feelings, one direction',
-      collectionBody: 'We find the moments that move people and turn them into products worth returning to.',
-      storyEyebrow: 'OUR STORY',
-      storyTitle: 'Sound fades.\nExperience remains.',
+      collectionTitle: 'Four things we operate now',
+      collectionBody: 'Three apps and one web studio. Each has its own voice, but every one helps a person make the next move today.',
+      storyEyebrow: 'HOW WE WORK',
+      storyTitle: 'We do not stop at launch.\nWe stay for the operation.',
       storyBody:
-        'East Noise makes days shared with someone you love, the time it takes for a habit to grow, a promise kept to yourself, and mysteries beyond the screen. Every product begins with an emotion worth remembering.',
+        'East Noise builds and publishes apps and websites, then keeps changing them through real use and real inquiries. One team operates Luvit, Seed, ALPHA, and the HEUM local web studio.',
       methodLabel: 'How we build',
       methods: [
-        ['01', 'Begin with a small emotion', 'Before features, we ask what moment a person will remember.'],
-        ['02', 'Create a reason to return', 'We design for one meaningful move today, not an abstract transformation.'],
-        ['03', 'Protect each product world', 'Each product gets its own voice and texture instead of following one house style.'],
+        ['01', 'Ship a useful first version', 'We learn from something people can actually use instead of hiding until it feels perfect.'],
+        ['02', 'Make the screen, not the promise', 'Product, design, and engineering stay in one loop until the idea becomes tangible.'],
+        ['03', 'Improve through operation', 'Store response, product behavior, and inquiries shape the next release and the next sentence.'],
       ],
       teamEyebrow: 'TEAM EAST NOISE',
       teamTitle: 'A small team that finishes',
@@ -73,12 +80,13 @@ const copy = isKo
         ['Yunseo Kim', 'Marketing'],
       ],
       contactEyebrow: 'CONTACT',
-      contactTitle: 'Have a story to build together?',
-      contactBody: 'Tell us about a product, partnership, or collaboration.',
+      contactTitle: 'Build a product or website together?',
+      contactBody: 'Tell us about an app collaboration, product partnership, or local business website.',
       mailCta: 'Send an email',
       viewProduct: 'View product',
+      viewStudio: 'View studio',
       visitInstagram: 'Instagram',
-      openRecord: 'Begin investigation',
+      visitWebsite: 'heum.cloud',
       language: 'KO',
     };
 
@@ -87,10 +95,11 @@ const products = [
     id: 'luvit',
     number: '01',
     name: 'Luvit',
-    mark: '♥',
+    icon: '/visuals/company/luvit-app-icon.webp',
+    status: 'APP STORE · v1.0.5',
     href: isKo ? '/luvit' : '/en/luvit',
     social: 'https://www.instagram.com/luvit_486/',
-    title: isKo ? '매일 하나씩,\n둘만의 미션을 쌓아갑니다.' : 'One small mission,\nevery day together.',
+    title: isKo ? '하루 한 번,\n둘의 관계를 움직입니다.' : 'One small move,\nfor the relationship each day.',
     body: isKo
       ? '매일 도착한 미션을 함께하고 다음 날 서로 결과를 확인합니다. 공동 포인트로 방을 꾸미고, 지난 미션과 추억을 둘만의 기록으로 남기는 커플 앱입니다.'
       : 'Complete a small mission together, review it with each other the next day, decorate a shared room with points, and keep every mission and memory in one place.',
@@ -99,10 +108,11 @@ const products = [
     id: 'seed',
     number: '02',
     name: 'Seed',
-    mark: '●',
+    icon: '/visuals/company/seed-app-icon.webp',
+    status: 'APP STORE · GOOGLE PLAY · v1.0.13',
     href: isKo ? '/seed' : '/en/seed',
     social: 'https://www.instagram.com/seed.fl0wer/',
-    title: isKo ? '오늘의 인증이,\n한 편의 이야기로.' : 'Today’s check-ins,\ncut into one story.',
+    title: isKo ? '오늘의 실행을,\n나만의 루틴 브이로그로.' : 'Turn today’s effort\ninto a routine vlog.',
     body: isKo
       ? '2~4초 영상으로 루틴을 인증하면 식물이 자랍니다. Seed Plus에서는 하루의 인증을 한 편의 공유용 세로 영상, Daily Story로 완성합니다.'
       : 'Record each routine in a 2–4 second video and watch your plant grow. Seed Plus turns a day of check-ins into a shareable vertical Daily Story.',
@@ -111,9 +121,10 @@ const products = [
     id: 'alpha',
     number: '03',
     name: 'ALPHA',
-    mark: '▲',
+    icon: '/visuals/company/alpha-app-icon.webp',
+    status: 'iOS v1.0.3 · ANDROID v1.0.4',
     href: isKo ? '/alpha' : '/en/alpha',
-    title: isKo ? '30일씩, 세 번.\n90일의 기준을 세웁니다.' : 'Three 30-day courses.\nOne 90-day standard.',
+    title: isKo ? '오늘을 끝내며,\n90일의 기준을 세웁니다.' : 'Close today.\nBuild a 90-day standard.',
     body: isKo
       ? 'BASIC부터 시작해 기준을 충족하면 STANDARD와 HARD로 이어지는 유료 자기통제 앱. 매일 루틴을 끝내고 하루를 마감하며, 완성한 날과 무너진 날을 모두 기록합니다.'
       : 'A paid self-discipline app that starts with BASIC and unlocks STANDARD and HARD as you meet each course standard. Finish your routines, close the day, and keep both wins and misses on record.',
@@ -122,17 +133,19 @@ const products = [
     id: 'heum',
     number: '04',
     name: 'HEUM',
-    mark: 'H',
+    icon: '/visuals/company/heum-mark.webp',
+    status: isKo ? 'WEB STUDIO · 상담 가능' : 'WEB STUDIO · INQUIRIES OPEN',
     href: isKo ? '/heum' : '/en/heum',
-    title: isKo ? '아직 보내지지 않은 소포가\n먼저 도착했습니다.' : 'A parcel arrived\nbefore it was sent.',
+    external: 'https://heum.cloud',
+    title: isKo ? '가게의 좋은 첫인상,\n웹에서도 이어지게.' : 'Carry a shop’s first impression\nonto the web.',
     body: isKo
-      ? '평범한 배송조회에서 시작하는 연속형 브라우저 ARG. 서로 다른 웹사이트의 시간·물건·사람을 대조하고, 제안한 해결이 도시의 다음 상태를 실제로 바꿉니다.'
-      : 'A serialized browser ARG that begins on an ordinary parcel-tracking site. Compare times, objects, and people across a web ecosystem, then watch your proposed solution change what happens next.',
+      ? '카페·식당·작은 가게의 메뉴, 위치, 예약과 문의를 가게에 맞는 한 화면으로 정리하는 로컬 비즈니스 웹 스튜디오입니다.'
+      : 'A local business web studio that turns a cafe, restaurant, or small shop’s menu, location, reservations, and contact into one clear experience.',
   },
 ];
 ---
 
-<div class="east-home">
+<div class="east-home" data-east-home>
   <a class="skip-link" href="#main-content">{isKo ? '본문으로 이동' : 'Skip to content'}</a>
 
   <header class="site-header">
@@ -151,20 +164,40 @@ const products = [
 
   <main id="main-content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy reveal is-visible">
-        <h1 id="hero-title">{copy.heroTitle.split('\n').map((line) => <span>{line}</span>)}</h1>
-        <p>{copy.heroBody.split('\n').map((line) => <span>{line}</span>)}</p>
-        <a class="primary-cta" href="#products">
-          {copy.heroCta}
-          <span aria-hidden="true">↘</span>
-        </a>
+      <div class="hero-top">
+        <div class="hero-copy reveal is-visible">
+          <p class="hero-eyebrow">{copy.heroEyebrow}</p>
+          <h1 id="hero-title">{copy.heroTitle.split('\n').map((line) => <span>{line}</span>)}</h1>
+          <p>{copy.heroBody.split('\n').map((line) => <span>{line}</span>)}</p>
+          <a class="primary-cta" href="#products">
+            {copy.heroCta}
+            <span aria-hidden="true">↘</span>
+          </a>
+        </div>
+
+        <aside class="hero-live reveal is-visible" aria-label={copy.liveLabel}>
+          <div class="hero-live__head">
+            <span aria-hidden="true"></span>
+            <p>{copy.liveLabel}</p>
+          </div>
+          <strong>{copy.liveSummary}</strong>
+          <ul>
+            {products.map((product) => (
+              <li>
+                <img src={product.icon} alt="" width="28" height="28" />
+                <span>{product.name}</span>
+                <small>{product.status}</small>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
 
       <div class="world-viewport" aria-hidden="true">
         <img
-          src="/visuals/company/product-world-hero.webp"
-          width="1829"
-          height="860"
+          src="/visuals/company/product-world-hero-studio-v1.webp"
+          width="1825"
+          height="862"
           alt=""
           loading="eager"
           fetchpriority="high"
@@ -174,7 +207,7 @@ const products = [
       <nav class="product-rail" aria-label={isKo ? '제품 바로가기' : 'Product shortcuts'}>
         {products.map((product) => (
           <a href={`#${product.id}`}>
-            <span class={`rail-mark rail-mark--${product.id}`} aria-hidden="true">{product.mark}</span>
+            <img class="rail-icon" src={product.icon} alt="" width="34" height="34" />
             <span>{product.name}</span>
             <span class="rail-arrow" aria-hidden="true">↘</span>
           </a>
@@ -196,6 +229,7 @@ const products = [
               <div class="product-kicker">
                 <span>{product.number}</span>
                 <strong>{product.name}</strong>
+                <small>{product.status}</small>
               </div>
               <h3>{product.title.split('\n').map((line) => <span>{line}</span>)}</h3>
               <p>{product.body}</p>
@@ -204,12 +238,17 @@ const products = [
                   class="text-link"
                   href={product.href}
                 >
-                  {product.id === 'heum' ? copy.openRecord : copy.viewProduct}
+                  {product.id === 'heum' ? copy.viewStudio : copy.viewProduct}
                   <span aria-hidden="true">↗</span>
                 </a>
                 {product.social && (
                   <a class="quiet-link" href={product.social} target="_blank" rel="noreferrer">
                     {copy.visitInstagram}<span class="sr-only"> ({isKo ? '새 창' : 'opens in a new tab'})</span>
+                  </a>
+                )}
+                {product.external && (
+                  <a class="quiet-link" href={product.external} target="_blank" rel="noreferrer">
+                    {copy.visitWebsite}<span class="sr-only"> ({isKo ? '새 창' : 'opens in a new tab'})</span>
                   </a>
                 )}
               </div>
@@ -230,18 +269,17 @@ const products = [
               )}
               {product.id === 'alpha' && (
                 <>
-                  <img class="brand-poster" src="/visuals/company/alpha-current-90days.webp" width="900" height="1956" alt="" loading="lazy" />
-                  <img class="detail-card" src="/visuals/company/alpha-current-today.webp" width="900" height="1956" alt="" loading="lazy" />
+                  <img class="brand-poster" src="/visuals/company/alpha-store-course-2026-08.webp" width="1320" height="2868" alt="" loading="lazy" />
+                  <img class="detail-card" src="/visuals/company/alpha-store-today-2026-08.webp" width="1320" height="2868" alt="" loading="lazy" />
                 </>
               )}
               {product.id === 'heum' && (
                 <div class="heum-stage">
-                  <img class="heum-blueprint" src="/visuals/company/heum-current-linework.webp" width="1683" height="935" alt="" loading="lazy" />
-                  <strong class="heum-title">HEUM</strong>
-                  <div class="heum-record-card">
-                    <img src="/visuals/company/heum-current-parcel.webp" width="1448" height="1086" alt="" loading="lazy" />
-                    <span>{isKo ? '반송 예정 · P0 미인도 화물' : 'RETURN PENDING · P0 UNCLAIMED'}</span>
+                  <img class="heum-studio-screen" src="/visuals/company/heum-studio-work.webp" width="1440" height="1024" alt="" loading="lazy" />
+                  <div class="heum-mobile-card">
+                    <img src="/visuals/company/heum-studio-mobile.webp" width="390" height="844" alt="" loading="lazy" />
                   </div>
+                  <p>{isKo ? '카페·식당·작은 가게를 위한 웹 제작' : 'Websites for cafes, restaurants, and small shops'}</p>
                 </div>
               )}
             </div>
@@ -308,24 +346,11 @@ const products = [
 </div>
 
 <script>
-  const reveals = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
+  import { initHomeMotion } from '../scripts/productMotion';
 
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -7% 0px' },
-    );
-    reveals.forEach((element) => observer.observe(element));
-  } else {
-    reveals.forEach((element) => element.classList.add('is-visible'));
-  }
+  const motionRoot = document.querySelector<HTMLElement>('[data-east-home]');
+  const cleanupMotion = motionRoot ? initHomeMotion(motionRoot) : undefined;
+  if (cleanupMotion) addEventListener('pagehide', cleanupMotion, { once: true });
 
   const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-home-section-link]')];
   const sections = [...document.querySelectorAll<HTMLElement>('[data-home-section]')];
@@ -356,6 +381,17 @@ const products = [
     overflow: clip;
     background: var(--paper);
     color: var(--ink);
+  }
+
+  .east-home[data-motion-active='true'] .reveal {
+    transition: none;
+  }
+
+  :global(html.motion-booting) .east-home .hero-copy,
+  :global(html.motion-booting) .east-home .hero-live,
+  :global(html.motion-booting) .east-home .world-viewport img,
+  :global(html.motion-booting) .east-home .product-rail a {
+    opacity: 0;
   }
 
   .skip-link {
@@ -438,28 +474,50 @@ const products = [
   }
 
   .hero {
-    padding-top: clamp(5.75rem, 6.4vw, 6.1rem);
+    position: relative;
+    padding-top: clamp(4.75rem, 6.4vw, 6.5rem);
     background:
-      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.96), transparent 44%),
-      #f8f7f5;
+      linear-gradient(rgba(7, 21, 37, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(7, 21, 37, 0.035) 1px, transparent 1px),
+      radial-gradient(circle at 78% 18%, rgba(113, 153, 255, 0.2), transparent 28%),
+      radial-gradient(circle at 15% 38%, rgba(151, 229, 218, 0.18), transparent 26%),
+      #f7f8fa;
+    background-size: 80px 80px, 80px 80px, auto, auto, auto;
+  }
+
+  .hero-top {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+    width: min(calc(100% - 6rem), 1320px);
+    margin: 0 auto;
   }
 
   .hero-copy {
-    position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0 1.25rem;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-eyebrow {
+    margin: 0 0 1.5rem !important;
+    color: #586377 !important;
+    font-size: 0.72rem !important;
+    font-weight: 720;
+    letter-spacing: 0.14em !important;
   }
 
   .hero h1 {
     margin: 0;
-    font-size: clamp(3.35rem, 4.05vw, 3.75rem);
+    max-width: 13ch;
+    font-size: clamp(3.7rem, 6.3vw, 6.6rem);
     font-weight: 790;
     letter-spacing: -0.075em;
-    line-height: 1.04;
+    line-height: 0.98;
   }
 
   .hero h1 span,
@@ -470,10 +528,11 @@ const products = [
   }
 
   .hero-copy > p {
-    margin: 1.2rem 0 0;
+    max-width: 42rem;
+    margin: 1.6rem 0 0;
     color: var(--muted);
     font-size: clamp(0.98rem, 1.05vw, 1.05rem);
-    line-height: 1.62;
+    line-height: 1.72;
     letter-spacing: -0.025em;
   }
 
@@ -498,11 +557,92 @@ const products = [
     box-shadow: 0 16px 34px rgba(7, 21, 37, 0.22);
   }
 
+  .primary-cta:active,
+  .product-rail a:active,
+  .text-link:active,
+  .contact-link:active {
+    transform: scale(0.975);
+  }
+
+  .hero-live {
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 22px 70px rgba(27, 47, 79, 0.12);
+    backdrop-filter: blur(22px);
+  }
+
+  .hero-live__head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .hero-live__head > span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22a06b;
+    box-shadow: 0 0 0 6px rgba(34, 160, 107, 0.11);
+  }
+
+  .hero-live__head p {
+    margin: 0;
+    color: #6b7485;
+    font-size: 0.66rem;
+    font-weight: 720;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-live > strong {
+    display: block;
+    margin: 1rem 0 1.15rem;
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    letter-spacing: -0.045em;
+  }
+
+  .hero-live ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid rgba(17, 17, 17, 0.09);
+  }
+
+  .hero-live li {
+    display: grid;
+    grid-template-columns: 28px 0.55fr 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 50px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.09);
+  }
+
+  .hero-live li img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .hero-live li span {
+    font-size: 0.82rem;
+    font-weight: 720;
+  }
+
+  .hero-live li small {
+    color: #727b8b;
+    font-size: 0.58rem;
+    line-height: 1.35;
+    text-align: right;
+  }
+
   .world-viewport {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: clamp(-12rem, -13vw, -10.5rem);
+    margin-top: clamp(-7rem, -6vw, -4rem);
     overflow: hidden;
   }
 
@@ -551,21 +691,13 @@ const products = [
     background: rgba(17, 17, 17, 0.035);
   }
 
-  .rail-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .rail-icon {
+    display: block;
     width: 34px;
     height: 34px;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
+    border-radius: 9px;
+    object-fit: cover;
   }
-
-  .rail-mark--luvit { color: #e58ca6; }
-  .rail-mark--seed { color: #239260; }
-  .rail-mark--alpha { color: #d9272e; }
-  .rail-mark--heum { color: #167c7a; }
 
   .product-rail a > span:nth-child(2) {
     font-weight: 700;
@@ -645,6 +777,7 @@ const products = [
   .product-kicker {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: clamp(2.5rem, 5vw, 5rem);
   }
@@ -658,6 +791,17 @@ const products = [
   .product-kicker strong {
     font-size: 0.86rem;
     letter-spacing: 0.04em;
+  }
+
+  .product-kicker small {
+    margin-left: auto;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.58rem;
+    font-weight: 680;
+    letter-spacing: 0.05em;
+    opacity: 0.52;
   }
 
   .product-story h3 {
@@ -810,8 +954,8 @@ const products = [
   }
 
   .product-story--heum {
-    background: #e7edf2;
-    color: #102c45;
+    background: #edf4ff;
+    color: #152033;
   }
 
   .heum-stage {
@@ -819,53 +963,61 @@ const products = [
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #06477f;
+    background:
+      linear-gradient(rgba(63, 102, 245, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(63, 102, 245, 0.055) 1px, transparent 1px),
+      radial-gradient(circle at 78% 16%, rgba(97, 137, 255, 0.42), transparent 34%),
+      radial-gradient(circle at 12% 78%, rgba(155, 238, 224, 0.4), transparent 30%),
+      #edf4ff;
+    background-size: 80px 80px, 80px 80px, auto, auto, auto;
   }
 
-  .heum-blueprint {
+  .heum-studio-screen {
     position: absolute;
-    inset: 0;
+    top: 11%;
+    left: 7%;
+    width: 76%;
+    border: 10px solid rgba(255, 255, 255, 0.72);
+    border-radius: 24px;
+    box-shadow: 0 36px 90px rgba(35, 69, 131, 0.23);
+    transform: rotate(-1.2deg);
+  }
+
+  .heum-mobile-card {
+    position: absolute;
+    right: 4%;
+    bottom: -9%;
+    z-index: 2;
+    width: min(31%, 250px);
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 28px 80px rgba(35, 69, 131, 0.26);
+    transform: rotate(2.2deg);
+    backdrop-filter: blur(16px);
+  }
+
+  .heum-mobile-card img {
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 72% center;
+    border-radius: 17px;
   }
 
-  .heum-title {
-    position: absolute;
-    top: 10%;
-    left: 8%;
-    color: #ffffff;
-    font-size: clamp(2.6rem, 5vw, 5rem);
-    letter-spacing: -0.07em;
-  }
-
-  .heum-record-card {
+  .heum-stage > p {
     position: absolute;
     right: 5%;
-    bottom: 8%;
-    width: min(46%, 390px);
-    padding: 10px 10px 12px;
-    transform: rotate(2.5deg);
-    background: #f9f6ee;
-    box-shadow: 0 24px 70px rgba(0, 24, 52, 0.32);
-  }
-
-  .heum-record-card img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    object-position: center top;
-  }
-
-  .heum-record-card span {
-    display: block;
-    padding: 0.8rem 0.2rem 0.15rem;
-    color: #31516a;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    top: 5%;
+    z-index: 3;
+    margin: 0;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    color: #3f66f5;
     font-size: 0.64rem;
-    letter-spacing: 0.09em;
+    font-weight: 720;
+    backdrop-filter: blur(16px);
   }
 
   .story {
@@ -873,12 +1025,22 @@ const products = [
     grid-template-columns: 0.92fr 1.08fr;
     gap: clamp(4rem, 10vw, 11rem);
     padding: clamp(7rem, 13vw, 12rem) max(1.5rem, calc((100vw - 1240px) / 2));
-    background: #f7f6f3;
+    --muted: #aeb9c9;
+    --line: rgba(255, 255, 255, 0.16);
+    background:
+      radial-gradient(circle at 90% 8%, rgba(63, 102, 245, 0.28), transparent 30%),
+      #071525;
+    color: #f6f8fc;
   }
 
   .story-copy .eyebrow,
   .team-intro .eyebrow {
     margin-bottom: 2.5rem;
+  }
+
+  .story .eyebrow,
+  .story .method-label {
+    color: #8290a5;
   }
 
   .story-copy > p:last-child {
@@ -1061,16 +1223,27 @@ const products = [
       padding-top: 4.75rem;
     }
 
+    .hero-top {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      width: min(calc(100% - 3rem), 720px);
+    }
+
+    .hero-live {
+      width: min(100%, 500px);
+      justify-self: end;
+    }
+
     .hero h1 {
       font-size: clamp(2.8rem, 8.7vw, 4.2rem);
     }
 
     .world-viewport {
-      margin-top: 1.6rem;
+      margin-top: -2rem;
     }
 
     .world-viewport img {
-      width: min(1825px, max(680px, 175vw));
+      width: min(1825px, 100%);
       max-width: none;
     }
 
@@ -1160,6 +1333,11 @@ const products = [
       padding-top: 4rem;
     }
 
+    .hero-top {
+      gap: 1.5rem;
+      width: calc(100% - 2.5rem);
+    }
+
     .hero h1 {
       font-size: clamp(2.25rem, 10.5vw, 2.75rem);
       letter-spacing: -0.08em;
@@ -1174,8 +1352,23 @@ const products = [
       min-height: 52px;
     }
 
+    .hero-live {
+      justify-self: stretch;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+    }
+
+    .hero-live > strong {
+      margin-bottom: 0;
+      font-size: 1.05rem;
+    }
+
+    .hero-live ul {
+      display: none;
+    }
+
     .world-viewport {
-      margin-top: 1.25rem;
+      margin-top: -0.5rem;
     }
 
     .product-rail {
@@ -1190,10 +1383,10 @@ const products = [
       font-size: 0.87rem;
     }
 
-    .rail-mark {
+    .rail-icon {
       width: 28px;
       height: 28px;
-      font-size: 1.05rem;
+      border-radius: 8px;
     }
 
     .rail-arrow {
@@ -1212,6 +1405,14 @@ const products = [
 
     .product-kicker {
       margin-bottom: 3rem;
+    }
+
+    .product-kicker small {
+      flex-basis: 100%;
+      width: fit-content;
+      margin-left: 0;
+      border: 0;
+      padding: 0;
     }
 
     .product-story h3 {
@@ -1243,16 +1444,33 @@ const products = [
     .product-story--seed .brand-poster { right: 4%; }
     .product-story--seed .detail-card { left: 4%; }
 
-    .heum-title {
-      top: 8%;
-      left: 7%;
-      font-size: 2.4rem;
+    .heum-studio-screen {
+      top: 9%;
+      left: 4%;
+      width: 88%;
+      border-width: 6px;
+      border-radius: 16px;
     }
 
-    .heum-record-card {
-      right: 7%;
-      bottom: 5%;
-      width: 58%;
+    .heum-mobile-card {
+      right: 3%;
+      bottom: -12%;
+      width: 38%;
+      border-radius: 17px;
+    }
+
+    .heum-mobile-card img {
+      border-radius: 12px;
+    }
+
+    .heum-stage > p {
+      top: auto;
+      right: auto;
+      bottom: 1rem;
+      left: 1rem;
+      max-width: 58%;
+      border-radius: 13px;
+      line-height: 1.45;
     }
 
     .story,
@@ -1288,6 +1506,26 @@ const products = [
 
     .site-footer {
       min-height: 108px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .primary-cta:active,
+    .product-rail a:active,
+    .text-link:active,
+    .contact-link:active {
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .site-header,
+    .hero-live,
+    .product-rail,
+    .heum-mobile-card,
+    .heum-stage > p {
+      background: #ffffff;
+      backdrop-filter: none;
     }
   }
 </style>

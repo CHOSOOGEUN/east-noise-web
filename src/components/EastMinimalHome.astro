@@ -187,7 +187,7 @@ const windowProducts = products.slice(0, windowRects.length);
         <p class="kicker">{copy.moreKicker}</p><h2 id="other-rooms-title">{copy.moreTitle}</h2>
       </div>
       <div class="other-grid">
-        {otherRooms.map((product, index) => {
+        {otherRooms.map((product) => {
           const hasWeb = Boolean(product.links?.web);
           const Wrapper = hasWeb ? 'a' : 'article';
           return (

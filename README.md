@@ -7,9 +7,9 @@ Astro-based company website for East Noise / 동방의 소음.
 - `/` Korean company homepage
 - `/en/` English company homepage
 - `/luvit`, `/en/luvit` Luvit landing pages
-- `/pickie`, `/en/pickie` Pickie landing pages
 - `/seed`, `/en/seed` Seed landing pages
 - `/alpha`, `/en/alpha` ALPHA product pages
+- `/heum`, `/en/heum` HEUM web studio pages
 - `/alpha/support`, `/en/alpha/support` ALPHA support pages
 - `/legal/...` product legal pages
 

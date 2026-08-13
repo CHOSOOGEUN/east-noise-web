@@ -42,9 +42,9 @@ const languageUrl = isKo ? `/en/${slug}` : `/${slug}`;
 const languageLabel = isKo ? 'EN' : 'KO';
 
 const links = {
-  luvitIos: 'https://apps.apple.com/kr/app/%EB%9F%AC%EB%B9%97-luvit/id6762438141',
+  luvitIos: 'https://apps.apple.com/kr/app/luvit-%EB%9F%AC%EB%B9%97-%EB%91%98%EB%A7%8C%EC%9D%98-%EC%BB%A4%ED%94%8C%EB%AF%B8%EC%85%98/id6762438141',
   luvitInstagram: 'https://www.instagram.com/luvit_486/',
-  seedIos: 'https://apps.apple.com/kr/app/seed-%EB%A3%A8%ED%8B%B4%EC%9C%BC%EB%A1%9C-%ED%82%A4%EC%9A%B0%EB%8A%94-%EC%8B%9D%EB%AC%BC/id6772765829',
+  seedIos: 'https://apps.apple.com/kr/app/seed-%EC%8B%9C%EB%93%9C-%EB%82%98%EB%A7%8C%EC%9D%98-%EB%A3%A8%ED%8B%B4-%EB%B8%8C%EC%9D%B4%EB%A1%9C%EA%B7%B8/id6772765829',
   seedAndroid: 'https://play.google.com/store/apps/details?id=com.eastnoise.seed',
   seedInstagram: 'https://www.instagram.com/seed.fl0wer/',
   alphaIos: 'https://apps.apple.com/kr/app/alpha-reforge/id6788264733',
@@ -66,7 +66,7 @@ const ko: Record<ProductSlug, ProductPageCopy> = {
     heroAlt: '하트를 건네는 두 마리 토끼와 작은 편지 집으로 만든 Luvit 미니어처 세계',
     heroTitle: '둘의 하루에\n작은 미션 하나.',
     heroBody: '각자 받은 미션을 해내고, 다음 날 서로의 결과를 확인합니다. 함께 끝낸 하루는 둘의 방과 추억으로 남습니다.',
-    status: 'App Store 공개 · v1.0.4',
+    status: 'App Store 공개 · v1.0.5',
     ctas: [
       { label: 'App Store에서 보기', href: links.luvitIos },
       { label: 'Instagram', href: links.luvitInstagram, quiet: true },
@@ -90,8 +90,8 @@ const ko: Record<ProductSlug, ProductPageCopy> = {
   },
   seed: {
     number: '02 / 04',
-    name: 'Seed',
-    category: '루틴 영상 기록 앱',
+    name: 'Seed 시드',
+    category: '루틴 브이로그 앱',
     accent: '#18a86b',
     soft: '#e8f6ee',
     ink: '#13251c',
@@ -101,7 +101,7 @@ const ko: Record<ProductSlug, ProductPageCopy> = {
     heroAlt: '하얀 화분의 이끼 위에서 두 잎을 펼친 Seed 새싹 미니어처',
     heroTitle: '오늘의 실행을\n한 편의 영상으로.',
     heroBody: '루틴을 2~4초 영상으로 인증하면 식물이 자랍니다. 흩어진 오늘의 장면은 하나의 Daily Story가 됩니다.',
-    status: 'App Store · Google Play 공개',
+    status: 'App Store · Google Play 공개 · v1.0.13',
     ctas: [
       { label: 'App Store', href: links.seedIos },
       { label: 'Google Play', href: links.seedAndroid, quiet: true },
@@ -137,7 +137,7 @@ const ko: Record<ProductSlug, ProductPageCopy> = {
     heroAlt: '붉은 길이 이어진 검은 돌계단과 숫자 90이 새겨진 ALPHA 미니어처',
     heroTitle: '30일씩 세 번.\n기준을 다시 세웁니다.',
     heroBody: 'BASIC, STANDARD, HARD. 루틴을 끝내고 하루를 마감하며 90일 동안 나를 다시 기록합니다.',
-    status: 'App Store · Google Play 공개',
+    status: 'App Store v1.0.3 · Google Play v1.0.4',
     ctas: [
       { label: 'App Store', href: links.alphaIos },
       { label: 'Google Play', href: links.alphaAndroid, quiet: true },
@@ -153,8 +153,8 @@ const ko: Record<ProductSlug, ProductPageCopy> = {
       ['30일을 통과해 다음 과정으로 갑니다.', 'BASIC에서 시작해 STANDARD와 HARD로 이어가며, 기준에 미치지 못하면 같은 과정을 다시 시작합니다.'],
     ],
     screens: [
-      { src: '/visuals/company/alpha-current-today.webp', alt: '오늘의 루틴과 완료율을 보여주는 ALPHA 화면', label: 'TODAY / CLOSE' },
-      { src: '/visuals/company/alpha-current-90days.webp', alt: '90일 과정의 계단을 보여주는 ALPHA 화면', label: '90 DAYS / REFORGE' },
+      { src: '/visuals/company/alpha-store-today-2026-08.webp', alt: '오늘의 루틴과 완료율을 보여주는 최신 ALPHA 화면', label: 'TODAY / CLOSE' },
+      { src: '/visuals/company/alpha-store-course-2026-08.webp', alt: '90일 과정의 계단을 보여주는 최신 ALPHA 화면', label: '90 DAYS / REFORGE' },
     ],
     closing: '흔들려도, 이어가라.',
     closingBody: '완벽한 하루보다 다시 돌아온 하루를 기록하세요.',
@@ -162,34 +162,34 @@ const ko: Record<ProductSlug, ProductPageCopy> = {
   heum: {
     number: '04 / 04',
     name: 'HEUM',
-    category: '브라우저 네이티브 ARG',
-    accent: '#174d80',
-    soft: '#e5edf4',
-    ink: '#101c28',
-    heroImage: '/visuals/company/heum-world-detail-v1.webp',
-    heroWidth: 1827,
-    heroHeight: 861,
-    heroAlt: '아이보리 H 구조물 사이에 배송 기록과 작은 소포가 놓인 HEUM 미니어처',
-    heroTitle: '보내지 않은 물건이\n72시간 먼저 도착했다.',
-    heroBody: '평범한 배송조회에서 시작해 서로 다른 기관의 기록을 대조하고, 도시의 다음 상태를 직접 바꾸는 연속형 브라우저 ARG입니다.',
-    status: 'Season 01 · 반송 예정',
-    ctas: [{ label: '사건 시작하기', href: links.heum }],
-    stats: [['72H', '먼저 도착한 기록'], ['6 CHAPTERS', '하나의 연속 세계'], ['BROWSER', '웹사이트 자체가 게임']],
-    statement: '게임 화면이 없습니다. 당신이 보고 있는 웹사이트가 사건입니다.',
-    intro: 'HEUM은 작품 목록이나 퀘스트 UI에서 시작하지 않습니다. 보수적인 한국 중견 택배사 새길로지스의 배송조회, 공지, 약국과 보관함의 기록이 각자의 운영 이유로 존재합니다.',
-    experienceTitle: '기록은 따로 존재하고,\n진실은 사이에서 생깁니다.',
-    experienceBody: '첫 시즌 「반송 예정」은 프롤로그부터 6장까지 하나의 물건과 세 개의 미래를 따라갑니다. 플레이어가 앞에서 살린 경로가 마지막 해결의 일부가 됩니다.',
+    category: '로컬 비즈니스 웹 스튜디오',
+    accent: '#3f66f5',
+    soft: '#edf4ff',
+    ink: '#152033',
+    heroImage: '/visuals/company/heum-studio-hero.webp',
+    heroWidth: 1440,
+    heroHeight: 1024,
+    heroAlt: '카페와 로컬 브랜드의 제작 예시를 보여주는 HEUM 웹 스튜디오 화면',
+    heroTitle: '가게의 좋은 첫인상,\n웹에서도 이어지게.',
+    heroBody: '카페, 식당, 작은 가게가 메뉴와 위치, 예약과 문의를 한 주소에 담을 수 있도록 작고 선명한 웹사이트를 만듭니다.',
+    status: '웹 스튜디오 · 상담 가능',
+    ctas: [{ label: 'HEUM 방문하기', href: links.heum }],
+    stats: [['4 TYPES', '업종별 제작 예시'], ['ONE LINK', '정보와 행동을 한곳에'], ['LOCAL', '카페·식당·작은 가게']],
+    statement: '손님이 찾고, 이해하고, 찾아오게 만드는 한 주소.',
+    intro: 'HEUM은 로컬 비즈니스를 위한 작은 웹 스튜디오입니다. 가게의 분위기는 살리고, 처음 온 손님이 필요한 정보와 다음 행동은 빠르게 찾도록 설계합니다.',
+    experienceTitle: '가게마다 다르게,\n다음 행동은 분명하게.',
+    experienceBody: '보여주기 위한 장식보다 실제 운영에 필요한 흐름을 먼저 봅니다. 확인된 정보와 제공받은 자료로 빠르게 제작하고, 모바일과 데스크톱에서 함께 점검합니다.',
     steps: [
-      ['접수되지 않은 기록을 발견합니다.', '72시간 뒤의 데이터가 담긴 냉장 기록계가 정상적인 배송조회에 먼저 나타납니다.'],
-      ['서로 다른 운영 기록을 대조합니다.', '택배사, 약국, 보관함, 기사와 시청 기록의 시간·물건·인수 책임을 맞춰 봅니다.'],
-      ['제안한 해결이 다음 상태를 바꿉니다.', '제출한 판단은 단순 정답 문구가 아니라 이후 사이트와 도시의 실제 상태 변화로 이어집니다.'],
+      ['가게와 손님의 동선을 먼저 봅니다.', '기존 링크와 자료를 확인해 손님이 가장 먼저 알아야 할 정보와 행동을 정리합니다.'],
+      ['제작 예시로 방향을 빠르게 맞춥니다.', '업종과 분위기에 맞는 첫 화면을 만들고, 확인된 정보만 담아 함께 검토합니다.'],
+      ['한 주소로 공개하고 계속 다듬습니다.', '메뉴, 위치, 예약과 문의가 모바일에서도 자연스럽게 이어지도록 완성합니다.'],
     ],
     screens: [
-      { src: '/visuals/company/heum-current-linework.webp', alt: '도시와 배송 트럭을 그린 HEUM 새길로지스 선화', label: 'SAEGIL LOGISTICS / ENTRY' },
-      { src: '/visuals/company/heum-current-parcel.webp', alt: '반송 예정 봉인띠와 M-04 표식이 붙은 HEUM 소포 증거', label: 'RETURN PENDING / P0' },
+      { src: '/visuals/company/heum-studio-work.webp', alt: 'HEUM의 업종별 웹사이트 제작 예시 모음', label: 'PRODUCTION EXAMPLES / DESKTOP' },
+      { src: '/visuals/company/heum-studio-mobile.webp', alt: '모바일에서 보이는 HEUM 웹 스튜디오 첫 화면', label: 'OPENING / MOBILE' },
     ],
-    closing: '배송조회를 시작하시겠습니까?',
-    closingBody: '별도의 설치 없이 브라우저에서 첫 기록을 확인하세요.',
+    closing: '다음 장면은 당신의 가게.',
+    closingBody: '가게의 분위기와 손님의 다음 행동을 한 주소에 담아보세요.',
   },
 };
 
@@ -200,7 +200,7 @@ const en: Record<ProductSlug, ProductPageCopy> = {
     heroAlt: 'A miniature Luvit world with two plush rabbits, a heart, and a tiny letter house',
     heroTitle: 'One small mission\ninside a day for two.',
     heroBody: 'Complete separate missions, check each other’s result the next day, and turn the day into a shared room and memory.',
-    status: 'Live on the App Store · v1.0.4',
+    status: 'Live on the App Store · v1.0.5',
     ctas: [{ label: 'View on the App Store', href: links.luvitIos }, { label: 'Instagram', href: links.luvitInstagram, quiet: true }],
     stats: [['9 AM', 'A mission for each'], ['30P', 'Both reviews complete'], ['ONE ROOM', 'Decorated together']],
     statement: 'Love is less about a grand event than thinking of each other once more, every day.',
@@ -221,11 +221,12 @@ const en: Record<ProductSlug, ProductPageCopy> = {
   },
   seed: {
     ...ko.seed,
+    name: 'Seed',
     category: 'Video routine journal',
     heroAlt: 'A miniature Seed sprout with two leaves growing from moss in a white planter',
     heroTitle: 'Turn what you did today\ninto one story.',
     heroBody: 'A 2–4 second check-in grows your plant. The moments scattered across the day become one Daily Story.',
-    status: 'Live on the App Store and Google Play',
+    status: 'Live on the App Store and Google Play · v1.0.13',
     ctas: [{ label: 'App Store', href: links.seedIos }, { label: 'Google Play', href: links.seedAndroid, quiet: true }, { label: 'Instagram', href: links.seedInstagram, quiet: true }],
     stats: [['2–4 SEC', 'Short video proof'], ['8 × 7', 'Plants and stages'], ['9:16', 'Daily Story']],
     statement: 'Keep the moment you actually did it, not another checkmark.',
@@ -250,7 +251,7 @@ const en: Record<ProductSlug, ProductPageCopy> = {
     heroAlt: 'An ALPHA miniature with a red path, black staircase, and a monument marked 90',
     heroTitle: 'Three 30-day courses.\nRebuild your standard.',
     heroBody: 'BASIC, STANDARD, HARD. Finish routines, close each day, and rebuild your record over 90 days.',
-    status: 'Live on the App Store and Google Play',
+    status: 'App Store v1.0.3 · Google Play v1.0.4',
     ctas: [{ label: 'App Store', href: links.alphaIos }, { label: 'Google Play', href: links.alphaAndroid, quiet: true }],
     stats: [['30 × 3', 'Three courses'], ['DAILY', 'Routines and close'], ['RETRY', 'Return after a miss']],
     statement: 'Self-discipline begins with repeatedly closing today, not waiting for motivation.',
@@ -263,36 +264,36 @@ const en: Record<ProductSlug, ProductPageCopy> = {
       ['Pass 30 days to enter the next course.', 'Move from BASIC to STANDARD and HARD, or restart the current course when the standard is not met.'],
     ],
     screens: [
-      { src: '/visuals/company/alpha-current-today.webp', alt: 'ALPHA Today screen with routines and completion rate', label: 'TODAY / CLOSE' },
-      { src: '/visuals/company/alpha-current-90days.webp', alt: 'ALPHA screen showing the 90-day course', label: '90 DAYS / REFORGE' },
+      { src: '/visuals/company/alpha-store-today-2026-08.webp', alt: 'Latest ALPHA Today screen with routines and completion rate', label: 'TODAY / CLOSE' },
+      { src: '/visuals/company/alpha-store-course-2026-08.webp', alt: 'Latest ALPHA screen showing the 90-day course', label: '90 DAYS / REFORGE' },
     ],
     closing: 'Even when you waver, keep going.',
     closingBody: 'Record the day you returned, not the illusion of a perfect one.',
   },
   heum: {
     ...ko.heum,
-    category: 'Browser-native ARG',
-    heroAlt: 'A miniature HEUM world with ivory H pillars, shipping records, and a small parcel',
-    heroTitle: 'An unsent object arrived\n72 hours early.',
-    heroBody: 'Begin with an ordinary parcel tracker, compare records across institutions, and change what the city becomes next.',
-    status: 'Season 01 · Return Pending',
-    ctas: [{ label: 'Begin the case', href: links.heum }],
-    stats: [['72H', 'A record from ahead'], ['6 CHAPTERS', 'One continuous world'], ['BROWSER', 'The website is the game']],
-    statement: 'There is no game screen. The websites in front of you are the case.',
-    intro: 'HEUM does not open on a mission list. Parcel tracking, public notices, pharmacy records, lockers, and routes all exist for their own operational reasons.',
-    experienceTitle: 'Records stand apart.\nThe truth appears between them.',
-    experienceBody: 'Season 01 follows one object and three possible futures from a prologue through six chapters. A route saved earlier becomes part of the final solution.',
+    category: 'Local business web studio',
+    heroAlt: 'HEUM web studio showing website examples for cafes and local brands',
+    heroTitle: 'Carry a great first impression\nonto the web.',
+    heroBody: 'We create small, clear websites that put menus, location, reservations, and inquiries in one place for cafes, restaurants, and independent shops.',
+    status: 'Web studio · Inquiries open',
+    ctas: [{ label: 'Visit HEUM', href: links.heum }],
+    stats: [['4 TYPES', 'Examples by business'], ['ONE LINK', 'Information and action'], ['LOCAL', 'Cafes, restaurants, shops']],
+    statement: 'One address that helps people find, understand, and visit your business.',
+    intro: 'HEUM is a small web studio for local businesses. We preserve the character of each place while making essential information and the next action easy to find.',
+    experienceTitle: 'Different for every place.\nClear about what comes next.',
+    experienceBody: 'We start with the real operating journey, not decorative effects. Using confirmed information and supplied materials, we build quickly and review the experience on mobile and desktop.',
     steps: [
-      ['Find a record that has not been accepted yet.', 'A refrigerated logger containing data from 72 hours ahead appears inside normal parcel tracking.'],
-      ['Compare records kept by different operators.', 'Align time, objects, and handoff responsibility across delivery, pharmacies, lockers, drivers, and the city.'],
-      ['Watch the next state respond to your answer.', 'A submitted conclusion changes the sites and the city instead of returning a detached answer screen.'],
+      ['Start with the place and its customer journey.', 'We review existing links and materials to decide what a first-time customer needs to know and do.'],
+      ['Align quickly through a production example.', 'We create an opening direction that fits the business, then review only confirmed information together.'],
+      ['Publish one address and keep refining it.', 'Menus, directions, reservations, and inquiries stay easy to use across mobile and desktop.'],
     ],
     screens: [
-      { src: '/visuals/company/heum-current-linework.webp', alt: 'Line drawing of the HEUM logistics city and truck', label: 'SAEGIL LOGISTICS / ENTRY' },
-      { src: '/visuals/company/heum-current-parcel.webp', alt: 'HEUM parcel evidence marked for return and M-04', label: 'RETURN PENDING / P0' },
+      { src: '/visuals/company/heum-studio-work.webp', alt: 'HEUM website production examples for different local businesses', label: 'PRODUCTION EXAMPLES / DESKTOP' },
+      { src: '/visuals/company/heum-studio-mobile.webp', alt: 'HEUM web studio opening screen on mobile', label: 'OPENING / MOBILE' },
     ],
-    closing: 'Start with parcel tracking?',
-    closingBody: 'Open the first record in your browser, with nothing to install.',
+    closing: 'The next scene belongs to your place.',
+    closingBody: 'Bring the character of your business and the customer’s next action into one address.',
   },
 };
 
@@ -312,10 +313,10 @@ const screenSizes: Record<string, [number, number]> = {
   '/visuals/company/luvit-current-home.webp': [900, 1956],
   '/visuals/company/seed-current-today.webp': [900, 1951],
   '/visuals/company/seed-current-story.webp': [900, 1951],
-  '/visuals/company/alpha-current-today.webp': [900, 1956],
-  '/visuals/company/alpha-current-90days.webp': [900, 1956],
-  '/visuals/company/heum-current-linework.webp': [1683, 935],
-  '/visuals/company/heum-current-parcel.webp': [1448, 1086],
+  '/visuals/company/alpha-store-today-2026-08.webp': [1320, 2868],
+  '/visuals/company/alpha-store-course-2026-08.webp': [1320, 2868],
+  '/visuals/company/heum-studio-work.webp': [1440, 1024],
+  '/visuals/company/heum-studio-mobile.webp': [390, 844],
 };
 
 const labels = isKo
@@ -453,22 +454,12 @@ const labels = isKo
 </div>
 
 <script>
+  import { initProductMotion } from '../scripts/productMotion';
+
   const root = document.querySelector<HTMLElement>('[data-product-world]');
   if (root) {
-    const items = [...root.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)')];
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if ('IntersectionObserver' in window && !reduced) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
-      items.forEach((item) => observer.observe(item));
-    } else {
-      items.forEach((item) => item.classList.add('is-visible'));
-    }
+    const cleanupMotion = initProductMotion(root);
+    addEventListener('pagehide', cleanupMotion, { once: true });
 
     const progress = root.querySelector<HTMLElement>('.scroll-progress span');
     const sectionLinks = [...root.querySelectorAll<HTMLAnchorElement>('[data-section-link]')];
@@ -514,6 +505,16 @@ const labels = isKo
     overflow: clip;
     background: var(--paper);
     color: var(--ink);
+  }
+
+  .product-world-page[data-motion-active='true'] .reveal {
+    transition: none;
+  }
+
+  :global(html.motion-booting) .product-world-page .hero-copy,
+  :global(html.motion-booting) .product-world-page .hero-world,
+  :global(html.motion-booting) .product-world-page .hero-stats {
+    opacity: 0;
   }
 
   .skip-link {
@@ -573,9 +574,12 @@ const labels = isKo
   .hero-cta { display: inline-flex; min-height: 50px; align-items: center; justify-content: space-between; gap: 2rem; padding: 0 1.15rem; border: 1px solid var(--product-ink); background: var(--product-ink); color: #fff; font-size: 0.78rem; font-weight: 650; transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease; }
   .hero-cta--quiet { border-color: var(--line); background: transparent; color: var(--ink); }
   .hero-cta:hover, .hero-cta:focus-visible { border-color: var(--accent); background: var(--accent); color: #fff; transform: translateY(-2px); }
+  .hero-cta:active, .closing-actions a:active, .other-products a:active { transform: scale(0.975); }
 
   .hero-world { position: absolute; right: -2.5%; bottom: 7.5rem; z-index: 1; width: min(68vw, 1120px); margin: 0; pointer-events: none; }
   .hero-world img { display: block; width: 100%; height: auto; }
+  .product-world-page--heum .hero-world { right: 2.5%; bottom: 9.5rem; width: min(51vw, 820px); }
+  .product-world-page--heum .hero-world img { border: 8px solid rgba(255,255,255,.88); border-radius: 24px; box-shadow: 0 28px 80px rgba(30, 56, 104, .2); }
   .hero-stats { position: absolute; inset: auto 0 0; z-index: 3; display: grid; grid-template-columns: repeat(3, 1fr); min-height: 7.5rem; margin: 0; border-top: 1px solid var(--line); background: rgba(251, 250, 248, 0.88); backdrop-filter: blur(12px); }
   .hero-stats div { display: flex; flex-direction: column; justify-content: center; padding: 1rem clamp(1.5rem, 4vw, 4.8rem); border-right: 1px solid var(--line); }
   .hero-stats div:last-child { border-right: 0; }
@@ -640,9 +644,6 @@ const labels = isKo
   .product-footer nav { display: flex; flex-wrap: wrap; justify-content: end; gap: 0.7rem 1.3rem; }
   .product-footer nav a { padding-bottom: 0.2rem; border-bottom: 1px solid currentColor; }
 
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 780ms cubic-bezier(.16,1,.3,1), transform 780ms cubic-bezier(.16,1,.3,1); }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
   @media (max-width: 920px) {
     .product-header { grid-template-columns: 1fr auto; min-height: 64px; padding: 0 1.25rem; }
     .section-nav { display: none; }
@@ -656,6 +657,8 @@ const labels = isKo
     .hero-actions { margin-top: 1.65rem; }
     .hero-world { position: relative; right: auto; bottom: auto; width: calc(100% + 2.5rem); margin: 2rem -1.25rem 0; }
     .hero-world img { min-height: 370px; object-fit: cover; object-position: 68% center; }
+    .product-world-page--heum .hero-world { right: auto; bottom: auto; width: calc(100% + 2.5rem); margin: 2.5rem -1.25rem 0; }
+    .product-world-page--heum .hero-world img { min-height: 0; border-width: 0; border-radius: 0; object-fit: contain; box-shadow: none; }
     .hero-stats { position: relative; grid-template-columns: 1fr; min-height: 0; }
     .hero-stats div { min-height: 5.5rem; padding: 1rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line); }
     .hero-stats div:last-child { border-bottom: 0; }
@@ -693,5 +696,17 @@ const labels = isKo
     .closing-actions a { width: 100%; }
     .other-products nav { grid-template-columns: 1fr; }
     .other-products a, .other-products a:nth-child(3) { border-left: 1px solid var(--line); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta:active, .closing-actions a:active, .other-products a:active { transform: none; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .product-header,
+    .hero-stats {
+      background: var(--paper);
+      backdrop-filter: none;
+    }
   }
 </style>
