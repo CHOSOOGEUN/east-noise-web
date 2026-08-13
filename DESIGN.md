@@ -11,7 +11,7 @@
 - Content material: text-heavy cards use a thicker near-white surface rather than clear glass.
 - Typography: system/Pretendard, large headings with tight optical tracking, body at readable contrast and 1.7+ line height.
 - Shape: large surfaces 28–48px; controls use capsules. Do not round every divider or text group.
-- Motion: transform and opacity only, interruptible press feedback, no looping background motion. Reduced Motion removes spatial movement.
+- Motion: transform and opacity only, interruptible press feedback, no looping background motion. The desktop home collection uses a sticky four-card scroll showreel with a visible progress bar; mobile keeps the same reading order in a linear flow. Reduced Motion removes the sticky stack and all spatial movement.
 
 ## Product accents
 

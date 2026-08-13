@@ -4,6 +4,7 @@ type MotionScope = ReturnType<typeof createScope>;
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 const HOVER_QUERY = '(hover: hover) and (pointer: fine)';
+const DESKTOP_SHOWREEL_QUERY = '(min-width: 901px)';
 const MOTION_BOOTING_CLASS = 'motion-booting';
 const MOTION_READY_CLASS = 'motion-ready';
 
@@ -198,6 +199,43 @@ const animateHomeScroll = (root: HTMLElement) => {
       });
     });
   });
+
+  if (matchMedia(DESKTOP_SHOWREEL_QUERY).matches) {
+    const stories = [...root.querySelectorAll<HTMLElement>('.product-story')];
+    stories.slice(0, -1).forEach((story, index) => {
+      const nextStory = stories[index + 1];
+      const copyLayers = story.querySelectorAll<HTMLElement>(
+        '.product-kicker, .product-copy > h3, .product-copy > p, .product-links',
+      );
+      const visualLayers = story.querySelectorAll<HTMLElement>(
+        '.brand-poster, .detail-card, .heum-stage',
+      );
+
+      animate(copyLayers, {
+        opacity: { from: 1, to: 0.72 },
+        y: { from: 0, to: '-0.7rem' },
+        ease: 'linear',
+        autoplay: onScroll({
+          target: nextStory,
+          enter: '78% top',
+          leave: '34% top',
+          sync: 0.14,
+        }),
+      });
+
+      animate(visualLayers, {
+        opacity: { from: 1, to: 0.82 },
+        scale: { from: 1, to: 0.985 },
+        ease: 'linear',
+        autoplay: onScroll({
+          target: nextStory,
+          enter: '78% top',
+          leave: '34% top',
+          sync: 0.14,
+        }),
+      });
+    });
+  }
 };
 
 const animateProductIntro = (root: HTMLElement) => {

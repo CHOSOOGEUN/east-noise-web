@@ -22,6 +22,8 @@ const copy = isKo
       collectionEyebrow: 'EAST NOISE / FOUR PRODUCTS',
       collectionTitle: '지금 운영하는 네 가지',
       collectionBody: '앱 3개와 웹 스튜디오 1개. 기능과 분위기는 달라도, 오늘 더 쉽게 행동하게 한다는 기준은 같습니다.',
+      showreelLabel: 'SCROLL SHOWREEL',
+      showreelHint: '스크롤해 제품 넘기기',
       storyEyebrow: 'HOW WE WORK',
       storyTitle: '출시에서 끝내지 않고,\n운영까지 붙잡습니다.',
       storyBody:
@@ -61,6 +63,8 @@ const copy = isKo
       collectionEyebrow: 'EAST NOISE / FOUR PRODUCTS',
       collectionTitle: 'Four things we operate now',
       collectionBody: 'Three apps and one web studio. Each has its own voice, but every one helps a person make the next move today.',
+      showreelLabel: 'SCROLL SHOWREEL',
+      showreelHint: 'Scroll to advance',
       storyEyebrow: 'HOW WE WORK',
       storyTitle: 'We do not stop at launch.\nWe stay for the operation.',
       storyBody:
@@ -206,7 +210,7 @@ const products = [
 
       <nav class="product-rail" aria-label={isKo ? '제품 바로가기' : 'Product shortcuts'}>
         {products.map((product) => (
-          <a href={`#${product.id}`}>
+          <a href={`#${product.id}`} data-reel-link={product.id}>
             <img class="rail-icon" src={product.icon} alt="" width="34" height="34" />
             <span>{product.name}</span>
             <span class="rail-arrow" aria-hidden="true">↘</span>
@@ -222,9 +226,16 @@ const products = [
         <p>{copy.collectionBody}</p>
       </div>
 
+      <div class="showreel-bar" aria-hidden="true">
+        <span class="showreel-label">{copy.showreelLabel}</span>
+        <span class="showreel-hint">{copy.showreelHint}</span>
+        <span class="showreel-track"><i data-reel-progress></i></span>
+        <span class="showreel-count"><strong data-reel-current>01</strong><span>/</span><span>{String(products.length).padStart(2, '0')}</span></span>
+      </div>
+
       <div class="product-stories">
         {products.map((product) => (
-          <article class:list={['product-story', `product-story--${product.id}`]} id={product.id}>
+          <article class:list={['product-story', `product-story--${product.id}`]} id={product.id} data-reel-card={product.id}>
             <div class="product-copy reveal">
               <div class="product-kicker">
                 <span>{product.number}</span>
@@ -369,6 +380,54 @@ const products = [
       if (visible?.target.id) setCurrentSection(visible.target.id);
     }, { threshold: [0.12, 0.28, 0.5], rootMargin: '-18% 0px -58% 0px' });
     sections.forEach((section) => sectionObserver.observe(section));
+  }
+
+  const reelCards = [...document.querySelectorAll<HTMLElement>('[data-reel-card]')];
+  const reelLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-reel-link]')];
+  const reelCurrent = document.querySelector<HTMLElement>('[data-reel-current]');
+  const reelProgress = document.querySelector<HTMLElement>('[data-reel-progress]');
+  let reelFrame = 0;
+
+  const setCurrentReel = (activeIndex: number) => {
+    const activeCard = reelCards[activeIndex];
+    if (!activeCard) return;
+
+    reelCards.forEach((card, index) => {
+      if (index === activeIndex) card.setAttribute('data-reel-active', 'true');
+      else card.removeAttribute('data-reel-active');
+    });
+    reelLinks.forEach((link) => {
+      if (link.dataset.reelLink === activeCard.dataset.reelCard) link.setAttribute('aria-current', 'step');
+      else link.removeAttribute('aria-current');
+    });
+    if (reelCurrent) reelCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+    if (reelProgress) reelProgress.style.transform = `scaleX(${(activeIndex + 1) / reelCards.length})`;
+  };
+
+  const syncReel = () => {
+    reelFrame = 0;
+    const activationLine = Math.min(innerHeight * 0.58, 520);
+    let activeIndex = 0;
+    reelCards.forEach((card, index) => {
+      if (card.getBoundingClientRect().top <= activationLine) activeIndex = index;
+    });
+    setCurrentReel(activeIndex);
+  };
+
+  const requestReelSync = () => {
+    if (reelFrame) return;
+    reelFrame = requestAnimationFrame(syncReel);
+  };
+
+  if (reelCards.length) {
+    syncReel();
+    addEventListener('scroll', requestReelSync, { passive: true });
+    addEventListener('resize', requestReelSync, { passive: true });
+    addEventListener('pagehide', () => {
+      removeEventListener('scroll', requestReelSync);
+      removeEventListener('resize', requestReelSync);
+      if (reelFrame) cancelAnimationFrame(reelFrame);
+    }, { once: true });
   }
 </script>
 
@@ -1701,7 +1760,10 @@ const products = [
   .product-rail a:first-child,
   .product-rail a:last-child { border-radius: 999px; }
 
-  .collection { background: transparent; }
+  .collection {
+    position: relative;
+    background: transparent;
+  }
 
   .section-heading {
     width: min(calc(100% - 4rem), 1180px);
@@ -1716,12 +1778,21 @@ const products = [
     letter-spacing: -0.058em;
   }
 
+  .showreel-bar {
+    display: none;
+  }
+
   .product-stories {
     display: grid;
     gap: 1.25rem;
     width: min(calc(100% - 2rem), 1400px);
     margin: 0 auto;
     border: 0;
+  }
+
+  .product-rail a[aria-current='step'] {
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.78);
   }
 
   .product-story,
@@ -1735,6 +1806,119 @@ const products = [
   }
 
   .product-story:nth-child(even) .product-copy { order: 0; }
+
+  @media (min-width: 901px) {
+    .showreel-bar {
+      position: sticky;
+      top: 5.15rem;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: auto 1fr minmax(160px, 0.55fr) auto;
+      align-items: center;
+      gap: 1rem;
+      width: min(calc(100% - 4rem), 1180px);
+      min-height: 52px;
+      margin: 0 auto 1rem;
+      padding: 0.45rem 0.65rem 0.45rem 1rem;
+      border: 1px solid var(--glass-edge);
+      border-radius: 999px;
+      background: rgba(249, 252, 255, 0.7);
+      box-shadow: 0 14px 42px rgba(35, 50, 75, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+      backdrop-filter: blur(28px) saturate(150%);
+      pointer-events: none;
+    }
+
+    .showreel-label,
+    .showreel-hint,
+    .showreel-count {
+      white-space: nowrap;
+    }
+
+    .showreel-label {
+      color: #3f4857;
+      font-size: 0.65rem;
+      font-weight: 760;
+      letter-spacing: 0.13em;
+    }
+
+    .showreel-hint {
+      color: #737c89;
+      font-size: 0.72rem;
+      letter-spacing: -0.015em;
+    }
+
+    .showreel-track {
+      height: 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(57, 69, 88, 0.12);
+    }
+
+    .showreel-track i {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: #263143;
+      transform: scaleX(0.25);
+      transform-origin: left center;
+      transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .showreel-count {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      min-width: 72px;
+      min-height: 38px;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.66);
+      color: #6e7683;
+      font-size: 0.67rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .showreel-count strong {
+      color: var(--ink);
+      font-size: 0.86rem;
+    }
+
+    .product-stories {
+      padding-bottom: clamp(12rem, 32svh, 22rem);
+    }
+
+    .product-story,
+    .product-story:nth-child(even) {
+      position: sticky;
+      top: 9rem;
+      z-index: 10;
+      min-height: clamp(540px, calc(100svh - 11rem), 740px);
+      scroll-margin-top: 9.5rem;
+      transform-origin: center top;
+    }
+
+    .product-story:nth-child(2) {
+      top: 9.5rem;
+      z-index: 11;
+    }
+
+    .product-story:nth-child(3) {
+      top: 10rem;
+      z-index: 12;
+    }
+
+    .product-story:nth-child(4) {
+      top: 10.5rem;
+      z-index: 13;
+    }
+
+    .product-visual {
+      min-height: clamp(540px, calc(100svh - 11rem), 680px);
+    }
+  }
 
   .product-copy {
     position: relative;
@@ -1967,6 +2151,7 @@ const products = [
     .hero-live,
     .world-viewport,
     .product-rail,
+    .showreel-bar,
     .product-copy,
     .story,
     .team {
@@ -1987,6 +2172,7 @@ const products = [
     .hero-live,
     .world-viewport,
     .product-rail,
+    .showreel-bar,
     .product-copy,
     .story,
     .team,
@@ -2000,6 +2186,24 @@ const products = [
     .product-story--alpha .text-link {
       background: #15171a;
       color: #ffffff;
+    }
+  }
+
+  @media (min-width: 901px) and (prefers-reduced-motion: reduce) {
+    .showreel-bar {
+      display: none;
+    }
+
+    .product-stories {
+      padding-bottom: 0;
+    }
+
+    .product-story,
+    .product-story:nth-child(2),
+    .product-story:nth-child(3),
+    .product-story:nth-child(4) {
+      position: relative;
+      top: auto;
     }
   }
 </style>
