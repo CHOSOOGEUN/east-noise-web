@@ -12,6 +12,8 @@ Astro-based company website for East Noise / 동방의 소음.
 - `/heum`, `/en/heum` HEUM web studio pages
 - `/alpha/support`, `/en/alpha/support` ALPHA support pages
 - `/legal/...` product legal pages
+- `/scene/support` SCENE support in ten launch languages
+- `/legal/scene/privacy` SCENE privacy policy in the same ten languages
 
 ## Commands
 
