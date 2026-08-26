@@ -1,0 +1,560 @@
+---
+type PageType = 'support' | 'privacy';
+
+interface Props {
+  page: PageType;
+}
+
+const { page } = Astro.props;
+
+const copy = {
+  en: {
+    language: 'English',
+    support: {
+      kicker: 'SCENE · SUPPORT',
+      title: 'Private sound. Clear answers.',
+      lead: 'Everything you need to start a scene, recover from an interruption, or contact East Noise.',
+      updated: 'Updated August 26, 2026',
+      sections: [
+        ['Before you start', 'Connect wired or Bluetooth headphones, choose a scene, and tap Start. Allow microphone access when iOS asks. Use SCENE only in a safe place—never while driving, cycling, or crossing a road.'],
+        ['If microphone access is off', 'Open iOS Settings, find SCENE, and enable Microphone. Return to the app and choose Try Again. Without microphone access, the live reactive-audio experience cannot start.'],
+        ['If audio is interrupted', 'Reconnect your headphones, confirm they are selected as the output, and try again. An active scene can continue in the background until you stop it. When Live Activities are enabled, iOS can show the scene and elapsed time on the Dynamic Island and Lock Screen. Playback stops immediately if the audio route is lost or another audio session interrupts it.'],
+        ['What SCENE does with sound', 'Nearby sound is processed live in memory on your iPhone. It is never recorded, saved, transcribed, uploaded, or retained. SCENE has no account, ads, trackers, analytics SDKs, cloud service, or AI.'],
+        ['Contact support', 'Email eastnoise26@gmail.com with the app version, iOS version, headphone model, and the state shown in the app. Do not send recordings or sensitive content.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · PRIVACY',
+      title: 'Your sound stays with you.',
+      lead: 'This policy explains what happens to microphone audio and other data when you use SCENE.',
+      updated: 'Effective August 26, 2026',
+      sections: [
+        ['Microphone audio', 'SCENE uses the microphone only after you tap Start, grant permission, and connect supported headphones. Audio is processed live in device memory to apply effects and drive the reactive visual. It is never recorded, saved, transcribed, uploaded, or retained. An active scene can continue in the background until you stop it and ends immediately if the audio route is lost, another audio session interrupts it, or the audio engine fails.'],
+        ['Data collection and sharing', 'SCENE stores only your sound-effect and haptic choices in its private storage on this iPhone; deleting the app removes them. SCENE does not create accounts or include analytics, advertising, tracking, cloud storage, or network uploads. East Noise does not collect, sell, or share personal or usage data through the app.'],
+        ['Your choices', 'Microphone access is optional until you start a scene. You may deny or revoke it at any time in iOS Settings. Without access, SCENE cannot start the live experience. During playback, iOS may show the scene and elapsed time in a Live Activity on the Dynamic Island and Lock Screen; you can manage Live Activities in iOS Settings and stop the scene in SCENE at any time.'],
+        ['Children', 'SCENE is not directed to children and does not knowingly collect personal information from children. The app does not collect personal data.'],
+        ['Changes and contact', 'If SCENE’s data practices change, East Noise will update this policy and its effective date before releasing the changed behavior. Questions can be sent to eastnoise26@gmail.com.'],
+      ],
+    },
+    supportLink: 'Support', privacyLink: 'Privacy', contact: 'Contact',
+  },
+  ko: {
+    language: '한국어',
+    support: {
+      kicker: 'SCENE · 지원', title: '소리는 비공개로. 안내는 분명하게.',
+      lead: '장면을 시작하고, 중단된 오디오를 복구하고, 동방의 소음에 문의하는 방법입니다.', updated: '2026년 8월 26일 업데이트',
+      sections: [
+        ['시작하기 전에', '유선 또는 Bluetooth 헤드폰을 연결하고 장면을 고른 다음 시작을 누르세요. iOS가 요청할 때 마이크 접근을 허용하세요. 운전·자전거 주행·도로 횡단 중에는 사용하지 마세요.'],
+        ['마이크 접근이 꺼져 있다면', 'iOS 설정에서 SCENE의 마이크 접근을 켜고 앱으로 돌아와 다시 시도를 선택하세요. 권한이 없으면 실시간 반응형 오디오를 시작할 수 없습니다.'],
+        ['오디오가 중단됐다면', '헤드폰을 다시 연결하고 출력 기기로 선택됐는지 확인한 뒤 재시도하세요. 실행 중인 장면은 내가 멈출 때까지 백그라운드에서도 이어질 수 있습니다. 실시간 현황을 사용할 수 있을 때는 Dynamic Island와 잠금 화면에 장면과 경과 시간이 표시됩니다. 오디오 경로가 사라지거나 다른 오디오 세션이 끼어들면 즉시 멈춥니다.'],
+        ['SCENE이 소리를 처리하는 방법', '주변 소리는 iPhone 메모리에서 실시간으로만 처리됩니다. 녹음·저장·전사·업로드·보관되지 않습니다. 계정, 광고, 추적기, 분석 SDK, 클라우드, AI가 없습니다.'],
+        ['지원 문의', '앱 버전, iOS 버전, 헤드폰 모델, 앱에 표시된 상태를 eastnoise26@gmail.com으로 보내 주세요. 녹음이나 민감한 내용은 보내지 마세요.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · 개인정보', title: '당신의 소리는 당신에게만.',
+      lead: 'SCENE을 사용할 때 마이크 오디오와 그 밖의 데이터가 어떻게 처리되는지 설명합니다.', updated: '2026년 8월 26일 시행',
+      sections: [
+        ['마이크 오디오', 'SCENE은 시작을 누르고 권한을 허용했으며 지원되는 헤드폰이 연결된 경우에만 마이크를 사용합니다. 오디오는 효과와 반응형 화면을 위해 기기 메모리에서 실시간 처리되며 녹음·저장·전사·업로드·보관되지 않습니다. 실행 중인 장면은 내가 멈출 때까지 백그라운드에서도 이어질 수 있으며, 중지·오디오 경로 해제·인터럽트·오디오 엔진 오류 시 즉시 처리를 멈춥니다.'],
+        ['수집과 제공', 'SCENE은 효과음과 햅틱 선택만 이 iPhone의 앱 전용 저장소에 보관하며 앱 삭제 시 함께 지웁니다. 계정, 분석, 광고, 추적, 클라우드 저장소, 네트워크 업로드는 없습니다. 동방의 소음은 앱을 통해 개인정보나 사용 데이터를 수집·판매·제공하지 않습니다.'],
+        ['사용자의 선택', '마이크 접근은 장면을 시작하기 전까지 선택 사항이며 iOS 설정에서 언제든 거부하거나 철회할 수 있습니다. 재생 중에는 iOS가 장면과 경과 시간을 Dynamic Island와 잠금 화면의 실시간 현황에 표시할 수 있습니다. 실시간 현황은 iOS 설정에서 관리할 수 있고 실행 중인 장면은 SCENE에서 언제든 멈출 수 있습니다.'],
+        ['아동', 'SCENE은 아동을 대상으로 하지 않으며 아동의 개인정보를 의도적으로 수집하지 않습니다. 앱은 개인정보를 수집하지 않습니다.'],
+        ['변경과 문의', '데이터 처리 방식이 바뀌면 동방의 소음은 변경된 기능을 출시하기 전에 이 방침과 시행일을 갱신합니다. 문의는 eastnoise26@gmail.com으로 보내 주세요.'],
+      ],
+    },
+    supportLink: '지원', privacyLink: '개인정보', contact: '문의',
+  },
+  ja: {
+    language: '日本語',
+    support: {
+      kicker: 'SCENE · サポート', title: '音はプライベート。案内は明確に。',
+      lead: 'シーンの開始、音声中断からの復帰、East Noiseへのお問い合わせ方法です。', updated: '2026年8月26日更新',
+      sections: [
+        ['始める前に', '有線またはBluetoothヘッドフォンを接続し、シーンを選んで「開始」をタップします。iOSから求められたらマイクへのアクセスを許可してください。運転中、自転車走行中、道路横断中は使用しないでください。'],
+        ['マイクへのアクセスがオフの場合', 'iOSの「設定」でSCENEのマイクを有効にし、アプリに戻って再試行してください。許可がない場合、ライブのリアクティブオーディオは開始できません。'],
+        ['音声が中断された場合', 'ヘッドフォンを接続し直し、出力先に選ばれていることを確認して再試行してください。実行中のシーンは、停止するまでバックグラウンドでも続けられます。ライブアクティビティが利用できる場合は、Dynamic Islandとロック画面にシーンと経過時間が表示されます。経路の切断やほかの音声セッションによる割り込み時には直ちに停止します。'],
+        ['音の扱い', '周囲の音はiPhoneのメモリ内でリアルタイム処理されます。録音、保存、文字起こし、アップロード、保持は行いません。アカウント、広告、トラッカー、解析SDK、クラウド、AIはありません。'],
+        ['お問い合わせ', 'アプリとiOSのバージョン、ヘッドフォンの機種、表示された状態をeastnoise26@gmail.comまでお送りください。録音や機密情報は送らないでください。'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · プライバシー', title: 'あなたの音は、あなたのもとに。',
+      lead: 'SCENEの使用時にマイク音声とその他のデータがどう扱われるかを説明します。', updated: '2026年8月26日施行',
+      sections: [
+        ['マイク音声', 'SCENEは、開始操作、許可、対応ヘッドフォンの接続がそろった場合にのみマイクを使用します。音声はデバイスのメモリ内でリアルタイム処理され、録音、保存、文字起こし、アップロード、保持は行いません。実行中のシーンは停止するまでバックグラウンドでも続けられ、停止、経路切断、割り込み、オーディオエンジンのエラー時には直ちに処理を終了します。'],
+        ['収集と共有', 'SCENEは効果音と触覚の設定だけをこのiPhoneのアプリ専用領域に保存し、アプリを削除すると消去します。アカウント、解析、広告、トラッキング、クラウド保存、ネットワーク送信はなく、East Noiseは個人情報や利用データを収集、販売、第三者提供しません。'],
+        ['選択', 'シーンを開始するまでマイクへのアクセスは任意で、iOSの「設定」でいつでも拒否・取り消しできます。再生中はiOSがシーンと経過時間をDynamic Islandとロック画面のライブアクティビティに表示する場合があります。ライブアクティビティはiOS設定で管理でき、シーンはSCENEでいつでも停止できます。'],
+        ['子ども', 'SCENEは子どもを対象としておらず、子どもの個人情報を意図的に収集しません。アプリは個人データを収集しません。'],
+        ['変更とお問い合わせ', 'データの扱いが変わる場合、East Noiseは変更された機能を公開する前に本方針と施行日を更新します。お問い合わせはeastnoise26@gmail.comまでお願いします。'],
+      ],
+    },
+    supportLink: 'サポート', privacyLink: 'プライバシー', contact: 'お問い合わせ',
+  },
+  es: {
+    language: 'Español',
+    support: {
+      kicker: 'SCENE · AYUDA', title: 'Sonido privado. Respuestas claras.',
+      lead: 'Cómo iniciar una escena, recuperarte de una interrupción o contactar con East Noise.', updated: 'Actualizado el 26 de agosto de 2026',
+      sections: [
+        ['Antes de empezar', 'Conecta auriculares con cable o Bluetooth, elige una escena y pulsa Iniciar. Autoriza el micrófono cuando lo pida iOS. No uses SCENE mientras conduces, vas en bicicleta o cruzas la calle.'],
+        ['Si el micrófono está desactivado', 'Abre Ajustes de iOS, busca SCENE y activa el micrófono. Vuelve a la app y elige Reintentar. Sin permiso no puede comenzar la experiencia reactiva en directo.'],
+        ['Si el audio se interrumpe', 'Vuelve a conectar los auriculares, confirma que sean la salida elegida e inténtalo de nuevo. Una escena activa puede continuar en segundo plano hasta que la detengas. Cuando las actividades en directo están disponibles, la Dynamic Island y la pantalla de bloqueo muestran la escena y el tiempo transcurrido. La reproducción se detiene si se pierde la ruta o si otra sesión interrumpe el audio.'],
+        ['Cómo trata SCENE el sonido', 'El sonido cercano se procesa en tiempo real en la memoria del iPhone. Nunca se graba, guarda, transcribe, sube ni conserva. No hay cuentas, anuncios, rastreadores, SDK de analítica, nube ni IA.'],
+        ['Contactar con ayuda', 'Escribe a eastnoise26@gmail.com con la versión de la app y de iOS, el modelo de auriculares y la escena o el mensaje mostrado. No envíes grabaciones ni contenido sensible.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · PRIVACIDAD', title: 'Tu sonido se queda contigo.',
+      lead: 'Esta política explica qué ocurre con el audio del micrófono y otros datos al usar SCENE.', updated: 'Vigente desde el 26 de agosto de 2026',
+      sections: [
+        ['Audio del micrófono', 'SCENE solo usa el micrófono tras pulsar Iniciar, conceder permiso y conectar auriculares compatibles. El audio se procesa en tiempo real en la memoria y nunca se graba, guarda, transcribe, sube ni conserva. Una escena activa puede continuar en segundo plano hasta que la detengas y termina de inmediato si se pierde la ruta, otra sesión interrumpe el audio o falla el motor de audio.'],
+        ['Recopilación y uso compartido', 'SCENE solo guarda las preferencias de efectos y vibración en el espacio privado de la app en este iPhone; se eliminan al borrar la app. No hay cuentas, analítica, publicidad, seguimiento, nube ni subidas por red. East Noise no recopila, vende ni comparte datos personales o de uso mediante la app.'],
+        ['Tus opciones', 'El acceso al micrófono es opcional hasta que inicias una escena y puedes revocarlo en Ajustes de iOS. Durante la reproducción, iOS puede mostrar la escena y el tiempo transcurrido en una actividad en directo de la Dynamic Island y la pantalla de bloqueo. Puedes gestionar las actividades en directo en iOS y detener la escena en SCENE cuando quieras.'],
+        ['Menores', 'SCENE no está dirigido a menores ni recopila deliberadamente información personal de menores. La app no recopila datos personales.'],
+        ['Cambios y contacto', 'Si cambian las prácticas de datos, East Noise actualizará esta política y su fecha antes de publicar el nuevo comportamiento. Escribe a eastnoise26@gmail.com.'],
+      ],
+    },
+    supportLink: 'Ayuda', privacyLink: 'Privacidad', contact: 'Contacto',
+  },
+  de: {
+    language: 'Deutsch',
+    support: {
+      kicker: 'SCENE · SUPPORT', title: 'Privater Klang. Klare Antworten.',
+      lead: 'So startest du eine Szene, behebst Unterbrechungen oder kontaktierst East Noise.', updated: 'Aktualisiert am 26. August 2026',
+      sections: [
+        ['Vor dem Start', 'Verbinde kabelgebundene oder Bluetooth-Kopfhörer, wähle eine Szene und tippe auf Start. Erlaube den Mikrofonzugriff, wenn iOS fragt. Verwende SCENE nie beim Autofahren, Radfahren oder Überqueren einer Straße.'],
+        ['Wenn das Mikrofon deaktiviert ist', 'Öffne die iOS-Einstellungen, wähle SCENE und aktiviere das Mikrofon. Kehre zurück und wähle Erneut versuchen. Ohne Berechtigung kann das reaktive Live-Erlebnis nicht starten.'],
+        ['Wenn Audio unterbrochen wird', 'Verbinde die Kopfhörer erneut, prüfe die gewählte Ausgabe und versuche es wieder. Eine aktive Szene kann im Hintergrund weiterlaufen, bis du sie stoppst. Wenn Live-Aktivitäten verfügbar sind, zeigen Dynamic Island und Sperrbildschirm die Szene und die verstrichene Zeit. Bei Verlust der Audioroute oder einer Unterbrechung durch eine andere Audiositzung stoppt die Wiedergabe sofort.'],
+        ['Wie SCENE Klang verarbeitet', 'Umgebungsgeräusche werden in Echtzeit im Arbeitsspeicher des iPhone verarbeitet. Sie werden nie aufgenommen, gespeichert, transkribiert, hochgeladen oder aufbewahrt. Es gibt keine Konten, Werbung, Tracker, Analyse-SDKs, Cloud oder KI.'],
+        ['Support kontaktieren', 'Sende App-Version, iOS-Version, Kopfhörermodell und den angezeigten Zustand an eastnoise26@gmail.com. Sende keine Aufnahmen oder vertraulichen Inhalte.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · DATENSCHUTZ', title: 'Dein Klang bleibt bei dir.',
+      lead: 'Diese Richtlinie erklärt, was bei der Nutzung von SCENE mit Mikrofon-Audio und anderen Daten geschieht.', updated: 'Gültig ab 26. August 2026',
+      sections: [
+        ['Mikrofon-Audio', 'SCENE verwendet das Mikrofon nur nach Start, Berechtigung und Verbindung unterstützter Kopfhörer. Audio wird live im Gerätespeicher verarbeitet und nie aufgenommen, gespeichert, transkribiert, hochgeladen oder aufbewahrt. Eine aktive Szene kann im Hintergrund weiterlaufen, bis du sie stoppst, und endet sofort bei Verlust der Audioroute, einer Unterbrechung oder einem Fehler der Audio-Engine.'],
+        ['Erhebung und Weitergabe', 'SCENE speichert nur Einstellungen für Soundeffekte und Haptik im privaten App-Speicher auf diesem iPhone; beim Löschen der App werden sie entfernt. Es gibt keine Konten, Analysen, Werbung, Tracker, Cloudspeicherung oder Netzwerk-Uploads. East Noise erhebt, verkauft oder teilt keine personenbezogenen oder Nutzungsdaten.'],
+        ['Deine Wahl', 'Der Mikrofonzugriff ist bis zum Start einer Szene optional und kann in den iOS-Einstellungen widerrufen werden. Während der Wiedergabe kann iOS Szene und verstrichene Zeit als Live-Aktivität in Dynamic Island und auf dem Sperrbildschirm anzeigen. Live-Aktivitäten lassen sich in iOS verwalten; die Szene kann in SCENE jederzeit gestoppt werden.'],
+        ['Kinder', 'SCENE richtet sich nicht an Kinder und erhebt wissentlich keine personenbezogenen Daten von Kindern. Die App erhebt keine personenbezogenen Daten.'],
+        ['Änderungen und Kontakt', 'Wenn sich die Datenpraxis ändert, aktualisiert East Noise diese Richtlinie und das Datum vor Veröffentlichung des geänderten Verhaltens. Fragen an eastnoise26@gmail.com.'],
+      ],
+    },
+    supportLink: 'Support', privacyLink: 'Datenschutz', contact: 'Kontakt',
+  },
+  fr: {
+    language: 'Français',
+    support: {
+      kicker: 'SCENE · ASSISTANCE', title: 'Un son privé. Des réponses claires.',
+      lead: 'Tout ce qu’il faut pour lancer une scène, reprendre après une interruption ou contacter East Noise.', updated: 'Mis à jour le 26 août 2026',
+      sections: [
+        ['Avant de commencer', 'Connectez un casque filaire ou Bluetooth, choisissez une scène et touchez Lecture. Autorisez l’accès au microphone lorsque iOS le demande. Utilisez SCENE uniquement dans un endroit sûr, jamais en conduisant, à vélo ou en traversant la route.'],
+        ['Si le microphone est désactivé', 'Ouvrez les Réglages iOS, sélectionnez SCENE et activez le microphone. Revenez dans l’app et touchez Réessayer. Sans autorisation, l’expérience audio réactive ne peut pas démarrer.'],
+        ['Si le son est interrompu', 'Reconnectez le casque, vérifiez qu’il est sélectionné comme sortie et réessayez. Une scène active peut continuer en arrière-plan jusqu’à ce que vous l’arrêtiez. Lorsque les activités en direct sont disponibles, la Dynamic Island et l’écran verrouillé affichent la scène et le temps écoulé. La lecture s’arrête immédiatement si la route audio est perdue ou si une autre session audio l’interrompt.'],
+        ['Comment SCENE traite le son', 'Les sons autour de vous sont traités en temps réel dans la mémoire de l’iPhone. Ils ne sont jamais enregistrés, sauvegardés, transcrits, envoyés ni conservés. SCENE ne contient aucun compte, publicité, traceur, outil d’analyse, service cloud ou fonction d’IA.'],
+        ['Contacter l’assistance', 'Écrivez à eastnoise26@gmail.com en indiquant la version de l’app et d’iOS, le modèle du casque et la scène ou le message affiché. N’envoyez aucun enregistrement ni contenu sensible.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · CONFIDENTIALITÉ', title: 'Votre son reste avec vous.',
+      lead: 'Cette politique explique ce qu’il advient du son du microphone et des autres données lorsque vous utilisez SCENE.', updated: 'En vigueur le 26 août 2026',
+      sections: [
+        ['Son du microphone', 'SCENE utilise le microphone uniquement après que vous avez touché Lecture, accordé l’autorisation et connecté un casque compatible. Le son est traité en temps réel dans la mémoire de l’appareil pour appliquer les effets et animer le visuel réactif. Il n’est jamais enregistré, sauvegardé, transcrit, envoyé ni conservé. Une scène active peut continuer en arrière-plan jusqu’à ce que vous l’arrêtiez et se termine immédiatement si la route audio est perdue, si une autre session l’interrompt ou si le moteur audio échoue.'],
+        ['Collecte et partage', 'SCENE enregistre uniquement vos choix d’effets sonores et de retour haptique dans l’espace privé de l’app sur cet iPhone ; ils sont supprimés avec l’app. Il n’y a aucun compte, outil d’analyse, publicité, suivi, stockage cloud ou envoi réseau. East Noise ne collecte, ne vend et ne partage aucune donnée personnelle ou d’utilisation par l’intermédiaire de l’app.'],
+        ['Vos choix', 'L’accès au microphone reste facultatif jusqu’au lancement d’une scène et peut être refusé ou révoqué à tout moment dans les Réglages iOS. Pendant la lecture, iOS peut afficher la scène et le temps écoulé dans une activité en direct sur la Dynamic Island et l’écran verrouillé. Vous pouvez gérer les activités en direct dans iOS et arrêter la scène dans SCENE à tout moment.'],
+        ['Enfants', 'SCENE ne s’adresse pas aux enfants et ne collecte pas sciemment leurs informations personnelles. L’app ne collecte aucune donnée personnelle.'],
+        ['Modifications et contact', 'Si les pratiques de traitement changent, East Noise mettra à jour cette politique et sa date d’entrée en vigueur avant de publier le nouveau comportement. Écrivez à eastnoise26@gmail.com pour toute question.'],
+      ],
+    },
+    supportLink: 'Assistance', privacyLink: 'Confidentialité', contact: 'Contact',
+  },
+  'pt-BR': {
+    language: 'Português (Brasil)',
+    support: {
+      kicker: 'SCENE · SUPORTE', title: 'Som privado. Respostas claras.',
+      lead: 'Tudo o que você precisa para iniciar uma cena, retomar após uma interrupção ou falar com a East Noise.', updated: 'Atualizado em 26 de agosto de 2026',
+      sections: [
+        ['Antes de começar', 'Conecte fones com fio ou Bluetooth, escolha uma cena e toque em Reproduzir. Autorize o microfone quando o iOS solicitar. Use o SCENE apenas em um lugar seguro, nunca ao dirigir, andar de bicicleta ou atravessar a rua.'],
+        ['Se o microfone estiver desativado', 'Abra os Ajustes do iOS, selecione SCENE e ative o Microfone. Volte ao app e toque em Tentar novamente. Sem a permissão, a experiência de áudio reativa não pode começar.'],
+        ['Se o áudio for interrompido', 'Reconecte os fones, confirme que são a saída selecionada e tente novamente. Uma cena ativa pode continuar em segundo plano até você parar. Quando as Atividades ao Vivo estão disponíveis, a Dynamic Island e a Tela Bloqueada mostram a cena e o tempo decorrido. A reprodução para imediatamente se a rota de áudio for perdida ou outra sessão interromper o som.'],
+        ['Como o SCENE trata o som', 'O som ao seu redor é processado em tempo real na memória do iPhone. Ele nunca é gravado, salvo, transcrito, enviado ou armazenado. O SCENE não tem conta, anúncios, rastreadores, ferramentas de análise, serviços em nuvem nem IA.'],
+        ['Falar com o suporte', 'Envie um e-mail para eastnoise26@gmail.com com as versões do app e do iOS, o modelo dos fones e a cena ou mensagem exibida. Não envie gravações nem conteúdo sensível.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · PRIVACIDADE', title: 'Seu som fica com você.',
+      lead: 'Esta política explica o que acontece com o áudio do microfone e outros dados quando você usa o SCENE.', updated: 'Em vigor desde 26 de agosto de 2026',
+      sections: [
+        ['Áudio do microfone', 'O SCENE usa o microfone somente depois que você toca em Reproduzir, concede a permissão e conecta fones compatíveis. O áudio é processado em tempo real na memória do aparelho para aplicar efeitos e mover o visual reativo. Ele nunca é gravado, salvo, transcrito, enviado ou armazenado. Uma cena ativa pode continuar em segundo plano até você parar e termina imediatamente se a rota de áudio for perdida, outra sessão interromper o som ou o mecanismo de áudio falhar.'],
+        ['Coleta e compartilhamento', 'O SCENE salva apenas suas escolhas de efeitos sonoros e resposta tátil no espaço privado do app neste iPhone; elas são removidas quando o app é apagado. Não há conta, análise, anúncios, rastreamento, armazenamento em nuvem nem envio pela rede. A East Noise não coleta, vende ou compartilha dados pessoais ou de uso por meio do app.'],
+        ['Suas escolhas', 'O acesso ao microfone é opcional até você iniciar uma cena e pode ser negado ou revogado a qualquer momento nos Ajustes do iOS. Durante a reprodução, o iOS pode mostrar a cena e o tempo decorrido em uma Atividade ao Vivo na Dynamic Island e na Tela Bloqueada. Você pode gerenciar as Atividades ao Vivo no iOS e parar a cena no SCENE a qualquer momento.'],
+        ['Crianças', 'O SCENE não é direcionado a crianças e não coleta intencionalmente informações pessoais de crianças. O app não coleta dados pessoais.'],
+        ['Alterações e contato', 'Se as práticas de dados mudarem, a East Noise atualizará esta política e a data de vigência antes de lançar o novo comportamento. Envie suas dúvidas para eastnoise26@gmail.com.'],
+      ],
+    },
+    supportLink: 'Suporte', privacyLink: 'Privacidade', contact: 'Contato',
+  },
+  'zh-Hans': {
+    language: '简体中文',
+    support: {
+      kicker: 'SCENE · 支持', title: '声音保持私密，解答清晰直接。',
+      lead: '了解如何开始场景、从音频中断中恢复，或联系 East Noise。', updated: '更新于 2026 年 8 月 26 日',
+      sections: [
+        ['开始之前', '连接有线或蓝牙耳机，选择一个场景并轻点播放。iOS 请求时请允许麦克风访问。请只在安全的地方使用 SCENE，切勿在开车、骑车或过马路时使用。'],
+        ['如果麦克风已关闭', '打开 iOS“设置”，选择 SCENE 并开启麦克风。返回 App 后轻点“重试”。没有权限时，实时响应音频体验无法开始。'],
+        ['如果音频被中断', '重新连接耳机，确认它已被选为输出设备，然后重试。正在播放的场景可以在后台继续，直到你停止。当实时活动可用时，灵动岛和锁定屏幕会显示场景与已用时间。如果音频路径断开或被其他音频会话中断，播放会立即停止。'],
+        ['SCENE 如何处理声音', '周围的声音只在 iPhone 内存中实时处理，绝不会被录制、保存、转写、上传或保留。SCENE 没有账户、广告、跟踪器、分析工具、云服务或 AI。'],
+        ['联系支持', '请将 App 版本、iOS 版本、耳机型号以及显示的场景或提示发送至 eastnoise26@gmail.com。请勿发送录音或敏感内容。'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · 隐私', title: '你的声音只属于你。',
+      lead: '本政策说明使用 SCENE 时，麦克风音频和其他数据会如何处理。', updated: '生效日期：2026 年 8 月 26 日',
+      sections: [
+        ['麦克风音频', '只有在你轻点播放、授予权限并连接兼容耳机后，SCENE 才会使用麦克风。音频仅在设备内存中实时处理，用于应用效果和驱动响应式画面；绝不会被录制、保存、转写、上传或保留。正在播放的场景可以在后台继续，直到你停止；如果音频路径断开、被其他会话中断或音频引擎发生故障，处理会立即结束。'],
+        ['数据收集与共享', 'SCENE 只会在这台 iPhone 的 App 私有存储中保存音效和触感反馈选项，删除 App 时会一并移除。SCENE 没有账户、分析、广告、跟踪、云存储或网络上传。East Noise 不会通过本 App 收集、出售或共享个人数据或使用数据。'],
+        ['你的选择', '开始场景之前，麦克风访问为可选项；你可以随时在 iOS“设置”中拒绝或撤销权限。播放期间，iOS 可能会通过灵动岛和锁定屏幕上的实时活动显示场景与已用时间。你可以在 iOS 中管理实时活动，也可以随时在 SCENE 中停止场景。'],
+        ['儿童', 'SCENE 不面向儿童，也不会有意收集儿童的个人信息。本 App 不收集个人数据。'],
+        ['变更与联系', '如果数据处理方式发生变化，East Noise 会在发布相关功能前更新本政策及生效日期。如有问题，请发送邮件至 eastnoise26@gmail.com。'],
+      ],
+    },
+    supportLink: '支持', privacyLink: '隐私', contact: '联系',
+  },
+  'zh-Hant': {
+    language: '繁體中文',
+    support: {
+      kicker: 'SCENE · 支援', title: '聲音保持私密，解答清楚直接。',
+      lead: '了解如何開始場景、從音訊中斷中恢復，或聯絡 East Noise。', updated: '更新於 2026 年 8 月 26 日',
+      sections: [
+        ['開始之前', '連接有線或藍牙耳機，選擇一個場景並點一下播放。iOS 詢問時請允許麥克風存取。請只在安全的地方使用 SCENE，切勿在開車、騎車或過馬路時使用。'],
+        ['如果麥克風已關閉', '開啟 iOS「設定」，選擇 SCENE 並開啟麥克風。返回 App 後點一下「重試」。沒有權限時，即時互動音訊體驗無法開始。'],
+        ['如果音訊被中斷', '重新連接耳機，確認它已被選為輸出裝置，然後重試。正在播放的場景可以在背景繼續，直到你停止。當即時動態可用時，動態島和鎖定畫面會顯示場景與經過時間。如果音訊路徑中斷或被其他音訊階段打斷，播放會立即停止。'],
+        ['SCENE 如何處理聲音', '周遭聲音只在 iPhone 記憶體中即時處理，絕不會被錄製、儲存、轉寫、上傳或保留。SCENE 沒有帳號、廣告、追蹤器、分析工具、雲端服務或 AI。'],
+        ['聯絡支援', '請將 App 版本、iOS 版本、耳機型號以及顯示的場景或訊息寄至 eastnoise26@gmail.com。請勿傳送錄音或敏感內容。'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · 隱私權', title: '你的聲音只屬於你。',
+      lead: '本政策說明使用 SCENE 時，麥克風音訊和其他資料會如何處理。', updated: '生效日期：2026 年 8 月 26 日',
+      sections: [
+        ['麥克風音訊', '只有在你點一下播放、授予權限並連接相容耳機後，SCENE 才會使用麥克風。音訊只在裝置記憶體中即時處理，用於套用效果和驅動互動畫面；絕不會被錄製、儲存、轉寫、上傳或保留。正在播放的場景可以在背景繼續，直到你停止；如果音訊路徑中斷、被其他階段打斷或音訊引擎發生錯誤，處理會立即結束。'],
+        ['資料收集與分享', 'SCENE 只會在這部 iPhone 的 App 私有儲存空間中保存音效和觸覺回饋選項，刪除 App 時會一併移除。SCENE 沒有帳號、分析、廣告、追蹤、雲端儲存或網路上傳。East Noise 不會透過本 App 收集、出售或分享個人資料或使用資料。'],
+        ['你的選擇', '開始場景之前，麥克風存取為選用項目；你可以隨時在 iOS「設定」中拒絕或撤銷權限。播放期間，iOS 可能會透過動態島和鎖定畫面上的即時動態顯示場景與經過時間。你可以在 iOS 中管理即時動態，也可以隨時在 SCENE 中停止場景。'],
+        ['兒童', 'SCENE 不以兒童為對象，也不會有意收集兒童的個人資訊。本 App 不收集個人資料。'],
+        ['變更與聯絡', '如果資料處理方式改變，East Noise 會在發布相關功能前更新本政策及生效日期。如有問題，請寄信至 eastnoise26@gmail.com。'],
+      ],
+    },
+    supportLink: '支援', privacyLink: '隱私權', contact: '聯絡',
+  },
+  it: {
+    language: 'Italiano',
+    support: {
+      kicker: 'SCENE · SUPPORTO', title: 'Suono privato. Risposte chiare.',
+      lead: 'Tutto ciò che serve per avviare una scena, riprendere dopo un’interruzione o contattare East Noise.', updated: 'Aggiornato il 26 agosto 2026',
+      sections: [
+        ['Prima di iniziare', 'Collega cuffie cablate o Bluetooth, scegli una scena e tocca Riproduci. Consenti l’accesso al microfono quando iOS lo richiede. Usa SCENE solo in un luogo sicuro, mai mentre guidi, vai in bicicletta o attraversi la strada.'],
+        ['Se il microfono è disattivato', 'Apri le Impostazioni di iOS, seleziona SCENE e attiva il Microfono. Torna nell’app e tocca Riprova. Senza autorizzazione, l’esperienza audio reattiva non può iniziare.'],
+        ['Se l’audio viene interrotto', 'Ricollega le cuffie, verifica che siano selezionate come uscita e riprova. Una scena attiva può continuare in background finché non la interrompi. Quando le attività in tempo reale sono disponibili, la Dynamic Island e la schermata di blocco mostrano la scena e il tempo trascorso. La riproduzione si interrompe subito se il percorso audio viene perso o un’altra sessione audio la interrompe.'],
+        ['Come SCENE tratta il suono', 'I suoni intorno a te vengono elaborati in tempo reale nella memoria dell’iPhone. Non vengono mai registrati, salvati, trascritti, caricati o conservati. SCENE non include account, pubblicità, tracker, strumenti di analisi, servizi cloud o IA.'],
+        ['Contattare il supporto', 'Scrivi a eastnoise26@gmail.com indicando la versione dell’app e di iOS, il modello delle cuffie e la scena o il messaggio visualizzato. Non inviare registrazioni o contenuti sensibili.'],
+      ],
+    },
+    privacy: {
+      kicker: 'SCENE · PRIVACY', title: 'Il tuo suono resta con te.',
+      lead: 'Questa informativa spiega cosa accade all’audio del microfono e agli altri dati quando usi SCENE.', updated: 'In vigore dal 26 agosto 2026',
+      sections: [
+        ['Audio del microfono', 'SCENE usa il microfono solo dopo che tocchi Riproduci, concedi l’autorizzazione e colleghi cuffie compatibili. L’audio viene elaborato in tempo reale nella memoria del dispositivo per applicare gli effetti e animare il visual reattivo. Non viene mai registrato, salvato, trascritto, caricato o conservato. Una scena attiva può continuare in background finché non la interrompi e termina subito se il percorso audio viene perso, un’altra sessione interrompe l’audio o il motore audio non funziona.'],
+        ['Raccolta e condivisione', 'SCENE salva solo le preferenze per gli effetti sonori e il feedback aptico nello spazio privato dell’app su questo iPhone; vengono rimosse quando elimini l’app. Non sono presenti account, analisi, pubblicità, tracciamento, archiviazione cloud o caricamenti di rete. East Noise non raccoglie, vende o condivide dati personali o di utilizzo tramite l’app.'],
+        ['Le tue scelte', 'L’accesso al microfono è facoltativo fino all’avvio di una scena e può essere negato o revocato in qualsiasi momento nelle Impostazioni di iOS. Durante la riproduzione, iOS può mostrare la scena e il tempo trascorso in un’attività in tempo reale sulla Dynamic Island e sulla schermata di blocco. Puoi gestire le attività in tempo reale in iOS e interrompere la scena in SCENE in qualsiasi momento.'],
+        ['Minori', 'SCENE non è rivolto ai minori e non raccoglie consapevolmente informazioni personali sui minori. L’app non raccoglie dati personali.'],
+        ['Modifiche e contatti', 'Se le pratiche relative ai dati cambiano, East Noise aggiornerà questa informativa e la data di entrata in vigore prima di pubblicare il nuovo comportamento. Scrivi a eastnoise26@gmail.com per qualsiasi domanda.'],
+      ],
+    },
+    supportLink: 'Supporto', privacyLink: 'Privacy', contact: 'Contatti',
+  },
+} as const;
+
+const initial = copy.en[page];
+---
+
+<article class="scene-info" data-scene-info data-page={page}>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="scene-nav">
+    <a href="/" class="brand" aria-label="East Noise home">SCENE <span>BY EAST NOISE</span></a>
+    <select id="scene-locale" aria-label="Language">
+      {Object.entries(copy).map(([locale, item]) => <option value={locale}>{item.language}</option>)}
+    </select>
+  </header>
+
+  <main>
+    <header class="scene-hero">
+      <p data-field="kicker">{initial.kicker}</p>
+      <h1 data-field="title">{initial.title}</h1>
+      <span data-field="lead">{initial.lead}</span>
+      <em data-field="updated">{initial.updated}</em>
+    </header>
+
+    <div class="scene-sections">
+      {initial.sections.map(([heading, body], index) => (
+        <section>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h2 data-section-heading={index}>{heading}</h2>
+            <p data-section-body={index}>{body}</p>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <section class="scene-contact">
+      <p data-field="contact">Contact</p>
+      <a href="mailto:eastnoise26@gmail.com">eastnoise26@gmail.com</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 East Noise</span>
+    <nav aria-label="SCENE documents">
+      <a href="/scene/support" data-field="supportLink">Support</a>
+      <a href="/legal/scene/privacy" data-field="privacyLink">Privacy</a>
+    </nav>
+  </footer>
+
+  <script is:inline id="scene-info-copy" type="application/json" set:html={JSON.stringify(copy)}></script>
+</article>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-scene-info]');
+    const source = document.getElementById('scene-info-copy');
+    const select = document.getElementById('scene-locale');
+    if (!(root instanceof HTMLElement) || !(source instanceof HTMLScriptElement) || !(select instanceof HTMLSelectElement)) return;
+
+    const allCopy = JSON.parse(source.textContent || '{}');
+    const supported = Object.keys(allCopy);
+    const resolveLocale = (value) => {
+      if (!value) return null;
+      const normalized = value.toLowerCase();
+      const exact = supported.find((locale) => locale.toLowerCase() === normalized);
+      if (exact) return exact;
+      if (normalized.startsWith('pt')) return 'pt-BR';
+      if (normalized.startsWith('zh-hant') || /zh-(tw|hk|mo)/.test(normalized)) return 'zh-Hant';
+      if (normalized.startsWith('zh')) return 'zh-Hans';
+      const base = normalized.split('-')[0];
+      return supported.includes(base) ? base : null;
+    };
+    const requested = new URLSearchParams(window.location.search).get('lang');
+    const initialLocale = resolveLocale(requested) || resolveLocale(navigator.language) || 'en';
+
+    const applyLocale = (locale) => {
+      const localeCopy = allCopy[locale];
+      const pageCopy = localeCopy[root.dataset.page];
+      if (!localeCopy || !pageCopy) return;
+
+      document.documentElement.lang = locale;
+      select.value = locale;
+      ['kicker', 'title', 'lead', 'updated'].forEach((field) => {
+        const element = root.querySelector(`[data-field="${field}"]`);
+        if (element) element.textContent = pageCopy[field];
+      });
+      ['supportLink', 'privacyLink', 'contact'].forEach((field) => {
+        const element = root.querySelector(`[data-field="${field}"]`);
+        if (element) element.textContent = localeCopy[field];
+      });
+      pageCopy.sections.forEach(([heading, body], index) => {
+        const headingElement = root.querySelector(`[data-section-heading="${index}"]`);
+        const bodyElement = root.querySelector(`[data-section-body="${index}"]`);
+        if (headingElement) headingElement.textContent = heading;
+        if (bodyElement) bodyElement.textContent = body;
+      });
+      document.title = `${pageCopy.title} — SCENE`;
+    };
+
+    applyLocale(initialLocale);
+    select.addEventListener('change', () => {
+      applyLocale(select.value);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', select.value);
+      window.history.replaceState({}, '', url);
+    });
+  })();
+</script>
+
+<style>
+  .scene-info {
+    --canvas: #050608;
+    --raised: #0d1012;
+    --ink: #f6f7f8;
+    --muted: #a4a9ae;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--canvas);
+    color: var(--ink);
+  }
+
+  .ambient {
+    position: absolute;
+    inset: -12rem -20vw auto;
+    height: 44rem;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 28% 28%, rgba(119, 147, 255, 0.34), transparent 38%),
+      radial-gradient(circle at 72% 40%, rgba(255, 126, 103, 0.22), transparent 34%);
+    filter: blur(28px);
+    opacity: 0.88;
+  }
+
+  .scene-nav,
+  .scene-hero,
+  .scene-sections,
+  .scene-contact,
+  footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .scene-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 76px;
+    padding: 0 6.7vw;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(5, 6, 8, 0.62);
+    backdrop-filter: blur(24px) saturate(130%);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.84rem;
+    font-weight: 720;
+    letter-spacing: 0.14em;
+  }
+
+  .brand span { color: var(--muted); font-size: 0.58rem; font-weight: 620; }
+
+  select {
+    min-width: 8.5rem;
+    min-height: 44px;
+    padding: 0 2.2rem 0 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(18, 21, 25, 0.82);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  .scene-hero {
+    display: flex;
+    min-height: 35rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 6.7vw 5.5rem;
+  }
+
+  .scene-hero p,
+  .scene-hero em {
+    margin: 0;
+    color: rgba(246, 247, 248, 0.64);
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 680;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .scene-hero h1 {
+    max-width: 61rem;
+    margin: 2.2rem 0 1.4rem;
+    font-size: clamp(3.4rem, 8vw, 7.5rem);
+    font-weight: 650;
+    letter-spacing: -0.055em;
+    line-height: 0.96;
+  }
+
+  .scene-hero > span {
+    display: block;
+    max-width: 44rem;
+    color: rgba(246, 247, 248, 0.78);
+    font-size: clamp(1rem, 1.6vw, 1.22rem);
+    line-height: 1.7;
+  }
+
+  .scene-hero em { margin-top: 2rem; letter-spacing: 0; text-transform: none; }
+
+  .scene-sections { padding: 3rem 6.7vw 8rem; }
+
+  .scene-sections section {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 2rem;
+    max-width: 72rem;
+    padding: 3.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .scene-sections section > span { color: #737980; font-size: 0.75rem; }
+
+  .scene-sections h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+    font-weight: 590;
+    letter-spacing: -0.025em;
+  }
+
+  .scene-sections p {
+    max-width: 52rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .scene-contact {
+    padding: 6rem 6.7vw;
+    background: var(--raised);
+    border-block: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .scene-contact p { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.76rem; text-transform: uppercase; }
+  .scene-contact a { display: inline-block; max-width: 100%; font-size: clamp(1.4rem, 3.4vw, 2.8rem); font-weight: 610; overflow-wrap: anywhere; }
+
+  footer {
+    display: flex;
+    min-height: 7rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 6.7vw;
+    color: var(--muted);
+    font-size: 0.76rem;
+  }
+
+  footer nav { display: flex; gap: 1.5rem; }
+  footer a { min-height: 44px; display: inline-flex; align-items: center; }
+
+  @media (max-width: 680px) {
+    .scene-nav { padding-inline: 1.25rem; }
+    .brand span { display: none; }
+    select { min-width: 7.5rem; }
+    .scene-hero { min-height: 32rem; padding: 7rem 1.25rem 4rem; }
+    .scene-hero h1 { font-size: clamp(3rem, 16vw, 5rem); }
+    .scene-sections { padding: 2rem 1.25rem 5rem; }
+    .scene-sections section { grid-template-columns: 2rem minmax(0, 1fr); gap: 0.8rem; padding: 2.8rem 0; }
+    .scene-contact { padding: 4.5rem 1.25rem; }
+    footer { align-items: flex-start; flex-direction: column; padding: 2.5rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .scene-nav { background: var(--raised); backdrop-filter: none; }
+  }
+
+  @media (prefers-contrast: more) {
+    .scene-nav, .scene-sections section, .scene-contact { border-color: rgba(255, 255, 255, 0.38); }
+    .scene-hero > span, .scene-sections p, .brand span { color: #d9dde1; }
+  }
+</style>
