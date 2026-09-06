@@ -12,8 +12,8 @@ Astro-based company website for East Noise / 동방의 소음.
 - `/scene`, `/en/scene` SCENE product pages
 - `/alpha/support`, `/en/alpha/support` ALPHA support pages
 - `/legal/...` product legal pages
-- `/scene/support` SCENE support in English, Korean, Japanese, Spanish, and German
-- `/legal/scene/privacy` SCENE privacy policy in the same five languages
+- `/scene/support` SCENE support in ten launch languages
+- `/legal/scene/privacy` SCENE privacy policy in the same ten languages
 
 ## Commands
 
