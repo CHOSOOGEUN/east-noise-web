@@ -131,8 +131,9 @@ body.standard-page > main {
   justify-content: space-between;
   min-height: 72px;
   padding: 0 3rem;
-  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
-  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 5, 5, 0.9);
+  color: #f7f5f0;
   backdrop-filter: blur(16px);
 }
 
@@ -145,6 +146,16 @@ body.standard-page > main {
   font-weight: 600;
 }
 
+.layout-brand {
+  gap: 0.65rem;
+}
+
+.layout-brand img {
+  width: 34px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .layout-nav nav {
   display: flex;
   align-items: center;
@@ -152,7 +163,13 @@ body.standard-page > main {
 }
 
 .layout-nav nav a {
+  color: rgba(255, 255, 255, 0.66);
   font-weight: 500;
+}
+
+.layout-nav nav a:hover,
+.layout-nav nav a:focus-visible {
+  color: #ffffff;
 }
 
 .layout-footer {
@@ -161,7 +178,8 @@ body.standard-page > main {
   align-items: center;
   min-height: 6rem;
   padding: 0 3rem;
-  background: #111111;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: #050505;
   color: #ffffff;
   font-size: 0.75rem;
 }

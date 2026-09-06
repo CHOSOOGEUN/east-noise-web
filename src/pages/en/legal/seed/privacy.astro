@@ -9,7 +9,7 @@ const sections = [
   },
   {
     heading: '2. Videos and Daily Story',
-    body: "Free users' individual check-in source clips stay only on their device. With Seed Plus, source clips are temporarily uploaded to your private Supabase Storage path for up to 30 days so a Daily Story can still be completed after reinstalling. Temporary source clips are deleted once the final Daily Story is safely stored in Seed Vault. Completed Daily Stories remain privately stored while Plus is active. Temporary clips and Daily Stories may include audio recorded with the video. Nothing is automatically published to other users. A video is passed to another app only when you explicitly use the share action. We access video only when you request support, when the minimum access is necessary to resolve a service failure, or when required by law.",
+    body: "Free users' individual check-in source clips stay only on their device. With Seed Plus, source clips are temporarily uploaded to your private cloud path for up to 30 days so a Daily Story can still be completed after reinstalling. Temporary source clips are deleted once the final Daily Story is safely stored in Seed Vault. Completed Daily Stories remain privately stored while Plus is active. During our backend migration, account data and private cloud media may be stored in both Supabase and Google Firebase under the same access, retention, and deletion rules for service continuity and recovery. Temporary clips and Daily Stories may include audio recorded with the video. Nothing is automatically published to other users. A video is passed to another app only when you explicitly use the share action. We access video only when you request support, when the minimum access is necessary to resolve a service failure, or when required by law.",
   },
   {
     heading: '3. Push notifications',
@@ -17,7 +17,7 @@ const sections = [
   },
   {
     heading: '4. Third parties',
-    body: 'We use Supabase for authentication, database, private video storage, and server functions; Google Firebase Cloud Messaging for notifications; Google Firebase Crashlytics for crash and error diagnostics; RevenueCat for purchase entitlement and restoration; and Expo for app build and delivery infrastructure. We do not set a Seed user ID, email address, or nickname in Crashlytics. Apple App Store or Google Play processes the payment itself, and Seed never receives your card or bank account details. Each provider processes data only as needed to provide its service and under its own privacy policy.',
+    body: 'We use Supabase (Auth, Database, Storage, and Edge Functions) and Google Firebase (Auth, Firestore, Storage, and Cloud Functions) for accounts, databases, private video storage, and server functions; Firebase Cloud Messaging for notifications; Firebase Crashlytics for crash and error diagnostics; RevenueCat for purchase entitlement and restoration; and Expo for app build and delivery infrastructure. Supabase and Firebase may operate in parallel during the current backend migration. We do not set a Seed user ID, email address, or nickname in Crashlytics. Apple App Store or Google Play processes the payment itself, and Seed never receives your card or bank account details. Each provider processes data only as needed to provide its service and under its own privacy policy.',
   },
   {
     heading: '5. Google / Apple Sign-in',
@@ -50,7 +50,7 @@ const sections = [
   <LegalDoc
     kicker="SEED · LEGAL"
     title="Privacy Policy"
-    lastUpdated="Last updated August 10, 2026"
+    lastUpdated="Last updated September 3, 2026"
     contactEmail="eastnoise26@gmail.com"
     contactLabel="Questions?"
     sections={sections}

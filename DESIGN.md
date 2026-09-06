@@ -2,38 +2,47 @@
 
 ## Product and first impression
 
-동방의 소음이 실제로 운영하는 Luvit, Seed, ALPHA, HEUM을 한눈에 이해하고 각 제품 또는 문의로 이동하는 회사 웹사이트다. 첫인상은 `차분함`, `정교함`, `실제 제품을 운영하는 팀`이다.
+동방의 소음이 직접 만들고 운영하는 Luvit, Seed, ALPHA, SCENE을 하나의 제품 세계로 보여주는 회사 웹사이트다. 첫인상은 `어둡고 선명함`, `손으로 만든 물성`, `실제로 출시하고 운영하는 팀`이다. HEUM은 새 방향이 확정될 때까지 공개 라우트와 회사 내비게이션에서 제외한다.
 
 ## Visual system
 
-- Background: cool pearl canvas with restrained product-color light fields.
-- Functional glass: navigation and primary actions only. Use clear borders, strong labels, and 24–30px blur.
-- Content material: text-heavy cards use a thicker near-white surface rather than clear glass.
-- Typography: system/Pretendard, large headings with tight optical tracking, body at readable contrast and 1.7+ line height.
-- Shape: large surfaces 28–48px; controls use capsules. Do not round every divider or text group.
-- Motion: transform and opacity only, interruptible press feedback, no looping background motion. The desktop home collection uses a sticky four-card scroll showreel with a visible progress bar; mobile keeps the same reading order in a linear flow. Reduced Motion removes the sticky stack and all spatial movement.
+- Background: matte near-black. 밝은 카드형 회사 소개가 아니라 제품 장면이 화면을 점유한다.
+- Product imagery: 각 제품은 실제 자산 또는 승인된 독립 이미지 자산을 사용한다. CSS 그림, 임시 SVG, 가짜 목업으로 대체하지 않는다.
+- Signal color: 회사 공통 신호는 warm orange. 제품 장면에서는 Luvit rose, Seed green, ALPHA red, SCENE cyan을 제한적으로 쓴다.
+- Typography: Pretendard/system sans. 헤드라인은 무겁고 짧게, 본문은 낮은 밀도와 충분한 행간으로 둔다.
+- Shape: 큰 라운드 카드보다 edge-to-edge 장면, 직선, hairline divider를 우선한다. CTA만 명확한 직사각형 표면을 가진다.
+- Motion: opacity와 짧은 translate reveal만 사용한다. 제품 인덱스는 현재 장면을 색과 선으로 표시하고, Reduced Motion에서는 정적으로 보인다.
 
-## Product accents
+## Homepage structure
 
-- Luvit: soft rose
-- Seed: fresh green
-- ALPHA: near-black with red accent
-- HEUM: clear blue
+1. Canonical East Noise signal mark and one-line navigation
+2. Hero: `일상을 움직이는 작은 신호.`
+3. Sticky product index and four cinematic product scenes: Luvit, Seed, ALPHA, SCENE
+4. How we build: small problem → real launch → continued operation
+5. Team roles without invented portraits, metrics, clients, or testimonials
+6. Contact signal and compact footer
 
-Accent color supports product identity but never replaces text, status copy, or focus state.
+## Accessibility and responsive behavior
 
-## Accessibility and fallbacks
+- Interactive targets are at least 44px where practical, with visible focus rings.
+- Desktop product index becomes a compact sticky horizontal index on mobile.
+- Mobile copy uses a solid translucent reading surface instead of relying on image contrast.
+- Korean copy keeps words intact; long English copy may wrap naturally without fixed-height text containers.
+- Decorative images have empty alt text. Product and navigation links retain explicit accessible names.
+- `prefers-reduced-motion` removes reveal movement.
 
-- Minimum interactive height is 44px.
-- Focus rings remain visible on light, tinted, and dark surfaces.
-- `prefers-reduced-transparency` receives solid surfaces; `prefers-contrast: more` receives stronger borders and near-solid material.
-- Long Korean copy wraps naturally; fixed-height text cards are forbidden.
+## Product truth
+
+- Luvit: App Store v1.0.5
+- Seed: App Store and Google Play v1.0.13
+- ALPHA: App Store v1.0.3 and Google Play v1.0.4
+- SCENE: iPhone v1.0.0, preparing to launch. Do not publish a store URL until the live listing is verified.
 
 ## Reference roles
 
 | Source | Role | Adaptation |
 | --- | --- | --- |
-| Existing East Noise site and product assets | Product source of truth | Preserve four-product hierarchy, current copy, links, and imagery |
-| Apple HIG Materials and Layout | Primary interaction/material reference | Glass is a floating functional layer; content stays legible and aligned |
-| OMD KRDS/GOV.UK summaries in the team playbook | Accessibility complement | Clear labels, strong focus, readable Korean text, 44–56px actions |
-| Low-contrast generic glass dashboards | Anti-reference | No blur-on-blur stacks, tiny gray captions, hidden hover-only actions, or decorative card grids |
+| Selected cinematic ImageGen concept | Primary visual truth | Dark editorial composition, product index, edge-to-edge scenes, compact team/contact bands |
+| Canonical East Noise signal mark | Brand source of truth | Shape remains unchanged; color may switch to white or orange by context |
+| Existing product repositories and store links | Product source of truth | Version, platform, privacy, and release state must be verified before copy changes |
+| OMD Studio-style restraint | Composition reference | Minimal chrome, hairline divisions, content and product imagery as the color source |

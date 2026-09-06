@@ -1,2209 +1,308 @@
 ---
 import { strings, type Locale } from '../i18n/strings';
 
-interface Props {
-  locale: Locale;
-}
+interface Props { locale: Locale; }
 
 const { locale } = Astro.props;
-const t = strings[locale];
 const isKo = locale === 'ko';
+const t = strings[locale];
 const home = isKo ? '/' : '/en/';
 
-const copy = isKo
-  ? {
-      nav: { products: '제품', story: '만드는 방식', team: '팀', contact: '문의' },
-      heroEyebrow: 'EAST NOISE · INDEPENDENT PRODUCT STUDIO',
-      heroTitle: '작은 문제를\n실제 제품으로 만듭니다.',
-      heroBody: '커플의 하루, 루틴의 기록, 90일의 기준, 작은 가게의 첫 웹사이트.\n직접 만들고, 출시하고, 오래 운영합니다.',
-      heroCta: '지금 만든 것들',
-      liveLabel: 'NOW OPERATING',
-      liveSummary: '모바일 앱 3개 · 웹 스튜디오 1개',
-      collectionEyebrow: 'EAST NOISE / FOUR PRODUCTS',
-      collectionTitle: '지금 운영하는 네 가지',
-      collectionBody: '앱 3개와 웹 스튜디오 1개. 기능과 분위기는 달라도, 오늘 더 쉽게 행동하게 한다는 기준은 같습니다.',
-      showreelLabel: 'SCROLL SHOWREEL',
-      showreelHint: '스크롤해 제품 넘기기',
-      storyEyebrow: 'HOW WE WORK',
-      storyTitle: '출시에서 끝내지 않고,\n운영까지 붙잡습니다.',
-      storyBody:
-        '동방의 소음은 앱과 웹을 직접 만들고 공개한 뒤, 실제 사용과 문의를 보며 계속 바꿉니다. 러빗의 관계 루틴, Seed의 영상 기록, ALPHA의 자기통제 과정, HEUM의 로컬 웹 제작을 한 팀이 운영합니다.',
-      methodLabel: '우리가 만드는 방식',
-      methods: [
-        ['01', '작게 시작해도 공개합니다', '완벽해질 때까지 숨기기보다, 실제로 쓸 수 있는 첫 버전을 내고 배웁니다.'],
-        ['02', '설명보다 실제 화면을 만듭니다', '기획, 디자인, 개발을 한 흐름으로 묶어 아이디어를 손에 잡히는 제품으로 바꿉니다.'],
-        ['03', '출시 뒤의 운영으로 고칩니다', '스토어 반응, 사용 흐름, 문의를 보며 제품과 카피를 함께 다듬습니다.'],
-      ],
-      teamEyebrow: 'TEAM EAST NOISE',
-      teamTitle: '작지만, 끝까지 만드는 팀',
-      teamBody: '기획부터 디자인, 개발, 운영까지. 아이디어를 실제로 쓰이는 제품으로 완성합니다.',
-      roles: [
-        ['조수근', 'Co-founder · Product'],
-        ['이유석', 'Co-founder · Engineering'],
-        ['김윤서', 'Marketing'],
-      ],
-      contactEyebrow: 'CONTACT',
-      contactTitle: '제품과 웹, 함께 만들까요?',
-      contactBody: '앱 협업, 제품 제휴, 로컬 비즈니스 웹 제작에 관한 이야기를 들려주세요.',
-      mailCta: '메일 보내기',
-      viewProduct: '제품 보기',
-      viewStudio: '스튜디오 보기',
-      visitInstagram: '인스타그램',
-      visitWebsite: 'heum.cloud',
-      language: 'EN',
-    }
-  : {
-      nav: { products: 'Products', story: 'How we work', team: 'Team', contact: 'Contact' },
-      heroEyebrow: 'EAST NOISE · INDEPENDENT PRODUCT STUDIO',
-      heroTitle: 'Small problems,\nmade into real products.',
-      heroBody: 'A couple’s day, a video routine, a 90-day standard, and a local shop’s first website.\nWe build, launch, and stay for the operation.',
-      heroCta: 'See what is live',
-      liveLabel: 'NOW OPERATING',
-      liveSummary: 'Three mobile apps · one web studio',
-      collectionEyebrow: 'EAST NOISE / FOUR PRODUCTS',
-      collectionTitle: 'Four things we operate now',
-      collectionBody: 'Three apps and one web studio. Each has its own voice, but every one helps a person make the next move today.',
-      showreelLabel: 'SCROLL SHOWREEL',
-      showreelHint: 'Scroll to advance',
-      storyEyebrow: 'HOW WE WORK',
-      storyTitle: 'We do not stop at launch.\nWe stay for the operation.',
-      storyBody:
-        'East Noise builds and publishes apps and websites, then keeps changing them through real use and real inquiries. One team operates Luvit, Seed, ALPHA, and the HEUM local web studio.',
-      methodLabel: 'How we build',
-      methods: [
-        ['01', 'Ship a useful first version', 'We learn from something people can actually use instead of hiding until it feels perfect.'],
-        ['02', 'Make the screen, not the promise', 'Product, design, and engineering stay in one loop until the idea becomes tangible.'],
-        ['03', 'Improve through operation', 'Store response, product behavior, and inquiries shape the next release and the next sentence.'],
-      ],
-      teamEyebrow: 'TEAM EAST NOISE',
-      teamTitle: 'A small team that finishes',
-      teamBody: 'From product and design to engineering and operations, we turn ideas into products people can use.',
-      roles: [
-        ['Sugeun Jo', 'Co-founder · Product'],
-        ['Yuseok Lee', 'Co-founder · Engineering'],
-        ['Yunseo Kim', 'Marketing'],
-      ],
-      contactEyebrow: 'CONTACT',
-      contactTitle: 'Build a product or website together?',
-      contactBody: 'Tell us about an app collaboration, product partnership, or local business website.',
-      mailCta: 'Send an email',
-      viewProduct: 'View product',
-      viewStudio: 'View studio',
-      visitInstagram: 'Instagram',
-      visitWebsite: 'heum.cloud',
-      language: 'KO',
-    };
+const copy = isKo ? {
+  nav: { products: '제품', method: '만드는 방식', team: '팀', contact: '문의' },
+  hero: { title: ['일상을', '움직이는', '작은 신호.'], body: '직접 만들고, 출시하고, 운영합니다.', cta: '제품 탐색' },
+  indexLabel: '지금 운영하는 제품',
+  method: {
+    eyebrow: '만드는 방식',
+    title: ['직접 만들고,', '출시하고,', '오래 운영합니다.'],
+    items: [
+      ['01', '작은 문제에서 시작', '우리의 일상에서 마주한 불편에서 시작합니다.'],
+      ['02', '실제 제품으로 출시', '빠르게 만들고, 검증된 흐름을 실제 사용자에게 제공합니다.'],
+      ['03', '다음 날까지 운영', '사용자의 반응을 보며 다음 버전까지 계속 개선합니다.'],
+    ],
+  },
+  team: {
+    eyebrow: 'TEAM EAST NOISE', title: '작은 팀, 선명한 역할.',
+    body: '기획, 디자인, 개발, 마케팅을 한 흐름으로 연결합니다.',
+    members: [['조수근', '공동 창업자 · 제품'], ['이유석', '공동 창업자 · 개발'], ['김윤서', '마케팅']],
+  },
+  contact: {
+    eyebrow: 'CONTACT',
+    title: ['같은 취향, 같은 리듬으로.', '우리의 작은 신호가', '당신의 일상을 움직이길.'],
+    cta: '문의하기',
+  },
+  backTop: '위로', language: 'EN', openProduct: '제품 페이지 열기',
+} : {
+  nav: { products: 'Products', method: 'How we build', team: 'Team', contact: 'Contact' },
+  hero: { title: ['Small signals', 'that move', 'everyday life.'], body: 'We build, launch, and operate our own products.', cta: 'Explore products' },
+  indexLabel: 'Products in operation',
+  method: {
+    eyebrow: 'HOW WE BUILD',
+    title: ['Built here,', 'launched for real,', 'operated for the long run.'],
+    items: [
+      ['01', 'Start with a small problem', 'We begin with friction we meet in everyday life.'],
+      ['02', 'Launch a real product', 'We move quickly, validate the flow, and put it in people’s hands.'],
+      ['03', 'Stay for the next day', 'Real response shapes the next release and the one after it.'],
+    ],
+  },
+  team: {
+    eyebrow: 'TEAM EAST NOISE', title: 'A small team with clear roles.',
+    body: 'Product, design, engineering, and marketing stay in one loop.',
+    members: [['Sugeun Jo', 'Co-founder · Product'], ['Yuseok Lee', 'Co-founder · Engineering'], ['Yunseo Kim', 'Marketing']],
+  },
+  contact: {
+    eyebrow: 'CONTACT',
+    title: ['The same taste. The same rhythm.', 'We hope our small signal', 'moves something in your day.'],
+    cta: 'Contact us',
+  },
+  backTop: 'Back to top', language: 'KO', openProduct: 'Open product page',
+};
 
 const products = [
   {
-    id: 'luvit',
-    number: '01',
-    name: 'Luvit',
-    icon: '/visuals/company/luvit-app-icon.webp',
-    status: 'APP STORE · v1.0.5',
-    href: isKo ? '/luvit' : '/en/luvit',
-    social: 'https://www.instagram.com/luvit_486/',
-    title: isKo ? '하루 한 번,\n둘의 관계를 움직입니다.' : 'One small move,\nfor the relationship each day.',
-    body: isKo
-      ? '매일 도착한 미션을 함께하고 다음 날 서로 결과를 확인합니다. 공동 포인트로 방을 꾸미고, 지난 미션과 추억을 둘만의 기록으로 남기는 커플 앱입니다.'
-      : 'Complete a small mission together, review it with each other the next day, decorate a shared room with points, and keep every mission and memory in one place.',
+    id: 'luvit', number: '01', name: 'Luvit', accent: '#ff8d99',
+    image: '/visuals/company/luvit-signal-scene.webp', href: isKo ? '/luvit' : '/en/luvit',
+    title: isKo ? '둘만의 미션' : 'A mission for two',
+    body: isKo ? '함께 정하고, 함께 해내는\n작은 약속의 즐거움.' : 'Small promises, chosen together\nand completed together.',
+    status: ['APP STORE', 'v1.0.5'], side: 'right',
   },
   {
-    id: 'seed',
-    number: '02',
-    name: 'Seed',
-    icon: '/visuals/company/seed-app-icon.webp',
-    status: 'APP STORE · GOOGLE PLAY · v1.0.13',
-    href: isKo ? '/seed' : '/en/seed',
-    social: 'https://www.instagram.com/seed.fl0wer/',
-    title: isKo ? '오늘의 실행을,\n나만의 루틴 브이로그로.' : 'Turn today’s effort\ninto a routine vlog.',
-    body: isKo
-      ? '2~4초 영상으로 루틴을 인증하면 식물이 자랍니다. Seed Plus에서는 하루의 인증을 한 편의 공유용 세로 영상, Daily Story로 완성합니다.'
-      : 'Record each routine in a 2–4 second video and watch your plant grow. Seed Plus turns a day of check-ins into a shareable vertical Daily Story.',
+    id: 'seed', number: '02', name: 'Seed', accent: '#62de83',
+    image: '/visuals/company/seed-signal-scene.webp', href: isKo ? '/seed' : '/en/seed',
+    title: isKo ? '해낸 순간의 기록' : 'A record of showing up',
+    body: isKo ? '하루의 성장을 영상으로 남기는\n나만의 데일리 스토리.' : 'Turn the growth inside a day\ninto your own daily story.',
+    status: ['APP STORE · GOOGLE PLAY', 'v1.0.13'], side: 'left',
   },
   {
-    id: 'alpha',
-    number: '03',
-    name: 'ALPHA',
-    icon: '/visuals/company/alpha-app-icon.webp',
-    status: 'iOS v1.0.3 · ANDROID v1.0.4',
-    href: isKo ? '/alpha' : '/en/alpha',
-    title: isKo ? '오늘을 끝내며,\n90일의 기준을 세웁니다.' : 'Close today.\nBuild a 90-day standard.',
-    body: isKo
-      ? 'BASIC부터 시작해 기준을 충족하면 STANDARD와 HARD로 이어지는 유료 자기통제 앱. 매일 루틴을 끝내고 하루를 마감하며, 완성한 날과 무너진 날을 모두 기록합니다.'
-      : 'A paid self-discipline app that starts with BASIC and unlocks STANDARD and HARD as you meet each course standard. Finish your routines, close the day, and keep both wins and misses on record.',
+    id: 'alpha', number: '03', name: 'ALPHA', accent: '#ff3434',
+    image: '/visuals/company/alpha-signal-scene.webp', href: isKo ? '/alpha' : '/en/alpha',
+    title: isKo ? '90일의 기준' : 'A 90-day standard',
+    body: isKo ? '집중할 목표를 세우고,\n매일 1% 더 나아갑니다.' : 'Set one standard to focus on,\nthen move one percent each day.',
+    status: ['APP STORE v1.0.3', 'GOOGLE PLAY v1.0.4'], side: 'left',
   },
   {
-    id: 'heum',
-    number: '04',
-    name: 'HEUM',
-    icon: '/visuals/company/heum-mark.webp',
-    status: isKo ? 'WEB STUDIO · 상담 가능' : 'WEB STUDIO · INQUIRIES OPEN',
-    href: isKo ? '/heum' : '/en/heum',
-    external: 'https://heum.cloud',
-    title: isKo ? '가게의 좋은 첫인상,\n웹에서도 이어지게.' : 'Carry a shop’s first impression\nonto the web.',
-    body: isKo
-      ? '카페·식당·작은 가게의 메뉴, 위치, 예약과 문의를 가게에 맞는 한 화면으로 정리하는 로컬 비즈니스 웹 스튜디오입니다.'
-      : 'A local business web studio that turns a cafe, restaurant, or small shop’s menu, location, reservations, and contact into one clear experience.',
+    id: 'scene', number: '04', name: 'SCENE', accent: '#57d8ff',
+    image: '/visuals/company/scene-signal-scene.webp', href: isKo ? '/scene' : '/en/scene',
+    title: isKo ? '지금에 반응하는 사운드' : 'Sound that reacts to now',
+    body: isKo ? '상황을 고르면, 주변 소리와 음악이\n한 장면으로 흐릅니다.' : 'Choose the situation. Nearby sound and music\nflow into one continuous scene.',
+    status: [isKo ? 'iPHONE · 출시 준비 중' : 'iPHONE · PREPARING TO LAUNCH', 'v1.0.0'], side: 'left',
   },
 ];
 ---
 
-<div class="east-home" data-east-home>
+<div class="signal-home" data-signal-home>
   <a class="skip-link" href="#main-content">{isKo ? '본문으로 이동' : 'Skip to content'}</a>
 
   <header class="site-header">
-    <a class="wordmark" href={home} aria-label={isKo ? '동방의 소음 홈' : 'East Noise home'}>동방의 소음</a>
+    <a class="brand" href={home} aria-label={isKo ? '동방의 소음 홈' : 'East Noise home'}>
+      <img src="/visuals/company/east-noise-mark-white.png" alt="" width="64" height="38" />
+      <span>동방의 소음</span>
+    </a>
     <nav class="primary-nav" aria-label={isKo ? '주요 메뉴' : 'Primary navigation'}>
-      <a href="#products" data-home-section-link="products">{copy.nav.products}</a>
-      <a href="#story" data-home-section-link="story">{copy.nav.story}</a>
-      <a href="#team" data-home-section-link="team">{copy.nav.team}</a>
-    </nav>
-    <div class="header-actions">
+      <a href="#products">{copy.nav.products}</a>
+      <a href="#method">{copy.nav.method}</a>
+      <a href="#team">{copy.nav.team}</a>
       <a href="#contact">{copy.nav.contact}</a>
-      <span aria-hidden="true"></span>
-      <a href={isKo ? '/en/' : '/'} lang={isKo ? 'en' : 'ko'}>{copy.language}</a>
-    </div>
+    </nav>
+    <a class="language-link" href={isKo ? '/en/' : '/'} lang={isKo ? 'en' : 'ko'}>{copy.language}</a>
   </header>
 
   <main id="main-content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-top">
-        <div class="hero-copy reveal is-visible">
-          <p class="hero-eyebrow">{copy.heroEyebrow}</p>
-          <h1 id="hero-title">{copy.heroTitle.split('\n').map((line) => <span>{line}</span>)}</h1>
-          <p>{copy.heroBody.split('\n').map((line) => <span>{line}</span>)}</p>
-          <a class="primary-cta" href="#products">
-            {copy.heroCta}
-            <span aria-hidden="true">↘</span>
-          </a>
-        </div>
-
-        <aside class="hero-live reveal is-visible" aria-label={copy.liveLabel}>
-          <div class="hero-live__head">
-            <span aria-hidden="true"></span>
-            <p>{copy.liveLabel}</p>
-          </div>
-          <strong>{copy.liveSummary}</strong>
-          <ul>
-            {products.map((product) => (
-              <li>
-                <img src={product.icon} alt="" width="28" height="28" />
-                <span>{product.name}</span>
-                <small>{product.status}</small>
-              </li>
-            ))}
-          </ul>
-        </aside>
+      <img class="hero-image" src="/visuals/company/east-noise-signal-hero.webp" width="1672" height="941" alt="" loading="eager" fetchpriority="high" />
+      <div class="hero-copy reveal is-visible">
+        <h1 id="hero-title">{copy.hero.title.map((line) => <span>{line}</span>)}</h1>
+        <p>{copy.hero.body}</p>
+        <a class="hero-cta" href="#products">{copy.hero.cta}</a>
       </div>
-
-      <div class="world-viewport" aria-hidden="true">
-        <img
-          src="/visuals/company/product-world-hero-studio-v1.webp"
-          width="1825"
-          height="862"
-          alt=""
-          loading="eager"
-          fetchpriority="high"
-        />
-      </div>
-
-      <nav class="product-rail" aria-label={isKo ? '제품 바로가기' : 'Product shortcuts'}>
-        {products.map((product) => (
-          <a href={`#${product.id}`} data-reel-link={product.id}>
-            <img class="rail-icon" src={product.icon} alt="" width="34" height="34" />
-            <span>{product.name}</span>
-            <span class="rail-arrow" aria-hidden="true">↘</span>
-          </a>
-        ))}
-      </nav>
+      <p class="hero-signal" aria-hidden="true">SIGNAL / 001</p>
     </section>
 
-    <section class="collection" id="products" aria-labelledby="collection-title" data-home-section="products">
-      <div class="section-heading reveal">
-        <p class="eyebrow">{copy.collectionEyebrow}</p>
-        <h2 id="collection-title">{copy.collectionTitle}</h2>
-        <p>{copy.collectionBody}</p>
-      </div>
-
-      <div class="showreel-bar" aria-hidden="true">
-        <span class="showreel-label">{copy.showreelLabel}</span>
-        <span class="showreel-hint">{copy.showreelHint}</span>
-        <span class="showreel-track"><i data-reel-progress></i></span>
-        <span class="showreel-count"><strong data-reel-current>01</strong><span>/</span><span>{String(products.length).padStart(2, '0')}</span></span>
-      </div>
-
-      <div class="product-stories">
-        {products.map((product) => (
-          <article class:list={['product-story', `product-story--${product.id}`]} id={product.id} data-reel-card={product.id}>
-            <div class="product-copy reveal">
-              <div class="product-kicker">
-                <span>{product.number}</span>
+    <section class="products" id="products" aria-labelledby="products-title">
+      <aside class="product-index">
+        <h2 id="products-title" class="sr-only">{copy.indexLabel}</h2>
+        <ol>
+          {products.map((product) => (
+            <li style={`--product-accent:${product.accent}`}>
+              <a href={`#${product.id}`} data-product-link={product.id}>
+                <span class="index-number">{product.number}</span>
                 <strong>{product.name}</strong>
-                <small>{product.status}</small>
-              </div>
-              <h3>{product.title.split('\n').map((line) => <span>{line}</span>)}</h3>
-              <p>{product.body}</p>
-              <div class="product-links">
-                <a
-                  class="text-link"
-                  href={product.href}
-                >
-                  {product.id === 'heum' ? copy.viewStudio : copy.viewProduct}
-                  <span aria-hidden="true">↗</span>
-                </a>
-                {product.social && (
-                  <a class="quiet-link" href={product.social} target="_blank" rel="noreferrer">
-                    {copy.visitInstagram}<span class="sr-only"> ({isKo ? '새 창' : 'opens in a new tab'})</span>
-                  </a>
-                )}
-                {product.external && (
-                  <a class="quiet-link" href={product.external} target="_blank" rel="noreferrer">
-                    {copy.visitWebsite}<span class="sr-only"> ({isKo ? '새 창' : 'opens in a new tab'})</span>
-                  </a>
-                )}
-              </div>
-            </div>
+                <small>{product.title}</small>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </aside>
 
-            <div class="product-visual reveal" aria-hidden="true">
-              {product.id === 'luvit' && (
-                <>
-                  <img class="brand-poster" src="/visuals/company/luvit-current-mission.webp" width="900" height="1956" alt="" loading="lazy" />
-                  <img class="detail-card" src="/visuals/company/luvit-current-home.webp" width="900" height="1956" alt="" loading="lazy" />
-                </>
-              )}
-              {product.id === 'seed' && (
-                <>
-                  <img class="brand-poster" src="/visuals/company/seed-current-story.webp" width="900" height="1951" alt="" loading="lazy" />
-                  <img class="detail-card" src="/visuals/company/seed-current-today.webp" width="900" height="1951" alt="" loading="lazy" />
-                </>
-              )}
-              {product.id === 'alpha' && (
-                <>
-                  <img class="brand-poster" src="/visuals/company/alpha-store-course-2026-08.webp" width="1320" height="2868" alt="" loading="lazy" />
-                  <img class="detail-card" src="/visuals/company/alpha-store-today-2026-08.webp" width="1320" height="2868" alt="" loading="lazy" />
-                </>
-              )}
-              {product.id === 'heum' && (
-                <div class="heum-stage">
-                  <img class="heum-studio-screen" src="/visuals/company/heum-studio-work.webp" width="1440" height="1024" alt="" loading="lazy" />
-                  <div class="heum-mobile-card">
-                    <img src="/visuals/company/heum-studio-mobile.webp" width="390" height="844" alt="" loading="lazy" />
-                  </div>
-                  <p>{isKo ? '카페·식당·작은 가게를 위한 웹 제작' : 'Websites for cafes, restaurants, and small shops'}</p>
-                </div>
-              )}
+      <div class="product-panels">
+        {products.map((product) => (
+          <article class:list={['product-panel', `product-panel--${product.id}`, `copy-${product.side}`]} id={product.id} data-product-panel={product.id} style={`--product-accent:${product.accent}`}>
+            <img src={product.image} alt="" width="1672" height="941" loading={product.id === 'luvit' ? 'eager' : 'lazy'} />
+            <div class="product-copy reveal">
+              <p class="product-number">{product.number} / 04</p>
+              <a href={product.href} aria-label={`${product.name} · ${copy.openProduct}`}><h3>{product.title}</h3></a>
+              <p class="product-body">{product.body.split('\n').map((line) => <span>{line}</span>)}</p>
+              <dl class="product-status">
+                {product.status.map((item, index) => (
+                  <div><dt>{index === 0 ? product.name : ''}</dt><dd>{item}</dd></div>
+                ))}
+              </dl>
             </div>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="story" id="story" aria-labelledby="story-title" data-home-section="story">
-      <div class="story-copy reveal">
-        <p class="eyebrow">{copy.storyEyebrow}</p>
-        <h2 id="story-title">{copy.storyTitle.split('\n').map((line) => <span>{line}</span>)}</h2>
-        <p>{copy.storyBody}</p>
-      </div>
-      <div class="methods reveal">
-        <p class="method-label">{copy.methodLabel}</p>
-        {copy.methods.map(([number, title, body]) => (
-          <div class="method-row">
-            <span>{number}</span>
-            <h3>{title}</h3>
-            <p>{body}</p>
-          </div>
+    <section class="method" id="method" aria-labelledby="method-title">
+      <header class="method-heading reveal">
+        <p>{copy.method.eyebrow}</p>
+        <h2 id="method-title">{copy.method.title.map((line) => <span>{line}</span>)}</h2>
+      </header>
+      <ol class="method-list reveal">
+        {copy.method.items.map(([number, title, body]) => (
+          <li><span>{number}</span><h3>{title}</h3><p>{body}</p></li>
         ))}
-      </div>
+      </ol>
     </section>
 
-    <section class="team" id="team" aria-labelledby="team-title" data-home-section="team">
-      <div class="team-intro reveal">
-        <p class="eyebrow">{copy.teamEyebrow}</p>
-        <h2 id="team-title">{copy.teamTitle}</h2>
-        <p>{copy.teamBody}</p>
-      </div>
-      <div class="team-list reveal">
-        {copy.roles.map(([name, role], index) => (
-          <div class="team-member">
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{name}</strong>
-            <p>{role}</p>
-          </div>
+    <section class="team" id="team" aria-labelledby="team-title">
+      <header class="team-heading reveal">
+        <p>{copy.team.eyebrow}</p><h2 id="team-title">{copy.team.title}</h2><span>{copy.team.body}</span>
+      </header>
+      <div class="team-grid reveal">
+        {copy.team.members.map(([name, role], index) => (
+          <article><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{name}</h3><p>{role}</p></div></article>
         ))}
       </div>
     </section>
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
-      <p class="eyebrow">{copy.contactEyebrow}</p>
-      <h2 id="contact-title">{copy.contactTitle}</h2>
-      <p>{copy.contactBody}</p>
-      <a class="contact-link" href={`mailto:${t.contact.email}`}>
-        <span>{copy.mailCta}</span>
-        <strong>{t.contact.email}</strong>
-        <span aria-hidden="true">↗</span>
-      </a>
+      <img src="/visuals/company/east-noise-signal-hero.webp" width="1672" height="941" alt="" loading="lazy" />
+      <div class="contact-copy reveal">
+        <p>{copy.contact.eyebrow}</p>
+        <h2 id="contact-title">{copy.contact.title.map((line) => <span>{line}</span>)}</h2>
+        <a href={`mailto:${t.contact.email}`}>{copy.contact.cta}</a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a class="wordmark wordmark--footer" href={home}>동방의 소음</a>
-    <div>
-      <span>{t.contact.copyright}</span>
-      <span>{t.contact.bizNo}</span>
-    </div>
-    <a href="#main-content">{isKo ? '위로' : 'Back to top'} ↑</a>
+    <a class="footer-brand" href={home}><img src="/visuals/company/east-noise-mark-white.png" alt="" width="48" height="28" /><span>동방의 소음</span></a>
+    <div class="footer-meta"><span>{t.contact.copyright}</span><span>{t.contact.bizNo}</span></div>
+    <nav aria-label={isKo ? '푸터 메뉴' : 'Footer navigation'}>
+      <a href="#products">{copy.nav.products}</a><a href="#method">{copy.nav.method}</a><a href="#team">{copy.nav.team}</a><a href="#contact">{copy.nav.contact}</a><a href="#main-content">{copy.backTop}</a>
+    </nav>
   </footer>
 </div>
 
 <script>
-  import { initHomeMotion } from '../scripts/productMotion';
+  const root = document.querySelector<HTMLElement>('[data-signal-home]');
+  if (root) {
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reveals = [...root.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)')];
+    if (reducedMotion || !('IntersectionObserver' in window)) reveals.forEach((item) => item.classList.add('is-visible'));
+    else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach((item) => revealObserver.observe(item));
+    }
 
-  const motionRoot = document.querySelector<HTMLElement>('[data-east-home]');
-  const cleanupMotion = motionRoot ? initHomeMotion(motionRoot) : undefined;
-  if (cleanupMotion) addEventListener('pagehide', cleanupMotion, { once: true });
-
-  const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-home-section-link]')];
-  const sections = [...document.querySelectorAll<HTMLElement>('[data-home-section]')];
-  const setCurrentSection = (sectionId: string) => {
-    sectionLinks.forEach((link) => {
-      if (link.dataset.homeSectionLink === sectionId) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
-  };
-
-  if ('IntersectionObserver' in window && sectionLinks.length) {
-    const sectionObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible?.target.id) setCurrentSection(visible.target.id);
-    }, { threshold: [0.12, 0.28, 0.5], rootMargin: '-18% 0px -58% 0px' });
-    sections.forEach((section) => sectionObserver.observe(section));
-  }
-
-  const reelCards = [...document.querySelectorAll<HTMLElement>('[data-reel-card]')];
-  const reelLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-reel-link]')];
-  const reelCurrent = document.querySelector<HTMLElement>('[data-reel-current]');
-  const reelProgress = document.querySelector<HTMLElement>('[data-reel-progress]');
-  let reelFrame = 0;
-
-  const setCurrentReel = (activeIndex: number) => {
-    const activeCard = reelCards[activeIndex];
-    if (!activeCard) return;
-
-    reelCards.forEach((card, index) => {
-      if (index === activeIndex) card.setAttribute('data-reel-active', 'true');
-      else card.removeAttribute('data-reel-active');
-    });
-    reelLinks.forEach((link) => {
-      if (link.dataset.reelLink === activeCard.dataset.reelCard) link.setAttribute('aria-current', 'step');
-      else link.removeAttribute('aria-current');
-    });
-    if (reelCurrent) reelCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
-    if (reelProgress) reelProgress.style.transform = `scaleX(${(activeIndex + 1) / reelCards.length})`;
-  };
-
-  const syncReel = () => {
-    reelFrame = 0;
-    const activationLine = Math.min(innerHeight * 0.58, 520);
-    let activeIndex = 0;
-    reelCards.forEach((card, index) => {
-      if (card.getBoundingClientRect().top <= activationLine) activeIndex = index;
-    });
-    setCurrentReel(activeIndex);
-  };
-
-  const requestReelSync = () => {
-    if (reelFrame) return;
-    reelFrame = requestAnimationFrame(syncReel);
-  };
-
-  if (reelCards.length) {
-    syncReel();
-    addEventListener('scroll', requestReelSync, { passive: true });
-    addEventListener('resize', requestReelSync, { passive: true });
-    addEventListener('pagehide', () => {
-      removeEventListener('scroll', requestReelSync);
-      removeEventListener('resize', requestReelSync);
-      if (reelFrame) cancelAnimationFrame(reelFrame);
-    }, { once: true });
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-product-panel]')];
+    const links = [...root.querySelectorAll<HTMLAnchorElement>('[data-product-link]')];
+    const setActive = (id: string) => links.forEach((link) => link.dataset.productLink === id ? link.setAttribute('aria-current', 'step') : link.removeAttribute('aria-current'));
+    if ('IntersectionObserver' in window && panels.length) {
+      const panelObserver = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const id = visible?.target.getAttribute('data-product-panel');
+        if (id) setActive(id);
+      }, { threshold: [0.25, 0.45, 0.65], rootMargin: '-18% 0px -34% 0px' });
+      panels.forEach((panel) => panelObserver.observe(panel));
+    }
+    setActive('luvit');
   }
 </script>
 
 <style>
-  .east-home {
-    --ink: #111111;
-    --muted: #6f7176;
-    --line: rgba(17, 17, 17, 0.13);
-    --paper: #fbfaf8;
-    overflow: clip;
-    background: var(--paper);
-    color: var(--ink);
-  }
-
-  .east-home[data-motion-active='true'] .reveal {
-    transition: none;
-  }
-
-  :global(html.motion-booting) .east-home .hero-copy,
-  :global(html.motion-booting) .east-home .hero-live,
-  :global(html.motion-booting) .east-home .world-viewport img,
-  :global(html.motion-booting) .east-home .product-rail a {
-    opacity: 0;
-  }
-
-  .skip-link {
-    position: fixed;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 999;
-    padding: 0.75rem 1rem;
-    transform: translateY(-160%);
-    background: #111111;
-    color: #ffffff;
-  }
-
-  .skip-link:focus {
-    transform: translateY(0);
-  }
-
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 80;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    min-height: 72px;
-    padding: 0 clamp(1.25rem, 3.3vw, 3.5rem);
-    border-bottom: 1px solid rgba(17, 17, 17, 0.06);
-    background: rgba(251, 250, 248, 0.92);
-    backdrop-filter: blur(18px);
-  }
-
-  .wordmark {
-    justify-self: start;
-    font-size: 1.18rem;
-    font-weight: 780;
-    letter-spacing: -0.045em;
-  }
-
-  .primary-nav,
-  .header-actions {
-    display: flex;
-    align-items: center;
-  }
-
-  .primary-nav {
-    gap: clamp(1.75rem, 4vw, 4.25rem);
-  }
-
-  .header-actions {
-    justify-self: end;
-    gap: 1rem;
-  }
-
-  .header-actions > span {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #c8cbd1;
-  }
-
-  .primary-nav a,
-  .header-actions a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: 0.88rem;
-    font-weight: 590;
-  }
-
-  .primary-nav a {
-    border-bottom: 1px solid transparent;
-    transition: border-color 180ms ease, color 180ms ease;
-  }
-
-  .primary-nav a:hover,
-  .primary-nav a:focus-visible,
-  .primary-nav a[aria-current='location'] {
-    border-bottom-color: currentColor;
-    color: #111111;
-  }
-
-  .hero {
-    position: relative;
-    padding-top: clamp(4.75rem, 6.4vw, 6.5rem);
-    background:
-      linear-gradient(rgba(7, 21, 37, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(7, 21, 37, 0.035) 1px, transparent 1px),
-      radial-gradient(circle at 78% 18%, rgba(113, 153, 255, 0.2), transparent 28%),
-      radial-gradient(circle at 15% 38%, rgba(151, 229, 218, 0.18), transparent 26%),
-      #f7f8fa;
-    background-size: 80px 80px, 80px 80px, auto, auto, auto;
-  }
-
-  .hero-top {
-    position: relative;
-    z-index: 4;
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
-    gap: clamp(3rem, 8vw, 8rem);
-    align-items: end;
-    width: min(calc(100% - 6rem), 1320px);
-    margin: 0 auto;
-  }
-
-  .hero-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .hero-eyebrow {
-    margin: 0 0 1.5rem !important;
-    color: #586377 !important;
-    font-size: 0.72rem !important;
-    font-weight: 720;
-    letter-spacing: 0.14em !important;
-  }
-
-  .hero h1 {
-    margin: 0;
-    max-width: 13ch;
-    font-size: clamp(3.7rem, 6.3vw, 6.6rem);
-    font-weight: 790;
-    letter-spacing: -0.075em;
-    line-height: 0.98;
-  }
-
-  .hero h1 span,
-  .hero p span,
-  .product-story h3 span,
-  .story h2 span {
-    display: block;
-  }
-
-  .hero-copy > p {
-    max-width: 42rem;
-    margin: 1.6rem 0 0;
-    color: var(--muted);
-    font-size: clamp(0.98rem, 1.05vw, 1.05rem);
-    line-height: 1.72;
-    letter-spacing: -0.025em;
-  }
-
-  .primary-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 196px;
-    min-height: 56px;
-    margin-top: 1.7rem;
-    padding: 0 1.35rem 0 1.55rem;
-    border-radius: 13px;
-    background: #071525;
-    color: #ffffff;
-    font-weight: 650;
-    box-shadow: 0 12px 28px rgba(7, 21, 37, 0.16);
-    transition: transform 220ms ease, box-shadow 220ms ease;
-  }
-
-  .primary-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 34px rgba(7, 21, 37, 0.22);
-  }
-
-  .primary-cta:active,
-  .product-rail a:active,
-  .text-link:active,
-  .contact-link:active {
-    transform: scale(0.975);
-  }
-
-  .hero-live {
-    padding: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.88);
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 22px 70px rgba(27, 47, 79, 0.12);
-    backdrop-filter: blur(22px);
-  }
-
-  .hero-live__head {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-  }
-
-  .hero-live__head > span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #22a06b;
-    box-shadow: 0 0 0 6px rgba(34, 160, 107, 0.11);
-  }
-
-  .hero-live__head p {
-    margin: 0;
-    color: #6b7485;
-    font-size: 0.66rem;
-    font-weight: 720;
-    letter-spacing: 0.13em;
-  }
-
-  .hero-live > strong {
-    display: block;
-    margin: 1rem 0 1.15rem;
-    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-    letter-spacing: -0.045em;
-  }
-
-  .hero-live ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid rgba(17, 17, 17, 0.09);
-  }
-
-  .hero-live li {
-    display: grid;
-    grid-template-columns: 28px 0.55fr 1fr;
-    align-items: center;
-    gap: 0.75rem;
-    min-height: 50px;
-    border-bottom: 1px solid rgba(17, 17, 17, 0.09);
-  }
-
-  .hero-live li img {
-    display: block;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-
-  .hero-live li span {
-    font-size: 0.82rem;
-    font-weight: 720;
-  }
-
-  .hero-live li small {
-    color: #727b8b;
-    font-size: 0.58rem;
-    line-height: 1.35;
-    text-align: right;
-  }
-
-  .world-viewport {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: clamp(-7rem, -6vw, -4rem);
-    overflow: hidden;
-  }
-
-  .world-viewport img {
-    display: block;
-    width: min(100%, 1825px);
-    height: auto;
-  }
-
-  .product-rail {
-    position: relative;
-    z-index: 3;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: min(calc(100% - 3rem), 1240px);
-    margin: clamp(-1.4rem, -1vw, -0.65rem) auto 0;
-    border: 1px solid rgba(17, 17, 17, 0.08);
-    border-radius: 22px 22px 0 0;
-    background: rgba(255, 255, 255, 0.91);
-    box-shadow: 0 -20px 70px rgba(65, 53, 40, 0.06);
-    backdrop-filter: blur(16px);
-  }
-
-  .product-rail a {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 0.8rem;
-    min-height: 108px;
-    padding: 0 1.7rem;
-    border-right: 1px solid var(--line);
-    transition: background 180ms ease;
-  }
-
-  .product-rail a:first-child {
-    border-radius: 22px 0 0;
-  }
-
-  .product-rail a:last-child {
-    border-right: 0;
-    border-radius: 0 22px 0 0;
-  }
-
-  .product-rail a:hover {
-    background: rgba(17, 17, 17, 0.035);
-  }
-
-  .rail-icon {
-    display: block;
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
-    object-fit: cover;
-  }
-
-  .product-rail a > span:nth-child(2) {
-    font-weight: 700;
-  }
-
-  .rail-arrow {
-    color: #8a8d92;
-  }
-
-  .collection {
-    background: #ffffff;
-  }
-
-  .section-heading {
-    display: grid;
-    grid-template-columns: 0.7fr 1.25fr 1fr;
-    align-items: end;
-    gap: clamp(2rem, 5vw, 7rem);
-    width: min(calc(100% - 3rem), 1240px);
-    margin: 0 auto;
-    padding: clamp(7rem, 12vw, 11rem) 0 clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .eyebrow {
-    margin: 0;
-    color: #81838a;
-    font-size: 0.71rem;
-    font-weight: 720;
-    letter-spacing: 0.14em;
-  }
-
-  .section-heading h2,
-  .story h2,
-  .team h2,
-  .contact h2 {
-    margin: 0;
-    font-size: clamp(2.15rem, 4vw, 4.25rem);
-    letter-spacing: -0.065em;
-    line-height: 1.08;
-  }
-
-  .section-heading > p:last-child,
-  .story-copy > p:last-child,
-  .team-intro > p:last-child,
-  .contact > p:nth-of-type(2) {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-
-  .product-stories {
-    border-top: 1px solid var(--line);
-  }
-
-  .product-story {
-    display: grid;
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-    min-height: min(820px, 88svh);
-    scroll-margin-top: 72px;
-  }
-
-  .product-story:nth-child(even) {
-    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
-  }
-
-  .product-story:nth-child(even) .product-copy {
-    order: 2;
-  }
-
-  .product-copy {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: clamp(3rem, 7vw, 7rem);
-  }
-
-  .product-kicker {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: clamp(2.5rem, 5vw, 5rem);
-  }
-
-  .product-kicker span {
-    color: #8a8d92;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-  }
-
-  .product-kicker strong {
-    font-size: 0.86rem;
-    letter-spacing: 0.04em;
-  }
-
-  .product-kicker small {
-    margin-left: auto;
-    padding: 0.45rem 0.65rem;
-    border: 1px solid currentColor;
-    border-radius: 999px;
-    font-size: 0.58rem;
-    font-weight: 680;
-    letter-spacing: 0.05em;
-    opacity: 0.52;
-  }
-
-  .product-story h3 {
-    margin: 0;
-    font-size: clamp(2.35rem, 4.35vw, 4.8rem);
-    letter-spacing: -0.07em;
-    line-height: 1.06;
-  }
-
-  .product-copy > p {
-    max-width: 34rem;
-    margin: 1.7rem 0 0;
-    color: currentColor;
-    font-size: clamp(1rem, 1.2vw, 1.16rem);
-    line-height: 1.75;
-    opacity: 0.66;
-  }
-
-  .product-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-
-  .text-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 152px;
-    min-height: 48px;
-    padding: 0 1.1rem 0 1.2rem;
-    border: 1px solid currentColor;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-weight: 680;
-    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
-  }
-
-  .quiet-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    border-bottom: 1px solid currentColor;
-    font-size: 0.86rem;
-    opacity: 0.66;
-    transition: opacity 180ms ease;
-  }
-
-  .text-link:hover,
-  .text-link:focus-visible {
-    transform: translateY(-2px);
-  }
-
-  .product-story--luvit .text-link:hover,
-  .product-story--luvit .text-link:focus-visible { background: #322528; color: #ffffff; }
-  .product-story--seed .text-link:hover,
-  .product-story--seed .text-link:focus-visible { background: #153e2a; color: #ffffff; }
-  .product-story--heum .text-link:hover,
-  .product-story--heum .text-link:focus-visible { background: #102c45; color: #ffffff; }
-  .product-story--alpha .text-link:hover,
-  .product-story--alpha .text-link:focus-visible { background: #f6f3ee; color: #0f1011; }
-
-  .quiet-link:hover,
-  .quiet-link:focus-visible { opacity: 1; }
-
-  .product-visual {
-    position: relative;
-    min-width: 0;
-    min-height: 620px;
-    overflow: hidden;
-  }
-
-  .brand-poster {
-    position: absolute;
-    bottom: -4%;
-    left: 7%;
-    z-index: 1;
-    width: auto;
-    height: 88%;
-    max-width: 58%;
-    object-fit: contain;
-    border-radius: 24px;
-    transform: rotate(-1.8deg);
-    box-shadow: 0 32px 90px rgba(35, 23, 20, 0.22);
-  }
-
-  .detail-card {
-    position: absolute;
-    right: 6%;
-    bottom: -8%;
-    z-index: 2;
-    width: auto;
-    height: 82%;
-    max-width: 54%;
-    object-fit: contain;
-    border-radius: 22px;
-    transform: rotate(2.2deg);
-    box-shadow: 0 32px 90px rgba(35, 23, 20, 0.3);
-  }
-
-  .product-story--luvit {
-    background: #f7e7eb;
-    color: #322528;
-  }
-
-  .product-story--luvit .product-visual {
-    background:
-      radial-gradient(circle at 68% 22%, rgba(255, 255, 255, 0.88), transparent 34%),
-      linear-gradient(135deg, #f4d9df, #fcf6ef);
-  }
-
-  .product-story--seed {
-    background: #e9f2e5;
-    color: #153e2a;
-  }
-
-  .product-story--seed .product-visual {
-    background:
-      radial-gradient(circle at 32% 18%, rgba(255, 255, 255, 0.96), transparent 36%),
-      linear-gradient(145deg, #dff0e6, #f8faf6);
-  }
-
-  .product-story--seed .brand-poster {
-    right: 7%;
-    left: auto;
-    transform: rotate(1.5deg);
-  }
-
-  .product-story--seed .detail-card {
-    right: auto;
-    left: 6%;
-    transform: rotate(-2deg);
-  }
-
-  .product-story--alpha {
-    background: #0f1011;
-    color: #f6f3ee;
-  }
-
-  .product-story--alpha .product-visual {
-    background:
-      radial-gradient(circle at 70% 70%, rgba(199, 28, 24, 0.24), transparent 38%),
-      #090a0b;
-  }
-
-  .product-story--alpha .brand-poster,
-  .product-story--alpha .detail-card {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .product-story--heum {
-    background: #edf4ff;
-    color: #152033;
-  }
-
-  .heum-stage {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background:
-      linear-gradient(rgba(63, 102, 245, 0.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(63, 102, 245, 0.055) 1px, transparent 1px),
-      radial-gradient(circle at 78% 16%, rgba(97, 137, 255, 0.42), transparent 34%),
-      radial-gradient(circle at 12% 78%, rgba(155, 238, 224, 0.4), transparent 30%),
-      #edf4ff;
-    background-size: 80px 80px, 80px 80px, auto, auto, auto;
-  }
-
-  .heum-studio-screen {
-    position: absolute;
-    top: 11%;
-    left: 7%;
-    width: 76%;
-    border: 10px solid rgba(255, 255, 255, 0.72);
-    border-radius: 24px;
-    box-shadow: 0 36px 90px rgba(35, 69, 131, 0.23);
-    transform: rotate(-1.2deg);
-  }
-
-  .heum-mobile-card {
-    position: absolute;
-    right: 4%;
-    bottom: -9%;
-    z-index: 2;
-    width: min(31%, 250px);
-    padding: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.68);
-    box-shadow: 0 28px 80px rgba(35, 69, 131, 0.26);
-    transform: rotate(2.2deg);
-    backdrop-filter: blur(16px);
-  }
-
-  .heum-mobile-card img {
-    display: block;
-    width: 100%;
-    border-radius: 17px;
-  }
-
-  .heum-stage > p {
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    z-index: 3;
-    margin: 0;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid rgba(255, 255, 255, 0.82);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.62);
-    color: #3f66f5;
-    font-size: 0.64rem;
-    font-weight: 720;
-    backdrop-filter: blur(16px);
-  }
-
-  .story {
-    display: grid;
-    grid-template-columns: 0.92fr 1.08fr;
-    gap: clamp(4rem, 10vw, 11rem);
-    padding: clamp(7rem, 13vw, 12rem) max(1.5rem, calc((100vw - 1240px) / 2));
-    --muted: #aeb9c9;
-    --line: rgba(255, 255, 255, 0.16);
-    background:
-      radial-gradient(circle at 90% 8%, rgba(63, 102, 245, 0.28), transparent 30%),
-      #071525;
-    color: #f6f8fc;
-  }
-
-  .story-copy .eyebrow,
-  .team-intro .eyebrow {
-    margin-bottom: 2.5rem;
-  }
-
-  .story .eyebrow,
-  .story .method-label {
-    color: #8290a5;
-  }
-
-  .story-copy > p:last-child {
-    max-width: 34rem;
-    margin-top: 2rem;
-  }
-
-  .method-label {
-    margin: 0 0 1rem;
-    color: #81838a;
-    font-size: 0.75rem;
-    font-weight: 680;
-  }
-
-  .method-row {
-    display: grid;
-    grid-template-columns: 2.8rem 1fr;
-    column-gap: 1.25rem;
-    padding: 1.55rem 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .method-row:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .method-row > span {
-    grid-row: span 2;
-    color: #9a9ca0;
-    font-size: 0.7rem;
-  }
-
-  .method-row h3,
-  .method-row p {
-    margin: 0;
-  }
-
-  .method-row h3 {
-    font-size: clamp(1.05rem, 1.8vw, 1.4rem);
-    letter-spacing: -0.035em;
-  }
-
-  .method-row p {
-    margin-top: 0.55rem;
-    color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .team {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: clamp(4rem, 10vw, 11rem);
-    padding: clamp(7rem, 12vw, 11rem) max(1.5rem, calc((100vw - 1240px) / 2));
-    background: #ffffff;
-  }
-
-  .team-intro > p:last-child {
-    max-width: 30rem;
-    margin-top: 1.7rem;
-  }
-
-  .team-list {
-    border-top: 1px solid var(--line);
-  }
-
-  .team-member {
-    display: grid;
-    grid-template-columns: 3rem 1fr 1fr;
-    align-items: center;
-    min-height: 94px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .team-member > span {
-    color: #9a9ca0;
-    font-size: 0.68rem;
-  }
-
-  .team-member strong {
-    font-size: 1.05rem;
-  }
-
-  .team-member p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.88rem;
-  }
-
-  .contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: clamp(7rem, 13vw, 12rem) 1.5rem;
-    background: #111111;
-    color: #ffffff;
-    text-align: center;
-  }
-
-  .contact .eyebrow {
-    margin-bottom: 2.5rem;
-    color: #8f9299;
-  }
-
-  .contact > p:nth-of-type(2) {
-    margin-top: 1.6rem;
-    color: #a9abb0;
-  }
-
-  .contact-link {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 2rem;
-    width: min(100%, 710px);
-    min-height: 92px;
-    margin-top: 3.5rem;
-    padding: 0 1.5rem 0 2rem;
-    border: 1px solid #424448;
-    border-radius: 10px;
-    text-align: left;
-    transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
-  }
-
-  .contact-link:hover,
-  .contact-link:focus-visible {
-    border-color: #777a80;
-    background: #18191b;
-    transform: translateY(-2px);
-  }
-
-  .contact-link span:first-child {
-    color: #a9abb0;
-    font-size: 0.78rem;
-  }
-
-  .contact-link strong {
-    font-size: clamp(1rem, 2vw, 1.4rem);
-  }
-
-  .site-footer {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    min-height: 134px;
-    padding: 0 clamp(1.25rem, 3.3vw, 3.5rem);
-    background: #111111;
-    color: #ffffff;
-    border-top: 1px solid #2f3033;
-  }
-
-  .wordmark--footer {
-    color: #ffffff;
-  }
-
-  .site-footer > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    color: #85878c;
-    font-size: 0.7rem;
-    text-align: center;
-  }
-
-  .site-footer > a:last-child {
-    justify-self: end;
-    font-size: 0.78rem;
-  }
-
-  @media (max-width: 900px) {
-    .primary-nav {
-      display: none;
-    }
-
-    .site-header {
-      grid-template-columns: 1fr auto;
-    }
-
-    .hero {
-      padding-top: 4.75rem;
-    }
-
-    .hero-top {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-      width: min(calc(100% - 3rem), 720px);
-    }
-
-    .hero-live {
-      width: min(100%, 500px);
-      justify-self: end;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 8.7vw, 4.2rem);
-    }
-
-    .world-viewport {
-      margin-top: -2rem;
-    }
-
-    .world-viewport img {
-      width: min(1825px, 100%);
-      max-width: none;
-    }
-
-    .product-rail {
-      grid-template-columns: repeat(2, 1fr);
-      width: calc(100% - 2rem);
-      margin-top: -0.3rem;
-    }
-
-    .product-rail a {
-      min-height: 82px;
-      padding: 0 1.2rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .product-rail a:nth-child(2) {
-      border-right: 0;
-      border-radius: 0 22px 0 0;
-    }
-
-    .product-rail a:nth-child(n + 3) {
-      border-bottom: 0;
-    }
-
-    .section-heading {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .section-heading h2 {
-      max-width: 12em;
-    }
-
-    .section-heading > p:last-child {
-      max-width: 32rem;
-    }
-
-    .product-story,
-    .product-story:nth-child(even) {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-
-    .product-story:nth-child(even) .product-copy {
-      order: 0;
-    }
-
-    .product-copy {
-      min-height: 560px;
-      padding: 4.5rem 2rem;
-    }
-
-    .product-visual {
-      min-height: min(90vw, 690px);
-    }
-
-    .story,
-    .team {
-      grid-template-columns: 1fr;
-      gap: 5rem;
-    }
-
-    .site-footer {
-      grid-template-columns: 1fr auto;
-    }
-
-    .site-footer > div {
-      display: none;
-    }
-  }
-
-  @media (max-width: 620px) {
-    .site-header {
-      min-height: 64px;
-    }
-
-    .header-actions a:first-child,
-    .header-actions > span {
-      display: none;
-    }
-
-    .wordmark {
-      font-size: 1.02rem;
-    }
-
-    .hero {
-      padding-top: 4rem;
-    }
-
-    .hero-top {
-      gap: 1.5rem;
-      width: calc(100% - 2.5rem);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.25rem, 10.5vw, 2.75rem);
-      letter-spacing: -0.08em;
-    }
-
-    .hero-copy > p {
-      font-size: 0.96rem;
-    }
-
-    .primary-cta {
-      min-width: 180px;
-      min-height: 52px;
-    }
-
-    .hero-live {
-      justify-self: stretch;
-      padding: 1rem 1.1rem;
-      border-radius: 18px;
-    }
-
-    .hero-live > strong {
-      margin-bottom: 0;
-      font-size: 1.05rem;
-    }
-
-    .hero-live ul {
-      display: none;
-    }
-
-    .world-viewport {
-      margin-top: -0.5rem;
-    }
-
-    .product-rail {
-      border-radius: 16px 16px 0 0;
-    }
-
-    .product-rail a {
-      grid-template-columns: auto 1fr;
-      gap: 0.4rem;
-      min-height: 74px;
-      padding: 0 0.9rem;
-      font-size: 0.87rem;
-    }
-
-    .rail-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-    }
-
-    .rail-arrow {
-      display: none;
-    }
-
-    .section-heading {
-      width: calc(100% - 2.5rem);
-      padding: 6.5rem 0 4rem;
-    }
-
-    .product-copy {
-      min-height: 500px;
-      padding: 4rem 1.4rem;
-    }
-
-    .product-kicker {
-      margin-bottom: 3rem;
-    }
-
-    .product-kicker small {
-      flex-basis: 100%;
-      width: fit-content;
-      margin-left: 0;
-      border: 0;
-      padding: 0;
-    }
-
-    .product-story h3 {
-      font-size: clamp(2.1rem, 10.5vw, 3.15rem);
-    }
-
-    .product-links {
-      flex-wrap: wrap;
-    }
-
-    .product-visual {
-      min-height: 112vw;
-    }
-
-    .brand-poster {
-      left: 4%;
-      height: 88%;
-      max-width: 59%;
-      border-radius: 15px;
-    }
-
-    .detail-card {
-      right: 4%;
-      height: 81%;
-      max-width: 55%;
-      border-radius: 14px;
-    }
-
-    .product-story--seed .brand-poster { right: 4%; }
-    .product-story--seed .detail-card { left: 4%; }
-
-    .heum-studio-screen {
-      top: 9%;
-      left: 4%;
-      width: 88%;
-      border-width: 6px;
-      border-radius: 16px;
-    }
-
-    .heum-mobile-card {
-      right: 3%;
-      bottom: -12%;
-      width: 38%;
-      border-radius: 17px;
-    }
-
-    .heum-mobile-card img {
-      border-radius: 12px;
-    }
-
-    .heum-stage > p {
-      top: auto;
-      right: auto;
-      bottom: 1rem;
-      left: 1rem;
-      max-width: 58%;
-      border-radius: 13px;
-      line-height: 1.45;
-    }
-
-    .story,
-    .team {
-      padding-right: 1.25rem;
-      padding-left: 1.25rem;
-    }
-
-    .team-member {
-      grid-template-columns: 2.2rem 1fr;
-      padding: 1.2rem 0;
-    }
-
-    .team-member p {
-      grid-column: 2;
-      margin-top: 0.4rem;
-    }
-
-    .contact h2 {
-      max-width: 9em;
-    }
-
-    .contact-link {
-      grid-template-columns: 1fr auto;
-      gap: 0.5rem;
-      min-height: 86px;
-      padding: 1.2rem;
-    }
-
-    .contact-link span:first-child {
-      display: none;
-    }
-
-    .site-footer {
-      min-height: 108px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .primary-cta:active,
-    .product-rail a:active,
-    .text-link:active,
-    .contact-link:active {
-      transform: none;
-    }
-  }
-
-  @media (prefers-reduced-transparency: reduce) {
-    .site-header,
-    .hero-live,
-    .product-rail,
-    .heum-mobile-card,
-    .heum-stage > p {
-      background: #ffffff;
-      backdrop-filter: none;
-    }
-  }
-
-  /* Glass minimal refresh: glass is reserved for navigation and actions;
-     content surfaces stay thicker for legibility. */
-  .east-home {
-    --ink: #101319;
-    --muted: #616977;
-    --line: rgba(49, 61, 81, 0.11);
-    --paper: #eef3f8;
-    --glass-edge: rgba(255, 255, 255, 0.78);
-    --glass-shadow: 0 24px 80px rgba(35, 50, 75, 0.1);
-    padding-top: 0.75rem;
-    background:
-      radial-gradient(circle at 10% 4%, rgba(255, 186, 207, 0.34), transparent 25rem),
-      radial-gradient(circle at 88% 15%, rgba(130, 169, 255, 0.3), transparent 29rem),
-      radial-gradient(circle at 52% 42%, rgba(174, 238, 218, 0.26), transparent 30rem),
-      linear-gradient(180deg, #f5f8fb 0%, #eaf0f6 56%, #f3f6f9 100%);
-  }
-
-  .site-header {
-    top: 0.75rem;
-    width: min(calc(100% - 2rem), 1320px);
-    min-height: 60px;
-    margin: 0 auto;
-    padding: 0 1rem 0 1.25rem;
-    border: 1px solid var(--glass-edge);
-    border-radius: 999px;
-    background: rgba(251, 253, 255, 0.66);
-    box-shadow: 0 14px 45px rgba(35, 50, 75, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.75);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
-    backdrop-filter: blur(28px) saturate(160%);
-  }
-
-  .wordmark {
-    font-size: 1.02rem;
-    font-weight: 740;
-    letter-spacing: -0.04em;
-  }
-
-  .primary-nav {
-    gap: 0.25rem;
-    padding: 0.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.66);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.36);
-  }
-
-  .primary-nav a,
-  .header-actions a {
-    min-height: 44px;
-    padding: 0 0.95rem;
-    border: 0;
-    border-radius: 999px;
-    color: #404754;
-    font-size: 0.78rem;
-    font-weight: 620;
-  }
-
-  .primary-nav a:hover,
-  .primary-nav a:focus-visible,
-  .primary-nav a[aria-current='location'] {
-    border: 0;
-    background: rgba(255, 255, 255, 0.82);
-    color: var(--ink);
-    box-shadow: 0 4px 14px rgba(35, 50, 75, 0.07);
-  }
-
-  .header-actions { gap: 0.1rem; }
-  .header-actions > span { display: none; }
-
-  .hero {
-    width: min(calc(100% - 2rem), 1440px);
-    margin: 0 auto;
-    padding-top: clamp(5.5rem, 9vw, 8rem);
-    background: transparent;
-  }
-
-  .hero-top {
-    grid-template-columns: minmax(0, 1.4fr) minmax(290px, 0.6fr);
-    width: min(calc(100% - 4rem), 1240px);
-  }
-
-  .hero-eyebrow {
-    margin-bottom: 1.25rem !important;
-    color: #667184 !important;
-  }
-
-  .hero h1 {
-    max-width: 12ch;
-    font-size: clamp(3.35rem, 6vw, 6rem);
-    font-weight: 720;
-    letter-spacing: -0.072em;
-    line-height: 0.99;
-  }
-
-  .hero-copy > p {
-    max-width: 39rem;
-    margin-top: 1.35rem;
-    color: #5f6876;
-  }
-
-  .primary-cta {
-    min-width: 180px;
-    min-height: 52px;
-    margin-top: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.34);
-    border-radius: 999px;
-    background: rgba(18, 23, 31, 0.91);
-    box-shadow: 0 14px 34px rgba(16, 19, 25, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
-  }
-
-  .hero-live {
-    padding: 1.05rem;
-    border-color: var(--glass-edge);
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.58);
-    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.86);
-    -webkit-backdrop-filter: blur(30px) saturate(150%);
-    backdrop-filter: blur(30px) saturate(150%);
-  }
-
-  .hero-live > strong { margin: 0.9rem 0 0.85rem; }
-  .hero-live li { min-height: 46px; }
-  .hero-live li small { color: #5d6675; }
-
-  .world-viewport {
-    position: relative;
-    width: min(calc(100% - 1rem), 1370px);
-    margin: clamp(-4.25rem, -3.5vw, -2rem) auto 0;
-    padding: clamp(1.4rem, 2vw, 2.25rem) clamp(0.25rem, 1vw, 1rem) 0;
-    border: 1px solid var(--glass-edge);
-    border-radius: clamp(30px, 4vw, 52px);
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    -webkit-backdrop-filter: blur(34px) saturate(145%);
-    backdrop-filter: blur(34px) saturate(145%);
-  }
-
-  .world-viewport::after {
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    background: linear-gradient(140deg, rgba(255,255,255,.3), transparent 35%);
-    content: '';
-    pointer-events: none;
-  }
-
-  .world-viewport img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-  }
-
-  .product-rail {
-    width: min(calc(100% - 4rem), 1100px);
-    margin-top: -1.8rem;
-    border-color: var(--glass-edge);
-    border-radius: 999px;
-    background: rgba(250, 252, 255, 0.66);
-    box-shadow: 0 18px 52px rgba(34, 49, 74, 0.11), inset 0 1px 0 #fff;
-    -webkit-backdrop-filter: blur(28px) saturate(150%);
-    backdrop-filter: blur(28px) saturate(150%);
-  }
-
-  .product-rail a {
-    min-height: 76px;
-    padding: 0 1.35rem;
-  }
-
-  .product-rail a:first-child,
-  .product-rail a:last-child { border-radius: 999px; }
-
-  .collection {
-    position: relative;
-    background: transparent;
-  }
-
-  .section-heading {
-    width: min(calc(100% - 4rem), 1180px);
-    padding-top: clamp(8rem, 12vw, 11rem);
-  }
-
-  .section-heading h2,
-  .story h2,
-  .team h2,
-  .contact h2 {
-    font-weight: 690;
-    letter-spacing: -0.058em;
-  }
-
-  .showreel-bar {
-    display: none;
-  }
-
-  .product-stories {
-    display: grid;
-    gap: 1.25rem;
-    width: min(calc(100% - 2rem), 1400px);
-    margin: 0 auto;
-    border: 0;
-  }
-
-  .product-rail a[aria-current='step'] {
-    background: rgba(255, 255, 255, 0.78);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.78);
-  }
-
-  .product-story,
-  .product-story:nth-child(even) {
-    grid-template-columns: minmax(340px, 0.82fr) minmax(0, 1.18fr);
-    min-height: min(760px, 82svh);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: clamp(30px, 4vw, 48px);
-    box-shadow: 0 30px 90px rgba(34, 49, 74, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  }
-
-  .product-story:nth-child(even) .product-copy { order: 0; }
-
-  @media (min-width: 901px) {
-    .showreel-bar {
-      position: sticky;
-      top: 5.15rem;
-      z-index: 50;
-      display: grid;
-      grid-template-columns: auto 1fr minmax(160px, 0.55fr) auto;
-      align-items: center;
-      gap: 1rem;
-      width: min(calc(100% - 4rem), 1180px);
-      min-height: 52px;
-      margin: 0 auto 1rem;
-      padding: 0.45rem 0.65rem 0.45rem 1rem;
-      border: 1px solid var(--glass-edge);
-      border-radius: 999px;
-      background: rgba(249, 252, 255, 0.7);
-      box-shadow: 0 14px 42px rgba(35, 50, 75, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      -webkit-backdrop-filter: blur(28px) saturate(150%);
-      backdrop-filter: blur(28px) saturate(150%);
-      pointer-events: none;
-    }
-
-    .showreel-label,
-    .showreel-hint,
-    .showreel-count {
-      white-space: nowrap;
-    }
-
-    .showreel-label {
-      color: #3f4857;
-      font-size: 0.65rem;
-      font-weight: 760;
-      letter-spacing: 0.13em;
-    }
-
-    .showreel-hint {
-      color: #737c89;
-      font-size: 0.72rem;
-      letter-spacing: -0.015em;
-    }
-
-    .showreel-track {
-      height: 3px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: rgba(57, 69, 88, 0.12);
-    }
-
-    .showreel-track i {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      background: #263143;
-      transform: scaleX(0.25);
-      transform-origin: left center;
-      transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform;
-    }
-
-    .showreel-count {
-      display: flex;
-      align-items: baseline;
-      gap: 0.35rem;
-      min-width: 72px;
-      min-height: 38px;
-      justify-content: center;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.66);
-      color: #6e7683;
-      font-size: 0.67rem;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .showreel-count strong {
-      color: var(--ink);
-      font-size: 0.86rem;
-    }
-
-    .product-stories {
-      padding-bottom: clamp(12rem, 32svh, 22rem);
-    }
-
-    .product-story,
-    .product-story:nth-child(even) {
-      position: sticky;
-      top: 9rem;
-      z-index: 10;
-      min-height: clamp(540px, calc(100svh - 11rem), 740px);
-      scroll-margin-top: 9.5rem;
-      transform-origin: center top;
-    }
-
-    .product-story:nth-child(2) {
-      top: 9.5rem;
-      z-index: 11;
-    }
-
-    .product-story:nth-child(3) {
-      top: 10rem;
-      z-index: 12;
-    }
-
-    .product-story:nth-child(4) {
-      top: 10.5rem;
-      z-index: 13;
-    }
-
-    .product-visual {
-      min-height: clamp(540px, calc(100svh - 11rem), 680px);
-    }
-  }
-
-  .product-copy {
-    position: relative;
-    z-index: 2;
-    padding: clamp(2.5rem, 5vw, 5.4rem);
-    background: rgba(255, 255, 255, 0.6);
-    -webkit-backdrop-filter: blur(34px) saturate(132%);
-    backdrop-filter: blur(34px) saturate(132%);
-  }
-
-  .product-kicker {
-    gap: 0.8rem;
-    margin-bottom: clamp(2.2rem, 4vw, 3.6rem);
-  }
-
-  .product-kicker > span {
-    display: grid;
-    width: 2rem;
-    height: 2rem;
-    place-items: center;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    opacity: 0.45;
-  }
-
-  .product-kicker small {
-    border: 0;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.64);
-    opacity: 0.7;
-  }
-
-  .product-story h3 {
-    font-size: clamp(2.2rem, 3.85vw, 4.3rem);
-    font-weight: 700;
-    letter-spacing: -0.064em;
-  }
-
-  .text-link {
-    border-color: transparent;
-    background: rgba(255, 255, 255, 0.58);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.76), 0 8px 24px rgba(35, 50, 75, 0.08);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
-  }
-
-  .product-visual { min-height: 600px; }
-
-  .brand-poster,
-  .detail-card {
-    border: 8px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 34px 90px rgba(29, 42, 62, 0.22);
-  }
-
-  .product-story--luvit { background: rgba(250, 226, 234, 0.68); }
-  .product-story--seed { background: rgba(224, 242, 229, 0.72); }
-  .product-story--alpha { background: rgba(17, 19, 22, 0.94); }
-
-  .product-story--alpha .product-copy { background: rgba(17, 19, 22, 0.72); }
-
-  .product-story--alpha .product-kicker small,
-  .product-story--alpha .text-link {
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
-  }
-
-  .product-story--heum { background: rgba(225, 235, 255, 0.76); }
-
-  .heum-stage {
-    background:
-      radial-gradient(circle at 82% 15%, rgba(103, 139, 255, 0.32), transparent 34%),
-      radial-gradient(circle at 12% 82%, rgba(151, 236, 220, 0.3), transparent 34%),
-      rgba(234, 241, 252, 0.72);
-  }
-
-  .story,
-  .team {
-    width: min(calc(100% - 2rem), 1400px);
-    margin: 1.25rem auto 0;
-    padding: clamp(5rem, 9vw, 8.5rem) clamp(2rem, 7vw, 7rem);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: clamp(30px, 4vw, 48px);
-    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.74);
-  }
-
-  .story {
-    --muted: #5f6876;
-    --line: rgba(45, 57, 77, 0.13);
-    background: rgba(248, 251, 255, 0.62);
-    color: var(--ink);
-    -webkit-backdrop-filter: blur(34px) saturate(130%);
-    backdrop-filter: blur(34px) saturate(130%);
-  }
-
-  .story .eyebrow,
-  .story .method-label,
-  .section-heading .eyebrow,
-  .team .eyebrow { color: #5f6876; }
-
-  .team {
-    background: rgba(255, 255, 255, 0.54);
-    -webkit-backdrop-filter: blur(28px) saturate(125%);
-    backdrop-filter: blur(28px) saturate(125%);
-  }
-
-  .method-row,
-  .team-member { border-color: var(--line); }
-
-  .contact {
-    width: min(calc(100% - 2rem), 1400px);
-    margin: 1.25rem auto 0;
-    padding: clamp(6rem, 11vw, 10rem) 1.5rem;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: clamp(30px, 4vw, 48px);
-    background:
-      radial-gradient(circle at 80% 20%, rgba(85, 125, 255, 0.24), transparent 32%),
-      radial-gradient(circle at 18% 85%, rgba(137, 227, 211, 0.15), transparent 28%),
-      rgba(12, 17, 25, 0.96);
-    box-shadow: 0 32px 90px rgba(23, 32, 47, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  }
-
-  .contact-link {
-    border-color: rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.07);
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
-  }
-
-  .contact-link:hover,
-  .contact-link:focus-visible {
-    border-color: rgba(255, 255, 255, 0.34);
-    background: rgba(255, 255, 255, 0.12);
-  }
-
-  .site-footer {
-    width: min(calc(100% - 2rem), 1400px);
-    min-height: 110px;
-    margin: 0 auto;
-    border-top: 0;
-    background: transparent;
-    color: var(--ink);
-  }
-
-  .wordmark--footer { color: var(--ink); }
-
-  @media (max-width: 900px) {
-    .site-header { width: calc(100% - 1.5rem); }
-
-    .hero,
-    .product-stories,
-    .story,
-    .team,
-    .contact,
-    .site-footer { width: calc(100% - 1rem); }
-
-    .hero-top { width: min(calc(100% - 2rem), 720px); }
-
-    .world-viewport {
-      width: 100%;
-      margin-top: -1.25rem;
-    }
-
-    .product-rail {
-      width: min(calc(100% - 2rem), 650px);
-      border-radius: 28px;
-    }
-
-    .product-rail a:first-child { border-radius: 28px 0 0; }
-    .product-rail a:last-child { border-radius: 0 0 28px; }
-
-    .product-story,
-    .product-story:nth-child(even) { grid-template-columns: 1fr; }
-
-    .product-copy { min-height: 490px; }
-  }
-
-  @media (max-width: 620px) {
-    .east-home { padding-top: 0.5rem; }
-
-    .site-header {
-      top: 0.5rem;
-      min-height: 54px;
-      padding-left: 1rem;
-    }
-
-    .hero { padding-top: 4.5rem; }
-
-    .hero h1 {
-      font-size: clamp(2.35rem, 11vw, 3.1rem);
-      line-height: 1.02;
-    }
-
-    .world-viewport {
-      padding-top: 1rem;
-      border-radius: 26px;
-    }
-
-    .product-rail {
-      margin-top: -0.65rem;
-      border-radius: 22px;
-    }
-
-    .product-rail a:first-child { border-radius: 22px 0 0; }
-    .product-rail a:last-child { border-radius: 0 0 22px; }
-
-    .section-heading { width: calc(100% - 2rem); }
-
-    .product-story,
-    .story,
-    .team,
-    .contact { border-radius: 28px; }
-
-    .product-copy {
-      min-height: 460px;
-      padding: 3.25rem 1.35rem;
-    }
-
-    .product-kicker small {
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .contact-link { border-radius: 24px; }
-  }
-
-  @media (prefers-contrast: more) {
-    .site-header,
-    .hero-live,
-    .world-viewport,
-    .product-rail,
-    .showreel-bar,
-    .product-copy,
-    .story,
-    .team {
-      border-color: rgba(16, 19, 25, 0.42);
-      background: rgba(255, 255, 255, 0.92);
-    }
-
-    .product-story--alpha .product-copy,
-    .product-story--alpha .text-link {
-      border-color: rgba(255, 255, 255, 0.36);
-      background: #15171a;
-      color: #ffffff;
-    }
-  }
-
-  @media (prefers-reduced-transparency: reduce) {
-    .site-header,
-    .hero-live,
-    .world-viewport,
-    .product-rail,
-    .showreel-bar,
-    .product-copy,
-    .story,
-    .team,
-    .text-link {
-      background: #f8fafc;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-
-    .product-story--alpha .product-copy,
-    .product-story--alpha .text-link {
-      background: #15171a;
-      color: #ffffff;
-    }
-  }
-
-  @media (min-width: 901px) and (prefers-reduced-motion: reduce) {
-    .showreel-bar {
-      display: none;
-    }
-
-    .product-stories {
-      padding-bottom: 0;
-    }
-
-    .product-story,
-    .product-story:nth-child(2),
-    .product-story:nth-child(3),
-    .product-story:nth-child(4) {
-      position: relative;
-      top: auto;
-    }
-  }
+  .signal-home{--black:#050505;--white:#f5f4f1;min-width:320px;overflow:clip;background:var(--black);color:var(--white)}
+  .skip-link{position:fixed;top:.75rem;left:.75rem;z-index:999;padding:.75rem 1rem;transform:translateY(-150%);background:var(--white);color:var(--black)}
+  .skip-link:focus{transform:translateY(0)}
+  .site-header{position:absolute;inset:0 0 auto;z-index:40;display:grid;grid-template-columns:1fr auto 3.5rem;align-items:center;width:100%;min-height:84px;padding:0 clamp(1.5rem,4vw,5rem);color:#fff}
+  .brand,.footer-brand{display:inline-flex;align-items:center;justify-self:start;min-height:44px;gap:.8rem;font-size:.92rem;font-weight:760;letter-spacing:-.035em}
+  .brand img{width:48px;height:30px;object-fit:contain}.primary-nav{display:flex;align-items:center;justify-content:center;gap:clamp(1.5rem,3vw,3.4rem)}
+  .primary-nav a,.language-link{display:inline-flex;align-items:center;min-height:44px;color:rgba(255,255,255,.76);font-size:.76rem;font-weight:650;transition:color 160ms ease}
+  .primary-nav a:hover,.primary-nav a:focus-visible,.language-link:hover,.language-link:focus-visible{color:#fff}.language-link{justify-self:end}
+  .hero{position:relative;display:flex;align-items:center;width:100%;height:100svh;min-height:760px;isolation:isolate;overflow:hidden;background:#020202}
+  .hero-image{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-copy{width:min(38rem,calc(100% - 3rem));margin-left:clamp(1.5rem,7vw,8.5rem);padding-top:4rem}
+  .hero h1{margin:0;font-size:clamp(4.1rem,7.2vw,8rem);font-weight:820;letter-spacing:-.078em;line-height:.92;text-wrap:balance}
+  .hero h1 span,.method h2 span,.contact h2 span,.product-body span{display:block}
+  .hero-copy>p{margin:2.2rem 0 0;color:rgba(255,255,255,.78);font-size:clamp(.96rem,1.2vw,1.1rem);letter-spacing:-.025em}
+  .hero-cta{display:inline-flex;align-items:center;justify-content:center;min-width:164px;min-height:54px;margin-top:2.4rem;padding:0 1.5rem;background:#f6f5f2;color:#080808;font-size:.86rem;font-weight:720;transition:transform 180ms ease,background 180ms ease}
+  .hero-cta:hover,.hero-cta:focus-visible{background:#fff;transform:translateY(-2px)}.hero-cta:active{transform:scale(.98)}
+  .hero-signal{position:absolute;right:clamp(1.5rem,4vw,5rem);bottom:1.8rem;margin:0;color:rgba(255,255,255,.42);font-size:.58rem;letter-spacing:.18em;writing-mode:vertical-rl}
+  :global(html){scroll-snap-type:y proximity}
+  .products{position:relative;display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid rgba(255,255,255,.12);background:#080808}
+  .product-index,.product-panels{grid-area:1/1}
+  .product-index{position:sticky;top:0;z-index:30;align-self:start;width:clamp(176px,16.5vw,254px);height:100svh;padding:clamp(4rem,8vh,7rem) clamp(1.25rem,2.8vw,3rem);border-right:1px solid rgba(255,255,255,.13);background:rgba(9,10,10,.91);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  .product-index ol{display:grid;grid-template-rows:repeat(4,1fr);height:100%;margin:0;padding:0;list-style:none;border-left:1px solid rgba(255,255,255,.32)}.product-index li{min-height:0}
+  .product-index a{position:relative;display:flex;flex-direction:column;justify-content:center;height:100%;min-height:110px;padding-left:clamp(1rem,1.8vw,1.8rem);color:rgba(255,255,255,.5);transition:color 200ms ease}
+  .product-index a::before{content:'';position:absolute;top:50%;left:-2px;width:3px;height:0;background:var(--product-accent);transform:translateY(-50%);transition:height 240ms ease,box-shadow 240ms ease}
+  .product-index a:hover,.product-index a:focus-visible,.product-index a[aria-current='step']{color:var(--product-accent)}
+  .product-index a[aria-current='step']::before{height:72%;box-shadow:0 0 16px var(--product-accent)}
+  .index-number{margin-bottom:.8rem;color:rgba(255,255,255,.68);font-size:.64rem;font-weight:700}.product-index strong{font-size:clamp(1.18rem,2vw,1.85rem);letter-spacing:-.05em}
+  .product-index small{max-width:11rem;margin-top:.75rem;color:rgba(255,255,255,.58);font-size:.68rem;line-height:1.5}
+  .product-panel{position:relative;display:flex;align-items:center;width:100%;height:100svh;min-height:620px;scroll-margin-top:0;scroll-snap-align:start;scroll-snap-stop:always;isolation:isolate;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.12);background:#050505}
+  .product-panel>img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
+  .product-panel::after{content:'';position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.08);pointer-events:none}
+  .product-copy{width:min(35rem,42%);margin:0 clamp(3rem,8vw,9rem) 0 clamp(15rem,24vw,23rem);text-shadow:0 2px 18px rgba(0,0,0,.72)}.copy-right .product-copy{margin-right:clamp(3rem,8vw,9rem);margin-left:auto}
+  .product-number{margin:0 0 2.2rem;color:var(--product-accent);font-size:.68rem;font-weight:760;letter-spacing:.12em}
+  .product-copy h3{margin:0;color:#fff;font-size:clamp(2.2rem,4vw,4.7rem);font-weight:760;letter-spacing:-.065em;line-height:1.02}
+  .product-copy a{display:inline-block}.product-copy a:hover h3,.product-copy a:focus-visible h3{color:var(--product-accent)}
+  .product-body{margin:1.5rem 0 0;color:rgba(255,255,255,.77);font-size:clamp(.9rem,1.25vw,1.08rem);line-height:1.65;letter-spacing:-.025em}
+  .product-status{display:grid;gap:.5rem;margin:1.8rem 0 0}.product-status div{display:grid;grid-template-columns:4.5rem 1fr;gap:.8rem;align-items:center}
+  .product-status dt,.product-status dd{margin:0;font-size:.6rem;font-weight:680;letter-spacing:.06em}.product-status dt{color:var(--product-accent)}.product-status dd{color:rgba(255,255,255,.78)}
+  .method{display:grid;grid-template-columns:minmax(17rem,.85fr) minmax(0,1.45fr);gap:clamp(4rem,9vw,10rem);padding:clamp(7rem,11vw,12rem) max(1.5rem,calc((100vw - 1380px)/2));border-bottom:1px solid rgba(255,255,255,.12);background:#080808}
+  .method-heading>p,.team-heading>p,.contact-copy>p{margin:0 0 2rem;color:#8f8e8a;font-size:.65rem;font-weight:720;letter-spacing:.16em}
+  .method h2,.team h2,.contact h2{margin:0;font-size:clamp(2.65rem,5vw,5.8rem);font-weight:760;letter-spacing:-.07em;line-height:1.01}
+  .method-list{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.22)}
+  .method-list li{min-height:240px;padding:2rem 1.7rem;border-right:1px solid rgba(255,255,255,.18)}.method-list li:last-child{border-right:0}.method-list li>span{color:#777773;font-size:.65rem}
+  .method-list h3{margin:3.5rem 0 1rem;font-size:1.2rem;letter-spacing:-.04em}.method-list p{margin:0;color:#9c9b97;font-size:.82rem;line-height:1.65}
+  .team{padding:clamp(6rem,10vw,10rem) max(1.5rem,calc((100vw - 1380px)/2));background:#0a0a0a}
+  .team-heading{display:grid;grid-template-columns:.8fr 1.3fr 1fr;gap:3rem;align-items:end;margin-bottom:4rem}.team-heading>p{margin:0}.team h2{font-size:clamp(2rem,3.6vw,4rem)}.team-heading>span{color:#9c9b97;line-height:1.7}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.2)}
+  .team-grid article{display:grid;grid-template-columns:2.5rem 1fr;align-items:center;min-height:132px;padding:1.5rem 1.7rem;border-right:1px solid rgba(255,255,255,.17)}.team-grid article:last-child{border-right:0}
+  .team-grid article>span{color:#777773;font-size:.62rem}.team-grid h3{margin:0;font-size:1.18rem;letter-spacing:-.04em}.team-grid p{margin:.55rem 0 0;color:#8f8e8a;font-size:.72rem}
+  .contact{position:relative;display:flex;align-items:center;min-height:clamp(480px,42vw,700px);isolation:isolate;overflow:hidden;background:#030303}
+  .contact>img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:82% center;opacity:.48}
+  .contact-copy{margin-left:max(1.5rem,calc((100vw - 1380px)/2))}.contact h2{font-size:clamp(2.35rem,4.8vw,5.35rem)}
+  .contact-copy a{display:inline-flex;align-items:center;justify-content:center;min-width:150px;min-height:52px;margin-top:2.4rem;background:#f7f6f3;color:#090909;font-size:.84rem;font-weight:720;transition:transform 180ms ease}
+  .contact-copy a:hover,.contact-copy a:focus-visible{transform:translateY(-2px)}
+  .site-footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;min-height:104px;padding:0 clamp(1.5rem,4vw,5rem);border-top:1px solid rgba(255,255,255,.14);background:#050505}
+  .footer-brand img{width:36px;height:24px;object-fit:contain}.footer-brand{font-size:.72rem}.footer-meta{display:flex;gap:1rem;color:#777773;font-size:.6rem}.site-footer nav{display:flex;justify-content:flex-end;gap:1.5rem}
+  .site-footer nav a{display:inline-flex;align-items:center;min-height:44px;color:#8f8e8a;font-size:.66rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity 680ms cubic-bezier(.16,1,.3,1),transform 680ms cubic-bezier(.16,1,.3,1)}.reveal.is-visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:920px){
+    .site-header{grid-template-columns:1fr auto;min-height:72px;padding:0 1.25rem}.primary-nav{gap:1rem}.primary-nav a:nth-child(3){display:none}.language-link{display:none}.brand img{width:40px}
+    .hero{height:100svh;min-height:100svh;align-items:flex-end}.hero-image{object-position:66% center;opacity:.78}.hero-copy{z-index:1;width:min(32rem,calc(100% - 2.5rem));margin:0 1.25rem 4.5rem;padding:0;background:transparent}.hero h1{font-size:clamp(3.5rem,14vw,5.5rem);text-shadow:0 3px 24px rgba(0,0,0,.9)}.hero-copy>p{text-shadow:0 2px 14px rgba(0,0,0,.95)}
+    :global(html){scroll-snap-type:y proximity}.products{display:block}.product-index{position:sticky;top:0;z-index:30;width:100%;height:auto;min-height:0;margin-bottom:0;padding:0;border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
+    .product-index ol{grid-template-columns:repeat(4,1fr);grid-template-rows:none;height:auto;border-left:0}.product-index a{align-items:center;min-height:66px;padding:.6rem .35rem;border-right:1px solid rgba(255,255,255,.12);text-align:center}.product-index li:last-child a{border-right:0}
+    .product-index a::before{top:auto;right:50%;bottom:-1px;left:50%;width:0;height:2px;transform:none;transition:width 220ms ease,left 220ms ease,right 220ms ease}.product-index a[aria-current='step']::before{left:18%;right:18%;width:auto;height:2px}
+    .index-number,.product-index small{display:none}.product-index strong{font-size:.78rem}.product-panel{height:calc(100svh - 66px);min-height:620px;align-items:flex-end}.product-panel>img{object-position:64% center}
+    .product-panel>img{filter:brightness(.72) saturate(.94)}.product-copy,.copy-right .product-copy{z-index:1;width:calc(100% - 2.5rem);margin:0 1.25rem 2rem;padding:0;background:transparent;text-shadow:0 2px 18px rgba(0,0,0,.95)}.product-number{margin-bottom:1.25rem}.product-copy h3{font-size:clamp(2.3rem,9vw,3.6rem)}.product-body span{display:inline}.product-body span+span::before{content:' '}
+    .method{grid-template-columns:1fr;gap:3.5rem}.method-list{grid-template-columns:1fr}.method-list li{min-height:190px;border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}.method-list li:last-child{border-bottom:0}.method-list h3{margin-top:2rem}
+    .team-heading{grid-template-columns:1fr;gap:1.5rem}.team-heading>p{margin-bottom:0}.team-grid{grid-template-columns:1fr}.team-grid article{border-right:0;border-bottom:1px solid rgba(255,255,255,.17)}.team-grid article:last-child{border-bottom:0}
+    .contact{min-height:610px;align-items:flex-end}.contact>img{object-position:72% center;opacity:.64}.contact-copy{width:calc(100% - 2.5rem);margin:0 1.25rem 2rem;padding:1.5rem;background:rgba(2,2,2,.7)}
+    .site-footer{grid-template-columns:1fr;gap:.75rem;min-height:190px;padding-top:1.5rem;padding-bottom:1.5rem}.footer-meta{flex-direction:column;gap:.35rem}.site-footer nav{justify-content:flex-start;flex-wrap:wrap;gap:.8rem 1.2rem}
+  }
+  @media(max-width:520px){
+    .site-header{min-height:64px}.brand span{font-size:.78rem}.primary-nav a{font-size:.64rem}.primary-nav a:nth-child(2){display:none}.hero{height:100svh;min-height:100svh}.hero-image{object-position:71% center}.hero-copy{margin-bottom:2rem}.hero h1{font-size:clamp(3.25rem,15vw,4.55rem)}.hero-copy>p{max-width:16rem;line-height:1.6}.hero-signal{display:none}
+    .product-panel{height:calc(100svh - 64px);min-height:560px}.product-panel>img{object-position:62% center}.product-panel--luvit>img{object-position:35% center}.product-status div{grid-template-columns:3.7rem 1fr}.method h2,.contact h2{font-size:clamp(2.4rem,12vw,3.5rem)}
+  }
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>

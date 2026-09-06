@@ -27,3 +27,5 @@ pnpm-debug.log*
 
 # local visual regression captures
 artifacts/
+cmux-assets/
+.cmux/

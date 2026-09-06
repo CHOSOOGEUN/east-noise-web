@@ -103,7 +103,10 @@ const fallbacks: Record<string, string> = {
 
 <div class="alpha-info" data-alpha-page data-page-title-key={pageCopy.titleKey}>
   <header class="info-nav">
-    <a class="brand" href="/alpha">ALPHA</a>
+    <a class="brand" href="/alpha" aria-label="ALPHA 제품 페이지">
+      <img src="/visuals/company/east-noise-mark-white.png" alt="" width="64" height="38" />
+      <span>ALPHA <em>BY EAST NOISE</em></span>
+    </a>
     <select id="locale" aria-label="언어">
       <option value="ko">한국어</option>
       <option value="en">English</option>
@@ -177,9 +180,17 @@ const fallbacks: Record<string, string> = {
   }
 
   .brand {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 0.7rem;
     font-size: 0.9rem;
-    font-weight: 650;
+    font-weight: 740;
   }
+
+  .brand img { width: 34px; height: 24px; object-fit: contain; }
+  .brand span { display: inline-flex; align-items: baseline; gap: .55rem; }
+  .brand em { color: var(--muted); font-size: .56rem; font-style: normal; letter-spacing: .08em; }
 
   select {
     min-width: 8rem;
@@ -192,10 +203,13 @@ const fallbacks: Record<string, string> = {
   }
 
   .info-hero {
-    min-height: 31rem;
+    min-height: 36rem;
     padding: 8rem 6.7vw 5rem;
-    background: var(--red);
-    color: #080808;
+    background:
+      linear-gradient(90deg, rgba(8,8,8,.98) 0%, rgba(8,8,8,.84) 45%, rgba(8,8,8,.2) 100%),
+      url('/visuals/company/alpha-signal-scene.webp') 72% center / cover no-repeat,
+      #080808;
+    color: var(--paper);
   }
 
   .info-hero > p,
@@ -204,15 +218,17 @@ const fallbacks: Record<string, string> = {
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 650;
+    color: var(--red);
     text-transform: uppercase;
   }
 
   .info-hero h1 {
     max-width: 64rem;
     margin: 3.5rem 0 2rem;
-    font-size: clamp(3.2rem, 7vw, 6rem);
-    font-weight: 620;
-    line-height: 1.05;
+    font-size: clamp(3.4rem, 7vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: .96;
   }
 
   .info-hero > span {
@@ -225,7 +241,7 @@ const fallbacks: Record<string, string> = {
   .info-hero > em {
     display: block;
     margin-top: 2rem;
-    color: rgba(8, 8, 8, 0.6);
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .info-list {
@@ -243,14 +259,14 @@ const fallbacks: Record<string, string> = {
   }
 
   .info-list section > span {
-    color: var(--muted);
+    color: var(--red);
     font-size: 0.78rem;
   }
 
   .info-list h2 {
     margin: 0 0 1.25rem;
     font-size: 1.8rem;
-    font-weight: 580;
+    font-weight: 720;
   }
 
   .info-list p {
@@ -264,7 +280,10 @@ const fallbacks: Record<string, string> = {
     display: grid;
     gap: 1.5rem;
     padding: 6rem 6.7vw;
-    background: #141414;
+    background:
+      linear-gradient(90deg, rgba(8,8,8,.98), rgba(8,8,8,.72)),
+      url('/visuals/company/alpha-signal-scene.webp') 72% center / cover no-repeat,
+      #141414;
   }
 
   .contact p,
