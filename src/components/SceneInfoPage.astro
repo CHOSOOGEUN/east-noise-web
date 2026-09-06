@@ -281,7 +281,10 @@ const initial = copy.en[page];
   <div class="ambient" aria-hidden="true"></div>
 
   <header class="scene-nav">
-    <a href="/" class="brand" aria-label="East Noise home">SCENE <span>BY EAST NOISE</span></a>
+    <a href="/scene" class="brand" aria-label="SCENE product page">
+      <img src="/visuals/company/east-noise-mark-white.png" alt="" width="64" height="38" />
+      <strong>SCENE</strong><span>BY EAST NOISE</span>
+    </a>
     <select id="scene-locale" aria-label="Language">
       {Object.entries(copy).map(([locale, item]) => <option value={locale}>{item.language}</option>)}
     </select>
@@ -396,14 +399,13 @@ const initial = copy.en[page];
 
   .ambient {
     position: absolute;
-    inset: -12rem -20vw auto;
-    height: 44rem;
+    inset: 0 0 auto;
+    height: 42rem;
     pointer-events: none;
     background:
-      radial-gradient(circle at 28% 28%, rgba(119, 147, 255, 0.34), transparent 38%),
-      radial-gradient(circle at 72% 40%, rgba(255, 126, 103, 0.22), transparent 34%);
-    filter: blur(28px);
-    opacity: 0.88;
+      linear-gradient(90deg, rgba(5, 6, 8, 0.98), rgba(5, 6, 8, 0.76) 48%, rgba(5, 6, 8, 0.14)),
+      url('/visuals/company/scene-signal-scene.webp') 70% center / cover no-repeat;
+    opacity: 1;
   }
 
   .scene-nav,
@@ -435,6 +437,8 @@ const initial = copy.en[page];
     letter-spacing: 0.14em;
   }
 
+  .brand img { width: 34px; height: 24px; object-fit: contain; }
+  .brand strong { font-weight: 760; letter-spacing: 0.08em; }
   .brand span { color: var(--muted); font-size: 0.58rem; font-weight: 620; }
 
   select {
@@ -442,7 +446,7 @@ const initial = copy.en[page];
     min-height: 44px;
     padding: 0 2.2rem 0 0.9rem;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
+    border-radius: 0;
     background: rgba(18, 21, 25, 0.82);
     color: var(--ink);
     font: inherit;
@@ -471,9 +475,9 @@ const initial = copy.en[page];
     max-width: 61rem;
     margin: 2.2rem 0 1.4rem;
     font-size: clamp(3.4rem, 8vw, 7.5rem);
-    font-weight: 650;
-    letter-spacing: -0.055em;
-    line-height: 0.96;
+    font-weight: 800;
+    letter-spacing: -0.075em;
+    line-height: 0.94;
   }
 
   .scene-hero > span {
@@ -497,12 +501,12 @@ const initial = copy.en[page];
     border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
 
-  .scene-sections section > span { color: #737980; font-size: 0.75rem; }
+  .scene-sections section > span { color: #38d8ff; font-size: 0.75rem; }
 
   .scene-sections h2 {
     margin: 0 0 1rem;
     font-size: clamp(1.45rem, 2.6vw, 2.15rem);
-    font-weight: 590;
+    font-weight: 720;
     letter-spacing: -0.025em;
   }
 
@@ -516,7 +520,10 @@ const initial = copy.en[page];
 
   .scene-contact {
     padding: 6rem 6.7vw;
-    background: var(--raised);
+    background:
+      linear-gradient(90deg, rgba(5, 6, 8, 0.98), rgba(5, 6, 8, 0.68)),
+      url('/visuals/company/scene-signal-scene.webp') 70% center / cover no-repeat,
+      var(--raised);
     border-block: 1px solid rgba(255, 255, 255, 0.10);
   }
 

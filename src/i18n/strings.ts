@@ -11,7 +11,7 @@ export const strings = {
     },
     hero: {
       title: '작은 제품을 만들고\n꾸준히 운영합니다',
-      lead: 'Luvit, Seed, heum을 운영하고 ALPHA, 오늘치, 웹 미스터리와 내부 운영 도구를 만듭니다.',
+      lead: 'Luvit, Seed, ALPHA를 운영하고 SCENE과 다음 제품을 만듭니다.',
       cta: '운영 보드 보기',
       secondaryCta: '협업 문의',
       channelLabel: '동방의 소음 운영 제품',
@@ -91,7 +91,7 @@ export const strings = {
     },
     hero: {
       title: 'We make small products\nand keep working on them',
-      lead: 'East Noise operates Luvit, Seed, and heum while building ALPHA, Oneulchi, web mysteries, and internal operating tools.',
+      lead: 'East Noise operates Luvit, Seed, and ALPHA while building SCENE and what comes next.',
       cta: 'View operating board',
       secondaryCta: 'Contact us',
       channelLabel: 'East Noise operating products',

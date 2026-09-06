@@ -62,18 +62,22 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
 
 <style>
   .legal-page {
-    --ink: #07111f;
-    --night: #061426;
+    --ink: #0a0a0a;
+    --night: #050505;
     --paper: #efede7;
-    --line: rgba(7, 17, 31, 0.17);
+    --signal: #ff7448;
+    --line: rgba(10, 10, 10, 0.18);
     color: var(--ink);
     background: var(--paper);
   }
 
   .legal-hero {
-    min-height: 26rem;
-    padding: 6rem 6.7vw 4rem;
-    background: var(--night);
+    min-height: 32rem;
+    padding: 7rem 6.7vw 5rem;
+    background:
+      linear-gradient(90deg, rgba(5,5,5,.98) 0%, rgba(5,5,5,.86) 46%, rgba(5,5,5,.28) 100%),
+      url('/visuals/company/east-noise-signal-hero.webp') 78% center / cover no-repeat,
+      var(--night);
     color: #f4f2ec;
   }
 
@@ -89,17 +93,19 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
   .legal-hero h1 {
     max-width: 64rem;
     margin: 3.5rem 0 3rem;
-    font-size: 4.8rem;
-    font-weight: 650;
-    line-height: 1.08;
-    letter-spacing: 0;
+    font-size: clamp(3.7rem, 7vw, 7.4rem);
+    font-weight: 800;
+    line-height: 0.96;
+    letter-spacing: -0.075em;
   }
 
   .legal-body {
     display: grid;
     grid-template-columns: 15rem minmax(0, 1fr);
     gap: 4rem;
-    padding: 7rem 6.7vw 9rem;
+    width: min(100%, 1440px);
+    margin: 0 auto;
+    padding: 8rem 6.7vw 10rem;
   }
 
   .legal-index {
@@ -130,14 +136,14 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
   }
 
   .legal-section > span {
-    color: #707070;
+    color: var(--signal);
     font-size: 0.78rem;
   }
 
   .legal-section h2 {
     margin: 0 0 1.5rem;
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: clamp(1.65rem, 2.7vw, 2.5rem);
+    font-weight: 740;
     line-height: 1.25;
   }
 
@@ -151,7 +157,10 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
 
   .legal-contact {
     padding: 6rem 6.7vw;
-    background: var(--night);
+    background:
+      linear-gradient(90deg, rgba(5,5,5,.96), rgba(5,5,5,.7)),
+      url('/visuals/company/east-noise-signal-hero.webp') 78% center / cover no-repeat,
+      var(--night);
     color: #ffffff;
   }
 
@@ -167,20 +176,21 @@ const { kicker, title, lastUpdated, contactEmail, contactLabel, sections } = Ast
     max-width: 100%;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid currentColor;
-    font-size: 2.2rem;
-    font-weight: 600;
+    font-size: clamp(1.35rem, 3vw, 2.8rem);
+    font-weight: 720;
     overflow-wrap: anywhere;
   }
 
   @media (max-width: 760px) {
     .legal-hero {
-      min-height: 22rem;
-      padding: 4.5rem 1.25rem 3rem;
+      min-height: 28rem;
+      padding: 5.5rem 1.25rem 3.5rem;
+      background-position: 66% center;
     }
 
     .legal-hero h1 {
       margin: 3rem 0 2.5rem;
-      font-size: 3rem;
+      font-size: clamp(3.1rem, 14vw, 4.8rem);
     }
 
     .legal-body {
