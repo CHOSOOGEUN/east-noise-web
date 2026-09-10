@@ -1,0 +1,704 @@
+{
+  "ko": {
+    "store": "ko",
+    "subtitle": "음성으로 즐기는 둘만의 커플 게임",
+    "keywords": "데이트,연인,부부,미션,친밀감,기념일,로맨스,타이머,스위치",
+    "heads": [
+      [
+        "더 가까이.",
+        "더 깊이."
+      ],
+      [
+        "시선은 서로에게.",
+        "미션은 목소리로."
+      ],
+      [
+        "설렘부터,",
+        "아찔함까지."
+      ],
+      [
+        "번갈아 이끄는",
+        "둘만의 밤."
+      ],
+      [
+        "서두르지 않아도",
+        "충분히 뜨겁게."
+      ]
+    ],
+    "subs": [
+      "둘만 아는 밤의 취향, SWITCH.",
+      "화면을 내려놓고, 둘에게 집중하는 시간.",
+      "LIGHT · HOT · WILD",
+      "서로의 이름으로 시작하는 커플 미션.",
+      "일시정지와 건너뛰기. 속도는 둘이 정해요."
+    ],
+    "foot": "익숙한 사이, 낯선 긴장.",
+    "promo": "오늘의 분위기는 둘이 고르세요. LIGHT·HOT·WILD와 음성 안내로 즐기는 커플 미션. 게임을 시작하려면 유료 이용권이 필요합니다.",
+    "description": "둘만의 데이트에 새로운 분위기를 더해보세요. SWITCH는 성인 커플이 하나의 기기로 함께 즐기는 음성 안내 커플 게임입니다. 화면을 계속 확인하지 않고 서로에게 집중할 수 있도록 차례와 미션을 목소리로 안내합니다.\n\n• LIGHT·HOT·WILD: 둘이 원하는 수위를 선택하세요.\n• 번갈아 진행하는 미션: 서로의 이름을 넣고 차례대로 즐기세요.\n• 음성 안내와 타이머: 무엇을 할지, 누구 차례인지, 얼마나 남았는지 확인하세요.\n• 일시정지·건너뛰기·종료: 편안한 속도와 경계는 두 사람이 정하세요.\n• LIGHT는 약 10분, HOT·WILD는 약 20분. 미션 구성에 따라 실제 시간은 달라질 수 있습니다.\n\n성인을 위한 앱이며 모든 활동은 두 사람의 동의가 전제입니다. 불편한 미션은 건너뛰거나 언제든 끝낼 수 있습니다. 계정 가입은 필요하지 않습니다.\n\n유료 이용 안내\n게임을 시작하려면 주간·연간 구독 또는 평생 이용권을 구매해야 합니다. 무료 게임이나 무료 체험은 제공하지 않습니다. 가격은 구매 전 App Store에 표시됩니다. 주간·연간 구독은 현재 기간이 끝나기 최소 24시간 전에 취소하지 않으면 자동 갱신됩니다. 결제는 Apple 계정으로 청구되며 구독 관리·해지는 App Store 계정 설정에서 할 수 있습니다. 평생 이용권은 한 번 결제하는 비소모성 상품입니다. 구매 복원은 앱의 설정 → 구독 관리에서 할 수 있습니다."
+  },
+  "en": {
+    "store": "en-US",
+    "subtitle": "Voice-guided intimate dares",
+    "keywords": "date,night,romance,connection,partner,relationship,spicy,timer,kissing,together",
+    "heads": [
+      [
+        "Closer.",
+        "Deeper."
+      ],
+      [
+        "Eyes on each other.",
+        "Let the voice lead."
+      ],
+      [
+        "From a spark",
+        "to something more."
+      ],
+      [
+        "Take turns.",
+        "Make it your night."
+      ],
+      [
+        "No rush.",
+        "Just chemistry."
+      ]
+    ],
+    "subs": [
+      "A night only the two of you know.",
+      "Put the screen down. Stay in the moment.",
+      "LIGHT · HOT · WILD",
+      "Your names. Your turns. Your connection.",
+      "Pause or skip. Set your own pace."
+    ],
+    "foot": "Familiar faces. A new kind of tension.",
+    "promo": "Set the mood with LIGHT, HOT or WILD. Let voice-guided couple missions lead your next date night. A paid plan is required to play.",
+    "description": "Make room for a different kind of date night. SWITCH is a voice-guided game for adult couples to play together on one device. Hear whose turn it is and what comes next, so you can focus on each other.\n\n• Choose your intensity: LIGHT, HOT or WILD.\n• Add your names and take turns leading the moment.\n• Follow spoken missions with a visible timer.\n• Pause, skip a mission or end the game whenever you choose.\n• LIGHT lasts around 10 minutes; HOT and WILD around 20. Actual length varies with the missions.\n\nFor consenting adults only. Choose your boundaries together and skip anything that does not feel right. No account is required.\n\nPaid access\nPlaying requires a weekly or annual subscription, or a one-time lifetime purchase. There is no free game or free trial. Local prices are shown before purchase. Payment is charged to your Apple Account. Subscriptions renew automatically unless cancelled at least 24 hours before the current period ends. Manage or cancel in your App Store account settings. Lifetime access is a non-consumable one-time purchase. Restore purchases in Settings → Subscription management in the app."
+  },
+  "ja": {
+    "store": "ja",
+    "subtitle": "ふたりの距離が近づく音声ガイドゲーム",
+    "keywords": "カップル,恋人,夫婦,デート,ミッション,親密,キス,ロマンス,スイッチ",
+    "heads": [
+      [
+        "もっと近く。",
+        "もっと深く。"
+      ],
+      [
+        "見つめ合って。",
+        "あとは音声に。"
+      ],
+      [
+        "ときめきから、",
+        "高鳴る夜へ。"
+      ],
+      [
+        "交代でリードする、",
+        "ふたりだけの夜。"
+      ],
+      [
+        "急がなくても、",
+        "熱は深まる。"
+      ]
+    ],
+    "subs": [
+      "ふたりだけが知る夜を、SWITCHで。",
+      "画面を置いて、目の前の相手に集中。",
+      "LIGHT · HOT · WILD",
+      "お互いの名前で始まるカップルミッション。",
+      "一時停止もスキップも。ペースはふたりで。"
+    ],
+    "foot": "いつものふたりに、新しいときめき。",
+    "promo": "LIGHT・HOT・WILDから今夜の雰囲気を選択。音声ガイドに合わせて交代で楽しむ、ふたりのためのミッション。プレイには有料プランが必要です。",
+    "description": "いつものデートに、少し違う時間を。SWITCHは、大人のカップルが1台の端末で一緒に楽しむ音声ガイド付きゲームです。順番とミッションを音声で案内するので、画面を見続けずに相手に集中できます。\n\n・LIGHT・HOT・WILDからふたりに合う強度を選択\n・お互いの名前を入力して、交代でリード\n・ミッションの読み上げとタイマー表示\n・一時停止、スキップ、終了はいつでも\n・LIGHTは約10分、HOT・WILDは約20分。実際の時間はミッション構成によって異なります。\n\n成人同士の合意を前提としたアプリです。境界線をふたりで決め、不快に感じるミッションはスキップしてください。アカウント登録は不要です。\n\n有料プランについて\nプレイには週額・年額サブスクリプション、または買い切りの永久アクセスが必要です。無料プレイ・無料体験はありません。価格は購入前に表示され、Apple Accountに請求されます。サブスクリプションは期間終了の24時間前までに解約しない限り自動更新されます。管理・解約はApp Storeのアカウント設定で行えます。永久アクセスは1回払いの非消耗型購入です。購入の復元はアプリの設定内のサブスクリプション管理から行えます。"
+  },
+  "de": {
+    "store": "de-DE",
+    "subtitle": "Intimes Paarspiel mit Stimme",
+    "keywords": "date,abend,liebe,beziehung,zweisamkeit,romantik,nähe,aufgaben,küssen,timer",
+    "heads": [
+      [
+        "Näher.",
+        "Intensiver."
+      ],
+      [
+        "Blicke füreinander.",
+        "Die Stimme führt."
+      ],
+      [
+        "Vom Knistern",
+        "zur Leidenschaft."
+      ],
+      [
+        "Abwechselnd führen.",
+        "Die Nacht teilen."
+      ],
+      [
+        "Kein Zeitdruck.",
+        "Nur ihr zwei."
+      ]
+    ],
+    "subs": [
+      "Eine Nacht, die nur euch gehört.",
+      "Legt das Handy hin. Bleibt im Moment.",
+      "LIGHT · HOT · WILD",
+      "Eure Namen. Eure Momente. Im Wechsel.",
+      "Pausieren oder überspringen. Euer Tempo."
+    ],
+    "foot": "Vertraute Nähe. Neues Knistern.",
+    "promo": "LIGHT, HOT oder WILD: Wählt eure Stimmung und folgt den gesprochenen Paar-Missionen. Zum Spielen ist ein kostenpflichtiger Zugang nötig.",
+    "description": "Macht euren nächsten Abend zu zweit zu etwas Besonderem. SWITCH ist ein sprachgeführtes Spiel für erwachsene Paare auf einem gemeinsamen Gerät. Die Stimme sagt euch, wer dran ist und welche Aufgabe folgt. So bleibt eure Aufmerksamkeit beieinander.\n\n• Drei Intensitäten: LIGHT, HOT und WILD.\n• Namen eingeben und abwechselnd die Führung übernehmen.\n• Gesprochene Aufgaben mit sichtbarem Timer.\n• Jederzeit pausieren, überspringen oder beenden.\n• LIGHT dauert etwa 10 Minuten, HOT und WILD etwa 20. Die tatsächliche Dauer hängt von den Aufgaben ab.\n\nNur für einvernehmlich handelnde Erwachsene. Legt eure Grenzen gemeinsam fest. Ein Konto ist nicht erforderlich.\n\nKostenpflichtiger Zugang\nZum Spielen braucht ihr ein Wochen- oder Jahresabo oder einen einmaligen Kauf für dauerhaften Zugang. Es gibt weder ein kostenloses Spiel noch eine Testphase. Preise werden vor dem Kauf angezeigt. Die Abrechnung erfolgt über euren Apple Account. Abos verlängern sich automatisch, wenn sie nicht mindestens 24 Stunden vor Ablauf gekündigt werden. Verwaltung und Kündigung erfolgen in den App-Store-Kontoeinstellungen. Der dauerhafte Zugang ist ein nicht verbrauchbarer Einmalkauf. Käufe lassen sich in der Aboverwaltung in den App-Einstellungen wiederherstellen."
+  },
+  "fr": {
+    "store": "fr-FR",
+    "subtitle": "Jeu de couple avec guide vocal",
+    "keywords": "soirée,amoureux,intimité,complicité,défis,romantique,baiser,relation,duo",
+    "heads": [
+      [
+        "Plus proches.",
+        "Plus intenses."
+      ],
+      [
+        "Les yeux sur vous.",
+        "La voix vous guide."
+      ],
+      [
+        "De l'étincelle",
+        "aux frissons."
+      ],
+      [
+        "À tour de rôle.",
+        "Une nuit à deux."
+      ],
+      [
+        "Prenez le temps.",
+        "Gardez le frisson."
+      ]
+    ],
+    "subs": [
+      "Une nuit qui n'appartient qu'à vous.",
+      "Posez l'écran. Savourez l'instant à deux.",
+      "LIGHT · HOT · WILD",
+      "Vos prénoms, vos défis, chacun son tour.",
+      "Pause ou défi suivant. À votre rythme."
+    ],
+    "foot": "La même complicité. Un nouveau frisson.",
+    "promo": "LIGHT, HOT ou WILD : choisissez l'ambiance et laissez la voix guider vos défis à deux. Un accès payant est nécessaire pour jouer.",
+    "description": "Donnez une autre saveur à vos soirées en amoureux. SWITCH est un jeu pour couples adultes, guidé par la voix et conçu pour jouer ensemble sur un seul appareil. Écoutez à qui revient le tour et quel défi vous attend, tout en restant attentifs l'un à l'autre.\n\n• Trois intensités : LIGHT, HOT et WILD.\n• Saisissez vos prénoms et prenez les devants à tour de rôle.\n• Défis lus à voix haute et minuteur visible.\n• Faites une pause, passez un défi ou arrêtez à tout moment.\n• Environ 10 minutes en LIGHT, 20 en HOT ou WILD, selon les défis.\n\nRéservé aux adultes consentants. Fixez vos limites ensemble. Aucun compte n'est nécessaire.\n\nAccès payant\nPour jouer, choisissez un abonnement hebdomadaire ou annuel, ou un achat unique donnant un accès à vie. Aucun jeu ni essai gratuit. Les prix locaux sont affichés avant l'achat, facturé à votre compte Apple. Les abonnements se renouvellent automatiquement sauf annulation au moins 24 heures avant la fin de la période. Gérez-les ou annulez-les dans les réglages de votre compte App Store. L'accès à vie est un achat non consommable. Restaurez vos achats depuis la gestion de l'abonnement dans les réglages de l'app."
+  },
+  "es": {
+    "store": "es-ES",
+    "subtitle": "Retos íntimos guiados por voz",
+    "keywords": "pareja,cita,noche,romance,conexión,besos,relación,temporizador,dos,juntos",
+    "heads": [
+      [
+        "Más cerca.",
+        "Más intenso."
+      ],
+      [
+        "Miradas para dos.",
+        "La voz os guía."
+      ],
+      [
+        "De la chispa",
+        "a la pasión."
+      ],
+      [
+        "Por turnos.",
+        "La noche es vuestra."
+      ],
+      [
+        "Sin prisas.",
+        "Con toda la química."
+      ]
+    ],
+    "subs": [
+      "Una noche que solo vosotros conocéis.",
+      "Dejad la pantalla. Vivid el momento.",
+      "LIGHT · HOT · WILD",
+      "Vuestros nombres. Vuestros turnos.",
+      "Pausad o saltad. Vosotros marcáis el ritmo."
+    ],
+    "foot": "La misma pareja. Una nueva tensión.",
+    "promo": "Elegid LIGHT, HOT o WILD y descubrid retos en pareja guiados por voz. Para jugar se necesita un plan de pago.",
+    "description": "Dadle un nuevo aire a vuestra próxima noche en pareja. SWITCH es un juego con guía de voz para parejas adultas que juegan juntas en un solo dispositivo. Escuchad de quién es el turno y qué reto sigue mientras os prestáis atención.\n\n• Tres intensidades: LIGHT, HOT y WILD.\n• Añadid vuestros nombres y llevad la iniciativa por turnos.\n• Retos narrados y temporizador visible.\n• Pausad, saltad un reto o terminad cuando queráis.\n• LIGHT dura unos 10 minutos; HOT y WILD, unos 20. La duración depende de los retos.\n\nSolo para adultos que participen de mutuo acuerdo. Decidid juntos vuestros límites. No hace falta crear una cuenta.\n\nAcceso de pago\nPara jugar se requiere una suscripción semanal o anual, o una compra única de acceso de por vida. No hay partida ni prueba gratuita. El precio local se muestra antes de la compra, que se cobra en la cuenta de Apple. Las suscripciones se renuevan automáticamente salvo cancelación al menos 24 horas antes del fin del periodo. Se gestionan y cancelan en los ajustes de la cuenta de App Store. El acceso de por vida es una compra no consumible. Restaurad las compras en la gestión de suscripciones de los ajustes de la app."
+  },
+  "it": {
+    "store": "it",
+    "subtitle": "Sfide intime guidate a voce",
+    "keywords": "coppia,serata,amore,romantico,intimità,baci,relazione,complicità,timer,due",
+    "heads": [
+      [
+        "Più vicini.",
+        "Più intensi."
+      ],
+      [
+        "Occhi negli occhi.",
+        "La voce vi guida."
+      ],
+      [
+        "Dalla scintilla",
+        "ai brividi."
+      ],
+      [
+        "Un turno per uno.",
+        "Una notte per due."
+      ],
+      [
+        "Senza fretta.",
+        "Solo complicità."
+      ]
+    ],
+    "subs": [
+      "Una notte che appartiene solo a voi.",
+      "Posate lo schermo. Vivete il momento.",
+      "LIGHT · HOT · WILD",
+      "I vostri nomi. I vostri turni. Insieme.",
+      "Pausa o prossima sfida. Al vostro ritmo."
+    ],
+    "foot": "La stessa coppia. Nuove emozioni.",
+    "promo": "LIGHT, HOT o WILD: scegliete l'atmosfera e lasciatevi guidare dalla voce nelle sfide di coppia. Per giocare serve un accesso a pagamento.",
+    "description": "Date un nuovo ritmo alle vostre serate di coppia. SWITCH è un gioco con guida vocale per coppie adulte, da condividere su un solo dispositivo. La voce annuncia il turno e la prossima sfida, lasciandovi liberi di concentrarvi l'uno sull'altra.\n\n• Scegliete tra LIGHT, HOT e WILD.\n• Inserite i nomi e guidate il gioco a turno.\n• Seguite le sfide lette ad alta voce e il timer.\n• Mettete in pausa, saltate o terminate quando volete.\n• LIGHT dura circa 10 minuti; HOT e WILD circa 20, in base alle sfide.\n\nSolo per adulti consenzienti. Stabilite insieme i vostri limiti. Non serve un account.\n\nAccesso a pagamento\nPer giocare è necessario un abbonamento settimanale o annuale oppure un acquisto unico per l'accesso a vita. Nessuna partita o prova gratuita. Il prezzo locale viene mostrato prima dell'acquisto e addebitato all'account Apple. Gli abbonamenti si rinnovano automaticamente salvo disdetta almeno 24 ore prima della scadenza. Si gestiscono nelle impostazioni dell'account App Store. L'accesso a vita è un acquisto non consumabile. Ripristinate gli acquisti dalla gestione abbonamenti nelle impostazioni dell'app."
+  },
+  "pt": {
+    "store": "pt-BR",
+    "subtitle": "Desafios íntimos com voz",
+    "keywords": "casal,namoro,encontro,noite,romance,conexão,beijos,cumplicidade,temporizador,dois",
+    "heads": [
+      [
+        "Mais perto.",
+        "Mais intenso."
+      ],
+      [
+        "Olhem um pro outro.",
+        "A voz conduz."
+      ],
+      [
+        "Da primeira faísca",
+        "ao frio na barriga."
+      ],
+      [
+        "Cada um na sua vez.",
+        "A noite é de vocês."
+      ],
+      [
+        "Sem pressa.",
+        "Só química."
+      ]
+    ],
+    "subs": [
+      "Uma noite que só vocês conhecem.",
+      "Deixem a tela de lado. Curtam o momento.",
+      "LIGHT · HOT · WILD",
+      "Seus nomes. Suas vezes. A mesma sintonia.",
+      "Pausem ou pulem. O ritmo é de vocês."
+    ],
+    "foot": "O mesmo casal. Uma nova sintonia.",
+    "promo": "Escolham LIGHT, HOT ou WILD e curtam desafios de casal guiados por voz. É preciso ter um plano pago para jogar.",
+    "description": "Transformem o próximo encontro em um momento só de vocês. SWITCH é um jogo guiado por voz para casais adultos, feito para jogar juntos em um único aparelho. Ouçam de quem é a vez e qual é o próximo desafio sem tirar a atenção um do outro.\n\n• Três intensidades: LIGHT, HOT e WILD.\n• Coloquem seus nomes e alternem quem conduz.\n• Desafios narrados com temporizador na tela.\n• Pausem, pulem um desafio ou encerrem quando quiserem.\n• LIGHT dura cerca de 10 minutos; HOT e WILD, cerca de 20. O tempo varia conforme os desafios.\n\nSomente para adultos que participem de comum acordo. Definam seus limites juntos. Não é preciso criar conta.\n\nAcesso pago\nPara jogar, é necessária uma assinatura semanal ou anual, ou uma compra única de acesso vitalício. Não há jogo nem teste gratuito. O preço local aparece antes da compra, cobrada na Conta Apple. Assinaturas são renovadas automaticamente, a menos que sejam canceladas pelo menos 24 horas antes do fim do período. Gerenciem ou cancelem nos ajustes da conta da App Store. O acesso vitalício é uma compra não consumível. Restaurem compras na gestão de assinaturas nos ajustes do app."
+  },
+  "pt-PT": {
+    "store": "pt-PT",
+    "subtitle": "Jogo de casal guiado por voz",
+    "keywords": "casal,namoro,encontro,noite,romance,intimidade,beijos,cumplicidade,temporizador",
+    "heads": [
+      [
+        "Mais perto.",
+        "Mais intenso."
+      ],
+      [
+        "Olhos nos olhos.",
+        "A voz orienta."
+      ],
+      [
+        "Da primeira faísca",
+        "ao arrepio."
+      ],
+      [
+        "Uma vez cada um.",
+        "Uma noite a dois."
+      ],
+      [
+        "Sem pressa.",
+        "Só química."
+      ]
+    ],
+    "subs": [
+      "Uma noite que só vocês conhecem.",
+      "Pousem o telemóvel. Vivam o momento.",
+      "LIGHT · HOT · WILD",
+      "Os vossos nomes. A vossa vez. A dois.",
+      "Façam uma pausa ou saltem. Ao vosso ritmo."
+    ],
+    "foot": "A mesma cumplicidade. Um novo arrepio.",
+    "promo": "Escolham LIGHT, HOT ou WILD e sigam os desafios de casal guiados por voz. É necessário um plano pago para jogar.",
+    "description": "Deem um novo ambiente à vossa próxima noite a dois. SWITCH é um jogo com orientação por voz para casais adultos, para jogar em conjunto num único dispositivo. Ouçam de quem é a vez e qual o desafio seguinte, sem deixar de prestar atenção um ao outro.\n\n• Três intensidades: LIGHT, HOT e WILD.\n• Introduzam os vossos nomes e alternem quem conduz.\n• Desafios lidos em voz alta e temporizador visível.\n• Façam uma pausa, saltem um desafio ou terminem quando quiserem.\n• LIGHT dura cerca de 10 minutos; HOT e WILD, cerca de 20. A duração varia consoante os desafios.\n\nApenas para adultos que participem de livre vontade. Definam os vossos limites em conjunto. Não é necessária uma conta.\n\nAcesso pago\nPara jogar, é necessária uma subscrição semanal ou anual, ou uma compra única de acesso vitalício. Não existe jogo nem período de teste gratuito. O preço local é apresentado antes da compra, cobrada na Conta Apple. As subscrições renovam-se automaticamente, salvo cancelamento pelo menos 24 horas antes do fim do período. Podem geri-las ou cancelá-las nas definições da conta da App Store. O acesso vitalício é uma compra não consumível. Restaurem compras na gestão de subscrições nas definições da aplicação."
+  },
+  "zh": {
+    "store": "zh-Hans",
+    "subtitle": "情侣约会，语音引导的亲密互动",
+    "keywords": "恋人,夫妻,双人,浪漫,接吻,情趣,计时,默契,游戏",
+    "heads": [
+      [
+        "更靠近。",
+        "更深入。"
+      ],
+      [
+        "目光留给彼此。",
+        "任务交给声音。"
+      ],
+      [
+        "从心动，",
+        "到怦然。"
+      ],
+      [
+        "轮流主导，",
+        "只属于两人的夜。"
+      ],
+      [
+        "不必着急，",
+        "一样炽热。"
+      ]
+    ],
+    "subs": [
+      "只有你们懂的夜晚，SWITCH。",
+      "放下屏幕，把注意力交给眼前的人。",
+      "LIGHT · HOT · WILD",
+      "输入彼此的名字，开启双人任务。",
+      "暂停或跳过，节奏由你们决定。"
+    ],
+    "foot": "熟悉的彼此，新的心动。",
+    "promo": "选择 LIGHT、HOT 或 WILD，让语音引导你们轮流完成情侣任务。开始游戏需要购买付费方案。",
+    "description": "给下一次双人约会，换一种氛围。SWITCH 是一款供成年情侣在同一台设备上共同游玩的语音引导游戏。通过语音了解轮到谁、接下来做什么，不必一直盯着屏幕。\n\n• LIGHT、HOT、WILD：一起选择合适的亲密程度。\n• 输入彼此的名字，轮流主导互动。\n• 语音任务搭配清晰的计时器。\n• 随时暂停、跳过任务或结束游戏。\n• LIGHT 约10分钟，HOT 和 WILD 约20分钟；实际时长随任务组合而变化。\n\n仅面向自愿参与的成年人。请共同确定彼此的边界，不舒服的任务可以跳过。无需注册账户。\n\n付费说明\n开始游戏需要周订阅、年订阅或一次性购买永久使用权，不提供免费游戏或免费试用。本地价格会在购买前显示，费用由 Apple 账户扣取。除非在当前订阅期结束至少24小时前取消，否则订阅会自动续期。可在 App Store 账户设置中管理或取消。永久使用权为非消耗型一次性购买。可在应用设置中的订阅管理页面恢复购买。"
+  },
+  "zh-TW": {
+    "store": "zh-Hant",
+    "subtitle": "情侶約會，語音引導的親密互動",
+    "keywords": "戀人,夫妻,雙人,浪漫,接吻,情趣,計時,默契,遊戲",
+    "heads": [
+      [
+        "更靠近。",
+        "更深入。"
+      ],
+      [
+        "目光留給彼此。",
+        "任務交給聲音。"
+      ],
+      [
+        "從心動，",
+        "到怦然。"
+      ],
+      [
+        "輪流主導，",
+        "只屬於兩人的夜。"
+      ],
+      [
+        "不必著急，",
+        "一樣熾熱。"
+      ]
+    ],
+    "subs": [
+      "只有你們懂的夜晚，SWITCH。",
+      "放下螢幕，專注眼前的彼此。",
+      "LIGHT · HOT · WILD",
+      "輸入彼此的名字，開啟雙人任務。",
+      "暫停或跳過，節奏由你們決定。"
+    ],
+    "foot": "熟悉的彼此，新的心動。",
+    "promo": "選擇 LIGHT、HOT 或 WILD，讓語音引導你們輪流完成情侶任務。開始遊戲需要購買付費方案。",
+    "description": "為下一次雙人約會，換一種氛圍。SWITCH 是一款供成年情侶在同一台裝置上共同遊玩的語音引導遊戲。透過語音了解輪到誰、接下來做什麼，不必一直盯著螢幕。\n\n• LIGHT、HOT、WILD：一起選擇適合的親密程度。\n• 輸入彼此的名字，輪流主導互動。\n• 語音任務搭配清楚的計時器。\n• 隨時暫停、跳過任務或結束遊戲。\n• LIGHT 約10分鐘，HOT 和 WILD 約20分鐘；實際時間依任務組合而異。\n\n僅供自願參與的成年人使用。請共同決定彼此的界線，不舒服的任務可以跳過。無須註冊帳號。\n\n付費說明\n開始遊戲需要週訂閱、年訂閱或一次購買永久使用權，不提供免費遊戲或免費試用。當地價格會在購買前顯示，費用由 Apple 帳號扣取。除非在目前訂閱期結束至少24小時前取消，否則訂閱將自動續訂。可在 App Store 帳號設定中管理或取消。永久使用權為非消耗型一次性購買。可在 App 設定中的訂閱管理頁面回復購買項目。"
+  },
+  "zh-HK": {
+    "store": null,
+    "sharedStore": "zh-Hant",
+    "subtitle": "情侶約會，語音引導的親密互動",
+    "keywords": "戀人,夫妻,雙人,浪漫,接吻,情趣,計時,默契,遊戲",
+    "heads": [
+      [
+        "再靠近。",
+        "再深入。"
+      ],
+      [
+        "目光留給彼此。",
+        "任務交給聲音。"
+      ],
+      [
+        "由心動，",
+        "到怦然。"
+      ],
+      [
+        "輪流主導，",
+        "只屬於兩人的夜。"
+      ],
+      [
+        "不用急，",
+        "一樣熾熱。"
+      ]
+    ],
+    "subs": [
+      "只有你們懂的夜晚，SWITCH。",
+      "放低手機，專注眼前的彼此。",
+      "LIGHT · HOT · WILD",
+      "輸入彼此的名字，開始雙人任務。",
+      "暫停或跳過，節奏由你們決定。"
+    ],
+    "foot": "熟悉的彼此，新的心動。"
+  },
+  "da": {
+    "store": "da",
+    "subtitle": "Intime parlege med stemmeguide",
+    "keywords": "date,aften,kærlighed,romantik,forhold,nærhed,kys,udfordringer,timer,to",
+    "heads": [
+      [
+        "Tættere.",
+        "Mere intenst."
+      ],
+      [
+        "Blik for hinanden.",
+        "Stemmen guider."
+      ],
+      [
+        "Fra en gnist",
+        "til sommerfugle."
+      ],
+      [
+        "Skift til at føre.",
+        "Del natten."
+      ],
+      [
+        "Ingen hast.",
+        "Kun kemi."
+      ]
+    ],
+    "subs": [
+      "En aften, kun I kender.",
+      "Læg skærmen væk. Vær sammen i nuet.",
+      "LIGHT · HOT · WILD",
+      "Jeres navne. Jeres ture. Jeres aften.",
+      "Pause eller spring over. I sætter tempoet."
+    ],
+    "foot": "Velkendt nærhed. Ny spænding.",
+    "promo": "Vælg LIGHT, HOT eller WILD, og følg stemmens parudfordringer sammen. Det kræver betalt adgang at spille.",
+    "description": "Giv jeres næste aften sammen en ny stemning. SWITCH er et stemmeguidet spil til voksne par på én fælles enhed. Hør, hvem der har tur, og hvad næste udfordring er, mens I holder fokus på hinanden.\n\n• Vælg LIGHT, HOT eller WILD.\n• Tilføj jeres navne, og skift til at føre.\n• Følg oplæste udfordringer med en synlig timer.\n• Sæt på pause, spring over, eller afslut når som helst.\n• LIGHT varer cirka 10 minutter; HOT og WILD cirka 20. Varigheden afhænger af udfordringerne.\n\nKun for voksne, der begge har lyst. Aftal jeres grænser sammen. Der kræves ingen konto.\n\nBetalt adgang\nSpil kræver et uge- eller årsabonnement eller et engangskøb med livslang adgang. Der er hverken gratis spil eller prøveperiode. Lokale priser vises før køb, og betalingen trækkes på din Apple-konto. Abonnementer fornyes automatisk, medmindre de opsiges mindst 24 timer før periodens udløb. Administrer eller opsig i App Stores kontoindstillinger. Livslang adgang er et engangskøb, der ikke forbruges. Gendan køb under abonnementsstyring i appens indstillinger."
+  },
+  "nb": {
+    "store": "no",
+    "subtitle": "Parspill med stemmeguide",
+    "keywords": "date,kveld,kjærlighet,romantikk,forhold,nærhet,kyss,utfordringer,timer,to",
+    "heads": [
+      [
+        "Nærmere.",
+        "Mer intenst."
+      ],
+      [
+        "Blikk for hverandre.",
+        "Stemmen leder."
+      ],
+      [
+        "Fra en gnist",
+        "til sommerfugler."
+      ],
+      [
+        "Bytt på å lede.",
+        "Del natten."
+      ],
+      [
+        "Ingen hast.",
+        "Bare kjemi."
+      ]
+    ],
+    "subs": [
+      "En kveld som bare er deres.",
+      "Legg bort skjermen. Vær i øyeblikket.",
+      "LIGHT · HOT · WILD",
+      "Deres navn. Deres turer. Deres kveld.",
+      "Pause eller hopp over. Dere velger tempoet."
+    ],
+    "foot": "Kjent nærhet. Ny spenning.",
+    "promo": "Velg LIGHT, HOT eller WILD, og følg stemmens parutfordringer sammen. Betalt tilgang er nødvendig for å spille.",
+    "description": "Gi neste kveld sammen en ny stemning. SWITCH er et parspill med stemmeguide for voksne som spiller sammen på én enhet. Hør hvem sin tur det er og hva neste utfordring blir, mens dere fokuserer på hverandre.\n\n• Velg LIGHT, HOT eller WILD.\n• Legg inn navnene deres og bytt på å lede.\n• Følg oppleste utfordringer med synlig timer.\n• Ta pause, hopp over eller avslutt når dere vil.\n• LIGHT varer omtrent 10 minutter; HOT og WILD omtrent 20. Tiden varierer med utfordringene.\n\nKun for voksne som deltar frivillig. Avtal grensene sammen. Ingen konto kreves.\n\nBetalt tilgang\nSpilling krever et uke- eller årsabonnement eller et engangskjøp med livstidstilgang. Ingen gratis spill eller prøveperiode. Lokal pris vises før kjøp, og Apple-kontoen belastes. Abonnementer fornyes automatisk hvis de ikke sies opp minst 24 timer før perioden utløper. Administrer eller avslutt i kontoinnstillingene i App Store. Livstidstilgang er et ikke-forbrukbart engangskjøp. Gjenopprett kjøp under abonnementsadministrasjon i appinnstillingene."
+  },
+  "nl": {
+    "store": "nl-NL",
+    "subtitle": "Intiem koppelspel met stemgids",
+    "keywords": "date,avond,liefde,romantiek,relatie,samen,kussen,uitdagingen,timer,verbinding",
+    "heads": [
+      [
+        "Dichterbij.",
+        "Intenser."
+      ],
+      [
+        "Oog voor elkaar.",
+        "De stem wijst de weg."
+      ],
+      [
+        "Van een vonk",
+        "naar vlinders."
+      ],
+      [
+        "Om de beurt leiden.",
+        "Samen de nacht in."
+      ],
+      [
+        "Geen haast.",
+        "Alleen chemie."
+      ]
+    ],
+    "subs": [
+      "Een avond die alleen van jullie is.",
+      "Leg het scherm weg. Beleef het moment.",
+      "LIGHT · HOT · WILD",
+      "Jullie namen. Jullie beurten. Samen.",
+      "Pauzeer of sla over. Jullie bepalen het tempo."
+    ],
+    "foot": "Vertrouwd samen. Nieuwe spanning.",
+    "promo": "Kies LIGHT, HOT of WILD en volg samen de gesproken uitdagingen. Om te spelen is betaalde toegang nodig.",
+    "description": "Geef jullie volgende avond samen een nieuwe sfeer. SWITCH is een spel met gesproken begeleiding voor volwassen koppels, samen op één apparaat. Hoor wie aan de beurt is en wat de volgende uitdaging wordt, zodat jullie aandacht bij elkaar blijft.\n\n• Kies LIGHT, HOT of WILD.\n• Vul jullie namen in en neem om de beurt de leiding.\n• Gesproken uitdagingen met een zichtbare timer.\n• Pauzeer, sla over of stop wanneer jullie willen.\n• LIGHT duurt ongeveer 10 minuten; HOT en WILD ongeveer 20. De duur hangt af van de uitdagingen.\n\nAlleen voor volwassenen die vrijwillig meedoen. Bepaal samen jullie grenzen. Een account is niet nodig.\n\nBetaalde toegang\nSpelen vereist een week- of jaarabonnement of een eenmalige aankoop voor levenslange toegang. Er is geen gratis spel of proefperiode. De lokale prijs verschijnt vóór aankoop. Je Apple Account wordt belast. Abonnementen worden automatisch verlengd, tenzij je minstens 24 uur voor het einde opzegt. Beheer of annuleer via je App Store-accountinstellingen. Levenslange toegang is een niet-verbruikbare eenmalige aankoop. Herstel aankopen via abonnementsbeheer in de appinstellingen."
+  },
+  "sv": {
+    "store": "sv",
+    "subtitle": "Intima parspel med röstguide",
+    "keywords": "dejt,kväll,kärlek,romantik,relation,närhet,kyssar,utmaningar,timer,tillsammans",
+    "heads": [
+      [
+        "Närmare.",
+        "Mer intensivt."
+      ],
+      [
+        "Blickar för varandra.",
+        "Rösten visar vägen."
+      ],
+      [
+        "Från en gnista",
+        "till fjärilar."
+      ],
+      [
+        "Turas om att leda.",
+        "Dela natten."
+      ],
+      [
+        "Ingen brådska.",
+        "Bara kemi."
+      ]
+    ],
+    "subs": [
+      "En kväll som bara är er.",
+      "Lägg bort skärmen. Var i stunden.",
+      "LIGHT · HOT · WILD",
+      "Era namn. Era turer. Er kväll.",
+      "Pausa eller hoppa över. Ni väljer tempot."
+    ],
+    "foot": "Välbekant närhet. Ny spänning.",
+    "promo": "Välj LIGHT, HOT eller WILD och följ röstguidade parutmaningar tillsammans. Betald tillgång krävs för att spela.",
+    "description": "Ge nästa kväll tillsammans en ny känsla. SWITCH är ett röstguidat spel för vuxna par som spelar tillsammans på en enda enhet. Hör vems tur det är och vilken utmaning som kommer härnäst, så att ni kan fokusera på varandra.\n\n• Välj LIGHT, HOT eller WILD.\n• Lägg till era namn och turas om att leda.\n• Upplästa utmaningar med synlig timer.\n• Pausa, hoppa över eller avsluta när ni vill.\n• LIGHT tar cirka 10 minuter; HOT och WILD cirka 20. Tiden varierar med utmaningarna.\n\nEndast för vuxna som deltar frivilligt. Bestäm era gränser tillsammans. Inget konto krävs.\n\nBetald tillgång\nFör att spela behövs en vecko- eller årsprenumeration eller ett engångsköp för livslång tillgång. Inget gratis spel eller provperiod erbjuds. Lokala priser visas före köp och betalningen dras från ditt Apple-konto. Prenumerationer förnyas automatiskt om de inte sägs upp minst 24 timmar före periodens slut. Hantera eller avsluta i App Stores kontoinställningar. Livslång tillgång är ett icke-förbrukningsbart engångsköp. Återställ köp via prenumerationshantering i appinställningarna."
+  },
+  "tr": {
+    "store": "tr",
+    "subtitle": "Sesli rehberle çift oyunları",
+    "keywords": "sevgili,randevu,gece,romantik,yakınlık,ilişki,öpüşme,görev,zamanlayıcı",
+    "heads": [
+      [
+        "Daha yakın.",
+        "Daha yoğun."
+      ],
+      [
+        "Gözler birbirinizde.",
+        "Rehberiniz ses."
+      ],
+      [
+        "Bir kıvılcımdan",
+        "kalp çarpıntısına."
+      ],
+      [
+        "Sırayla yön verin.",
+        "Gece sizin."
+      ],
+      [
+        "Acele yok.",
+        "Yalnızca çekim."
+      ]
+    ],
+    "subs": [
+      "Yalnızca ikinizin bildiği bir gece.",
+      "Ekranı bırakın. Birbirinize odaklanın.",
+      "LIGHT · HOT · WILD",
+      "İsimlerinizi girin. Sırayla yakınlaşın.",
+      "Duraklatın veya atlayın. Ritmi siz seçin."
+    ],
+    "foot": "Tanıdık bir yakınlık. Yeni bir heyecan.",
+    "promo": "LIGHT, HOT veya WILD'ı seçin ve sesli rehber eşliğinde çift görevlerini deneyin. Oynamak için ücretli erişim gerekir.",
+    "description": "Birlikte geçirdiğiniz geceye farklı bir hava katın. SWITCH, yetişkin çiftlerin tek cihazda birlikte oynayabileceği sesli rehberli bir oyundur. Sıranın kimde olduğunu ve sıradaki görevi dinleyin; dikkatiniz birbirinizde kalsın.\n\n• LIGHT, HOT veya WILD yoğunluğunu seçin.\n• İsimlerinizi ekleyip sırayla yön verin.\n• Sesli görevleri ve görünür zamanlayıcıyı takip edin.\n• İstediğiniz an duraklatın, atlayın veya bitirin.\n• LIGHT yaklaşık 10, HOT ve WILD yaklaşık 20 dakika sürer. Süre görevlere göre değişir.\n\nYalnızca karşılıklı rıza gösteren yetişkinler içindir. Sınırlarınızı birlikte belirleyin. Hesap açmak gerekmez.\n\nÜcretli erişim\nOynamak için haftalık veya yıllık abonelik ya da tek seferlik ömür boyu erişim satın alınmalıdır. Ücretsiz oyun veya deneme yoktur. Yerel fiyat satın almadan önce gösterilir ve ödeme Apple Hesabından alınır. Abonelikler dönem sonundan en az 24 saat önce iptal edilmezse otomatik yenilenir. App Store hesap ayarlarından yönetilebilir veya iptal edilebilir. Ömür boyu erişim, tüketilmeyen tek seferlik bir satın almadır. Satın almalar uygulama ayarlarındaki abonelik yönetiminden geri yüklenebilir."
+  },
+  "vi": {
+    "store": "vi",
+    "subtitle": "Trò chơi cặp đôi có giọng dẫn",
+    "keywords": "hẹn hò,lãng mạn,thân mật,hôn,tình yêu,nhiệm vụ",
+    "heads": [
+      [
+        "Gần nhau hơn.",
+        "Sâu đậm hơn."
+      ],
+      [
+        "Ánh mắt cho nhau.",
+        "Giọng nói dẫn lối."
+      ],
+      [
+        "Từ rung động",
+        "đến xao xuyến."
+      ],
+      [
+        "Thay nhau dẫn dắt.",
+        "Đêm của hai người."
+      ],
+      [
+        "Không cần vội.",
+        "Vẫn đủ nồng nàn."
+      ]
+    ],
+    "subs": [
+      "Một đêm chỉ hai bạn thấu hiểu.",
+      "Đặt màn hình xuống. Tập trung vào nhau.",
+      "LIGHT · HOT · WILD",
+      "Tên của hai bạn. Lượt của mỗi người.",
+      "Tạm dừng hoặc bỏ qua. Theo nhịp của hai bạn."
+    ],
+    "foot": "Người quen thuộc. Cảm giác mới mẻ.",
+    "promo": "Chọn LIGHT, HOT hoặc WILD và làm nhiệm vụ cặp đôi theo giọng hướng dẫn. Cần mua gói trả phí để chơi.",
+    "description": "Thêm một sắc thái mới cho buổi hẹn của hai bạn. SWITCH là trò chơi có giọng hướng dẫn dành cho các cặp đôi trưởng thành, cùng chơi trên một thiết bị. Nghe lượt của ai và nhiệm vụ tiếp theo để tập trung vào nhau thay vì màn hình.\n\n• Chọn mức LIGHT, HOT hoặc WILD.\n• Nhập tên và thay nhau dẫn dắt.\n• Nhiệm vụ được đọc thành tiếng, kèm bộ đếm giờ.\n• Tạm dừng, bỏ qua hoặc kết thúc bất cứ lúc nào.\n• LIGHT khoảng 10 phút; HOT và WILD khoảng 20 phút. Thời lượng thay đổi theo nhiệm vụ.\n\nChỉ dành cho người trưởng thành tự nguyện tham gia. Cùng thống nhất giới hạn của hai bạn. Không cần tạo tài khoản.\n\nTruy cập trả phí\nĐể chơi, cần đăng ký theo tuần hoặc năm, hoặc mua quyền truy cập trọn đời một lần. Không có trò chơi hay dùng thử miễn phí. Giá địa phương hiển thị trước khi mua và được tính vào Tài khoản Apple. Đăng ký tự động gia hạn trừ khi hủy ít nhất 24 giờ trước khi kỳ hiện tại kết thúc. Quản lý hoặc hủy trong cài đặt tài khoản App Store. Quyền trọn đời là giao dịch mua một lần, không tiêu hao. Khôi phục giao dịch mua trong phần quản lý đăng ký ở cài đặt ứng dụng."
+  },
+  "hi": {
+    "store": "hi",
+    "subtitle": "आवाज़ के साथ कपल गेम",
+    "keywords": "डेट,रोमांस,रिश्ता,date,night,intimacy,timer",
+    "heads": [
+      [
+        "और करीब।",
+        "और गहराई से।"
+      ],
+      [
+        "नज़रें एक-दूसरे पर।",
+        "राह दिखाए आवाज़।"
+      ],
+      [
+        "हल्की सी चिंगारी,",
+        "गहरा एहसास।"
+      ],
+      [
+        "बारी-बारी से साथ।",
+        "रात सिर्फ़ आपकी।"
+      ],
+      [
+        "जल्दी नहीं।",
+        "बस आप दोनों।"
+      ]
+    ],
+    "subs": [
+      "एक शाम, जिसका राज़ सिर्फ़ आप जानें।",
+      "स्क्रीन रख दें। एक-दूसरे पर ध्यान दें।",
+      "LIGHT · HOT · WILD",
+      "अपने नाम जोड़ें। बारी-बारी से खेलें।",
+      "रोकें या छोड़ें। अपनी रफ़्तार चुनें।"
+    ],
+    "foot": "वही साथी। एक नया एहसास।",
+    "promo": "LIGHT, HOT या WILD चुनें और आवाज़ के मार्गदर्शन में साथ खेलें। खेलने के लिए सशुल्क प्लान ज़रूरी है।",
+    "description": "अगली डेट को एक नया एहसास दें। SWITCH वयस्क जोड़ों के लिए आवाज़ के मार्गदर्शन वाला गेम है, जिसे एक ही डिवाइस पर साथ खेला जाता है। किसकी बारी है और अगला मिशन क्या है, यह सुनें और एक-दूसरे पर ध्यान दें।\n\n• LIGHT, HOT या WILD स्तर चुनें।\n• अपने नाम जोड़ें और बारी-बारी से आगे बढ़ें।\n• बोले गए मिशन और स्क्रीन पर टाइमर।\n• कभी भी रोकें, मिशन छोड़ें या गेम खत्म करें।\n• LIGHT करीब 10 मिनट, HOT और WILD करीब 20 मिनट। असली समय मिशन के अनुसार बदलता है।\n\nकेवल आपसी सहमति से भाग लेने वाले वयस्कों के लिए। अपनी सीमाएँ साथ तय करें। अकाउंट बनाना ज़रूरी नहीं है।\n\nसशुल्क एक्सेस\nखेलने के लिए साप्ताहिक या वार्षिक सदस्यता, या एक बार भुगतान वाला आजीवन एक्सेस चाहिए। कोई मुफ़्त गेम या ट्रायल नहीं है। स्थानीय कीमत खरीदने से पहले दिखाई जाती है और भुगतान Apple खाते से लिया जाता है। मौजूदा अवधि खत्म होने से कम से कम 24 घंटे पहले रद्द न करने पर सदस्यता अपने आप नवीनीकृत होती है। App Store खाते की सेटिंग में इसे प्रबंधित या रद्द करें। आजीवन एक्सेस एक बार की गैर-उपभोज्य खरीद है। ऐप की सेटिंग में सदस्यता प्रबंधन से खरीद बहाल करें।"
+  }
+}
