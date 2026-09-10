@@ -274,7 +274,27 @@ const copy = {
   },
 } as const;
 
-const initial = copy.en[page];
+
+const androidGuidance = {
+  "en": "On Android, connect headphones and tap Play before allowing microphone access. Audio stays in device memory and is never recorded or uploaded. Stop from SCENE or Android media controls. Change microphone permission in Android app settings. Sound effects, haptics and language preferences stay in private app storage; clear app storage or uninstall to remove them. iOS-specific Live Activity instructions below apply only to iPhone.",
+  "ko": "Android에서는 헤드폰을 연결하고 듣기를 누른 뒤 마이크 권한을 허용하세요. 소리는 기기 메모리에서만 처리되며 녹음하거나 업로드하지 않습니다. SCENE 또는 Android 미디어 컨트롤에서 멈출 수 있습니다. 마이크 권한은 Android 앱 설정에서 관리하세요. 효과음·햅틱·언어 설정은 앱 내부 저장소에만 보관되며 앱 데이터 삭제 또는 앱 제거로 지울 수 있습니다. 아래 iOS 실시간 현황 안내는 iPhone에만 해당합니다.",
+  "ja": "Androidではヘッドフォンを接続し、再生をタップしてからマイクを許可してください。音声は端末のメモリ内だけで処理され、録音や送信はされません。SCENEまたはAndroidのメディアコントロールで停止できます。マイク権限はAndroidのアプリ設定で管理します。効果音・触覚・言語の設定はアプリ専用領域に保存され、アプリデータの消去またはアンインストールで削除できます。以下のiOSライブアクティビティの案内はiPhone専用です。",
+  "es": "En Android, conecta auriculares, toca Reproducir y permite el micrófono. El audio se procesa solo en la memoria del dispositivo, sin grabarse ni subirse. Detén la escena en SCENE o en los controles multimedia de Android. Gestiona el permiso en los ajustes de la app. Los ajustes de efectos, vibración e idioma se guardan en el almacenamiento privado; se eliminan al borrar los datos o desinstalar. Las instrucciones sobre actividades en directo de iOS solo se aplican al iPhone.",
+  "de": "Verbinde unter Android Kopfhörer, tippe auf Abspielen und erlaube den Mikrofonzugriff. Audio wird nur im Gerätespeicher verarbeitet, nie aufgenommen oder hochgeladen. Stoppe in SCENE oder über die Android-Mediensteuerung. Die Mikrofonberechtigung verwaltest du in den App-Einstellungen. Effekte, Haptik und Sprache werden lokal im privaten App-Speicher gespeichert und beim Löschen der App-Daten oder Deinstallieren entfernt. Die folgenden Hinweise zu iOS-Live-Aktivitäten gelten nur für iPhone.",
+  "fr": "Sur Android, connectez un casque, touchez Lire et autorisez le microphone. Le son est traité uniquement dans la mémoire de l’appareil, sans enregistrement ni envoi. Arrêtez dans SCENE ou avec les commandes multimédias Android. Gérez l’autorisation dans les paramètres de l’application. Les préférences d’effets, de retour haptique et de langue restent dans le stockage privé ; effacez les données ou désinstallez pour les supprimer. Les instructions sur les activités en direct iOS concernent uniquement l’iPhone.",
+  "pt-BR": "No Android, conecte fones, toque em Reproduzir e permita o microfone. O áudio é processado apenas na memória do dispositivo, sem gravação ou envio. Pare no SCENE ou nos controles de mídia do Android. Gerencie a permissão nas configurações do app. Efeitos, resposta tátil e idioma ficam no armazenamento privado; limpe os dados ou desinstale para removê-los. As instruções sobre Atividades ao Vivo do iOS valem apenas para iPhone.",
+  "zh-Hans": "在 Android 上，请连接耳机，点击播放，再允许使用麦克风。音频仅在设备内存中处理，不会录制或上传。可在 SCENE 或 Android 媒体控制中停止播放。请在 Android 应用设置中管理麦克风权限。音效、触感和语言偏好仅保存在应用专用存储空间中，清除应用数据或卸载即可删除。以下 iOS 实时活动说明仅适用于 iPhone。",
+  "zh-Hant": "在 Android 上，請連接耳機，點選播放，再允許使用麥克風。音訊僅在裝置記憶體中處理，不會錄製或上傳。可在 SCENE 或 Android 媒體控制中停止播放。請在 Android 應用程式設定中管理麥克風權限。音效、觸覺和語言偏好僅保存在應用程式專用儲存空間中，清除資料或解除安裝即可刪除。以下 iOS 即時動態說明僅適用於 iPhone。",
+  "it": "Su Android, collega le cuffie, tocca Riproduci e consenti il microfono. L’audio viene elaborato solo nella memoria del dispositivo, senza registrazione o caricamento. Interrompi da SCENE o dai controlli multimediali Android. Gestisci il permesso nelle impostazioni dell’app. Effetti, feedback aptico e lingua restano nello spazio privato; cancella i dati o disinstalla per rimuoverli. Le istruzioni sulle attività in tempo reale di iOS valgono solo per iPhone."
+} as const;
+
+const platformCopy = Object.fromEntries(Object.entries(copy).map(([locale, item]) => [locale, {
+  ...item,
+  support: { ...item.support, sections: [["Android · 2026-09-10", androidGuidance[locale as keyof typeof androidGuidance]], ...item.support.sections] },
+  privacy: { ...item.privacy, sections: [["Android · 2026-09-10", androidGuidance[locale as keyof typeof androidGuidance]], ...item.privacy.sections] },
+}]));
+
+const initial = platformCopy.en[page];
 ---
 
 <article class="scene-info" data-scene-info data-page={page}>
@@ -286,7 +306,7 @@ const initial = copy.en[page];
       <strong>SCENE</strong><span>BY EAST NOISE</span>
     </a>
     <select id="scene-locale" aria-label="Language">
-      {Object.entries(copy).map(([locale, item]) => <option value={locale}>{item.language}</option>)}
+      {Object.entries(platformCopy).map(([locale, item]) => <option value={locale}>{item.language}</option>)}
     </select>
   </header>
 
@@ -324,7 +344,7 @@ const initial = copy.en[page];
     </nav>
   </footer>
 
-  <script is:inline id="scene-info-copy" type="application/json" set:html={JSON.stringify(copy)}></script>
+  <script is:inline id="scene-info-copy" type="application/json" set:html={JSON.stringify(platformCopy)}></script>
 </article>
 
 <script is:inline>
