@@ -1,0 +1,36 @@
+---
+import copy from '../data/switch/localizations.json';
+interface Props { page: 'support' | 'privacy' }
+const {page}=Astro.props;
+const languages: Record<string,string> = {ko:'한국어',en:'English',ja:'日本語',de:'Deutsch',fr:'Français',es:'Español',it:'Italiano',pt:'Português (Brasil)','pt-PT':'Português (Portugal)',zh:'简体中文','zh-TW':'繁體中文','zh-HK':'繁體中文（香港）',da:'Dansk',nb:'Norsk',nl:'Nederlands',sv:'Svenska',tr:'Türkçe',vi:'Tiếng Việt',hi:'हिंदी'};
+---
+<main>
+  <header><a href="/">EAST NOISE</a><span>SWITCH</span></header>
+  <nav aria-label="Language">{Object.entries(languages).map(([id,name])=><a href={`#${id}`}>{name}</a>)}</nav>
+  <h1>{page==='support'?'SWITCH Support':'SWITCH Privacy Policy'}</h1>
+  <p class="date">September 10, 2026 · East Noise / 동방의 소음</p>
+  {page==='privacy' ? <>
+    <section lang="en" id="en"><h2>English</h2>
+      <h3>What stays on your device</h3><p>SWITCH stores the player names you choose, language and voice settings, and an unfinished game in the app's local storage. You may use nicknames. East Noise does not receive this information. Change names and settings in the app; end the current game or delete the app to remove its local data. Device backup and restoration are controlled by your Apple settings.</p>
+      <h3>Voice and purchases</h3><p>Voice guidance uses Apple's on-device speech synthesis. SWITCH does not record conversations or request microphone access. Apple processes purchases and payments through the App Store. SWITCH checks StoreKit transactions on your device to determine whether you have access. East Noise does not receive your payment-card details.</p>
+      <h3>Collection and sharing</h3><p>The app has no account registration, advertising, tracking, analytics SDK, cloud profile, or user-content upload service. East Noise does not collect or sell personal data through the app.</p>
+      <h3>Support and your choices</h3><p>If you email support, the email address and information you choose to send are used to answer and resolve your request. Send only information needed for support, without intimate photos, recordings, or payment details. Contact us to request deletion of support correspondence. We retain correspondence only as needed to handle the request and applicable obligations.</p>
+      <h3>Adults and changes</h3><p>SWITCH is intended for adults and is not directed to children. We will update this policy when the app's data practices change. Questions: <a href="mailto:eastnoise26@gmail.com">eastnoise26@gmail.com</a>.</p>
+    </section>
+    <section lang="ko" id="ko"><h2>한국어</h2>
+      <h3>기기에 저장되는 정보</h3><p>SWITCH는 입력한 파트너 이름, 언어·음성 설정, 진행 중인 게임을 앱의 기기 내 저장소에 보관합니다. 별명을 사용해도 됩니다. 이 정보는 동방의 소음으로 전송되지 않습니다. 앱 설정에서 이름과 설정을 변경할 수 있고, 게임 종료 또는 앱 삭제로 해당 로컬 데이터를 지울 수 있습니다. 기기 백업·복원은 사용자의 Apple 설정에 따릅니다.</p>
+      <h3>음성 안내와 결제</h3><p>음성 안내는 Apple의 기기 내 음성 합성을 사용합니다. 대화를 녹음하거나 마이크 권한을 요청하지 않습니다. 구매·결제는 Apple App Store가 처리하며, 앱은 기기에서 StoreKit 거래를 확인해 이용권을 판단합니다. 동방의 소음은 결제 카드 정보를 받지 않습니다.</p>
+      <h3>수집 및 공유</h3><p>계정 가입, 광고, 추적, 분석 SDK, 클라우드 프로필, 사용자 콘텐츠 업로드 기능이 없습니다. 동방의 소음은 앱을 통해 개인정보를 수집하거나 판매하지 않습니다.</p>
+      <h3>문의와 선택</h3><p>이메일 문의 시 발신 주소와 사용자가 보낸 정보는 문의 답변과 해결에 사용됩니다. 지원에 필요한 정보만 보내주시고, 사적인 사진·녹음·결제정보는 보내지 마세요. 문의 기록 삭제를 요청할 수 있습니다. 기록은 문의 처리와 관련 의무 이행에 필요한 범위에서만 보관합니다.</p>
+      <h3>성인 대상 및 변경</h3><p>SWITCH는 성인 대상이며 어린이를 대상으로 하지 않습니다. 데이터 처리 방식이 바뀌면 이 방침을 갱신합니다. 문의: <a href="mailto:eastnoise26@gmail.com">eastnoise26@gmail.com</a>.</p>
+    </section>
+    <p class="notice">The privacy policy is provided in English and Korean. Other language links show this notice; they are not translated policies.</p>
+    {Object.keys(languages).filter(id=>id!=='en'&&id!=='ko').map(id=><span id={id} class="anchor" />)}
+  </> : Object.entries(copy).map(([id,item])=><section lang={id} id={id}><h2>{languages[id]}</h2><h3>{item.subtitle}</h3><div class="prose">{'description' in item?item.description:copy['zh-TW'].description}</div><p><a href="mailto:eastnoise26@gmail.com">eastnoise26@gmail.com</a></p></section>)}
+  {page==='support' && <section lang="en"><h2>Help with playback or purchases</h2><p>Check device volume and the selected audio output, then enable Voice guide in SWITCH settings. Pause and resume from the game screen. A phone call or another audio interruption can pause playback; return to the app to check its state. Voice guidance uses your device's default available voice for the selected language.</p><p>For purchase recovery, open Settings → Subscription management → Restore purchases, using the Apple Account that made the purchase. Manage or cancel renewable subscriptions in your App Store account settings. A lifetime purchase does not renew. If a purchase is pending, access starts after Apple approves it.</p><p>Email the app version, iOS version, language, and the error shown. Do not send intimate content or payment-card information. Support is provided by East Noise; no response-time guarantee is offered.</p></section>}
+  <footer><a href="/switch/support">Support</a><a href="/legal/switch/privacy">Privacy</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (Apple EULA)</a></footer>
+</main>
+<style>
+:global(html),:global(body){margin:0;background:#17060d;color:#eee3e5}
+main{max-width:850px;margin:auto;padding:40px 24px 100px;color:#eee3e5;font-family:system-ui,sans-serif;line-height:1.8}header{display:flex;justify-content:space-between;letter-spacing:.15em;font-size:12px}a{color:#e4b2bc;text-underline-offset:4px}nav{display:flex;flex-wrap:wrap;gap:8px 16px;margin:40px 0;font-size:13px}h1{font-size:clamp(32px,5vw,48px);line-height:1.2}h2{font-size:25px;color:#f3d0d6}h3{font-size:18px;margin:26px 0 10px}.date,.notice{color:#bba4ad;font-size:14px}section{padding:28px 0;border-top:1px solid #4b2837;scroll-margin-top:25px}.prose{white-space:pre-line}footer{display:flex;flex-wrap:wrap;gap:22px;margin-top:30px;font-size:14px}.anchor{display:block}
+</style>
