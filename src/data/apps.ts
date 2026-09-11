@@ -127,7 +127,7 @@ export const apps: App[] = [
   {
     slug: 'alpha',
     group: 'live',
-    status: { ko: 'App Store v1.0.3 · Google Play v1.0.4', en: 'App Store v1.0.3 · Google Play v1.0.4' },
+    status: { ko: 'App Store · Google Play 공개', en: 'Live on the App Store and Google Play' },
     kind: { ko: '90일 자기통제 루틴 앱', en: '90-day self-discipline app' },
     accent: '#FF1B1F',
     links: {
