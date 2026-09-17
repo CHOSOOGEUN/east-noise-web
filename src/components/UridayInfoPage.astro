@@ -1,5 +1,5 @@
 ---
-type PageType = 'privacy' | 'terms' | 'delete' | 'support';
+type PageType = 'privacy' | 'terms' | 'delete' | 'support' | 'guardian';
 
 interface Section {
   title: string;
@@ -19,6 +19,7 @@ const labels: Record<PageType, string> = {
   terms: '이용약관',
   delete: '계정 및 데이터 삭제',
   support: '고객지원',
+  guardian: '법정대리인 동의 안내',
 };
 ---
 
@@ -69,6 +70,7 @@ const labels: Record<PageType, string> = {
   <footer>
     <div><strong>동방의 소음</strong><span>대표 조수근</span></div>
     <a href="mailto:josoogen26@gmail.com">josoogen26@gmail.com</a>
+    {page !== 'guardian' && <a href="/legal/uriday/guardian-consent">보호자 동의 안내</a>}
     {page !== 'delete' && <a href="/legal/uriday/delete-account">계정 삭제 안내</a>}
   </footer>
 </main>
@@ -208,6 +210,7 @@ const labels: Record<PageType, string> = {
 
   footer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 22px;
     padding: 54px 0 64px;
