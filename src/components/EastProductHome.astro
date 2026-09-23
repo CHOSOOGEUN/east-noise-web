@@ -81,7 +81,14 @@ const products = [
     status: ['APP STORE v1.0.3', 'GOOGLE PLAY v1.0.4'], side: 'left',
   },
   {
-    id: 'scene', number: '04', name: 'SCENE', accent: '#57d8ff',
+    id: 'voice-flower', number: '04', name: isKo ? '우리의 꽃' : 'Our Flower', accent: '#f36f55',
+    image: '/visuals/company/voice-flower/home.png', href: isKo ? '/voice-flower' : '/en/voice-flower',
+    title: isKo ? '목소리로 피우는 꽃' : 'A flower grown by voice',
+    body: isKo ? '하루 한 번씩 목소리를 남기고\n둘만의 정원을 함께 키웁니다.' : 'Leave one voice each day\nand grow one garden together.',
+    status: [isKo ? 'iPHONE · ANDROID · 출시 준비 중' : 'iPHONE · ANDROID · PREPARING TO LAUNCH', 'PREVIEW'], side: 'right',
+  },
+  {
+    id: 'scene', number: '05', name: 'SCENE', accent: '#57d8ff',
     image: '/visuals/company/scene-signal-scene.webp', href: isKo ? '/scene' : '/en/scene',
     title: isKo ? '지금에 반응하는 사운드' : 'Sound that reacts to now',
     body: isKo ? '상황을 고르면, 주변 소리와 음악이\n한 장면으로 흐릅니다.' : 'Choose the situation. Nearby sound and music\nflow into one continuous scene.',
@@ -139,7 +146,7 @@ const products = [
           <article class:list={['product-panel', `product-panel--${product.id}`, `copy-${product.side}`]} id={product.id} data-product-panel={product.id} style={`--product-accent:${product.accent}`}>
             <img src={product.image} alt="" width="1672" height="941" loading={product.id === 'luvit' ? 'eager' : 'lazy'} />
             <div class="product-copy reveal">
-              <p class="product-number">{product.number} / 04</p>
+              <p class="product-number">{product.number} / 05</p>
               <a href={product.href} aria-label={`${product.name} · ${copy.openProduct}`}><h3>{product.title}</h3></a>
               <p class="product-body">{product.body.split('\n').map((line) => <span>{line}</span>)}</p>
               <dl class="product-status">
@@ -249,7 +256,7 @@ const products = [
   .products{position:relative;display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid rgba(255,255,255,.12);background:#080808}
   .product-index,.product-panels{grid-area:1/1}
   .product-index{position:sticky;top:0;z-index:30;align-self:start;width:clamp(176px,16.5vw,254px);height:100svh;padding:clamp(4rem,8vh,7rem) clamp(1.25rem,2.8vw,3rem);border-right:1px solid rgba(255,255,255,.13);background:rgba(9,10,10,.91);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-  .product-index ol{display:grid;grid-template-rows:repeat(4,1fr);height:100%;margin:0;padding:0;list-style:none;border-left:1px solid rgba(255,255,255,.32)}.product-index li{min-height:0}
+  .product-index ol{display:grid;grid-template-rows:repeat(5,1fr);height:100%;margin:0;padding:0;list-style:none;border-left:1px solid rgba(255,255,255,.32)}.product-index li{min-height:0}
   .product-index a{position:relative;display:flex;flex-direction:column;justify-content:center;height:100%;min-height:110px;padding-left:clamp(1rem,1.8vw,1.8rem);color:rgba(255,255,255,.5);transition:color 200ms ease}
   .product-index a::before{content:'';position:absolute;top:50%;left:-2px;width:3px;height:0;background:var(--product-accent);transform:translateY(-50%);transition:height 240ms ease,box-shadow 240ms ease}
   .product-index a:hover,.product-index a:focus-visible,.product-index a[aria-current='step']{color:var(--product-accent)}
@@ -291,7 +298,7 @@ const products = [
     .site-header{grid-template-columns:1fr auto;min-height:72px;padding:0 1.25rem}.primary-nav{gap:1rem}.primary-nav a:nth-child(3){display:none}.language-link{display:none}.brand img{width:40px}
     .hero{height:100svh;min-height:100svh;align-items:flex-end}.hero-image{object-position:66% center;opacity:.78}.hero-copy{z-index:1;width:min(32rem,calc(100% - 2.5rem));margin:0 1.25rem 4.5rem;padding:0;background:transparent}.hero h1{font-size:clamp(3.5rem,14vw,5.5rem);text-shadow:0 3px 24px rgba(0,0,0,.9)}.hero-copy>p{text-shadow:0 2px 14px rgba(0,0,0,.95)}
     :global(html){scroll-snap-type:y proximity}.products{display:block}.product-index{position:sticky;top:0;z-index:30;width:100%;height:auto;min-height:0;margin-bottom:0;padding:0;border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
-    .product-index ol{grid-template-columns:repeat(4,1fr);grid-template-rows:none;height:auto;border-left:0}.product-index a{align-items:center;min-height:66px;padding:.6rem .35rem;border-right:1px solid rgba(255,255,255,.12);text-align:center}.product-index li:last-child a{border-right:0}
+    .product-index ol{grid-template-columns:repeat(5,1fr);grid-template-rows:none;height:auto;border-left:0}.product-index a{align-items:center;min-height:66px;padding:.6rem .25rem;border-right:1px solid rgba(255,255,255,.12);text-align:center}.product-index li:last-child a{border-right:0}
     .product-index a::before{top:auto;right:50%;bottom:-1px;left:50%;width:0;height:2px;transform:none;transition:width 220ms ease,left 220ms ease,right 220ms ease}.product-index a[aria-current='step']::before{left:18%;right:18%;width:auto;height:2px}
     .index-number,.product-index small{display:none}.product-index strong{font-size:.78rem}.product-panel{height:calc(100svh - 66px);min-height:620px;align-items:flex-end}.product-panel>img{object-position:64% center}
     .product-panel>img{filter:brightness(.72) saturate(.94)}.product-copy,.copy-right .product-copy{z-index:1;width:calc(100% - 2.5rem);margin:0 1.25rem 2rem;padding:0;background:transparent;text-shadow:0 2px 18px rgba(0,0,0,.95)}.product-number{margin-bottom:1.25rem}.product-copy h3{font-size:clamp(2.3rem,9vw,3.6rem)}.product-body span{display:inline}.product-body span+span::before{content:' '}
@@ -302,7 +309,7 @@ const products = [
   }
   @media(max-width:520px){
     .site-header{min-height:64px}.brand span{font-size:.78rem}.primary-nav a{font-size:.64rem}.primary-nav a:nth-child(2){display:none}.hero{height:100svh;min-height:100svh}.hero-image{object-position:71% center}.hero-copy{margin-bottom:2rem}.hero h1{font-size:clamp(3.25rem,15vw,4.55rem)}.hero-copy>p{max-width:16rem;line-height:1.6}.hero-signal{display:none}
-    .product-panel{height:calc(100svh - 64px);min-height:560px}.product-panel>img{object-position:62% center}.product-panel--luvit>img{object-position:35% center}.product-status div{grid-template-columns:3.7rem 1fr}.method h2,.contact h2{font-size:clamp(2.4rem,12vw,3.5rem)}
+    .product-panel{height:calc(100svh - 64px);min-height:560px}.product-panel>img{object-position:62% center}.product-panel--luvit>img{object-position:35% center}.product-panel--voice-flower>img{object-position:center 22%}.product-status div{grid-template-columns:3.7rem 1fr}.method h2,.contact h2{font-size:clamp(2.4rem,12vw,3.5rem)}
   }
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>

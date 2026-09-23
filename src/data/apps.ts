@@ -77,6 +77,30 @@ export const apps: App[] = [
     },
   },
   {
+    slug: 'voice-flower',
+    group: 'review',
+    status: { ko: 'iPhone · Android · 출시 준비 중', en: 'iPhone · Android · Preparing for release' },
+    kind: { ko: '커플 목소리 정원 앱', en: 'Couple voice garden app' },
+    accent: '#F36F55',
+    links: { web: '/voice-flower' },
+    copy: {
+      ko: {
+        name: '우리의 꽃',
+        shortName: '우리의 꽃',
+        tagline: '하루 한 번, 목소리로 피우는 꽃.',
+        description: '두 사람이 매일 하나씩 목소리를 남기고, 둘의 기록이 모인 날 꽃을 키우며 함께 정원을 채우는 커플 앱입니다.',
+        proof: '최대 3분 음성, 하루 한 번씩의 공동 기록, 커플이 함께 쓰는 정원과 꽃 성장 흐름으로 출시를 준비하고 있습니다.',
+      },
+      en: {
+        name: 'Our Flower',
+        shortName: 'Our Flower',
+        tagline: 'One voice each day. One flower grown together.',
+        description: 'A couple app where two people leave one voice message each day, grow a flower when both records arrive, and fill one shared garden.',
+        proof: 'Preparing for release with recordings up to three minutes, one shared day, and a couple-owned garden and flower progression.',
+      },
+    },
+  },
+  {
     slug: 'scene',
     group: 'review',
     status: { ko: 'iPhone · 출시 준비 중 · v1.0.0', en: 'iPhone · Preparing for release · v1.0.0' },

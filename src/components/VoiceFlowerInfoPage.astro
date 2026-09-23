@@ -1,0 +1,174 @@
+---
+type PageType = 'support' | 'privacy' | 'terms';
+type Locale = 'ko' | 'en';
+
+interface Props { page: PageType; locale: Locale; }
+
+const { page, locale } = Astro.props;
+const isKo = locale === 'ko';
+const root = isKo ? '' : '/en';
+const productHref = `${root}/voice-flower`;
+const supportHref = `${root}/voice-flower/support`;
+const privacyHref = `${root}/legal/voice-flower/privacy`;
+const termsHref = `${root}/legal/voice-flower/terms`;
+const languageHref = isKo
+  ? (page === 'support' ? '/en/voice-flower/support' : `/en/legal/voice-flower/${page}`)
+  : (page === 'support' ? '/voice-flower/support' : `/legal/voice-flower/${page}`);
+
+const ko = {
+  support: {
+    kicker: '우리의 꽃 · 도움', title: '함께 키우는 정원을\n편하게 이용하세요.',
+    lead: '목소리 전송, 꽃 성장, 커플 연결과 데이터에 관해 자주 묻는 내용을 모았습니다.', updated: '',
+    sections: [
+      ['목소리는 얼마나 자주, 길게 남길 수 있나요?', '각 사용자는 하루에 한 번, 최대 3분까지 남길 수 있습니다. 날짜가 바뀌면 오늘의 녹음 상태가 새로 시작됩니다.'],
+      ['꽃은 언제 자라나요?', '같은 날 두 사람의 목소리가 모두 전송되면 꽃이 한 번 성장합니다. 한 사람만 보낸 날에는 기록은 남지만 꽃은 성장하지 않습니다.'],
+      ['다른 정원을 보고 있을 때 보내면 어디에 쌓이나요?', '그날 먼저 목소리를 보낸 시점의 정원이 오늘의 성장 정원이 됩니다. 전송 후에는 “오늘의 목소리는 ○○ 정원에 쌓였어요” 안내가 잠시 표시됩니다.'],
+      ['앱을 지우거나 로그아웃하면 기록도 사라지나요?', '전송을 마친 목소리와 공유 기록은 서버에 보관되므로 단순 로그아웃이나 앱 삭제로 바로 사라지지 않습니다. 아직 전송하지 않은 기기 안의 임시 녹음은 사라질 수 있습니다.'],
+      ['커플 연결을 끊었다가 복구할 수 있나요?', '연결을 끊으면 즉시 공유가 끝나고 기록은 30일 동안 보관됩니다. 그 기간에는 같은 두 계정끼리만 복구할 수 있으며, 둘 중 한 명이라도 새 커플 연결을 시작하면 이전 기록은 복구할 수 없습니다.'],
+      ['알림이나 녹음이 작동하지 않아요.', '기기 설정에서 마이크와 알림 권한을 확인해 주세요. 계속 문제가 생기면 기기 모델, 운영체제와 앱 버전, 문제가 발생한 화면을 적어 문의해 주세요.'],
+    ],
+  },
+  privacy: {
+    kicker: '우리의 꽃 · 개인정보', title: '둘만의 목소리를\n필요한 만큼만 다룹니다.',
+    lead: '서비스 제공에 필요한 계정, 커플 연결, 음성 기록과 정원 데이터를 어떻게 처리하는지 안내합니다.', updated: '시행일 2026년 9월 23일',
+    sections: [
+      ['수집하는 정보', '로그인 제공자 정보, Firebase 사용자 식별자, 이메일, 닉네임, 커플 식별자와 연결 시각, 초대 코드 상태를 처리합니다. 비밀번호와 결제 카드 정보는 East Noise가 직접 수집하지 않습니다.'],
+      ['목소리와 이용 기록', '전송한 음성 파일, 재생 길이와 파형 표시 데이터, 전송·재생 시각, 청취 여부, 정원과 꽃의 진행도, 공동 보유 아이템, 알림 설정을 처리합니다. 전송 전 임시 녹음은 기기에만 머물며 날짜가 바뀌거나 사용자가 다시 녹음하면 삭제될 수 있습니다.'],
+      ['이용 목적', '로그인과 계정 유지, 커플 연결, 목소리 전달과 재생, 정원 성장, 알림, 중복 전송 방지, 보안과 장애 대응, 고객 문의 처리를 위해 사용합니다. 현재 광고 추적이나 개인정보 판매에는 사용하지 않습니다.'],
+      ['상대방에게 보이는 정보', '연결된 상대방은 닉네임, 목소리 전송 상태와 음성, 함께 쓰는 기록·정원·진행도·아이템을 볼 수 있습니다. 이 정보는 불특정 다수에게 공개되지 않습니다.'],
+      ['외부 서비스', '인증과 데이터 제공을 위해 Google Firebase의 Authentication, Firestore, Storage, Cloud Functions, Cloud Messaging, App Check를 사용할 수 있으며, 로그인에는 Apple 또는 Google 계정이 사용됩니다. 각 사업자는 자신의 방침에 따라 필요한 정보를 처리합니다.'],
+      ['보관과 커플 연결 해제', '활성 계정과 커플 연결 동안 서비스 데이터를 보관합니다. 연결 해제 시 공유 기록을 즉시 동결하고 30일 동안 보관하며 같은 두 계정끼리만 복구할 수 있습니다. 30일이 지나거나 그 안에 한 명이라도 새 커플 연결을 시작하면 이전 공유 기록은 복구할 수 없도록 처리합니다. 법령상 별도 보관 의무가 있으면 해당 기간만 보관합니다.'],
+      ['회원 탈퇴와 삭제', '회원 탈퇴는 커플 연결 해제와 별개의 기능입니다. 탈퇴하면 계정과 개인 프로필, 닉네임, 음성, 푸시 토큰 등 개인 데이터를 영구 삭제하고 현재 커플 연결도 종료합니다. 삭제된 데이터는 복구할 수 없습니다.'],
+      ['이용자의 권리', '앱 설정에서 프로필을 확인·수정하고 연결 해제 또는 회원 탈퇴를 요청할 수 있습니다. 개인정보 열람, 정정, 삭제와 처리 관련 문의는 고객지원 이메일로 접수할 수 있습니다.'],
+      ['보호와 연령', '전송 구간과 저장소 접근을 보호하고 권한을 최소화하며, 비정상 요청 방지 장치를 운영합니다. 서비스는 만 14세 미만을 대상으로 하지 않습니다.'],
+      ['방침 변경과 문의', '서비스나 법령이 바뀌면 시행일과 내용을 갱신하고 중요한 변경은 앱 또는 웹사이트에서 알립니다. 문의: eastnoise26@gmail.com'],
+    ],
+  },
+  terms: {
+    kicker: '우리의 꽃 · 이용약관', title: '둘이 함께 쓰는 공간의\n기본 규칙입니다.',
+    lead: '계정, 커플 연결, 목소리 기록과 공동 아이템 이용에 필요한 기준을 안내합니다.', updated: '시행일 2026년 9월 23일',
+    sections: [
+      ['서비스와 이용 자격', '우리의 꽃은 두 사람이 목소리를 주고받고 하나의 정원을 함께 키우는 서비스입니다. 사용자는 만 14세 이상이어야 하며 본인이 관리할 수 있는 계정으로 이용해야 합니다.'],
+      ['계정과 커플 연결', '한 계정은 한 시점에 하나의 커플 연결만 유지할 수 있습니다. 초대 코드를 공유하거나 입력해 연결하며, 연결된 두 사람은 정원·기록·꽃·아이템 등 커플 단위 데이터를 함께 사용합니다.'],
+      ['목소리 기록', '사용자는 자신이 전송할 권리가 있는 내용만 기록해야 합니다. 상대방의 권리, 사생활 또는 법령을 침해하는 내용을 보내서는 안 됩니다. 전송한 목소리는 연결된 상대방이 듣고 기록 화면에서 다시 재생할 수 있습니다.'],
+      ['연결 해제와 복구', '연결 해제는 즉시 커플 공유를 종료합니다. 공유 기록은 30일 동안 동결되며 같은 두 계정끼리만 복구할 수 있습니다. 그 기간에 한 명이라도 새 커플 연결을 시작하면 이전 기록의 복구 권리는 사라집니다.'],
+      ['회원 탈퇴', '회원 탈퇴는 별도 메뉴에서 진행하며 계정과 개인 데이터를 영구 삭제합니다. 탈퇴와 함께 현재 커플 연결이 종료되고 삭제된 데이터는 복구할 수 없습니다.'],
+      ['꽃, 정원, 잎과 아이템', '구매한 꽃과 정원은 해당 커플이 공동으로 영구 보유하고, 성장 도구 등 소모성 아이템은 사용 시 차감됩니다. 잎과 유료 상품, 광고 보상 등 구체적인 결제 정책은 출시 전 확정되며 실제 판매가 시작될 때 가격과 조건을 별도로 표시합니다.'],
+      ['서비스 변경과 중단', '안정적인 운영, 보안, 법령 준수 또는 제품 개선을 위해 기능을 변경하거나 일시 중단할 수 있습니다. 중요한 변경은 합리적인 방법으로 미리 알립니다.'],
+      ['지식재산권과 책임', '앱의 코드, 디자인, 문구와 기본 시각 자산의 권리는 East Noise에 있습니다. 사용자가 만든 음성의 권리는 해당 사용자에게 있습니다. 천재지변, 통신 장애 또는 사용자의 기기·계정 관리로 발생한 손해에는 관련 법령이 허용하는 범위에서 책임이 제한될 수 있습니다.'],
+      ['약관 변경과 문의', '법령 또는 서비스 변경에 따라 약관을 갱신할 수 있으며 시행일을 이 페이지에 표시합니다. 문의: eastnoise26@gmail.com'],
+    ],
+  },
+};
+
+const en = {
+  support: {
+    kicker: 'OUR FLOWER · SUPPORT', title: 'Grow your shared garden\nwithout the guesswork.',
+    lead: 'Answers about sending voice messages, flower growth, couple connections, and data.', updated: '',
+    sections: [
+      ['How often and how long can I record?', 'Each person can send one voice message per day, up to three minutes. The daily recording state resets when the local date changes.'],
+      ['When does a flower grow?', 'A flower advances once both people have sent their voice message for the same day. A single message remains in the record but does not grow the flower.'],
+      ['Which garden receives today’s growth?', 'The garden visible when the first voice is sent becomes the growth garden for that day. A brief confirmation tells you where the day was added.'],
+      ['Does signing out or deleting the app erase records?', 'Sent voices and shared records remain on the service. An unsent draft stored only on the device may disappear.'],
+      ['Can a disconnected couple recover?', 'Shared records are frozen for 30 days. Only the same two accounts can recover them, and starting a new couple connection makes the previous records unrecoverable.'],
+      ['Recording or notifications are not working.', 'Check microphone and notification permissions in device settings. If the issue continues, email us with the device model, OS version, app version, and the screen where it occurred.'],
+    ],
+  },
+  privacy: {
+    kicker: 'OUR FLOWER · PRIVACY', title: 'Your voices stay between two,\nwith only the data we need.',
+    lead: 'This policy explains how account, couple, voice, and garden data are handled.', updated: 'Effective September 23, 2026',
+    sections: [
+      ['Information we process', 'We process login provider information, Firebase user ID, email, nickname, couple ID and connection time, and invite-code state. East Noise does not directly collect passwords or payment card details.'],
+      ['Voices and activity', 'We process sent audio, duration and waveform data, send and playback times, listened status, gardens and growth, shared inventory, and notification settings. Unsent drafts remain on the device and may be cleared after the date changes or a re-recording.'],
+      ['Why we use it', 'We use data for authentication, couple connection, audio delivery and playback, garden growth, notifications, duplicate prevention, security, reliability, and support. We do not currently sell personal data or use it for advertising tracking.'],
+      ['What your partner sees', 'Your connected partner can see your nickname, send status, audio, shared records, gardens, progress, and inventory. This data is not public.'],
+      ['Service providers', 'We may use Google Firebase Authentication, Firestore, Storage, Cloud Functions, Cloud Messaging, and App Check, plus Apple or Google login. Those providers process required information under their own policies.'],
+      ['Retention and disconnecting', 'Data is kept while the account and couple connection are active. Disconnecting freezes shared records for 30 days and only the same two accounts can recover them. After 30 days, or when either person starts a new couple connection, the previous shared records become unrecoverable. Legal retention duties may apply separately.'],
+      ['Account deletion', 'Account deletion is separate from disconnecting. It permanently deletes the account and personal profile, nickname, audio, push token, and related personal data, and ends the current couple connection. Deleted data cannot be recovered.'],
+      ['Your choices', 'You can review or edit profile information and request disconnecting or account deletion from Settings. Contact us to request access, correction, deletion, or information about processing.'],
+      ['Security and age', 'We protect data in transit and storage, limit access, and use abuse-prevention controls. The service is not directed to children under 14.'],
+      ['Updates and contact', 'We update the effective date and provide notice for material changes. Contact: eastnoise26@gmail.com'],
+    ],
+  },
+  terms: {
+    kicker: 'OUR FLOWER · TERMS', title: 'The simple rules behind\none shared garden.',
+    lead: 'These terms cover accounts, couple connections, voice records, and shared items.', updated: 'Effective September 23, 2026',
+    sections: [
+      ['Service and eligibility', 'Our Flower lets two people exchange voice messages and grow one shared garden. Users must be at least 14 and use an account they control.'],
+      ['Accounts and connections', 'An account may have one couple connection at a time. Two people connect with an invite code and share couple-level gardens, records, flowers, and items.'],
+      ['Voice records', 'You may send only content you have the right to share and must not violate another person’s privacy, rights, or applicable law. Your connected partner can listen to sent voices and replay them from the record.'],
+      ['Disconnecting and recovery', 'Disconnecting ends sharing immediately. Records are frozen for 30 days and recoverable only by the same two accounts. A new couple connection by either person ends recovery eligibility.'],
+      ['Account deletion', 'Account deletion is available separately and permanently removes the account and personal data. It also ends the current couple connection, and deleted data cannot be recovered.'],
+      ['Flowers, gardens, leaves, and items', 'Purchased flowers and gardens are permanently shared by the couple. Consumable growth items are deducted when used. Pricing, leaf purchases, and rewarded ads will be finalized and shown before any paid release.'],
+      ['Changes and availability', 'We may change or pause features for reliability, security, legal compliance, or product improvement, with reasonable notice for material changes.'],
+      ['Intellectual property and liability', 'East Noise owns the app code, design, copy, and default visual assets. Users retain rights in their recordings. Liability may be limited to the extent allowed by law for events outside our control or caused by device and account management.'],
+      ['Updates and contact', 'We may update these terms as law or the service changes and will show the effective date here. Contact: eastnoise26@gmail.com'],
+    ],
+  },
+};
+
+const copy = (isKo ? ko : en)[page];
+---
+
+<div class="flower-info">
+  <a class="skip" href="#main">{isKo ? '본문으로 이동' : 'Skip to content'}</a>
+  <header class="topbar">
+    <a class="brand" href={productHref}><span class="flower-mark" aria-hidden="true">✿</span><strong>{isKo ? '우리의 꽃' : 'Our Flower'}</strong><small>BY EAST NOISE</small></a>
+    <nav aria-label={isKo ? '문서 메뉴' : 'Document navigation'}>
+      <a href={supportHref} aria-current={page === 'support' ? 'page' : undefined}>{isKo ? '도움' : 'Support'}</a>
+      <a href={privacyHref} aria-current={page === 'privacy' ? 'page' : undefined}>{isKo ? '개인정보' : 'Privacy'}</a>
+      <a href={termsHref} aria-current={page === 'terms' ? 'page' : undefined}>{isKo ? '약관' : 'Terms'}</a>
+      <a href={languageHref} lang={isKo ? 'en' : 'ko'}>{isKo ? 'EN' : 'KO'}</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="info-hero">
+      <div class="hero-copy">
+        <p>{copy.kicker}</p>
+        <h1>{copy.title.split('\n').map((line) => <span>{line}</span>)}</h1>
+        <p class="lead">{copy.lead}</p>
+        {copy.updated && <time datetime="2026-09-23">{copy.updated}</time>}
+      </div>
+      <div class="hero-flower" aria-hidden="true"><img src="/visuals/company/voice-flower/coral.png" alt="" width="83" height="167" /></div>
+    </section>
+
+    <div class="document-shell">
+      <aside><span>{String(copy.sections.length).padStart(2, '0')}</span><p>{isKo ? '확인할 내용' : 'Things to know'}</p></aside>
+      <article class="sections">
+        {copy.sections.map(([title, body], index) => (
+          <section>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div><h2>{title}</h2><p>{body}</p></div>
+          </section>
+        ))}
+      </article>
+    </div>
+
+    <section class="contact">
+      <p>{isKo ? '더 궁금한 점이 있나요?' : 'Still need help?'}</p>
+      <a href="mailto:eastnoise26@gmail.com">eastnoise26@gmail.com</a>
+      <span>{isKo ? '문의할 때 기기와 앱 버전, 발생한 상황을 함께 알려주세요.' : 'Include your device, app version, and what happened.'}</span>
+    </section>
+  </main>
+
+  <footer>
+    <a href={productHref}>{isKo ? '우리의 꽃으로 돌아가기' : 'Back to Our Flower'}</a>
+    <span>© 2026 East Noise</span>
+  </footer>
+</div>
+
+<style>
+  @font-face { font-family: Galmuri11; src: url('/fonts/Galmuri11.ttf') format('truetype'); font-display: swap; }
+  .flower-info { --brown:#6b3b1b; --coral:#f36f55; --cream:#fff7e8; --sky:#bfe7f3; --meadow:#e7e98f; min-width:320px; min-height:100vh; background:var(--cream); color:var(--brown); font-family:Galmuri11,system-ui,sans-serif; }
+  .skip { position:fixed; z-index:100; top:.5rem; left:.5rem; padding:.7rem 1rem; background:var(--brown); color:#fff; transform:translateY(-150%); }.skip:focus{transform:none}
+  .topbar { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; min-height:72px; padding:0 clamp(1.25rem,5vw,5rem); border-bottom:3px solid var(--brown); background:rgba(255,247,232,.93); backdrop-filter:blur(14px); }
+  .brand { display:flex; align-items:center; gap:.65rem; min-height:44px; }.brand strong{font-size:1rem}.brand small{color:#a07b5f;font:600 .56rem/1 system-ui,sans-serif;letter-spacing:.1em}.flower-mark{display:grid;place-items:center;width:30px;height:30px;background:var(--coral);color:#ffe381;font-size:1rem;clip-path:polygon(20% 0,80% 0,80% 20%,100% 20%,100% 80%,80% 80%,80% 100%,20% 100%,20% 80%,0 80%,0 20%,20% 20%)}
+  .topbar nav{display:flex;gap:clamp(.4rem,2.2vw,1.8rem);align-items:center}.topbar nav a{display:flex;align-items:center;min-height:44px;padding:.2rem .1rem;border-bottom:3px solid transparent;font-size:.72rem}.topbar nav a[aria-current='page']{border-color:var(--coral);color:var(--coral)}
+  .info-hero{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr);align-items:end;min-height:620px;padding:clamp(6rem,10vw,9rem) clamp(1.25rem,7vw,8rem) 5rem;overflow:hidden;border-bottom:3px solid var(--brown);background:linear-gradient(180deg,rgba(191,231,243,.9) 0 43%,rgba(231,233,143,.92) 43% 100%),url('/visuals/company/voice-flower/sky.png') top center/100% auto no-repeat}.info-hero:after{content:'';position:absolute;inset:43% 0 auto;height:3px;background:rgba(107,59,27,.18)}
+  .hero-copy{position:relative;z-index:2;max-width:62rem}.hero-copy>p:first-child{margin:0;color:var(--coral);font-size:.72rem;letter-spacing:.08em}.hero-copy h1{margin:2.4rem 0 1.6rem;font-size:clamp(3rem,6.4vw,7rem);line-height:1.02;letter-spacing:-.07em}.hero-copy h1 span{display:block}.lead{max-width:45rem;margin:0;font-size:clamp(.9rem,1.2vw,1.08rem);line-height:1.85}.hero-copy time{display:block;margin-top:1.6rem;color:#8f6f55;font:500 .72rem/1.5 system-ui,sans-serif}.hero-flower{position:relative;z-index:1;display:grid;place-items:end center;min-height:350px}.hero-flower img{width:min(150px,40%);height:auto;image-rendering:pixelated;filter:drop-shadow(12px 18px 0 rgba(83,119,45,.12))}
+  .document-shell{display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(3rem,8vw,10rem);padding:clamp(5rem,9vw,9rem) clamp(1.25rem,7vw,8rem);background:var(--cream)}.document-shell aside{position:sticky;top:110px;align-self:start;border-top:3px solid var(--brown);padding-top:1.2rem}.document-shell aside span{color:var(--coral);font-size:2.5rem}.document-shell aside p{margin:.7rem 0 0;font-size:.75rem}.sections{border-top:3px solid var(--brown)}.sections section{display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:1.5rem;padding:2.8rem 0;border-bottom:1px solid rgba(107,59,27,.25)}.sections>section>span{color:var(--coral);font-size:.72rem}.sections h2{margin:0 0 1rem;font-size:clamp(1.25rem,2vw,1.8rem);letter-spacing:-.04em}.sections p{margin:0;color:#76573f;font-family:system-ui,sans-serif;font-size:.98rem;line-height:1.9;word-break:keep-all}
+  .contact{display:grid;gap:1.15rem;padding:clamp(4rem,8vw,7rem) clamp(1.25rem,7vw,8rem);border-block:3px solid var(--brown);background:var(--coral);color:#fff}.contact p,.contact span{margin:0}.contact p{font-size:.82rem}.contact a{width:fit-content;max-width:100%;padding-bottom:.35rem;border-bottom:3px solid #fff;font-size:clamp(1.4rem,3.5vw,3.4rem);overflow-wrap:anywhere}.contact span{font-family:system-ui,sans-serif;font-size:.82rem;opacity:.82}
+  footer{display:flex;align-items:center;justify-content:space-between;min-height:96px;padding:1.5rem clamp(1.25rem,5vw,5rem);background:var(--brown);color:#f8e9d0;font-size:.72rem}footer a{min-height:44px;display:flex;align-items:center;border-bottom:1px solid transparent}footer a:hover,footer a:focus-visible{border-color:currentColor}
+  @media(max-width:760px){.topbar{min-height:64px;padding:0 1rem}.brand small{display:none}.topbar nav{gap:.65rem}.topbar nav a{font-size:.63rem}.info-hero{grid-template-columns:1fr;min-height:610px;padding:6rem 1.25rem 3rem}.hero-flower{position:absolute;right:1rem;bottom:1rem;min-height:0;width:140px;opacity:.82}.hero-flower img{width:82px}.document-shell{grid-template-columns:1fr;gap:2.5rem;padding:4.5rem 1.25rem}.document-shell aside{position:static;display:flex;gap:1rem;align-items:baseline}.sections section{grid-template-columns:2.2rem 1fr;gap:.8rem;padding:2.2rem 0}.contact{padding:4rem 1.25rem}footer{align-items:flex-start;flex-direction:column;gap:.6rem}}
+</style>
