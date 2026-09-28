@@ -11,6 +11,7 @@ interface Props {
   themeColor?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  singleLocale?: boolean;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   themeColor = '#050505',
   ogImage = '/visuals/company/og-home.jpg',
   ogImageAlt: providedOgImageAlt,
+  singleLocale = false,
 } = Astro.props;
 const t = strings[locale];
 const homeUrl = locale === 'ko' ? '/' : '/en/';
@@ -76,7 +78,7 @@ const organizationData = {
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
     <link rel="alternate" hreflang="ko" href={new URL(koreanPath, siteRoot)} />
-    <link rel="alternate" hreflang="en" href={new URL(englishPath, siteRoot)} />
+    {!singleLocale && <link rel="alternate" hreflang="en" href={new URL(englishPath, siteRoot)} />}
     <link rel="alternate" hreflang="x-default" href={new URL(koreanPath, siteRoot)} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
