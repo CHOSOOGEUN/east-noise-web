@@ -25,7 +25,7 @@ const labels: Record<PageType, string> = {
 <main class="uriday-info">
   <nav aria-label="우리데이 문서">
     <a class="brand" href="/uriday/support" aria-label="우리데이 고객지원 홈">
-      <span aria-hidden="true">♥</span>
+      <img src="/visuals/uriday/mark.png" width="34" height="34" alt="" />
       <strong>우리데이</strong>
     </a>
     <div class="nav-links">
@@ -63,12 +63,12 @@ const labels: Record<PageType, string> = {
       <h2>상황을 구체적으로 알려 주세요.</h2>
       <span>앱 버전, 기기·OS, 문제가 생긴 화면을 적어 주시면 더 빠르게 확인할 수 있어요. 비밀번호·인증 코드·결제 카드번호·사적인 일기 원문은 보내지 마세요.</span>
     </div>
-    <a href="mailto:josoogen26@gmail.com?subject=%EC%9A%B0%EB%A6%AC%EB%8D%B0%EC%9D%B4%20%EB%AC%B8%EC%9D%98">이메일로 문의하기</a>
+    <a href="mailto:eastnoise26@gmail.com?subject=%EC%9A%B0%EB%A6%AC%EB%8D%B0%EC%9D%B4%20%EB%AC%B8%EC%9D%98">이메일로 문의하기</a>
   </aside>
 
   <footer>
     <div><strong>동방의 소음</strong><span>대표 조수근</span></div>
-    <a href="mailto:josoogen26@gmail.com">josoogen26@gmail.com</a>
+    <a href="mailto:eastnoise26@gmail.com">eastnoise26@gmail.com</a>
     {page !== 'delete' && <a href="/legal/uriday/delete-account">계정 삭제 안내</a>}
   </footer>
 </main>
@@ -107,15 +107,11 @@ const labels: Record<PageType, string> = {
   a { color: inherit; text-decoration: none; }
 
   .brand { display: inline-flex; align-items: center; gap: 9px; font-size: 1.05rem; }
-  .brand span {
-    display: grid;
-    place-items: center;
+  .brand img {
+    display: block;
     width: 34px;
     height: 34px;
-    border-radius: 12px;
-    color: white;
-    background: linear-gradient(145deg, #56a0ff, var(--blue));
-    box-shadow: 0 8px 20px rgba(36, 119, 243, 0.22);
+    object-fit: contain;
   }
 
   .nav-links { display: flex; align-items: center; gap: 8px; }

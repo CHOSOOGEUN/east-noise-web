@@ -12,6 +12,7 @@ interface Props {
   ogImage?: string;
   ogImageAlt?: string;
   singleLocale?: boolean;
+  favicon?: string;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   ogImage = '/visuals/company/og-home.jpg',
   ogImageAlt: providedOgImageAlt,
   singleLocale = false,
+  favicon = '/favicon.svg',
 } = Astro.props;
 const t = strings[locale];
 const homeUrl = locale === 'ko' ? '/' : '/en/';
@@ -57,7 +59,7 @@ const organizationData = {
 <html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type={favicon.endsWith('.png') ? 'image/png' : 'image/svg+xml'} href={favicon} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
